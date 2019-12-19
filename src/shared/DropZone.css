@@ -1,0 +1,19 @@
+.dropzone {
+  width: 100%;
+  padding: 30px;
+  background-color: #f2f0f1;
+}
+
+.dropzone > div {
+  font-size: .85em;
+}
+
+.file-icon {
+  font-size: 1.2em;
+  margin-right: 10px;  
+}
+
+.file-link {
+  color: #32b9f3;
+  text-decoration: underline;
+}

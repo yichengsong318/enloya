@@ -1,0 +1,13 @@
+.button-switch {
+  width: 100%;
+  /* border: 1px solid #494a4a; */
+  height: calc(1.8em + 0.75rem + 2px);
+  border-radius: 0.25em;
+}
+
+.button-switch .btn {
+  font-size: 1em;
+  line-height: 1.8em;
+  cursor: pointer;
+  border: 1px solid #494a4a;
+}
