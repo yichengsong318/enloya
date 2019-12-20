@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import {apiConfig} from '../constants/defaultValues'
 
+console.log(process.env.NODE_ENV);
+
 const get = (endpoint, query) => {
   var token = localStorage.getItem('user_token');
 

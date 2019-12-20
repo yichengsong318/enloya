@@ -10,3 +10,5 @@ app.get('*', function (req, res) {
 });
 
 app.listen(PORT);
+
+console.log('Successfully launched the frontend app on port ' + PORT);
