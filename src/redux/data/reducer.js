@@ -16,9 +16,14 @@ import {
 const INIT_STATE = {
   industries: [],
   languages: [],
+  academicDegrees: [],
   loading: false,
   error: ''
 };
+
+const toCamelCase = (str) => {
+  return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+}
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
@@ -47,7 +52,7 @@ export default (state = INIT_STATE, action) => {
     
     case READ_DATA_SUCCESS:
       let d = { ...state, loading: false, error: '' };
-      d[action.payload.endpoint] = action.payload.data;
+      d[toCamelCase(action.payload.endpoint)] = action.payload.data;
       return d;
 
     case READ_DATA_ERROR:

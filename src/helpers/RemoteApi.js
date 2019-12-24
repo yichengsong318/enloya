@@ -9,7 +9,7 @@ const get = (endpoint, query) => {
     method: 'get',
     headers: { Authorization: `Bearer ${token}` },
     url: apiConfig.apiURL + endpoint,
-    query: query || {}
+    params: query || {}
   });
 };
 
