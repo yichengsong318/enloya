@@ -3,7 +3,7 @@ const FooterData = {
         {
             id: 1,
             title: "Stay updated",
-            description: " is the legal marketplace specialized in startups and SMEs. We provide quick and easy access to quality lawyers fostering maximum pricing transparency in the marketplace, making the process of buying legal services fast, agile and affordable.",
+            description: "is the legal marketplace specialized in startups and growing businesses. We provide quick and easy access to quality legal solutions with , making the process of buying legal services fast, agile and affordable.",
         }
     ],
     AboutWidget: [
@@ -11,6 +11,11 @@ const FooterData = {
         id: 1,
         title: "Company",
         menuItems: [
+          {
+            id: 0,
+            url: '/team',
+            text: 'Team',
+          },
           {
             id: 1,
             url: 'whatwedo',
@@ -34,7 +39,7 @@ const FooterData = {
           {
             id: 5,
             url: '/bloglist',
-            text: 'Enloya Blog',
+            text: 'Our Blog',
           },
           {
             id: 6,
@@ -85,11 +90,6 @@ const FooterData = {
             url: 'https://www.linkedin.com/company/enloyalaw',
             icon: 'ti-linkedin',
           },
-          {
-            id: 4,
-            url: 'https://www.youtube.com/channel/UC8eIyX7RQgpJ6Zc1HHXM-uw',
-            icon: 'ti-youtube',
-          }
         ]
       }
     ],
@@ -155,7 +155,7 @@ const FooterData = {
       {
         id: 2,
         url: '/bloglist',
-        item: 'Blog',
+        item: 'Our Blog',
       },
       {
         id: 3,

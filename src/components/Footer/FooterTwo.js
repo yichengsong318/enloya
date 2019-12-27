@@ -22,7 +22,7 @@ class FooterTwo extends Component {
                                                 <a href="index.html" className="f-logo"><img src={require('../../img/enloya-logo.png')} alt=""/></a>
                                                     <div className="widget-wrap">
                                                         <p className="f_400 f_p f_size_15 mb-0 l_height34"><span>Email:</span> <a href="mailto:info@enloya.com" className="f_400">info@enloya.com</a></p>
-                                                        <p className="f_400 f_p f_size_15 mb-0 l_height34"><span>Phone:</span> <a href="tel:+87 12131 12312" className="f_400">+87 12131 12312</a></p>
+                                                        <p className="f_400 f_p f_size_15 mb-0 l_height34"><span>Phone:</span> <a href="tel:+41 (0)78 694 1217" className="f_400">+41 (0)78 694 1217</a></p>
                                                     </div>
                                                     <form action="#" className="f_subscribe mailchimp" method="post">
                                                         <input type="text" name="EMAIL" className="form-control memail" placeholder="Email"/>

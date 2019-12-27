@@ -5,6 +5,7 @@ const Team =()=>{
     return(
         <section className="experts_team_area sec_pad">
             <div className="container">
+              <h3 className="pt-4-1 pb-3-1">Meet the team</h3>
                 {/*<Sectitle sClass="sec_title text-center mb_70" Title="The Experts Team" tClass="t_color3" TitleP="Why I say old chap that is spiffing barney, nancy boy bleeder chimney pot richard cheers the little rotter.!"/>*/}
                 <div className="row">
                     <div className="col-lg-3 col-sm-6">
