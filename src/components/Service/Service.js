@@ -1,6 +1,6 @@
 import React from 'react';
 import { Element } from 'react-scroll';
-
+import { Link as ScrolLink } from 'react-scroll';
 import SeoTitle from '../Title/SeoTitle';
 import Fade from 'react-reveal/Fade';
 import ServiceData from '../../components/Service/ServiceData';
@@ -25,7 +25,7 @@ const Service = () => {
                                       <li>Manage your legal business digitally</li>
                                       <li>Increase your revenue</li>
                                     </ul>
-                                    <a href=".#" className="seo_btn seo_btn_one btn_hover wow fadeInUp">Apply now</a>
+                                    <a href="/signup-lawyer" className="seo_btn seo_btn_one btn_hover wow fadeInUp">Apply now</a>
                                 </div>
                             </div>
                         </Fade>
@@ -41,7 +41,7 @@ const Service = () => {
                                       <li>Reduce your legal risks at a fraction of the cost</li>
                                       <li>Maximum price transparency (surprises no more!)</li>
                                     </ul>
-                                    <a href=".#" className="seo_btn seo_btn_one btn_hover wow fadeInUp">Learn more</a>
+                                    <ScrolLink title="Service" className="seo_btn seo_btn_one btn_hover wow fadeInUp" to="howbusinessworks" spy smooth duration={300} >Learn more</ScrolLink>
                                 </div>
                             </div>
                         </Fade>
@@ -122,7 +122,7 @@ const Service = () => {
                     </div>
                 </div>
             </Element>
-            <section className="seo_features_one sec_pad">
+            <section className="seo_features_one sec_pad" name="howbusinessworks">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6">
