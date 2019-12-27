@@ -399,6 +399,12 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 .pt_120 {
   padding-top: 40px;
 }
+.pt-4-1 {
+  padding-top: 4rem;
+}
+.pb-3-1 {
+  padding-bottom: 3rem;
+}
 
 .sec_pad {
   padding: 120px 0px 0 0;
@@ -433,8 +439,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 .btn_get {
   font: 500 14px/47px "Poppins", sans-serif;
-  color: #52a7fe;
-  border: 2px solid #52a7fe;
+  color: #ffb347;
+  border: 2px solid #ffb347;
   border-radius: 4px;
   -webkit-box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
   box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
@@ -460,8 +466,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 .btn_get:hover {
   color: #fff;
-  background: #52a7fe;
-  border-color: #52a7fe;
+  background: #ffb347;
+  border-color: #ffb347;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -471,8 +477,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 .btn_get_two {
   -webkit-box-shadow: none;
   box-shadow: none;
-  background: #52a7fe!important;
-  border-color: #52a7fe!important;
+  background: #ffb347!important;
+  border-color: #ffb347!important;
   color: #fff;
 }
 
@@ -2286,14 +2292,14 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 .navbar_fixed .header_area .menu_one .btn_get.new_btn{
   color: #6754e2;
-  border: 2px solid #52a7fe;
+  border: 2px solid #ffb347;
   background: transparent;
 }
 
 .navbar_fixed .header_area .menu_one .btn_get.new_btn:hover{
   color: #fff;
-  background: #52a7fe;
-  border-color: #52a7fe;
+  background: #ffb347;
+  border-color: #ffb347;
 }
 
 .navbar_fixed .header_area .sticky_logo img {
@@ -2346,7 +2352,7 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .menu_four .btn_get {
-  border: 2px solid #52a7fe;
+  border: 2px solid #ffb347;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -6999,11 +7005,11 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .p_service_item .icon.icon_three {
-  background: #fde396;
+  background: #ffb347;
 }
 
 .p_service_item .icon.icon_three:before {
-  background: #fde396;
+  background: #ffb347;
 }
 
 .p_service_item .icon.icon_four {
@@ -7023,13 +7029,21 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .p_service_item .icon.icon_six {
-  background: #52a7fe;
+  background: #2c1cd9;
 }
 
 .p_service_item .icon.icon_six:before {
-  background: #52a7fe;
+  background: #2c1cd9;
 }
-
+.video-container {
+  padding: 350px 0px 70px;
+  background-color: orange;
+  color: #fff;
+  text-align: center;
+}
+.custom-breadcrumb {
+  padding: 70px 0px 70px
+}
 .p_service_item h5 {
   font-size: 17px;
   line-height: 22px;
@@ -10266,6 +10280,7 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 /*===========experts_team_area css ==========*/
 .experts_team_area {
+  background: #eff2f9;
   padding-top: 0;
 }
 
@@ -10306,7 +10321,7 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 .ex_team_item .team_content {
   bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
   padding: 17px 0px;
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
