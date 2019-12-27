@@ -18,12 +18,12 @@ class Footer extends Component {
                                             <div className="col-lg-3 col-md-6" >
                                                 <div className="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s">
                                                     <p><b>Enloya</b>{widget.description}</p>
-                                                    <form action="#" className="f_subscribe_two mailchimp" method="post">
+                                                    {/*<form action="#" className="f_subscribe_two mailchimp" method="post">
                                                         <input type="text" name="EMAIL" className="form-control memail" placeholder="Your email address"/>
                                                         <button className="btn btn_get btn_get_two" type="submit">Subscribe</button>
                                                         <p className="mchimp-errmessage" style={{display: "none"}}></p>
                                                         <p className="mchimp-sucmessage" style={{display: "none"}}></p>
-                                                    </form>
+                                                    </form>*/}
                                                 </div>
                                             </div>
                                         </Reveal>
@@ -74,8 +74,8 @@ class Footer extends Component {
                                                 </div>
                                                 <div className="f_widget about-widget pt_70 wow fadeInLeft" data-wow-delay="0.4s">
                                                   <ul className="list-unstyled f_list mt_11">
-                                                    <li><Link to="/">+87 12131 12312</Link></li>
-                                                    <li><Link to="/">123 fake street 1209 geneva, switzerland</Link></li>
+                                                    <li><Link to="/">+41 (0)78 694 1217</Link></li>
+                                                    <li><Link to="/">Chemin EugËne-Rigot 2, 1202 Geneva, Switzerland</Link></li>
                                                     <li><Link to="/">info@enloya.com</Link></li>
                                                   </ul>
                                                 </div>
@@ -89,8 +89,8 @@ class Footer extends Component {
 
                     </div>
                     <div className="footer_bg">
-                        <div className="footer_bg_one"></div>
-                        <div className="footer_bg_two"></div>
+                        {/*<div className="footer_bg_one"></div>
+                        <div className="footer_bg_two"></div>*/}
                     </div>
                 </div>
                 <div className="footer_bottom">
