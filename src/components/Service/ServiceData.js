@@ -105,7 +105,7 @@ const ServiceData = {
         },
         {
             id: '4',
-            HRtitles : 'Employment',
+            HRtitles : 'Trademarks and patents',
             HRdescription: '',
             Hicon: 'vector',
             rclass : 'pr_70',
@@ -123,7 +123,7 @@ const ServiceData = {
         },
         {
             id: '6',
-            HRtitles : 'Iterate at Speed',
+            HRtitles : 'Taxes',
             HRdescription: '',
             Hicon: 'bolt',
             rclass : 'pl_70',

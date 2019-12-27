@@ -19,19 +19,19 @@ class CustomNavbar extends Component {
         scrollInertia: 0
       })
     });
-    
+
     Events.scrollEvent.register('begin', function () {
       console.log("begin", arguments);
     });
-    
+
     Events.scrollEvent.register('end', function () {
       console.log("end", arguments);
     });
-    
+
     if (window.location.search === '?q=whatwedo') { this.scrollToWhatWeDo(); }
     if (window.location.search === '?q=howitworks') { this.scrollToHowItWorks(); }
   }
-  
+
   scrollToWhatWeDo() {
     scroller.scrollTo('whatwedo', {
       duration: 800,
@@ -39,7 +39,7 @@ class CustomNavbar extends Component {
       smooth: 'easeInOutQuart'
     })
   }
-  
+
   scrollToHowItWorks() {
     scroller.scrollTo('howitworks', {
       duration: 800,
@@ -47,7 +47,7 @@ class CustomNavbar extends Component {
       smooth: 'easeInOutQuart'
     })
   }
-  
+
   componentWillUnmount() {
     Events.scrollEvent.remove('begin');
     Events.scrollEvent.remove('end');
@@ -58,7 +58,7 @@ class CustomNavbar extends Component {
       this.props.history.push('/login');
     });
   };
-  
+
   render() {
     var {mClass, nClass, cClass, slogo, q} = this.props;
     return (
@@ -83,7 +83,7 @@ class CustomNavbar extends Component {
                   </span>
                 </span>
               </button>
-      
+
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className={`navbar-nav menu ml-auto ${nClass}`}>
                   <li className="nav-item">
@@ -100,20 +100,12 @@ class CustomNavbar extends Component {
                       (<ScrolLink title="Pages" className="nav-link" to="howitworks" spy smooth duration={300} >How it works</ScrolLink>)
                     }
                   </li>
-                  <li className="nav-item dropdown submenu">
-                    <a className="nav-link" href="/bloglist">
-                      Enloya Blog
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink title="Team" className="nav-link" to="/team">Team</NavLink>
-                  </li>
                   <li className="nav-item">
                     <NavLink title="Contact" className="nav-link" to="/contact">Contact</NavLink>
                   </li>
                 </ul>
                 {
-                  this.props.user ? 
+                  this.props.user ?
                   (
                     <>
                       {this.props.userType == 'lawyer' && 
@@ -153,4 +145,3 @@ export default withRouter(connect(
   mapStateToProps,
   mapActionToProps
 )(CustomNavbar));
-
