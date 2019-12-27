@@ -4,6 +4,11 @@
   background-color: #f2f0f1;
 }
 
+.dropzone.active {
+  background-color: #277b1c;
+  color: #fff;
+}
+
 .dropzone > div {
   font-size: .85em;
 }

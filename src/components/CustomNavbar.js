@@ -115,8 +115,12 @@ class CustomNavbar extends Component {
                 {
                   this.props.user ? 
                   (
-                    <span className="btn_get btn_hover"
-                      onClick={() => this.handleLogout()}>Logout</span>
+                    <>
+                      {this.props.userType == 'lawyer' && 
+                        <NavLink title="My Profile" className="btn btn-link" to="/lawyer-profile">My Profile</NavLink>}
+                      <span className="btn_get btn_hover"
+                        onClick={() => this.handleLogout()}>Logout</span>
+                    </>
                   )
                   :
                   (
@@ -136,9 +140,9 @@ class CustomNavbar extends Component {
 }
 
 const mapStateToProps = ({ authUser }) => {
-  const { user } = authUser;
+  const { user, userType } = authUser;
 
-  return { user };
+  return { user, userType };
 };
 
 const mapActionToProps = {

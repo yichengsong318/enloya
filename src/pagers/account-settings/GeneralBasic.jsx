@@ -12,11 +12,13 @@ export class GeneralBasic extends Component {
 
     this.state = { 
       user: {
+        profilePicFile: null,
         languageInputs : props.userInfo.languages.map(l => l.id) || [],
         location : props.userInfo.location || '',
         timezone : props.userInfo.timezone || '',
         address : props.userInfo.address || '',
-        vatID: props.userInfo.vatID || ''
+        vatID: props.userInfo.vatID || '',
+        hasFile: true
       }  
     }
   }
@@ -40,11 +42,13 @@ export class GeneralBasic extends Component {
           );
           this.setState({ 
             user: {
+              profilePicFile: null,
               languageInputs : this.props.userInfo.languages.map(l => l.id) || [],
               location : this.props.userInfo.location || '',
               timezone : this.props.userInfo.timezone || '',
               address : this.props.userInfo.address || '',
-              vatID: this.props.userInfo.vatID || ''
+              vatID: this.props.userInfo.vatID || '',
+              hasFile: true
             }  
           });
         });
@@ -63,7 +67,12 @@ export class GeneralBasic extends Component {
         <h2 className="mt-2 mb-3">General Information</h2>
         <div className="row mt-4">
           <div className="col-sm-5">
-            <FormUpload label="Profile Image" id="profileImage" noHelp/>
+            <FormUpload label="Profile Image" id="profileImage" 
+              name="profilePicFile" onChange={this.handleFormChange} noHelp/>
+            {
+              userInfo.profilePic && 
+              <img src={userInfo.profilePic} className="img-pic-user-medium mt-2" alt="user_pic" />
+            }
           </div>
           <div className="col-sm-5">
             <FormText label="First Name" id="firstname" value={userInfo.firstname} noHelp/>

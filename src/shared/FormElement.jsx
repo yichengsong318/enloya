@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from 'react-select';
 import ButtonSwitch from './ButtonSwitch';
 import DropZone from './DropZone';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export function FormSwitch(props) {
   return (
@@ -67,8 +70,8 @@ export function FormDate(props) {
     <div className="form-group text-left">
       <label htmlFor={props.id}>{props.label}</label>
       <div className="d-flex">
-        <input type="text" id={props.id} onChange={props.onChange} className="form-control"
-          value={props.value} placeholder={props.placeholder} />
+        <DatePicker onChange={date => props.onChange(props.name, date)} 
+          readOnly={props.readOnly} selected={props.value} className="form-control"/>
         {!props.noIcon && <FontAwesomeIcon icon={faCalendar} className="form-date-icon" />}
       </div>
     </div>
@@ -93,7 +96,8 @@ export function FormDateSplit(props) {
 export function FormCheck(props) {
   return (
     <div className="form-check text-left">
-      <input type="checkbox" id={props.id} className="form-check-input" value={props.value}/>
+      <input type="checkbox" onChange={e => props.onChange(props.name, e.target.checked)}
+        id={props.id} className="form-check-input" defaultChecked={props.value}/>
       <label className="form-check-label" htmlFor={props.id}>{props.label}</label>
     </div>
   );
@@ -116,7 +120,9 @@ export function FormUpload(props) {
     <div className="form-group text-left">
       <label htmlFor={props.id}>{props.label}</label>
       <div className="d-flex">
-        <DropZone dropColor={props.dropColor} id={props.id} placeholder={props.placeholder} />
+        <DropZone dropColor={props.dropColor} 
+          onChange={e => props.onChange(props.name, e.target.files[0])}
+          id={props.id} placeholder={props.placeholder} />
         {!props.noHelp && <FontAwesomeIcon icon={faQuestion} className="form-question-icon" />}
       </div>
     </div>

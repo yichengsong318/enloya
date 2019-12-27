@@ -17,6 +17,7 @@ const INIT_STATE = {
   industries: [],
   languages: [],
   academicDegrees: [],
+  memberships: [],
   loading: false,
   error: ''
 };

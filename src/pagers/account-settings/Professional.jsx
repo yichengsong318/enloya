@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
+import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
 import { createData, updateData, readData, deleteData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-import { FormDate, FormDateSplit, FormInput, FormSelect, FormUpload } from '../../shared/FormElement';
+import { FormDate, FormInput, FormSelect, FormUpload, FormCheck } from '../../shared/FormElement';
 
 export class Professional extends Component {
   constructor(props) {
@@ -18,18 +19,104 @@ export class Professional extends Component {
         adding: false,
         editing: false,
         editingId: '',
+        initItem: {
+          degree: '',
+          university: '',
+          year: ''
+        },
         curItem: {
           degree: '',
           university: '',
           year: ''
         },
         value : props.academicDegrees || [],
+      },  
+      memberships: {
+        adding: false,
+        editing: false,
+        editingId: '',
+        initItem: {
+          title: '',
+          association: '',
+          url: ''
+        },
+        curItem: {
+          title: '',
+          association: '',
+          url: ''
+        },
+        value : props.memberships || [],
+      },
+      publications: {
+        adding: false,
+        editing: false,
+        editingId: '',
+        initItem: {
+          title: '',
+          publisher: '',
+          date: '',
+          url: ''
+        },
+        curItem: {
+          title: '',
+          publisher: '',
+          date: '',
+          url: ''
+        },
+        value : props.publications || [],
+      },
+      proexperiences: {
+        adding: false,
+        editing: false,
+        editingId: '',
+        initItem: {
+          title: '',
+          description: '',
+          fromDate: '',
+          toDate: null,
+          present: false,
+          where: ''
+        },
+        curItem: {
+          title: '',
+          description: '',
+          fromDate: '',
+          toDate: null,
+          present: false,
+          where: ''
+        },
+        value : props.proexperiences || [],
+      },
+      licences: {
+        adding: false,
+        editing: false,
+        editingId: '',
+        initItem: {
+          where: '',
+          since: '',
+          // proof: '',
+          proofFile: '',
+          number: '',
+          hasFile: true
+        },
+        curItem: {
+          where: '',
+          since: '',
+          proofFile: '',
+          number: '',
+          hasFile: true
+        },
+        value : props.licences || [],
       }  
     }
   }
 
   componentDidMount() {
     this.readAD(true);
+    this.readM(true);
+    this.readP(true);
+    this.readPE(true);
+    this.readL(true);
   }
 
   handleChange = (name, value) => {
@@ -58,7 +145,7 @@ export class Professional extends Component {
     }});
   };
 
-  readPr = (endpoint, prop, curItem, hideNotif) => {
+  readPr = (endpoint, prop, hideNotif) => {
     this.props.readData(endpoint, {lawyerId: this.props.userInfo.id}, () => {
 
       if (!hideNotif) {
@@ -71,7 +158,7 @@ export class Professional extends Component {
           adding: false, 
           editing: false,
           editingId: '',
-          curItem: curItem,
+          curItem: this.state[prop].initItem,
           value: this.props[prop]
         }
       });
@@ -83,7 +170,7 @@ export class Professional extends Component {
       if (this.state[prop].editing) {
         this.props.updateData(endpoint, this.state[prop].editingId, 
           this.state[prop].curItem, () => {
-            this.readAD();
+            this.readPr(endpoint, prop);
           }
         );
       } else if (this.state[prop].adding) {
@@ -91,7 +178,7 @@ export class Professional extends Component {
           ...this.state[prop].curItem,
           lawyerId: this.props.userInfo.id,
         }, () => {
-          this.readAD();
+          this.readPr(endpoint, prop);
         });
       }
     }
@@ -130,11 +217,7 @@ export class Professional extends Component {
   };
 
   readAD = (hideNotif) => {
-    this.readPr('academic-degrees', 'academicDegrees', {
-      degree: '',
-      university: '',
-      year: ''
-    }, hideNotif);
+    this.readPr('academic-degrees', 'academicDegrees', hideNotif);
   };
 
   saveAD = () => {
@@ -145,6 +228,124 @@ export class Professional extends Component {
     if (!this.props.loading) {
       this.props.deleteData('academic-degrees', id, () => {
         this.readAD();
+      });
+    }
+  }
+  
+  startMEditing = (item) => {
+    this.startPrEditing('memberships', item.id, {
+      title: item.title,
+      association: item.association,
+      url: item.url
+    });
+  };
+
+  handleMChange = (name, value) => {
+    this.handlePrChange('memberships', name, value);
+  };
+
+  readM = (hideNotif) => {
+    this.readPr('memberships', 'memberships', hideNotif);
+  };
+
+  saveM = () => {
+    this.savePr('memberships', 'memberships');
+  };
+
+  deleteM = (id) => {
+    if (!this.props.loading) {
+      this.props.deleteData('memberships', id, () => {
+        this.readM();
+      });
+    }
+  }
+  
+  startPEditing = (item) => {
+    this.startPrEditing('publications', item.id, {
+      title: item.title,
+      publisher: item.publisher,
+      date: new Date(item.date),
+      url: item.url
+    });
+  };
+
+  handlePChange = (name, value) => {
+    this.handlePrChange('publications', name, value);
+  };
+
+  readP = (hideNotif) => {
+    this.readPr('publications', 'publications', hideNotif);
+  };
+
+  saveP = () => {
+    this.savePr('publications', 'publications');
+  };
+
+  deleteP = (id) => {
+    if (!this.props.loading) {
+      this.props.deleteData('publications', id, () => {
+        this.readP();
+      });
+    }
+  }
+
+  startLEditing = (item) => {
+    this.startPrEditing('licences', item.id, {
+      where: item.where,
+      since: item.since,
+      proof: item.proof,
+      number: item.number
+    });
+  };
+
+  handleLChange = (name, value) => {
+    console.log(name, value);
+    this.handlePrChange('licences', name, value);
+  };
+
+  readL = (hideNotif) => {
+    this.readPr('licences', 'licences', hideNotif);
+  };
+
+  saveL = () => {
+    this.savePr('licences', 'licences');
+  };
+
+  deleteL = (id) => {
+    if (!this.props.loading) {
+      this.props.deleteData('licences', id, () => {
+        this.readP();
+      });
+    }
+  }
+
+  startPEditing = (item) => {
+    this.startPrEditing('proexperiences', item.id, {
+      title: item.title,
+      description: item.description,
+      fromDate: new Date(item.fromDate),
+      toDate: new Date(item.toDate),
+      present: item.present,
+      where: item.where
+    });
+  };
+
+  handlePEChange = (name, value) => {
+    this.handlePrChange('proexperiences', name, value);
+  };
+
+  readPE = (hideNotif) => {
+    this.readPr('proexperiences', 'proexperiences', hideNotif);
+  };
+
+  savePE = () => {
+    this.savePr('proexperiences', 'proexperiences');
+  };
+
+  deletePE = (id) => {
+    if (!this.props.loading) {
+      this.props.deleteData('proexperiences', id, () => {
+        this.readP();
       });
     }
   }
@@ -171,41 +372,53 @@ export class Professional extends Component {
             : 
             <p>{userInfo.headline}</p>}
         </div>
-        <div>
+        <div className="mt-5">
           <h5>Licences</h5>
-          <div className="d-flex justify-content-between">
-            <div>New York, 2015 (Licence # 110200)</div>
-            <span className="btn btn-link">Delete</span>
-          </div>
-          <div className="d-flex justify-content-between">
-            <div>UK, 2018 (Licence # 110200, Barrister)</div>
-            <span className="btn btn-link">Delete</span>
-          </div>
-          <span className="btn btn-link px-0">Add Another Licence</span>
-          <div className="bg-lighter px-3 py-4">
-            <div className="row">
-              <div className="col-sm-6">
-                <FormInput label="Licensed in?" type="text" id="licensedin" placeholder="Country / State / Provinence" noHelp/>
-                <FormInput label="Licence Number" type="number" id="licensednumber" noHelp/>
-              </div>
-              <div className="col-sm-10">
-                <FormUpload dropColor="bg-white" label="Proof of license/admission to bar" id="proof" noHelp />
-              </div>
-              <div className="col-sm-6">
-                <FormSelect label="Licensed since" id="licensedsince" selected="undefined" choices={[
-                  { value: 'undefined', label: 'Please Select' },
-                  { value: '2019', label: '2019' },
-                  { value: '2018', label: '2018' },
-                  { value: '2017', label: '2017' }
-                ]} noHelp />
-              </div>
-              <div className="col-sm-12">
-                <div className="p-4 text-right">
-                  <button type="button" className="btn btn-primary px-5">Save</button>
+          { this.state.licences.value.map(licence => {
+              return (
+                <div key={licence.id} className="d-flex justify-content-between">
+                  <div>{licence.where}, {licence.since} (Licence # {licence.number})</div>
+                  <div>
+                    {/* <span className="btn btn-link mr-1" onClick={() => {this.startLEditing(licence)}}>Edit</span> */}
+                    <span className="btn btn-link" onClick={() => {this.deleteL(licence.id)}}>Delete</span>
+                  </div>
+                </div>
+              );
+            }
+          )}
+          <span className="btn btn-link px-0" 
+            onClick={() => {this.startAdding('licences', !this.state.licences.adding)}}
+            >{ this.state.licences.adding ? 'Cancel' : 'Add Another Licence'}</span>
+
+          { (this.state.licences.adding || this.state.licences.editing) && 
+            <div className="bg-lighter px-3 py-4">
+              <div className="row">
+                <div className="col-sm-6">
+                  <FormInput label="Licensed in?" type="text" id="licensedin" 
+                    value={this.state.licences.curItem.where} name="where" onChange={this.handleLChange}
+                    placeholder="Country / State / Provinence" noHelp/>
+
+                  <FormInput label="Licence Number" type="number" id="licensednumber" 
+                    value={this.state.licences.curItem.number} name="number" onChange={this.handleLChange} noHelp/>
+                </div>
+                <div className="col-sm-10">
+                  <FormUpload dropColor="bg-white" label="Proof of license/admission to bar" id="proof" 
+                    name="proofFile" onChange={this.handleLChange} noHelp />
+                </div>
+                <div className="col-sm-12"></div>
+                <div className="col-sm-5">
+                  <FormInput label="Licensed since" id="licensedsince" type="number"
+                    value={this.state.licences.curItem.since} name="since" onChange={this.handleLChange} noHelp/>
+                </div>
+                <div className="col-sm-12">
+                  <div className="p-4 text-right">
+                    <button type="button" className="btn btn-primary px-5" 
+                      onClick={() => {this.saveL()}}>Save</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
         </div>
         <div className="mt-5">
           <h5>Academic degrees:</h5>
@@ -251,108 +464,162 @@ export class Professional extends Component {
         </div>
         <div className="mt-5">
           <h5>Professionnal Experience: </h5>
-          <div className="d-flex justify-content-between my-3">
-            <div>
-              <div className="font-weight-bold">Associate, Linklaters</div>
-              <div>February 2017 - Present</div>
-              <div>London, UK</div>
-              <div>Advising Fortune 500 companies in technology</div>
-              <div>transfer issues</div>
-            </div>
-            <span className="btn btn-link">Edit</span>
-          </div>
-          <div className="d-flex justify-content-between my-3">
-            <div>
-              <div className="font-weight-bold">Summer Associate, Baker &amp; McKenzie</div>
-              <div>February 2016 - Present</div>
-              <div>London, UK</div>
-              <div>Legal research for Fortune 500 companies in </div>
-              <div>connection with technology transfer issues</div>
-            </div>
-            <span className="btn btn-link">Edit</span>
-          </div>
-          <span className="btn btn-link px-0">Add Another Experience</span>
-          <div className="bg-lighter px-3 py-4">
-            <div className="row">
-              <div className="col-sm-4">
-                <FormDateSplit label="From" id="exp-from" noIcon/>
-              </div>
-              <div className="col-sm-4">
-                <FormDateSplit label="To" id="exp-to" noIcon/>
-              </div>
-              <div className="col-sm-12"></div>
-              <div className="col-sm-8">
-                <FormInput label="Title" type="text" id="exp-title" noHelp/>
-              </div>
-              <div className="col-sm-10">
-                <FormInput label="Description" type="text" id="exp-description" noHelp/>
-              </div>
-              <div className="col-sm-12"></div>
-              <div className="col-sm-12">
-                <div className="p-4 text-right">
-                  <button type="button" className="btn btn-primary px-5">Save</button>
+          { this.state.proexperiences.value.map(proexperience => {
+              return (
+                <div key={proexperience.id} className="d-flex justify-content-between">
+                  <div>
+                    <div className="font-weight-bold">{proexperience.title}</div>
+                    <div>
+                      <Moment format="YYYY MMMM">
+                        {proexperience.fromDate}
+                      </Moment>
+                      {' - '}
+                      { proexperience.present ?
+                        'Present'
+                        :
+                        <Moment format="YYYY MMMM">
+                          {proexperience.toDate}
+                        </Moment>
+                      }
+                    </div>
+                    <div>{proexperience.where}</div>
+                    <div>{proexperience.description}</div>
+                  </div>
+                  <div>
+                    <span className="btn btn-link mr-1" onClick={() => {this.startPEditing(proexperience)}}>Edit</span>
+                    <span className="btn btn-link" onClick={() => {this.deleteP(proexperience.id)}}>Delete</span>
+                  </div>
+                </div>
+              );
+            }
+          )}
+          <span className="btn btn-link px-0" 
+            onClick={() => {this.startAdding('proexperiences', !this.state.proexperiences.adding)}}
+            >{ this.state.proexperiences.adding ? 'Cancel' : 'Add Another Experience'}</span>
+
+          { (this.state.proexperiences.adding || this.state.proexperiences.editing) && 
+            <div className="bg-lighter px-3 py-4">
+              <div className="row">
+                <div className="col-sm-4">
+                  <FormDate label="From" id="pro-from-date" value={this.state.proexperiences.curItem.fromDate}
+                    name="fromDate" onChange={this.handlePEChange} noHelp/>
+                </div>
+                <div className="col-sm-4">
+                  <FormDate label="To" id="pro-to-date" value={this.state.proexperiences.curItem.toDate}
+                    name="toDate" onChange={this.handlePEChange} noHelp readOnly={this.state.proexperiences.curItem.present}/>
+                  <FormCheck id="pro-present" label="Present ?" value={this.state.proexperiences.curItem.present} 
+                    name="present" onChange={this.handlePEChange}/>
+                </div>
+                <div className="col-sm-12"></div>
+                <div className="col-sm-6">
+                  <FormInput label="Title" type="text" id="pro-title" 
+                    value={this.state.proexperiences.curItem.title} name="title" onChange={this.handlePEChange} noHelp/>
+                  <FormInput label="Description" type="text" id="pro-type" 
+                    value={this.state.proexperiences.curItem.description} name="description" onChange={this.handlePEChange} noHelp/>
+                  <FormInput label="Where" type="text" id="pro-where" 
+                    value={this.state.proexperiences.curItem.where} name="where" onChange={this.handlePEChange} noHelp/>
+                </div>
+                <div className="col-sm-12">
+                  <div className="p-4 text-right">
+                    <button type="button" className="btn btn-primary px-5" 
+                      onClick={() => {this.savePE()}}>Save</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
         </div>
         <div className="mt-5">
           <h5>Publications</h5>
-          <div className="d-flex justify-content-between">
-            <div>
-              <div className="font-weight-bold">International Transfer Contracts in Nigeria</div>
-              <div>Challenges for Tech Startups in the Medtech Sector,</div>
-              <div>Journal of Legal Studies, 2010 available at</div>
-              <div>www.jls.com</div>
-            </div>
-            <span className="btn btn-link">Edit</span>
-          </div>
-          <span className="btn btn-link px-0">Add Another Publication</span>
-          <div className="bg-lighter px-3 py-4">
-            <div className="row">
-              <div className="col-sm-6">
-                <FormInput label="Title" type="text" id="pub-title" noHelp/>
-                <FormInput label="Publication Publisher" type="text" id="pub-publisher" noHelp/>
-              </div>
-              <div className="col-sm-12"></div>
-              <div className="col-sm-4">
-                <FormDate label="Publication Date" type="text" id="pub-date" placeholder="    /    /    " noHelp/>
-              </div>
-              <div className="col-sm-12"></div>
-              <div className="col-sm-6">
-                <FormInput label="Publication URL" type="url" id="pub-url" noHelp />
-              </div>
-              <div className="col-sm-12">
-                <div className="p-4 text-right">
-                  <button type="button" className="btn btn-primary px-5">Save</button>
+          { this.state.publications.value.map(publication => {
+              return (
+                <div key={publication.id} className="d-flex justify-content-between">
+                  <div>
+                    <div>{publication.title}</div>
+                    <div>{publication.publisher}</div>
+                    <div>
+                      <Moment format="DD MMM YYYY">
+                        {publication.date}
+                      </Moment>
+                    </div>
+                    <div><a href={publication.url}>{publication.url}</a></div>
+                  </div>
+                  <div>
+                    <span className="btn btn-link mr-1" onClick={() => {this.startPEditing(publication)}}>Edit</span>
+                    <span className="btn btn-link" onClick={() => {this.deleteP(publication.id)}}>Delete</span>
+                  </div>
+                </div>
+              );
+            }
+          )}
+          <span className="btn btn-link px-0" 
+            onClick={() => {this.startAdding('publications', !this.state.publications.adding)}}
+            >{ this.state.publications.adding ? 'Cancel' : 'Add Another Publication'}</span>
+
+          { (this.state.publications.adding || this.state.publications.editing) && 
+            <div className="bg-lighter px-3 py-4">
+              <div className="row">
+                <div className="col-sm-6">
+                  <FormInput label="Title" type="text" id="pub-title" 
+                    value={this.state.publications.curItem.title} name="title" onChange={this.handlePChange} noHelp/>
+                  <FormInput label="Association/Society/Bar/Institution" type="text" id="pub-type" 
+                    value={this.state.publications.curItem.publisher} name="publisher" onChange={this.handlePChange} noHelp/>
+                  <FormDate label="Date" id="pub-date" value={this.state.publications.curItem.date}
+                    name="date" onChange={this.handlePChange} noHelp/>
+                  <FormInput label="URL" type="url" id="pub-url" 
+                    value={this.state.publications.curItem.url} name="url" onChange={this.handlePChange} noHelp/>
+                </div>
+                <div className="col-sm-12">
+                  <div className="p-4 text-right">
+                    <button type="button" className="btn btn-primary px-5" 
+                      onClick={() => {this.saveP()}}>Save</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
         </div>
         <div className="mt-5">
           <h5>Memberships</h5>
-          <div className="d-flex justify-content-between">
-            <div>
-              <div>Member, International Bar Association</div>
-              <div>(www.ibanet.org)</div>
-            </div>
-          </div>
-          <span className="btn btn-link px-0">Add Another Membership</span>
-          <div className="bg-lighter px-3 py-4">
-            <div className="row">
-              <div className="col-sm-6">
-                <FormInput label="Title" type="text" id="member-title" noHelp/>
-                <FormInput label="Association/Society/Bar/Institution" type="text" id="member-type" noHelp/>
-                <FormInput label="URL" type="url" id="member-url" noHelp/>
-              </div>
-              <div className="col-sm-12">
-                <div className="p-4 text-right">
-                  <button type="button" className="btn btn-primary px-5">Save</button>
+          { this.state.memberships.value.map(membership => {
+              return (
+                <div key={membership.id} className="d-flex justify-content-between">
+                  <div>
+                    <div>{membership.title}, {membership.association}</div>
+                    <div><a href={membership.url}>{membership.url}</a></div>
+                  </div>
+                  <div>
+                    <span className="btn btn-link mr-1" onClick={() => {this.startMEditing(membership)}}>Edit</span>
+                    <span className="btn btn-link" onClick={() => {this.deleteM(membership.id)}}>Delete</span>
+                  </div>
+                </div>
+              );
+            }
+          )}
+          <span className="btn btn-link px-0" 
+            onClick={() => {this.startAdding('memberships', !this.state.memberships.adding)}}
+            >{ this.state.memberships.adding ? 'Cancel' : 'Add Another Membership'}</span>
+
+          { (this.state.memberships.adding || this.state.memberships.editing) && 
+            <div className="bg-lighter px-3 py-4">
+              <div className="row">
+                <div className="col-sm-6">
+                  <FormInput label="Title" type="text" id="member-title" 
+                    value={this.state.memberships.curItem.title} name="title" onChange={this.handleMChange} noHelp/>
+                  <FormInput label="Association/Society/Bar/Institution" type="text" id="member-type" 
+                    value={this.state.memberships.curItem.association} name="association" onChange={this.handleMChange} noHelp/>
+                  <FormInput label="URL" type="url" id="member-url" 
+                    value={this.state.memberships.curItem.url} name="url" onChange={this.handleMChange} noHelp/>
+                </div>
+                <div className="col-sm-12">
+                  <div className="p-4 text-right">
+                    <button type="button" className="btn btn-primary px-5" 
+                      onClick={() => {this.saveM()}}>Save</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
         </div>
       </div>
     );
@@ -361,9 +628,18 @@ export class Professional extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
-  const { academicDegrees } = data;
+  const { academicDegrees, memberships, publications, proexperiences, licences } = data;
 
-  return { userType, userInfo, user, academicDegrees };
+  return { 
+    userType, 
+    userInfo, 
+    user, 
+    academicDegrees, 
+    memberships, 
+    publications, 
+    proexperiences,
+    licences
+  };
 };
 
 const mapActionToProps = {

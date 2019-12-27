@@ -11,13 +11,16 @@ export class General extends Component {
 
     this.state = { 
       user: {
+        companyPictureFile: null,
+        profilePicFile: null,
         companyName : props.userInfo.companyName || '',
         companyUrl : props.userInfo.companyUrl || '',
         languageInputs : props.userInfo.languages ? props.userInfo.languages.map(l => l.id) : [],
         location : props.userInfo.location || '',
         timezone : props.userInfo.timezone || '',
         address : props.userInfo.address || '',
-        vatID: props.userInfo.vatID || ''
+        vatID: props.userInfo.vatID || '',
+        hasFile: true,
       }  
     }
   }
@@ -28,6 +31,7 @@ export class General extends Component {
   }
 
   onFormSubmit = () => {
+    console.log(this.state.user);
     if (!this.props.loading) {
       this.props.updateData('lawyers', this.props.userInfo.id, this.state.user, () => {
         this.props.loadMe(() => {
@@ -41,6 +45,8 @@ export class General extends Component {
           );
           this.setState({ 
             user: {
+              companyPictureFile: null,
+              profilePicFile: null,
               companyName : this.props.userInfo.companyName || '',
               companyUrl : this.props.userInfo.companyUrl || '',
               languageInputs : this.props.userInfo.languages ? this.props.userInfo.languages.map(l => l.id) : [],
@@ -66,7 +72,12 @@ export class General extends Component {
         <h2 className="mt-2 mb-3">General Information</h2>
         <div className="row">
           <div className="col-sm-5">
-            <FormUpload label="Upload Logo" id="logoUpload" noHelp/>
+            <FormUpload label="Upload Logo" id="logoUpload" 
+              name="companyPictureFile" onChange={this.handleFormChange} noHelp/>
+            {
+              userInfo.companyPicture && 
+              <img src={userInfo.companyPicture} className="img-pic-user-medium mt-2" alt="user_pic" />
+            }
           </div>
           <div className="col-sm-5">
             <FormInput label="Company Name" type="text" id="companyname" 
@@ -81,7 +92,12 @@ export class General extends Component {
         </div>
         <div className="row mt-4">
           <div className="col-sm-5">
-            <FormUpload label="Profile Image" id="profileImage" noHelp/>
+            <FormUpload label="Profile Image" id="profileImage" 
+              name="profilePicFile" onChange={this.handleFormChange} noHelp/>
+            {
+              userInfo.profilePic && 
+              <img src={userInfo.profilePic} className="img-pic-user-medium mt-2" alt="user_pic" />
+            }
           </div>
           <div className="col-sm-5">
             <FormText label="First Name" id="firstname" value={userInfo.firstname} noHelp/>

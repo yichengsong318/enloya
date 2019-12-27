@@ -558,3 +558,7 @@ hr {
   margin-bottom: 3rem;
   margin-top: 1rem;
 }
+
+.img-pic-user-medium {
+  max-width: 150px;
+}

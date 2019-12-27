@@ -32,6 +32,24 @@ const post = (endpoint, body) => {
   });
 };
 
+const postFile = (endpoint, body) => {
+  var token = localStorage.getItem('user_token');
+
+  const data = new FormData();
+  for (var p in body) {
+    if (p !== 'hasFile') {
+      data.append(p, body[p])
+    }
+  }
+
+  return axios({
+    method: 'post',
+    headers: { Authorization: `Bearer ${token}` },
+    url: apiConfig.apiURL + endpoint,
+    data
+  });
+};
+
 const put = (endpoint, body) => {
   var token = localStorage.getItem('user_token');
 
@@ -40,6 +58,24 @@ const put = (endpoint, body) => {
     headers: { Authorization: `Bearer ${token}` },
     url: apiConfig.apiURL + endpoint,
     data: body
+  });
+};
+
+const putFile = (endpoint, body) => {
+  var token = localStorage.getItem('user_token');
+  
+  const data = new FormData();
+  for (var p in body) {
+    if (p !== 'hasFile') {
+      data.append(p, body[p])
+    }
+  }
+
+  return axios({
+    method: 'put',
+    headers: { Authorization: `Bearer ${token}` },
+    url: apiConfig.apiURL + endpoint,
+    data
   });
 };
 
@@ -71,7 +107,11 @@ const auth = {
 };
 
 const createData = (endpoint, values) => {
-  return post(endpoint, values);
+  if (values.hasFile) {
+    return postFile(endpoint, values);
+  } else {
+    return post(endpoint, values);
+  }
 }
 
 const readData = (endpoint, query={}) => {
@@ -79,7 +119,11 @@ const readData = (endpoint, query={}) => {
 }
 
 const updateData = (endpoint, id, values) => {
-  return put(endpoint + '/' + id, values);
+  if (values.hasFile) {
+    return putFile(endpoint + '/' + id, values);
+  } else {
+    return put(endpoint + '/' + id, values);
+  }
 }
 
 const deleteData = (endpoint, id) => {
