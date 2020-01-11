@@ -17,7 +17,7 @@ class AlertArea extends Component {
 
   render() {
     const isConfirmed = this.props.userInfo && this.props.userInfo.isConfirmed;
-    const isValidated = this.props.userType === 'lawyer' && this.props.userInfo && this.props.userInfo.isValidated;
+    const isValidated = this.props.userInfo && this.props.userInfo.isValidated;
     return (
       <>
         { !isConfirmed && 
@@ -31,7 +31,7 @@ class AlertArea extends Component {
             </div>
           </div>
         }
-        { !isValidated && 
+        { this.props.userType === 'lawyer' && !isValidated && 
           <div className="row mb-2">
             <div className="col-sm-12">
               <div className="alert alert-warning mb-0">
