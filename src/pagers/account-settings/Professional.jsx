@@ -4,17 +4,43 @@ import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
 import { createData, updateData, readData, deleteData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-import { FormDate, FormInput, FormSelect, FormUpload, FormCheck } from '../../shared/FormElement';
+import { FormDate, FormInput, FormUpload, FormCheck, FormSelect } from '../../shared/FormElement';
 
 export class Professional extends Component {
   constructor(props) {
     super(props);
 
     this.state = { 
-      headline: {
+      title: {
         editing: false,
-        value : props.userInfo.headline || 'Edit to add a headline',
+        value : props.userInfo.title,
+        placeholder: 'Edit to add a title'
+      }, 
+      shortDescription: {
+        editing: false,
+        value : props.userInfo.shortDescription,
+        placeholder: 'Edit to add a short description'
       },  
+      longDescription: {
+        editing: false,
+        value : props.userInfo.longDescription,
+        placeholder: 'Edit to add a long description'
+      },  
+      currentPosition: {
+        editing: false,
+        value : props.userInfo.currentPosition,
+        placeholder: 'Edit to select a current position'
+      },  
+      specializationInputs: {
+        editing: false,
+        value: props.userInfo.specializations ? props.userInfo.specializations.map(l => l.id) : [],
+        placeholder: 'Edit to select your specializations'
+      },
+      typeInputs: {
+        editing: false,
+        value: props.userInfo.types ? props.userInfo.types.map(l => l.id)[0] : null,
+        placeholder: 'Edit to select your lawyer type'
+      },
       academicDegrees: {
         adding: false,
         editing: false,
@@ -112,6 +138,10 @@ export class Professional extends Component {
   }
 
   componentDidMount() {
+    const {readData} = this.props;
+    readData('specializations');
+    readData('lawyer-types');
+
     this.readAD(true);
     this.readM(true);
     this.readP(true);
@@ -146,8 +176,7 @@ export class Professional extends Component {
   };
 
   readPr = (endpoint, prop, hideNotif) => {
-    this.props.readData(endpoint, {lawyerId: this.props.userInfo.id}, () => {
-
+    this.props.readData(endpoint, {lawyer: this.props.userInfo.id}, () => {
       if (!hideNotif) {
         NotificationManager.success("The changes were added!", "Success !", 3000);
       }
@@ -192,13 +221,21 @@ export class Professional extends Component {
     this.setState({[name]: {...this.state[name], adding: value}});
   };
 
-  saveHeadline = () => {
+  saveAttr = (name) => {
     if (!this.props.loading) {
       this.props.updateData('lawyers', this.props.userInfo.id, 
-        {headline: this.state.headline.value}, () => {
+        {[name]: this.state[name].value}, () => {
         this.props.loadMe(() => {
           NotificationManager.success("The changes were saved!", "Success !", 3000);
-          this.setState({headline: { editing : false, value : this.props.userInfo.headline || ''}});
+          let value = this.props.userInfo[name] || '';
+
+          if (name === 'specializationInputs') {
+            value = this.props.userInfo.specializations ? this.props.userInfo.specializations.map(l => l.id) : [];
+          } else if (name === 'typeInputs') {
+            value = this.props.userInfo.types ? this.props.userInfo.types.map(l => l.id)[0] : null;
+          }
+
+          this.setState({[name]: { editing : false, value : value}});
         });
       });
     }
@@ -299,7 +336,6 @@ export class Professional extends Component {
   };
 
   handleLChange = (name, value) => {
-    console.log(name, value);
     this.handlePrChange('licences', name, value);
   };
 
@@ -314,7 +350,7 @@ export class Professional extends Component {
   deleteL = (id) => {
     if (!this.props.loading) {
       this.props.deleteData('licences', id, () => {
-        this.readP();
+        this.readL();
       });
     }
   }
@@ -345,32 +381,131 @@ export class Professional extends Component {
   deletePE = (id) => {
     if (!this.props.loading) {
       this.props.deleteData('proexperiences', id, () => {
-        this.readP();
+        this.readPE();
       });
     }
   }
   
   render () {
-    const { userInfo } = this.props;
+    const { userInfo, proexperiences } = this.props;
+    const currentPosition = proexperiences && proexperiences.find(pe => pe.id === userInfo.currentPosition);
+    const currentPositionLabel = currentPosition ? currentPosition.title + ' at ' + currentPosition.where : null;
+    const specializations = userInfo.specializations || [];
+    const types = userInfo.types || [];
 
     return (
       <div className="py-4 px-2 account-settings">
         <h2 className="mt-2 mb-3">Professional Background</h2>
         <div>
           <div className="d-flex justify-content-between">
-            <h5>Headline</h5>
-            { this.state.headline.editing ?  
-              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveHeadline(true)}}>Save</span>
+            <h5>Title</h5>
+            { this.state.title.editing ?  
+              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('title')}}>Save</span>
               :
-              <span className="btn btn-link" onClick={() => {this.startEditing('headline', true)}}>Edit</span>
+              <span className="btn btn-link" onClick={() => {this.startEditing('title', true)}}>Edit</span>
             }
           </div>
-          { this.state.headline.editing ?
-            <textarea className="form-control my-3" rows={3} 
-              onChange={(e) => {this.handleChange('headline', e.target.value)}}
-              defaultValue={this.state.headline.value}></textarea>
+          { this.state.title.editing ?
+            <input className="form-control my-3" type="text"
+              onChange={(e) => {this.handleChange('title', e.target.value)}}
+              defaultValue={this.state.title.value} placeholder={this.state.title.placeholder}/>
             : 
-            <p>{userInfo.headline}</p>}
+            <p>{userInfo.title || this.state.title.placeholder}</p>}
+        </div>
+        <div>
+          <div className="d-flex justify-content-between">
+            <h5>Short Description</h5>
+            { this.state.shortDescription.editing ?  
+              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('shortDescription')}}>Save</span>
+              :
+              <span className="btn btn-link" onClick={() => {this.startEditing('shortDescription', true)}}>Edit</span>
+            }
+          </div>
+          { this.state.shortDescription.editing ?
+            <textarea className="form-control my-3 h-100" rows={2}
+              onChange={(e) => {this.handleChange('shortDescription', e.target.value)}}
+              defaultValue={this.state.shortDescription.value} placeholder={this.state.shortDescription.placeholder}/>
+            : 
+            <p>{userInfo.shortDescription || this.state.shortDescription.placeholder}</p>}
+        </div>        
+        <div>
+          <div className="d-flex justify-content-between">
+            <h5>Long Description</h5>
+            { this.state.longDescription.editing ?  
+              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('longDescription')}}>Save</span>
+              :
+              <span className="btn btn-link" onClick={() => {this.startEditing('longDescription', true)}}>Edit</span>
+            }
+          </div>
+          { this.state.longDescription.editing ?
+            <textarea className="form-control my-3 h-100" rows={5}
+              onChange={(e) => {this.handleChange('longDescription', e.target.value)}}
+              defaultValue={this.state.longDescription.value} placeholder={this.state.longDescription.placeholder}/>
+            : 
+            <p>{userInfo.longDescription || this.state.longDescription.placeholder}</p>}
+        </div>
+        <div>
+          <div className="d-flex justify-content-between mb-2">
+            <h5>Current Position</h5>
+            { this.state.currentPosition.editing ?  
+              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('currentPosition')}}>Save</span>
+              :
+              <span className="btn btn-link" onClick={() => {this.startEditing('currentPosition', true)}}>Edit</span>
+            }
+          </div>
+          { this.state.currentPosition.editing ?
+            <FormSelect id="currentPosition" 
+              selected={this.state.currentPosition.value}
+              name="currentPosition" onChange={this.handleChange}
+              choices={this.props.proexperiences
+                  .map(ind => {ind.value = ind.id; ind.label = ind.title + ' at ' + ind.where; return ind})}
+              noHelp/>
+            : 
+            <p>{currentPositionLabel || this.state.currentPosition.placeholder}</p>}
+        </div>
+        <div>
+          <div className="d-flex justify-content-between mb-2">
+            <h5>Specializations</h5>
+            { this.state.specializationInputs.editing ?  
+              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('specializationInputs')}}>Save</span>
+              :
+              <span className="btn btn-link" onClick={() => {this.startEditing('specializationInputs', true)}}>Edit</span>
+            }
+          </div>
+          { this.state.specializationInputs.editing ?
+            <div className="row">
+              <div className="col-sm-8">
+                <FormSelect id="specializations" 
+                  selected={this.state.specializationInputs.value} isMulti
+                  name="specializationInputs" onChange={this.handleChange}
+                  choices={this.props.specializations.map(ind => {ind.value = ind.id; return ind})}
+                  noHelp/>
+              </div>
+            </div>
+            : 
+            <p><strong>{specializations.map(s => s.label).join(', ') || this.state.specializationInputs.placeholder}</strong></p>}
+        </div>
+        <div>
+          <div className="d-flex justify-content-between mb-2">
+            <h5>Lawyer Type</h5>
+            { this.state.typeInputs.editing ?  
+              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('typeInputs')}}>Save</span>
+              :
+              <span className="btn btn-link" onClick={() => {this.startEditing('typeInputs', true)}}>Edit</span>
+            }
+          </div>
+          { this.state.typeInputs.editing ?
+            <div className="row">
+              <div className="col-sm-8">
+                <FormSelect id="types" 
+                  selected={this.state.typeInputs.value}
+                  name="typeInputs" onChange={this.handleChange}
+                  choices={this.props.lawyerTypes.map(ind => {ind.value = ind.id; return ind})}
+                  noHelp/>
+              </div>
+            </div>
+            : 
+            <p><strong>{types.map(s => s.label).join(', ') || this.state.typeInputs.placeholder}</strong></p>}
         </div>
         <div className="mt-5">
           <h5>Licences</h5>
@@ -628,7 +763,9 @@ export class Professional extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
-  const { academicDegrees, memberships, publications, proexperiences, licences } = data;
+  const { 
+    academicDegrees, memberships, publications, proexperiences, 
+    licences, specializations, lawyerTypes } = data;
 
   return { 
     userType, 
@@ -638,7 +775,9 @@ const mapStateToProps = ({ authUser, data }) => {
     memberships, 
     publications, 
     proexperiences,
-    licences
+    licences,
+    lawyerTypes,
+    specializations
   };
 };
 

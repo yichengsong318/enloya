@@ -3,11 +3,14 @@ import React from 'react';
 import { FormInput, FormCheck } from '../shared/FormElement';
 
 import CustomNavbar from '../components/CustomNavbar';
+import AlertArea from '../components/AlertArea';
+
 function Checkout() {
   return (
     <div className="App">
       <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
       <div className="h-100 container">
+        <AlertArea/>
         <div className="row">
           <div className="col-sm-5 mx-auto">
             <div className="bg-white p-4 my-5">

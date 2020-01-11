@@ -139,5 +139,9 @@ const data = {
 
 export {
   auth,
-  data
+  data,
+  get,
+  post,
+  put,
+  remove
 };

@@ -15,12 +15,14 @@ import Booking from './account-settings/Booking';
 import BookingCreate from './account-settings/BookingCreate';
 import BookingCreateTwo from './account-settings/BookingCreateTwo';
 import CustomNavbar from '../components/CustomNavbar';
+
+import AlertArea from '../components/AlertArea';
 import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
+import ScrollToTopRoute from '../ScrollToTopRoute';
 
 import {
   Switch,
-  Route,
   NavLink,
   useRouteMatch,
   withRouter,
@@ -35,6 +37,7 @@ function AccountSettings(props) {
     <div className="App">
       <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
       <div className="h-100 container my-5 mt_100 pt-5">
+        <AlertArea/>
         <h1 className="h3 my-5">Account Settings</h1>
         <div className="row">
           <div className="col-sm-3 sidemenu">
@@ -46,59 +49,33 @@ function AccountSettings(props) {
                 <>
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/general-lawyer`}>General Information</NavLink>
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/professional-bg`}>Professional background</NavLink>
+                  <NavLink activeClassName="selected" className="sidelink" to={`${url}/fix-fee-services`}>Fix-fee Services</NavLink>
                 </>
               }
-              <NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing methods</NavLink>
+              {/* <NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing methods</NavLink> */}
               {/*<NavLink activeClassName="selected" className="sidelink" to={`${url}/teams`}>Teams</NavLink>*/}
               <NavLink activeClassName="selected" className="sidelink" to={`${url}/notifications`}>Notification settings</NavLink>
-              <NavLink activeClassName="selected" className="sidelink" to={`${url}/fix-fee-services`}>Fix-fee Services</NavLink>
               {/*<NavLink activeClassName="selected" className="sidelink" to={`${url}/booking`}>Booking Settings</NavLink>*/}
-              <NavLink activeClassName="selected" className="sidelink" to={`${url}/booking-create`}>Booking Settings Create</NavLink>
+              {/* <NavLink activeClassName="selected" className="sidelink" to={`${url}/booking-create`}>Booking Settings Create</NavLink> */}
             </div>
           </div>
           <div className="col-sm-9 bg-white">
             <div className="h-100">
               <Switch>
                 <Redirect exact from={path} to={`${path}/general-${props.userType}`}/>
-                <Route path={`${path}/general-lawyer`}>
-                  <General />
-                </Route>
-                <Route path={`${path}/general-client`}>
-                  <GeneralBasic />
-                </Route>
-                <Route path={`${path}/professional-bg`}>
-                  <Professional />
-                </Route>
-                <Route path={`${path}/billing`}>
-                  <Billing />
-                </Route>
-                <Route path={`${path}/teams`}>
-                  <Team />
-                </Route>
-                <Route path={`${path}/notifications`}>
-                  <Notifications />
-                </Route>
-                <Route path={`${path}/fix-fee-services`}>
-                  <FixFees />
-                </Route>
-                <Route path={`${path}/fix-fee-services-create`}>
-                  <FixFeesCreate />
-                </Route>
-                <Route path={`${path}/fix-fee-services-edit`}>
-                  <FixFeesEdit />
-                </Route>
-                <Route path={`${path}/fix-fee-services-detail`}>
-                  <FixFeesDetail />
-                </Route>
-                <Route path={`${path}/booking`}>
-                  <Booking />
-                </Route>
-                <Route path={`${path}/booking-create`}>
-                  <BookingCreate />
-                </Route>
-                <Route path={`${path}/booking-create-two`}>
-                  <BookingCreateTwo />
-                </Route>
+                <ScrollToTopRoute path={`${path}/general-lawyer`} component={General}/>
+                <ScrollToTopRoute path={`${path}/general-client`} component={GeneralBasic}/>
+                <ScrollToTopRoute path={`${path}/professional-bg`} component={Professional}/>
+                <ScrollToTopRoute path={`${path}/billing`} component={Billing}/>
+                <ScrollToTopRoute path={`${path}/teams`} component={Team}/>
+                <ScrollToTopRoute path={`${path}/notifications`} component={Notifications}/>
+                <ScrollToTopRoute path={`${path}/fix-fee-services`} component={FixFees}/>
+                <ScrollToTopRoute path={`${path}/fix-fee-services-create`} component={FixFeesCreate}/>
+                <ScrollToTopRoute path={`${path}/fix-fee-services-edit`} component={FixFeesEdit}/>
+                <ScrollToTopRoute path={`${path}/fix-fee-services-detail`} component={FixFeesDetail}/>
+                <ScrollToTopRoute path={`${path}/booking`} component={Booking}/>
+                <ScrollToTopRoute path={`${path}/booking-create`} component={BookingCreate}/>
+                <ScrollToTopRoute path={`${path}/booking-create-two`} component={BookingCreateTwo}/>
               </Switch>
             </div>
           </div>

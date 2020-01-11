@@ -1,62 +1,57 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from "react-redux";
+import { readData } from "../../redux/actions";
+import { withRouter } from "react-router-dom";
 import FixedServiceCard from "../../shared/FixedServiceCard";
 
-function FixedServices(props) {
-  const classes = props.kind === 'lawyer_profile' ? 'fixed-services' : 'lawyer-fixed-services'
-  return (
-    <div className={`px-2 py-4 ${classes}`}>
-      <FixedServiceCard
-        kind={props.kind}
-        name="Early Bird Package"
-        company="LLC Corporation"
-        price="450"
-        service="30 minute Consultion,"
-        description="LLC Corporation, Articles of incorporation"
-        fullDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vestibulum nec bibendum urna, sit amet posuere magna.
-          Donec scelerisque, lacus et dapibus porttitor,"
-        />
-      <FixedServiceCard
-        kind={props.kind}
-        name="Early Bird Package"
-        company="LLC Corporation"
-        price="450"
-        service="30 minute Consultion,"
-        description="LLC Corporation, Articles of incorporation"
-        fullDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vestibulum nec bibendum urna, sit amet posuere magna.
-          Donec scelerisque, lacus et dapibus porttitor,"
-        />
-      <FixedServiceCard
-        kind={props.kind}
-        name="Early Bird Package"
-        company="LLC Corporation"
-        price="450"
-        service="30 minute Consultion,"
-        description="LLC Corporation, Articles of incorporation"
-        fullDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vestibulum nec bibendum urna, sit amet posuere magna.
-          Donec scelerisque, lacus et dapibus porttitor,"
-        />
-      <FixedServiceCard
-        kind={props.kind}
-        name="Early Bird Package"
-        company="LLC Corporation"
-        price="450"
-        service="30 minute Consultion,"
-        description="LLC Corporation, Articles of incorporation"
-        fullDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vestibulum nec bibendum urna, sit amet posuere magna.
-          Donec scelerisque, lacus et dapibus porttitor,"
-        />
-        { props.showCreate && (<div className="fixed-service text-center fixed-fees-create">
-          <div className="body mt-5">
-            <div className="add-more-services"><a href="/account-settings/fix-fee-services-create">+</a></div>
-              <p className="add-more-services-text">Add a new service</p>
-            </div>
-          </div>)}
-    </div>
-  );
+
+export class FixedServices extends Component {
+  componentDidMount() {
+    const {readData} = this.props;
+    readData('services', {lawyer: this.props.lawyerId, isPublished: true});
+  }
+
+  render () {
+    return (
+      <div className="px-2 py-4 fixed-services">
+        <div className="row mx-auto p-2">
+          {this.props.services.map(srv => {
+            return (
+              <div className="col-sm-3" key={srv.id}>
+                <FixedServiceCard
+                  kind="lawyer_profile"
+                  sid={srv.id}
+                  name={srv.title}
+                  company={srv.lawyer.companyName}
+                  price={srv.price}
+                  service={srv.category.label}
+                  description={srv.shortDescription}
+                  fullDescription={srv.longDescription}
+                  />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 }
 
-export default FixedServices;
+const mapStateToProps = ({ authUser, data }) => {
+  const { userInfo } = authUser;
+  const { services } = data;
+
+  return { 
+    userInfo, 
+    services
+  };
+};
+
+const mapActionToProps = {
+  readData
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapActionToProps
+)(FixedServices));

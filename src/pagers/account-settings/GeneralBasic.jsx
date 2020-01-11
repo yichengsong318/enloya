@@ -78,8 +78,6 @@ export class GeneralBasic extends Component {
             <FormText label="First Name" id="firstname" value={userInfo.firstname} noHelp/>
             <FormText label="Last Name" id="lastname" value={userInfo.lastname} noHelp/>
             <FormText label="Email" id="email" value={userInfo.email} noHelp/>
-            {/* <FormInput label="Email" type="email" id="email" noHelp/> */}
-            {/* <FormInput label="Password" type="password" id="password" noHelp/> */}
 
             <FormInput label="Your location" type="text" id="location" 
               value={this.state.user.location} name="location" onChange={this.handleFormChange} noHelp/>
@@ -87,10 +85,7 @@ export class GeneralBasic extends Component {
             <FormSelect label="Languages" id="languages" 
               selected={this.state.user.languageInputs} isMulti
               name="languageInputs" onChange={this.handleFormChange}
-              choices={[
-                { value: 'undefined', label: 'Please Select' },
-                ...this.props.languages.map(ind => {ind.value = ind.id; return ind})
-              ]}
+              choices={this.props.languages.map(ind => {ind.value = ind.id; return ind})}
               noHelp/>
             <FormInput label="VAT ID" type="number" id="vatid" 
               value={this.state.user.vatID} name="vatID" onChange={this.handleFormChange} noHelp />
@@ -98,7 +93,6 @@ export class GeneralBasic extends Component {
             <FormSelect label="Timezones" id="timezones" selected={this.state.user.timezone} 
               name="timezone" onChange={this.handleFormChange}
               choices={[
-                { value: 'undefined', label: 'Please Select' },
                 { value: 'utc-10', label: 'UTC/GMT +10 hours' },
                 { value: 'utc-8', label: 'UTC/GMT +8 hours' },
                 { value: 'utc-7', label: 'UTC/GMT +7 hours' }

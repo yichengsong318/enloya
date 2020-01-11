@@ -36,13 +36,14 @@ function* createDataSaga({ payload }) {
   const { endpoint, data, onSuccess } = payload;
   try {
     const newData = yield call(createDataSagaAsync, endpoint, data);
+    console.log(newData.response);
     if (!newData.message) {
       yield put(createDataSuccess(endpoint, newData.data));
       if (onSuccess) {
         yield onSuccess();
       }
     } else {
-      yield put(createDataError(newData.message));
+      yield put(createDataError(newData.response.data.message));
     }
   } catch (error) {
     yield put(createDataError(error));

@@ -10,9 +10,9 @@ export default function Home () {
   return (
     <div className="body_wrapper">
       <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn"/>
-        <DesignBanner/>
-        <Service/>
-        <InnoSuisse />
+      <DesignBanner/>
+      <Service/>
+      <InnoSuisse />
         {/*<Subscribe FooterData={FooterData}/>*/}
       <Footer FooterData={FooterData}/>
     </div>

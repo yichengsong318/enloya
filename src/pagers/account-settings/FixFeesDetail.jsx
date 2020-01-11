@@ -1,81 +1,185 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from "react-redux";
+import { readData } from "../../redux/actions";
+import { get, remove, put } from '../../helpers/RemoteApi';
+import { withRouter } from "react-router-dom";
+import queryString from 'query-string';
+import { NotificationManager } from "react-notifications";
 
-function FixFeesDetail() {
+export class FixFeesDetail extends Component {
 
-  return (
-    <div className="py-4 px-4 account-settings">
-      <h2 className="mt-2 mb-3">Fixed-Fee Services</h2>
-      <div className="bg-lighter px-4 py-4">
-        <div className="d-flex justify-content-between">
-          <div>
-            <h4>General</h4>
-          </div>
-          <span className="btn btn-link">Edit</span>
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      service: {
+        category: {},
+        subcategory: {},
+        deliveryTime: {},
+        lawyer: {},
+        industries: [],
+        faq: [], 
+        requirements: [], 
+        types: [], 
+        tags: [] 
+      }
+    };
+  }
+
+  componentDidMount() {
+    const params = queryString.parse(this.props.location.search);
+    if (params.sid) {
+      get('services/' + params.sid).then((res) => {
+        if (res.status === 200) {
+          this.setState({service: res.data});
+        }
+      });
+    }
+  }
+
+  publishService = () => {
+    const params = queryString.parse(this.props.location.search);
+    const isPublished = this.state.service.isPublished;
+    
+    console.log({isPublished: !isPublished});
+
+    if (params.sid) {
+      put('services/' + params.sid, {isPublished: !isPublished}).then((res) => {
+        if (res.status === 200) {
+          this.setState({service: res.data});
+          NotificationManager.success(
+            "The service was successfully " + (isPublished ? "unpublished" : "published") + "!",
+            "Success !",
+            3000,
+            null,
+            null,
+            ''
+          );
+        }
+      });
+    }
+  }
+
+  deleteService = () => {
+    const params = queryString.parse(this.props.location.search);
+    if (params.sid) {
+      remove('services/' + params.sid).then((res) => {
+        if (res.status === 200) {
+          this.props.history.push("/account-settings/fix-fee-services");
+        }
+      });
+    }
+  }
+
+  render () {
+    const serv = this.state.service;
+    const clientTypes = serv.types.map(t => t.label).join(', ');
+    const industry = serv.industries.map(t => t.label).join(', ');
+    const tags = serv.tags.join(', ');
+    const isPublished = serv.isPublished;
+
+    return (
+      <div className="py-4 px-4 account-settings">
+        <h2 className="mt-2 mb-3">Fixed-Fee Service Detail</h2>
+        <div className="pb-4 text-right">
+          <a href={"/account-settings/fix-fee-services-edit?sid=" + serv.id} className="btn btn-primary px-5">Edit the service</a>
+          <span className={ isPublished ? "btn btn-warning ml-3" : "btn btn-success ml-3"} onClick={this.publishService}>
+            { isPublished ? "Unpublish the service" : "Publish the service"}
+          </span>
+          <span className="btn btn-danger ml-3" onClick={this.deleteService}>Delete the service</span>
         </div>
-        <hr className="my-4"/>
-        <table className="table table-borderless">
-          <tbody>
-            <tr><th>Title</th><td>Professional Legal Requirements</td></tr>
-            <tr><th>Category</th><td>Main Category</td></tr>
-            <tr><th>Subcategory</th><td>Sub Category</td></tr>
-            <tr><th>Client Type</th><td>SME's Large Enterprise International organizations</td></tr>
-            <tr><th>Industry</th><td>Law and Litigation</td></tr>
-            <tr><th>Search Tags</th><td>Law Litigation International</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="bg-lighter px-4 py-4 my-5">
-        <div className="d-flex justify-content-between">
-          <div>
-            <h4>Description and pricing</h4>
+        <div className="bg-lighter px-4 py-4">
+          <div className="d-flex justify-content-between">
+            <div>
+              <h4>General</h4>
+            </div>
           </div>
-          <span className="btn btn-link">Edit</span>
+          <hr className="my-4"/>
+          <table className="table table-borderless">
+            <tbody>
+              <tr><th>Title</th><td>{serv.title}</td></tr>
+              <tr><th>Category</th><td>{serv.category && serv.category.label}</td></tr>
+              <tr><th>Subcategory</th><td>{(serv.subcategory && serv.subcategory.label ) || "N/A"}</td></tr>
+              <tr><th>Client Type</th><td>{clientTypes}</td></tr>
+              <tr><th>Industry</th><td>{industry}</td></tr>
+              <tr><th>Search Tags</th><td>{tags}</td></tr>
+            </tbody>
+          </table>
         </div>
-        <hr className="my-4"/>
-        <table className="table table-borderless">
-          <tbody>
-            <tr><th>Price</th><td>$499.99</td></tr>
-            <tr><th>Short Description</th><td>Short description goes there</td></tr>
-            <tr><th>Description</th><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec bibendum urna, sit amet posuere magna. Donec scelerisque, lacus et dapibus porttitor, nisl purus rutrum lectus,</td></tr>
-            <tr><th>Client Type</th><td>SME's Large Enterprise International organizations</td></tr>
-            <tr><th>Delivery Time</th><td>5 days</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="bg-lighter px-4 py-4 my-5">
-        <div className="d-flex justify-content-between">
-          <div>
-            <h4>Frequently asked questions</h4>
+        <div className="bg-lighter px-4 py-4 my-5">
+          <div className="d-flex justify-content-between">
+            <div>
+              <h4>Description and pricing</h4>
+            </div>
           </div>
-          <span className="btn btn-link">Edit</span>
+          <hr className="my-4"/>
+          <table className="table table-borderless">
+            <tbody>
+              <tr><th>Price</th><td>${serv.price}</td></tr>
+              <tr><th>Short Description</th><td>{serv.shortDescription}</td></tr>
+              <tr><th>Description</th><td>{serv.longDescription}</td></tr>
+              <tr><th>Client Type</th><td>{clientTypes}</td></tr>
+              <tr><th>Delivery Time</th><td>{serv.deliveryTime.amount + ' ' + serv.deliveryTime.unit}</td></tr>
+            </tbody>
+          </table>
         </div>
-        <hr className="my-4"/>
-        <table className="table table-borderless">
-          <tbody>
-            <tr><th>Question</th><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec bibendum urna, sit amet posuere magna. Donec scelerisque, lacus et dapibus porttitor, nisl purus rutrum lectus,</td></tr>
-            <tr><th>Answer</th><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec bibendum urna, sit amet posuere magna. Donec scelerisque, lacus et dapibus porttitor, nisl purus rutrum lectus,</td></tr>
-            <tr><th>Question</th><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec bibendum urna, sit amet posuere magna. Donec scelerisque, lacus et dapibus porttitor, nisl purus rutrum lectus,</td></tr>
-            <tr><th>Answer</th><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec bibendum urna, sit amet posuere magna. Donec scelerisque, lacus et dapibus porttitor, nisl purus rutrum lectus,</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="bg-lighter px-4 py-4 my-5">
-        <div className="d-flex justify-content-between">
-          <div>
-            <h4>Requirements</h4>
+        <div className="bg-lighter px-4 py-4 my-5">
+          <div className="d-flex justify-content-between">
+            <div>
+              <h4>Frequently asked questions</h4>
+            </div>
           </div>
-          <span className="btn btn-link">Edit</span>
+          <hr className="my-4"/>
+          <table className="table table-borderless">
+            <tbody>
+              {serv.faq.map((qa, i) => {
+                return (
+                  <React.Fragment key={i}>
+                    <tr><th className="w-25">Question</th><td>{qa.question}</td></tr>
+                    <tr><th className="w-25">Answer</th><td>{qa.answer}</td></tr>
+                  </React.Fragment>
+                )
+              })}
+            </tbody>
+          </table>
         </div>
-        <hr className="my-4"/>
-        <table className="table table-borderless">
-          <tbody>
-            <tr><th>Requirement One</th><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec bibendum urna, sit amet posuere magna. Donec scelerisque, lacus et dapibus porttitor, nisl purus rutrum lectus,</td></tr>
-            <tr><th>Requirement Two</th><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec bibendum urna, sit amet posuere magna. Donec scelerisque, lacus et dapibus porttitor, nisl purus rutrum lectus,</td></tr>
-          </tbody>
-        </table>
+        <div className="bg-lighter px-4 py-4 my-5">
+          <div className="d-flex justify-content-between">
+            <div>
+              <h4>Requirements</h4>
+            </div>
+          </div>
+          <hr className="my-4"/>
+          <table className="table table-borderless">
+            <tbody>
+              {serv.requirements.map((req, i) => {
+                return (
+                  <tr key={i}><th className="w-25">Requirement {i + 1}</th><td>{req.requirement}</td></tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default FixFeesDetail;
+const mapStateToProps = ({ authUser, data }) => {
+  const { userInfo } = authUser;
+  const { services } = data;
+
+  return { 
+    userInfo, 
+    services
+  };
+};
+
+const mapActionToProps = {
+  readData
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapActionToProps
+)(FixFeesDetail));

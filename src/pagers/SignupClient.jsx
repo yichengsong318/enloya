@@ -17,7 +17,6 @@ export class Login extends Component {
   }
 
   render() {
-    console.log(this.props.industries);
     return (
       <div className="App">
         <div className="h-100 container">

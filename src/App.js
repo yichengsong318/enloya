@@ -37,8 +37,10 @@ import Jobs from './pagers/Jobs';
 import JobDetail from './pagers/JobDetail';
 import Contracts from './pagers/Contracts';
 import SearchResults from './pagers/SearchResults';
+import ServiceSearchResults from './pagers/ServiceSearchResults';
 import LawyerProfile from './pagers/LawyerProfile';
 import AccountSettings from './pagers/AccountSettings';
+import ValidateAccount from './pagers/ValidateAccount';
 
 import { loadMe } from "./redux/actions";
 
@@ -86,9 +88,11 @@ class App extends Component{
             <ScrollToTopRoute path="/jobs" component={Jobs} />
             <ScrollToTopRoute path="/job-detail" component={JobDetail} />
             <ScrollToTopRoute path="/contracts" component={Contracts} />
-            <ScrollToTopRoute path="/search-results" component={SearchResults} />
-            <ScrollToTopRoute path="/lawyer-profile" component={LawyerProfile} />
+            <ScrollToTopRoute path="/search" component={SearchResults} />
+            <ScrollToTopRoute path="/search-service" component={ServiceSearchResults} />
+            <ScrollToTopRoute path="/lawyer-profile/:lawyerId" component={LawyerProfile} />
             <ScrollToTopRoute path="/account-settings" component={AccountSettings} />
+            <ScrollToTopRoute path="/confirm-token" component={ValidateAccount} />
           </Switch>
         </Router>
       </div>

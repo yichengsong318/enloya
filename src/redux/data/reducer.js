@@ -18,8 +18,13 @@ const INIT_STATE = {
   languages: [],
   academicDegrees: [],
   memberships: [],
+  specializations: [],
+  lawyerTypes: [],
+  clientTypes: [],
+  categories: [],
+  services: [],
   loading: false,
-  error: ''
+  errorMessage: ''
 };
 
 const toCamelCase = (str) => {
@@ -29,44 +34,44 @@ const toCamelCase = (str) => {
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case CREATE_DATA:
-      return { ...state, loading: true, error: '' };
+      return { ...state, loading: true, errorMessage: '' };
     
     case CREATE_DATA_SUCCESS:
-      return { ...state, loading: false, error: '' };
+      return { ...state, loading: false, errorMessage: '' };
 
     case CREATE_DATA_ERROR:
-      return { ...state, loading: false, error: action.payload.message };
+      return { ...state, loading: false, errorMessage: action.payload.message };
     
 
     case UPDATE_DATA:
-      return { ...state, loading: true, error: '' };
+      return { ...state, loading: true, errorMessage: '' };
     
     case UPDATE_DATA_SUCCESS:
-      return { ...state, loading: false, error: '' };;
+      return { ...state, loading: false, errorMessage: '' };;
 
     case UPDATE_DATA_ERROR:
-      return { ...state, loading: false, error: action.payload.message };
+      return { ...state, loading: false, errorMessage: action.payload.message };
       
 
     case READ_DATA:
-      return { ...state, loading: true, error: '' };
+      return { ...state, loading: true, errorMessage: '' };
     
     case READ_DATA_SUCCESS:
-      let d = { ...state, loading: false, error: '' };
+      let d = { ...state, loading: false, errorMessage: '' };
       d[toCamelCase(action.payload.endpoint)] = action.payload.data;
       return d;
 
     case READ_DATA_ERROR:
-      return { ...state, loading: false, error: action.payload.message };
+      return { ...state, loading: false, errorMessage: action.payload.message };
 
     case DELETE_DATA:
-      return { ...state, loading: true, error: '' };
+      return { ...state, loading: true, errorMessage: '' };
     
     case DELETE_DATA_SUCCESS:
-      return { ...state, loading: false, error: '' };
+      return { ...state, loading: false, errorMessage: '' };
 
     case DELETE_DATA_ERROR:
-      return { ...state, loading: false, error: action.payload.message };
+      return { ...state, loading: false, errorMessage: action.payload.message };
 
 
     default: return { ...state };

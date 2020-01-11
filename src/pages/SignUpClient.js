@@ -19,12 +19,13 @@ export class SignUpClient extends Component {
         lastname : '',
         email : '',
         password : '',
+        companyPictureFile: '',
         companyName : '',
         companySize : '',
         industryInputs : [],
         location : '',
         position : '',
-        profilePic: 'test'
+        profilePicFile: ''
       }  
     }
   }
@@ -36,6 +37,7 @@ export class SignUpClient extends Component {
 
   onFormSubmit = () => {
     if (!this.props.loading) {
+      window.scrollTo(0, 0);
       this.props.createData('clients', this.state.login, () => {
         const userInfo = {
           email: this.state.login.email,
@@ -65,56 +67,61 @@ export class SignUpClient extends Component {
           <form action="#" className="subscribe-form2">
             <div className="card-body">
               <div className="row">
-                <div className="col-sm-12 pt-4">
-                  <p className="text-danger d-none">Your email or password appears to be incorrect. Please try again !</p>
+                <div className="col-sm-12">
+                  { this.props.errorMessage && 
+                    <div className="alert alert-danger">{this.props.errorMessage}</div> 
+                  }
                   <FormSwitch name="type" onChange={this.handleFormChange}
                     label="I am" id="typeUser" selected="individual" choices={[
                     { key: 'business', label: 'Business' },
                     { key: 'individual', label: 'Individual' }
-                  ]}/>
+                  ]} noHelp/>
                   <FormInput label="First Name" type="text" id="firstname" 
-                    name="firstname" onChange={this.handleFormChange}/>
+                    name="firstname" onChange={this.handleFormChange} noHelp/>
                   <FormInput label="Last Name" type="text" id="lastname" 
-                    name="lastname" onChange={this.handleFormChange}/>
+                    name="lastname" onChange={this.handleFormChange} noHelp/>
                   <FormInput label="Email" type="email" id="email" 
-                    name="email" onChange={this.handleFormChange}/>
+                    name="email" onChange={this.handleFormChange} noHelp/>
                   <FormInput label="Password" type="password" id="password" 
-                    name="password" onChange={this.handleFormChange}/>
+                    name="password" onChange={this.handleFormChange} noHelp/>
                 </div>
-                <div className="col-sm-12">
-                  <FormInput label="Company Name" type="text" id="companyname" 
-                    name="companyName" onChange={this.handleFormChange}/>
-                </div>
-                <div className="col-sm-10">
-                  <FormSwitch label="Company Size" id="companysize" selected="" 
-                    name="companySize" onChange={this.handleFormChange}
-                    choices={[
-                      { key: '1-10', label: '1-10' },
-                      { key: '11-100', label: '11-100' },
-                      { key: '101-500', label: '101-500' },
-                      { key: '500+', label: '500+' }
-                    ]} />
-                </div>
+
                 <div className="col-sm-7">
                   <FormSelect label="Industry" id="industry" selected="" 
                     name="industryInputs" onChange={this.handleFormChange}
-                    choices={[
-                      { value: 'undefined', label: 'Please Select' },
-                      ...this.props.industries.map(ind => {ind.value = ind.id; return ind})
-                    ]} />
-                </div>
-                <div className="col-sm-12">
-                  <FormUpload label="Logo Upload" id="logoUpload"/>
+                    choices={this.props.industries.map(ind => {ind.value = ind.id; return ind})} noHelp/>
                 </div>
                 <div className="col-sm-12">
                   <FormInput label="Your location" type="text" id="location" 
                     name="location" onChange={this.handleFormChange}
-                    placeholder="Country / State / Provinence"/>
-                  <FormInput label="Position" type="text" id="position"
-                    name="position" onChange={this.handleFormChange}
-                    />
+                    placeholder="Country / State / Provinence" noHelp/>
                 </div>
-                <div className="col-sm-11 text-right mt-5">
+                {this.state.login.type === "business" && 
+                  <>
+                    <div className="col-sm-12">
+                      <FormInput label="Company Name" type="text" id="companyname" 
+                        name="companyName" onChange={this.handleFormChange} noHelp/>
+                    </div>
+                    <div className="col-sm-10">
+                      <FormSwitch label="Company Size" id="companysize" selected="" 
+                        name="companySize" onChange={this.handleFormChange}
+                        choices={[
+                          { key: '1-10', label: '1-10' },
+                          { key: '11-100', label: '11-100' },
+                          { key: '101-500', label: '101-500' },
+                          { key: '500+', label: '500+' }
+                        ]} noHelp/>
+                    </div>
+                    <div className="col-sm-12">
+                      <FormUpload label="Logo Upload" id="logoUpload"
+                        name="companyPictureFile" onChange={this.handleFormChange} noHelp/>
+                      <FormInput label="Position" type="text" id="position"
+                        name="position" onChange={this.handleFormChange}
+                        noHelp/>
+                    </div>
+                  </>
+                }
+                <div className="col-sm-12 text-right mt-5">
                   <button type="button" onClick={this.onFormSubmit}
                     className="btn btn_get btn_get_two btn-block">Sign up</button>
                 </div>
@@ -129,9 +136,9 @@ export class SignUpClient extends Component {
 }
 
 const mapStateToProps = ({ data }) => {
-  const { industries } = data;
+  const { industries, errorMessage } = data;
 
-  return { industries };
+  return { industries, errorMessage };
 };
 
 const mapActionToProps = {

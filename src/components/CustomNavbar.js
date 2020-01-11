@@ -7,8 +7,7 @@ import 'malihu-custom-scrollbar-plugin/';
 import 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
 import 'jquery-mousewheel';
 import { Link as ScrolLink, Events, scroller } from 'react-scroll';
-
-
+import Dropdown from '../shared/Dropdown';
 import { logoutUser } from "../redux/actions";
 
 class CustomNavbar extends Component {
@@ -63,78 +62,101 @@ class CustomNavbar extends Component {
     var {mClass, nClass, cClass, slogo, q} = this.props;
     return (
       <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
-        <header className="header_area">
-          <nav className={`navbar navbar-expand-lg menu_one ${mClass}`}>
-            <div className={`container ${cClass}`}>
-              <Link className={`navbar-brand ${slogo}`} to="/">
-                <img src={require("../img/enloya-logo.png")} alt=""/>
-                <img src={require("../img/enloya-logo.png")} alt="logo"/>
-              </Link>
-              <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="menu_toggle">
-                  <span className="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+          <header className="header_area">
+            <nav className={`navbar navbar-expand-lg menu_one ${mClass}`}>
+              <div className={`container ${cClass}`}>
+                <Link className={`navbar-brand ${slogo}`} to="/">
+                  <img src={require("../img/enloya-logo.png")} alt=""/>
+                  <img src={require("../img/enloya-logo.png")} alt="logo"/>
+                </Link>
+                <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="menu_toggle">
+                    <span className="hamburger">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </span>
+                    <span className="hamburger-cross">
+                      <span></span>
+                      <span></span>
+                    </span>
                   </span>
-                  <span className="hamburger-cross">
-                    <span></span>
-                    <span></span>
-                  </span>
-                </span>
-              </button>
+                </button>
 
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className={`navbar-nav menu ml-auto ${nClass}`}>
-                  <li className="nav-item">
-                    { q === 'team_url' ?
-                      (<NavLink title="Team" className="nav-link" to={`/?q=whatwedo`}>What we do</NavLink>)
-                      :
-                      (<ScrolLink title="Service" className="nav-link" to="whatwedo" spy smooth duration={300} >What we do</ScrolLink>)
-                    }
-                  </li>
-                  <li className="dropdown submenu nav-item">
-                    { q === 'team_url' ?
-                      (<NavLink title="Team" className="nav-link" to={`/?q=howitworks`}>How it works</NavLink>)
-                      :
-                      (<ScrolLink title="Pages" className="nav-link" to="howitworks" spy smooth duration={300} >How it works</ScrolLink>)
-                    }
-                  </li>
-                  <li className="nav-item">
-                    <NavLink title="Contact" className="nav-link" to="/contact">Contact</NavLink>
-                  </li>
-                </ul>
-                {
-                  this.props.user ?
-                  (
-                    <>
-                      {this.props.userType == 'lawyer' && 
-                        <NavLink title="My Profile" className="btn btn-link" to="/lawyer-profile">My Profile</NavLink>}
-                      <span className="btn_get btn_hover"
-                        onClick={() => this.handleLogout()}>Logout</span>
-                    </>
-                  )
-                  :
-                  (
-                    <>
-                      <a className="btn_get btn_hover" href="/login">Login</a>
-                      <a className="btn btn_get btn_get_two" href="/register">Sign Up</a>
-                    </>
-                  )
-                }
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  {
+                    !this.props.user &&
+                    (
+                      <ul className={`navbar-nav menu mx-auto ${nClass}`}>
+                        <li className="nav-item">
+                          { q === 'team_url' ?
+                            (<NavLink title="Team" className="nav-link" to={`/?q=whatwedo`}>What we do</NavLink>)
+                            :
+                            (<ScrolLink title="Service" className="nav-link" to="whatwedo" spy smooth duration={300} >What we do</ScrolLink>)
+                          }
+                        </li>
+                        <li className="dropdown submenu nav-item">
+                          { q === 'team_url' ?
+                            (<NavLink title="Team" className="nav-link" to={`/?q=howitworks`}>How it works</NavLink>)
+                            :
+                            (<ScrolLink title="Pages" className="nav-link" to="howitworks" spy smooth duration={300} >How it works</ScrolLink>)
+                          }
+                        </li>
+                        <li className="nav-item">
+                          <NavLink title="Contact" className="nav-link" to="/contact">Contact</NavLink>
+                        </li>
+                      </ul>
+                    )
+                  }
+                  {
+                    this.props.user ?
+                    (
+                      <>
+                        <ul className="navbar-nav mr-2 my-3 ml-auto">
+                          <li className="nav-item dropdown">
+                            <Dropdown type="search" text={'Search'} 
+                              orientation="right">
+                              <NavLink title="Lawyers" className="dropdown-item" 
+                                to="/search">Lawyers</NavLink>
+
+                              <NavLink title="Services" className="dropdown-item" 
+                                to="/search-service">Services</NavLink>
+                            </Dropdown>
+                          </li>
+                        </ul>
+                        <Dropdown type="button" text={this.props.userInfo.firstname + ' ' + this.props.userInfo.lastname} 
+                          orientation="right">
+                          <NavLink title="Account Settings" className="dropdown-item" 
+                            to="/account-settings">Account Settings</NavLink>
+
+                          { this.props.userType === 'lawyer' && 
+                            <NavLink title="My Profile" className="dropdown-item" 
+                              to={"/lawyer-profile/" + this.props.userInfo.id}>My Profile</NavLink>}
+                          <span className="dropdown-item" onClick={() => this.handleLogout()}>Logout</span>
+                        </Dropdown>
+                      </>
+                    )
+                    :
+                    (
+                      <>
+                        <a className="btn_get btn_hover" href="/login">Login</a>
+                        <a className="btn btn_get btn_get_two" href="/register">Sign Up</a>
+                      </>
+                    )
+                  }
+                </div>
               </div>
-            </div>
-          </nav>
-        </header>
-      </Sticky>
+            </nav>
+          </header>
+        </Sticky>
     );
   }
 }
 
 const mapStateToProps = ({ authUser }) => {
-  const { user, userType } = authUser;
+  const { user, userType, userInfo } = authUser;
 
-  return { user, userType };
+  return { user, userType, userInfo };
 };
 
 const mapActionToProps = {

@@ -31,7 +31,6 @@ export class General extends Component {
   }
 
   onFormSubmit = () => {
-    console.log(this.state.user);
     if (!this.props.loading) {
       this.props.updateData('lawyers', this.props.userInfo.id, this.state.user, () => {
         this.props.loadMe(() => {
@@ -112,10 +111,7 @@ export class General extends Component {
             <FormSelect label="Languages" id="languages" 
               selected={this.state.user.languageInputs} isMulti
               name="languageInputs" onChange={this.handleFormChange}
-              choices={[
-                { value: 'undefined', label: 'Please Select' },
-                ...this.props.languages.map(ind => {ind.value = ind.id; return ind})
-              ]}
+              choices={this.props.languages.map(ind => {ind.value = ind.id; return ind})}
               noHelp/>
 
             <FormInput label="VAT ID" type="number" id="vatid" 
@@ -124,7 +120,6 @@ export class General extends Component {
             <FormSelect label="Timezones" id="timezones" selected={this.state.user.timezone} 
               name="timezone" onChange={this.handleFormChange}
               choices={[
-                { value: 'undefined', label: 'Please Select' },
                 { value: 'utc-10', label: 'UTC/GMT +10 hours' },
                 { value: 'utc-8', label: 'UTC/GMT +8 hours' },
                 { value: 'utc-7', label: 'UTC/GMT +7 hours' }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import FooterData from '../Footer/FooterData';
 
 class Advisoritem extends Component {
     render(){

@@ -272,12 +272,12 @@ const FooterData = {
       },
       {
         id: 4,
-        url: '/search-results',
+        url: '/search',
         text: 'Search projects',
       },
       {
         id: 5,
-        url: '/search-results',
+        url: '/search',
         text: 'Search jobs',
       },
     ],
@@ -289,7 +289,7 @@ const FooterData = {
       },
       {
         id: 2,
-        url: '/search-results',
+        url: '/search',
         text: 'Search for lawyers',
       },
       {
