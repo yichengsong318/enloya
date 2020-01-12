@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { faCalendar, faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from 'react-select';
@@ -6,6 +6,11 @@ import CreatableSelect from 'react-select/creatable';
 import ButtonSwitch from './ButtonSwitch';
 import DropZone from './DropZone';
 import DatePicker from "react-datepicker";
+import ReactCrop from 'react-image-crop';
+
+import imgToBlog from '../constants/imgToBlog';
+
+import 'react-image-crop/dist/ReactCrop.css';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -146,6 +151,67 @@ export function FormUpload(props) {
           id={props.id} placeholder={props.placeholder} />
         {!props.noHelp && <FontAwesomeIcon icon={faQuestion} className="form-question-icon" />}
       </div>
+    </div>
+  );
+}
+
+export function FormUploadImage(props) {
+  const [crop, setCrop] = useState({ 
+    aspect: 1, 
+    width: 80,
+    unit: '%'
+  });
+
+  const [src, setSrc] = useState();
+  const [img, setImg] = useState();
+  const [saving, setSaving] = useState();
+
+  const handleChange = (imgFile) => {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      setSrc(e.target.result);
+    }
+    reader.readAsDataURL(imgFile);
+  };
+  
+  const saveChange = () => {
+    imgToBlog(img, crop, 'profilepic').then(res => {
+      props.onChange(props.name, res, () => {
+        setSrc(null);
+      });
+    });
+  };
+
+  return (
+    <div className="form-group text-left">
+      <label htmlFor={props.id}>{props.label}</label>
+      <div className="d-flex">
+        <DropZone dropColor={props.dropColor} 
+          text="Select your profile picture"
+          onChange={e => handleChange(e.target.files[0])}
+          id={props.id} placeholder={props.placeholder} />
+      </div>
+      { src ? 
+        <div className="text-center p-4">
+          <ReactCrop keepSelection={true}
+            onImageLoaded={image => setImg(image)}
+            src={src} crop={crop} onChange={newCrop => setCrop(newCrop)} />
+          {saving ? 
+            <div class="m-2 p-3 text-center">Saving...</div>
+            :
+            <div>
+              <span className="btn btn-sm btn-secondary mr-2" onClick={() => setSrc(null)}>Cancel</span>
+              <span className="btn btn-sm btn-success" onClick={() => saveChange()}>Save</span>
+            </div>
+          }
+        </div>
+        :
+        <div className="text-center p-4">
+          {props.value && 
+            <img src={props.value} alt="profile" className="img-fluid"/>
+          }
+        </div>
+      }
     </div>
   );
 }

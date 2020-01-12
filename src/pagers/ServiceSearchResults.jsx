@@ -94,19 +94,23 @@ export class ServiceSearchResults extends Component {
     return (
       <div className="App">
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"/>
-        <div className="py-5 mt_100">
+        <div className="pb-3 mt_75">
           <div className="container">
             <AlertArea/>
-            <div className="row justify-content-center">
-              <div className="col-sm-4">
-                <FormInput placeholder="Search" type="text" 
-                  value={this.state.query.search}
-                  name="search" onChange={this.handleQueryChange}
-                  noLabel noHelp />
-              </div>
-              <div className="col-sm-2">
-                <button type="button" className="btn btn-primary px-5" 
-                  onClick={() => {this.search()}}>Search</button>
+          </div>
+          <div className="container-fluid bg-light-blue pt-5 pb-4">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-sm-4">
+                  <FormInput placeholder="Search" type="text" 
+                    value={this.state.query.search}
+                    name="search" onChange={this.handleQueryChange}
+                    noLabel noHelp />
+                </div>
+                <div className="col-sm-2">
+                  <button type="button" className="btn btn-primary px-5" 
+                    onClick={() => {this.search()}}>Search</button>
+                </div>
               </div>
             </div>
           </div>
@@ -188,9 +192,9 @@ export class ServiceSearchResults extends Component {
                             kind="lawyer_profile"
                             sid={service.id}
                             name={service.title}
-                            company={service.lawyer.companyName}
+                            company={service.lawyer && service.lawyer.companyName}
                             price={service.price}
-                            service={service.category.label}
+                            service={service.category && service.category.label}
                             description={service.shortDescription}
                             fullDescription={service.longDescription}
                             />

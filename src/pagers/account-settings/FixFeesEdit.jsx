@@ -46,12 +46,6 @@ export class FixFeesEdit extends Component {
       get('services/' + params.sid).then((res) => {
         if (res.status === 200) {
           const oldService = res.data;
-          console.log(oldService.tags.map(tag => {
-            return {
-              label: tag,
-              value: tag.toLowerCase().replace(/\W/g, ''),
-            };
-          }));
           this.setState({
             service: {
               title: oldService.title || '',
@@ -290,7 +284,7 @@ export class FixFeesEdit extends Component {
                 return (
                   <div key={i} className="d-flex justify-content-between mb-4">
                     <div>
-                      <div>Q: {qa.question}</div>
+                      <div>Q: <strong>{qa.question}</strong></div>
                       <div>A: {qa.answer}</div>
                     </div>
                     <div>

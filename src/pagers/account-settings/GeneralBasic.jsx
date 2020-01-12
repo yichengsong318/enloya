@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { FormText, FormInput, FormSelect, FormUpload } from '../../shared/FormElement';
+import { FormText, FormInput, FormSelect, FormUploadImage } from '../../shared/FormElement';
 import { NotificationManager } from "react-notifications";
 
 import { updateData, readData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
+
+import timezones from "../../constants/timezones";
+import countries from "../../constants/countries";
 
 export class GeneralBasic extends Component {
   constructor(props) {
@@ -12,13 +15,12 @@ export class GeneralBasic extends Component {
 
     this.state = { 
       user: {
-        profilePicFile: null,
         languageInputs : props.userInfo.languages.map(l => l.id) || [],
-        location : props.userInfo.location || '',
+        city : props.userInfo.city || '',
+        country : props.userInfo.country || '',
         timezone : props.userInfo.timezone || '',
         address : props.userInfo.address || '',
         vatID: props.userInfo.vatID || '',
-        hasFile: true
       }  
     }
   }
@@ -42,9 +44,9 @@ export class GeneralBasic extends Component {
           );
           this.setState({ 
             user: {
-              profilePicFile: null,
               languageInputs : this.props.userInfo.languages.map(l => l.id) || [],
-              location : this.props.userInfo.location || '',
+              city : this.props.userInfo.city || '',
+              country : this.props.userInfo.country || '',
               timezone : this.props.userInfo.timezone || '',
               address : this.props.userInfo.address || '',
               vatID: this.props.userInfo.vatID || '',
@@ -60,6 +62,25 @@ export class GeneralBasic extends Component {
     this.setState({user: {...this.state.user, [name]: value}});
   };
 
+
+  handleFormImageChange = (name, value, onComplete) => {
+    let userPic = {hasFile: true}; 
+    userPic[name] = value;
+    this.props.updateData('clients', this.props.userInfo.id, userPic, () => {
+      this.props.loadMe(() => {
+        NotificationManager.success(
+          "The picture was successfully saved!",
+          "Success !",
+          3000,
+          null,
+          null,
+          ''
+        );
+        onComplete();
+      });
+    });
+  }
+
   render () {
     const { userInfo } = this.props;
     return (
@@ -67,20 +88,20 @@ export class GeneralBasic extends Component {
         <h2 className="mt-2 mb-3">General Information</h2>
         <div className="row mt-4">
           <div className="col-sm-5">
-            <FormUpload label="Profile Image" id="profileImage" 
-              name="profilePicFile" onChange={this.handleFormChange} noHelp/>
-            {
-              userInfo.profilePic && 
-              <img src={userInfo.profilePic} className="img-pic-user-medium mt-2" alt="user_pic" />
-            }
+            <FormUploadImage label="Profile Image" id="profileImage" value={userInfo.profilePic}
+              name="profilePicFile" onChange={this.handleFormImageChange} noHelp/>
           </div>
           <div className="col-sm-5">
             <FormText label="First Name" id="firstname" value={userInfo.firstname} noHelp/>
             <FormText label="Last Name" id="lastname" value={userInfo.lastname} noHelp/>
             <FormText label="Email" id="email" value={userInfo.email} noHelp/>
 
-            <FormInput label="Your location" type="text" id="location" 
-              value={this.state.user.location} name="location" onChange={this.handleFormChange} noHelp/>
+            <FormInput label="City" type="text" id="city" 
+              value={this.state.user.city} name="city" onChange={this.handleFormChange} noHelp/>
+            
+            <FormSelect label="Country" id="countries" selected={this.state.user.country} 
+              name="country" onChange={this.handleFormChange}
+              choices={countries} noHelp />
 
             <FormSelect label="Languages" id="languages" 
               selected={this.state.user.languageInputs} isMulti
@@ -90,13 +111,11 @@ export class GeneralBasic extends Component {
             <FormInput label="VAT ID" type="number" id="vatid" 
               value={this.state.user.vatID} name="vatID" onChange={this.handleFormChange} noHelp />
 
+            
             <FormSelect label="Timezones" id="timezones" selected={this.state.user.timezone} 
               name="timezone" onChange={this.handleFormChange}
-              choices={[
-                { value: 'utc-10', label: 'UTC/GMT +10 hours' },
-                { value: 'utc-8', label: 'UTC/GMT +8 hours' },
-                { value: 'utc-7', label: 'UTC/GMT +7 hours' }
-              ]} noHelp />
+              choices={timezones} noHelp />
+
             <FormInput label="Address" type="text" id="address"
               value={this.state.user.address} name="address" onChange={this.handleFormChange} noHelp />
           </div>

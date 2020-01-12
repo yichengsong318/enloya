@@ -63,8 +63,11 @@ export class LawyerProfile extends Component {
 
   render () {
     let { path, url } = this.props.match;
-    const { proexperiences, licences, academicDegrees, specializations } = this.props;
+    const { proexperiences, licences, academicDegrees } = this.props;
     const { userInfo } = this.state;
+
+    const specializations = userInfo.specializations || [];
+
     const currentPosition = proexperiences && proexperiences.find(pe => pe.id === userInfo.currentPosition);
     const currentPositionLabel = currentPosition ? currentPosition.title + ' at ' + currentPosition.where : null;
 
@@ -77,17 +80,17 @@ export class LawyerProfile extends Component {
       <div className="App">
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" 
           isProfile q="team_url"/>
-        <div className="bg-white mt_100 pt-5">
+        <div className="bg-white mt_75 pt-2">
           <div className="container pb-4">
-            <AlertArea/>
+            {/* <AlertArea/> */}
             {/* <div className="text-left py-4">
-              <Link className="text-dark" to="/jobs">
+              <Link className="text-dark" to="/search">
                 <FontAwesomeIcon icon={faAngleLeft} className="mr-2" />
                 <span>Back to search results</span>
               </Link>
             </div> */}
             <div className="row mx-0 align-items-center">
-              <div className="col-sm-12 px-0 d-flex lawyer-card-large">
+              <div className="col-sm-12 px-0 d-flex lawyer-card-large align-items-center">
                 <div>
                   <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4" alt="user_pic" />
                 </div>
@@ -96,7 +99,7 @@ export class LawyerProfile extends Component {
                     {userInfo.title}
                     {/* <img src={special} alt="en_pic" className="img-fluid special-profil ml-3"/> */}
                   </h2>
-                  <div>{userInfo.firstname} {userInfo.lastname}</div>
+                  <div className="lawyer-name-profile">{userInfo.firstname} {userInfo.lastname}</div>
                   <div className="font-weight-bold">{currentPositionLabel}</div>
                   <div className="mt-1">
                     {userInfo.shortDescription}

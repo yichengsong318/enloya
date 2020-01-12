@@ -135,7 +135,7 @@ export class FixFeesDetail extends Component {
               {serv.faq.map((qa, i) => {
                 return (
                   <React.Fragment key={i}>
-                    <tr><th className="w-25">Question</th><td>{qa.question}</td></tr>
+                    <tr><th className="w-25">Question</th><th>{qa.question}</th></tr>
                     <tr><th className="w-25">Answer</th><td>{qa.answer}</td></tr>
                   </React.Fragment>
                 )

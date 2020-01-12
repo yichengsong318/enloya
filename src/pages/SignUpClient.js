@@ -7,6 +7,7 @@ import { FormSwitch, FormInput, FormSelect, FormUpload } from '../shared/FormEle
 
 import { createData, readData } from "../redux/actions";
 import { loginUser } from "../redux/actions";
+import countries from "../constants/countries";
 
 export class SignUpClient extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ export class SignUpClient extends Component {
         companyName : '',
         companySize : '',
         industryInputs : [],
-        location : '',
+        city : '',
+        country : '',
         position : '',
         profilePicFile: ''
       }  
@@ -92,9 +94,13 @@ export class SignUpClient extends Component {
                     choices={this.props.industries.map(ind => {ind.value = ind.id; return ind})} noHelp/>
                 </div>
                 <div className="col-sm-12">
-                  <FormInput label="Your location" type="text" id="location" 
-                    name="location" onChange={this.handleFormChange}
-                    placeholder="Country / State / Provinence" noHelp/>
+                  <FormInput label="Your city" type="text" id="city" 
+                    name="city" onChange={this.handleFormChange}
+                    placeholder="" noHelp/>
+                              
+                  <FormSelect label="Country" id="countries" selected={this.state.login.country} 
+                    name="country" onChange={this.handleFormChange}
+                    choices={countries} noHelp />
                 </div>
                 {this.state.login.type === "business" && 
                   <>

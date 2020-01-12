@@ -59,11 +59,11 @@ class CustomNavbar extends Component {
   };
 
   render() {
-    var {mClass, nClass, cClass, slogo, q} = this.props;
+    var {mClass, nClass, cClass, slogo, q, isHome} = this.props;
     return (
       <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
           <header className="header_area">
-            <nav className={`navbar navbar-expand-lg menu_one ${mClass}`}>
+            <nav className={`navbar navbar-expand-lg menu_one ${mClass} ${isHome ? '' : 'bg-white'}`}>
               <div className={`container ${cClass}`}>
                 <Link className={`navbar-brand ${slogo}`} to="/">
                   <img src={require("../img/enloya-logo.png")} alt=""/>
@@ -124,7 +124,9 @@ class CustomNavbar extends Component {
                             </Dropdown>
                           </li>
                         </ul>
-                        <Dropdown type="button" text={this.props.userInfo.firstname + ' ' + this.props.userInfo.lastname} 
+                        <Dropdown type="button" 
+                          userImage={this.props.userInfo.profilePic}
+                          text={this.props.userInfo.firstname + ' ' + this.props.userInfo.lastname} 
                           orientation="right">
                           <NavLink title="Account Settings" className="dropdown-item" 
                             to="/account-settings">Account Settings</NavLink>

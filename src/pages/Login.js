@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CustomNavbar from '../components/CustomNavbar';
 import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
-import SocialLogin from '../components/SocialLogin';
+// import SocialLogin from '../components/SocialLogin';
 
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions";
@@ -40,8 +40,11 @@ export class Login extends Component {
         <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn" q="team_url"/>
         <div className="subscribe_form_info s_form_info_two text-center mb-0">
           <h2 className="f_600 f_size_30 l_height30 t_color3 mb_50 mt_70 pt_70">Member login</h2>
-          <SocialLogin />
+          {/* <SocialLogin /> */}
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
+            { this.props.errorMessage && 
+              <div className="alert alert-danger">{this.props.errorMessage}</div> 
+            }
             <input type="email" className="form-control" placeholder="Your email" 
               onChange={e => this.handleFormChange('email', e.target.value)}/>
             <input type="password" className="form-control mt-3" placeholder="Your password"
@@ -59,8 +62,10 @@ export class Login extends Component {
 }
 
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = ({ authUser }) => {
+  const { errorMessage } = authUser;
+
+  return { errorMessage };
 };
 
 const mapActionToProps = {

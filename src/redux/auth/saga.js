@@ -40,7 +40,7 @@ function* loginWithEmailPassword({ payload }) {
         yield onSuccess();
       }
     } else {
-      yield put(loginUserError(loginUser.message));
+      yield put(loginUserError(loginUser.response.data.message));
     }
   } catch (error) {
     yield put(loginUserError(error));

@@ -10,7 +10,7 @@ export default function FixedServiceCard (props) {
           <div className="d-flex justify-content-between">
             <h5>
               <span style={{color: '#4b505e'}}>{props.name}</span>
-              <div>{props.company}</div>
+              {/* <div>{props.company}</div> */}
             </h5>
             <div className="priced">${props.price}</div>
           </div>

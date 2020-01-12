@@ -246,7 +246,7 @@ export class FixFeesCreate extends Component {
                 return (
                   <div key={i} className="d-flex justify-content-between mb-4">
                     <div>
-                      <div>Q: {qa.question}</div>
+                      <div>Q: <strong>{qa.question}</strong></div>
                       <div>A: {qa.answer}</div>
                     </div>
                     <div>

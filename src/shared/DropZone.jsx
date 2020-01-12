@@ -23,7 +23,7 @@ export default function DropZone (props) {
       (props.dropColor ? props.dropColor : '') + (active ? 'active' : '')} onClick={handleClick}>
       <input ref={fileInput} type="file" className="d-none" onChange={handleChange} />
       <FontAwesomeIcon icon={faCloudUploadAlt} className="file-icon" />
-      <div>Drop files to upload or <span className="file-link">Browse</span></div>  
+      <div>{props.text || 'Click herer to pick a file'}</div>  
     </div>
   );
 }

@@ -9,7 +9,7 @@ import FooterData from '../components/Footer/FooterData';
 export default function Home () {
   return (
     <div className="body_wrapper">
-      <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn"/>
+      <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn" isHome/>
       <DesignBanner/>
       <Service/>
       <InnoSuisse />

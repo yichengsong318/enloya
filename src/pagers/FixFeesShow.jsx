@@ -60,7 +60,7 @@ export class FixFeesShow extends Component {
                   </div>
                   <div className="col-sm-6">
                     <h4 className="text-16">{(serv.subcategory && serv.subcategory.label ) || "N/A"}</h4>
-                    <div>{serv.lawyer.companyName}</div>
+                    {/* <div>{serv.lawyer.companyName}</div> */}
                   </div>
                 </div>
                 <p className="text-justify">

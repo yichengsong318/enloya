@@ -36,7 +36,7 @@ function AccountSettings(props) {
   return (
     <div className="App">
       <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
-      <div className="h-100 container my-5 mt_100 pt-5">
+      <div className="h-100 container mb-5 mt_75">
         <AlertArea/>
         <h1 className="h3 my-5">Account Settings</h1>
         <div className="row">
