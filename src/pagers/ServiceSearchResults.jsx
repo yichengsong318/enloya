@@ -194,8 +194,8 @@ export class ServiceSearchResults extends Component {
                             name={service.title}
                             company={service.lawyer && service.lawyer.companyName}
                             price={service.price}
-                            service={service.category && service.category.label}
-                            description={service.shortDescription}
+                            category={service.category && service.category.label}
+                            deliveryTime={service.deliveryTime}
                             fullDescription={service.longDescription}
                             />
                         </div>

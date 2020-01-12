@@ -14,8 +14,8 @@ export default function FixedServiceCard (props) {
             </h5>
             <div className="priced">${props.price}</div>
           </div>
-          <div>{props.service}</div>
-          <div>{props.description}</div>
+          <div>{props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
+          <div>{props.category}</div>
         </a>
       </div>
       <div className="body">

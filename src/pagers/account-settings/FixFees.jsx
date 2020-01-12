@@ -27,10 +27,10 @@ export class FixFees extends Component {
                     kind="lawyer_services"
                     sid={srv.id}
                     name={srv.title}
-                    company={srv.lawyer.companyName}
+                    company={srv.lawyer && srv.lawyer.companyName}
                     price={srv.price}
-                    service={srv.category.label}
-                    description={srv.shortDescription}
+                    category={srv.category && srv.category.label}
+                    deliveryTime={srv.deliveryTime}
                     fullDescription={srv.longDescription}
                     />
                 </div>
