@@ -4,7 +4,9 @@ import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
 import { createData, updateData, readData, deleteData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-import { FormDate, FormInput, FormUpload, FormCheck, FormSelect } from '../../shared/FormElement';
+import { FormDate, FormInput, FormUpload, FormCheck, FormSelect, FormTag } from '../../shared/FormElement';
+
+import countries from "../../constants/countries";
 
 export class Professional extends Component {
   constructor(props) {
@@ -33,7 +35,7 @@ export class Professional extends Component {
       },  
       specializationInputs: {
         editing: false,
-        value: props.userInfo.specializations ? props.userInfo.specializations.map(l => l.id) : [],
+        value: props.userInfo.specializations ? props.userInfo.specializations.map(l => {l.value = l.id; return l}) : [],
         placeholder: 'Edit to select your specializations'
       },
       typeInputs: {
@@ -101,7 +103,9 @@ export class Professional extends Component {
           fromDate: '',
           toDate: null,
           present: false,
-          where: ''
+          where: '',
+          city: '',
+          country: ''
         },
         curItem: {
           title: '',
@@ -109,7 +113,9 @@ export class Professional extends Component {
           fromDate: '',
           toDate: null,
           present: false,
-          where: ''
+          where: '',
+          city: '',
+          country: ''
         },
         value : props.proexperiences || [],
       },
@@ -118,15 +124,16 @@ export class Professional extends Component {
         editing: false,
         editingId: '',
         initItem: {
-          where: '',
+          city: '',
+          country: '',
           since: '',
-          // proof: '',
           proofFile: '',
           number: '',
           hasFile: true
         },
         curItem: {
-          where: '',
+          city: '',
+          country: '',
           since: '',
           proofFile: '',
           number: '',
@@ -230,7 +237,8 @@ export class Professional extends Component {
           let value = this.props.userInfo[name] || '';
 
           if (name === 'specializationInputs') {
-            value = this.props.userInfo.specializations ? this.props.userInfo.specializations.map(l => l.id) : [];
+            value = this.props.userInfo.specializations ? 
+              this.props.userInfo.specializations.map(l => {l.value = l.id; return l}) : [];
           } else if (name === 'typeInputs') {
             value = this.props.userInfo.types ? this.props.userInfo.types.map(l => l.id)[0] : null;
           }
@@ -328,10 +336,12 @@ export class Professional extends Component {
 
   startLEditing = (item) => {
     this.startPrEditing('licences', item.id, {
-      where: item.where,
+      city: item.city,
+      country: item.country,
       since: item.since,
       proof: item.proof,
-      number: item.number
+      number: item.number,
+      hasFile: true
     });
   };
 
@@ -362,7 +372,8 @@ export class Professional extends Component {
       fromDate: new Date(item.fromDate),
       toDate: new Date(item.toDate),
       present: item.present,
-      where: item.where
+      city: item.city,
+      country: item.country
     });
   };
 
@@ -385,6 +396,11 @@ export class Professional extends Component {
       });
     }
   }
+
+  getCountry = (code) => {
+    const country = countries.find(c => c.value === code);
+    return country ? country.label : "";
+  }
   
   render () {
     const { userInfo, proexperiences } = this.props;
@@ -393,6 +409,8 @@ export class Professional extends Component {
     const specializations = userInfo.specializations || [];
     const types = userInfo.types || [];
 
+    const isValidated = this.props.userInfo && this.props.userInfo.isValidated;
+
     return (
       <div className="py-4 px-2 account-settings">
         <h2 className="mt-2 mb-3">Professional Background</h2>
@@ -400,7 +418,7 @@ export class Professional extends Component {
           <div className="d-flex justify-content-between">
             <h5>Title</h5>
             { this.state.title.editing ?  
-              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('title')}}>Save</span>
+              <span className="btn btn-primary btn-sm" onClick={() => {this.saveAttr('title')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('title', true)}}>Edit</span>
             }
@@ -475,8 +493,8 @@ export class Professional extends Component {
           { this.state.specializationInputs.editing ?
             <div className="row">
               <div className="col-sm-8">
-                <FormSelect id="specializations" 
-                  selected={this.state.specializationInputs.value} isMulti
+                <FormTag id="specializations" 
+                  selected={this.state.specializationInputs.value} isMulti returnAll
                   name="specializationInputs" onChange={this.handleChange}
                   choices={this.props.specializations.map(ind => {ind.value = ind.id; return ind})}
                   noHelp/>
@@ -512,11 +530,13 @@ export class Professional extends Component {
           { this.state.licences.value.map(licence => {
               return (
                 <div key={licence.id} className="d-flex justify-content-between">
-                  <div>{licence.where}, {licence.since} (Licence # {licence.number})</div>
+                  <div>{licence.city} ({this.getCountry(licence.country)}), {licence.since} (Licence # {licence.number})</div>
+                  { !isValidated && 
                   <div>
-                    {/* <span className="btn btn-link mr-1" onClick={() => {this.startLEditing(licence)}}>Edit</span> */}
+                    <span className="btn btn-link mr-1" onClick={() => {this.startLEditing(licence)}}>Edit</span>
                     <span className="btn btn-link" onClick={() => {this.deleteL(licence.id)}}>Delete</span>
                   </div>
+                  }
                 </div>
               );
             }
@@ -528,11 +548,19 @@ export class Professional extends Component {
           { (this.state.licences.adding || this.state.licences.editing) && 
             <div className="bg-lighter px-3 py-4">
               <div className="row">
+                <div className="col-sm-12">
+                  <h5>Licensed in?</h5>
+                </div>
                 <div className="col-sm-6">
-                  <FormInput label="Licensed in?" type="text" id="licensedin" 
-                    value={this.state.licences.curItem.where} name="where" onChange={this.handleLChange}
-                    placeholder="Country / State / Provinence" noHelp/>
-
+                  <FormInput label="City" type="text" id="lic-city" 
+                    value={this.state.licences.curItem.city} name="city" onChange={this.handleLChange} noHelp/>
+                </div>
+                <div className="col-sm-6">
+                  <FormSelect label="Country" id="lic-countries" selected={this.state.licences.curItem.country} 
+                    name="country" onChange={this.handleLChange}
+                    choices={countries} noHelp />
+                </div>
+                <div className="col-sm-6">
                   <FormInput label="Licence Number" type="number" id="licensednumber" 
                     value={this.state.licences.curItem.number} name="number" onChange={this.handleLChange} noHelp/>
                 </div>
@@ -618,6 +646,7 @@ export class Professional extends Component {
                       }
                     </div>
                     <div>{proexperience.where}</div>
+                    <div>{proexperience.city}, {this.getCountry(proexperience.country)}</div>
                     <div>{proexperience.description}</div>
                   </div>
                   <div>
@@ -651,8 +680,18 @@ export class Professional extends Component {
                     value={this.state.proexperiences.curItem.title} name="title" onChange={this.handlePEChange} noHelp/>
                   <FormInput label="Description" type="text" id="pro-type" 
                     value={this.state.proexperiences.curItem.description} name="description" onChange={this.handlePEChange} noHelp/>
-                  <FormInput label="Where" type="text" id="pro-where" 
+                  <FormInput label="Company" type="text" id="pro-where" 
                     value={this.state.proexperiences.curItem.where} name="where" onChange={this.handlePEChange} noHelp/>
+                </div>
+                <div className="col-sm-12"></div>
+                <div className="col-sm-6">
+                  <FormInput label="City" type="text" id="city" 
+                    value={this.state.proexperiences.curItem.city} name="city" onChange={this.handlePEChange} noHelp/>
+                </div>
+                <div className="col-sm-6">
+                  <FormSelect label="Country" id="countries" selected={this.state.proexperiences.curItem.country} 
+                    name="country" onChange={this.handlePEChange}
+                    choices={countries} noHelp />
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
