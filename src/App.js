@@ -11,6 +11,7 @@ import Process from './pages/Process';
 import Team from './pages/Team';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
+import ForgotPassword from './pages/ForgotPassword';
 import Register from './pages/Register';
 import SignUpLawyer from './pages/SignUpLawyer';
 import SignUpClient from './pages/SignUpClient';
@@ -72,6 +73,7 @@ class App extends Component{
             <ScrollToTopRoute path="/contact" component={Contact} />
             <ScrollToTopRoute path="/landing" component={Landing} />
             <ScrollToTopRoute path="/login" component={Login} />
+            <ScrollToTopRoute path="/forgot-password" component={ForgotPassword} />
             <ScrollToTopRoute path="/reset-password" component={ResetPassword} />
             <ScrollToTopRoute path="/register" component={Register} />
             <ScrollToTopRoute path="/signup-lawyer" component={SignUpLawyer} />

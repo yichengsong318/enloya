@@ -7,7 +7,9 @@ import CustomNavbar from '../components/CustomNavbar';
 import AlertArea from '../components/AlertArea';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
-import pic from '../assets/pic-large.jpg';
+
+import pic from '../assets/fff.png';
+import countries from '../constants/countries';
 
 import FixedServices from './lawyer-profile/FixedServices';
 import About from './lawyer-profile/About';
@@ -39,6 +41,8 @@ export class LawyerProfile extends Component {
 
     this.readPr('proexperiences', 'proexperiences');
     this.readPr('licences', 'licences');
+    this.readPr('memberships', 'memberships');
+    this.readPr('publications', 'publications');
     this.readPr('academic-degrees', 'academicDegrees');
     this.readPr('specializations', 'specializations');
   }
@@ -61,9 +65,14 @@ export class LawyerProfile extends Component {
     });
   };
 
+  getCountry = (code) => {
+    const country = countries.find(c => c.value === code);
+    return country ? country.label : "";
+  }
+
   render () {
     let { path, url } = this.props.match;
-    const { proexperiences, licences, academicDegrees } = this.props;
+    const { proexperiences, licences, academicDegrees, memberships, publications } = this.props;
     const { userInfo } = this.state;
 
     const specializations = userInfo.specializations || [];
@@ -75,6 +84,8 @@ export class LawyerProfile extends Component {
     const licencedYear = licences && this.getMin(licences, 'since');
 
     const lastMajor = academicDegrees && this.getMax(academicDegrees, 'year');
+
+    const userLocation = userInfo.city + ', ' + this.getCountry(userInfo.country);
 
     return (
       <div className="App">
@@ -117,7 +128,7 @@ export class LawyerProfile extends Component {
                   <div className="row">
                     <div className="col-sm-4 mb-2">
                       <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-2" />
-                      <span>{userInfo.location}</span>
+                      <span>{userLocation}</span>
                     </div>
                     <div className="col-sm-4 mb-2">
                       <FontAwesomeIcon icon={faGraduationCap} className="text-primary mr-2" />
@@ -153,7 +164,12 @@ export class LawyerProfile extends Component {
                     <FixedServices kind="lawyer_profile" lawyerId={this.state.lawyerId} showCreate={false} />
                   </Route>
                   <Route path={`${path}/about`}>
-                    <About userInfo={userInfo} proexperiences={proexperiences} academicDegrees={academicDegrees}/>
+                    <About userInfo={userInfo} 
+                      proexperiences={proexperiences} 
+                      academicDegrees={academicDegrees}
+                      memberships={memberships}
+                      publications={publications}
+                      />
                   </Route>
                 </Switch>
               </div>
@@ -168,9 +184,25 @@ export class LawyerProfile extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
-  const { proexperiences, licences, academicDegrees, specializations } = data;
+  const { 
+    proexperiences, 
+    licences, 
+    academicDegrees, 
+    specializations,
+    memberships, 
+    publications, } = data;
 
-  return { userType, userInfo, user, proexperiences, licences, academicDegrees, specializations };
+  return { 
+    userType, 
+    userInfo, 
+    user, 
+    proexperiences, 
+    licences, 
+    memberships, 
+    publications, 
+    academicDegrees, 
+    specializations 
+  };
 };
 
 const mapActionToProps = {

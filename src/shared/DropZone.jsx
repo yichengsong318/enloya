@@ -20,10 +20,10 @@ export default function DropZone (props) {
 
   return (
     <div id={props.id} className={'dropzone d-flex justify-content-center align-items-center ' + 
-      (props.dropColor ? props.dropColor : '') + (active ? 'active' : '')} onClick={handleClick}>
+      (props.dropColor ? props.dropColor : '') + (active ? ' active' : '')} onClick={handleClick}>
       <input ref={fileInput} type="file" className="d-none" onChange={handleChange} />
       <FontAwesomeIcon icon={faCloudUploadAlt} className="file-icon" />
-      <div>{props.text || 'Click herer to pick a file'}</div>  
+      <div>{props.text || active ? 'Click here to change a file' : 'Click here to pick a file'}</div>  
     </div>
   );
 }

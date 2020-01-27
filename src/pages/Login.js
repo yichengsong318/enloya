@@ -53,7 +53,7 @@ export class Login extends Component {
             <button type="submit" className="btn_hover btn_four mt_40 btn-block">Login</button>
           </form>
           <div className="mt-2 text-center">
-            <Link className="auth-link" to="/ResetPassword">Have trouble logging in ?</Link>
+            <Link className="auth-link" to="/forgot-password">Have trouble logging in ?</Link>
           </div>
         </div>
         <Footer FooterData={FooterData}/>
@@ -61,7 +61,6 @@ export class Login extends Component {
     )
   }
 }
-
 
 const mapStateToProps = ({ authUser }) => {
   const { errorMessage } = authUser;

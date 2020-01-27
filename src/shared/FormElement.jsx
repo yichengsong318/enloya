@@ -53,7 +53,9 @@ export function FormTag(props) {
       <div className="d-flex">
         <CreatableSelect
           isMulti
-          onChange={e => props.onChange(props.name, e.map(v => v.label))} 
+          onChange={e => {
+            return props.onChange(props.name, e ? e.map(v => props.returnAll ? v : v.label) : [])
+          }}
           className="form-control border-0 p-0" 
           value={props.selected}
           options={props.choices}
