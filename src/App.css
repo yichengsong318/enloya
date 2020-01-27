@@ -442,8 +442,9 @@ hr {
   min-width: 240px;
   margin: 14px auto;
   border-radius: 4px;
-  height: 100%;
+  /* height: 100%; */
   flex-direction: column;
+  text-align: left!important;
 }
 
 .fixed-service .header {
@@ -459,6 +460,7 @@ hr {
 .fixed-service .header span {
     color: rgb(75, 80, 94);
     font-size: 1rem;
+    font-weight: 500;
 }
 .fixed-service .six-hours {
     font-size: .8rem;
@@ -479,7 +481,7 @@ hr {
   padding: 15px;
   display: flex;
   flex-direction: column;
-  flex: 2;
+  /* flex: 2; */
   justify-content: space-between;
   background-color: #fff;
   line-height: 1.5;
@@ -679,4 +681,11 @@ hr {
 .lawyer-name-profile {
   font-weight: 500;
   font-size: 2em;
+}
+.line-height-1-5 {
+    line-height: 1.5;
+}
+.btn-editable {
+    margin-top: 1rem;
+    z-index: 999;
 }

@@ -39,7 +39,7 @@ function AccountSettings(props) {
       <div className="h-100 container mb-5 mt_75">
         <AlertArea/>
         <h1 className="h3 my-5 text-bold">Account Settings</h1>
-        <div className="row">
+        <div className="row px-3">
           <div className="col-sm-3 sidemenu">
             <div className="">
               {

@@ -189,3 +189,6 @@ color: #fff!important;
 .form-check-input {
     margin-top: .4rem!important;
 }
+.border-black>.css-yk16xz-control {
+    border-color: #000000!important;
+}

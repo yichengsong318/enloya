@@ -31,12 +31,12 @@ export function FormSelect(props) {
     <div className="form-group text-left">
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
       <div className="d-flex">
-        <Select 
-          onChange={e => props.onChange(props.name, props.isMulti ? e.map(v => v.value) : e.value)} 
+        <Select
+          onChange={e => props.onChange(props.name, props.isMulti ? e.map(v => v.value) : e.value)}
           placeholder={props.placeholder}
-          className="form-control border-0 p-0" 
-          value={props.isMulti ? 
-            props.choices.filter(c => props.selected && props.selected.includes(c.value)) : 
+          className="p-0 w-100 border-black"
+          value={props.isMulti ?
+            props.choices.filter(c => props.selected && props.selected.includes(c.value)) :
             props.choices.find(c => props.selected === c.value)}
           options={props.choices} isMulti={props.isMulti}
           />
@@ -56,7 +56,7 @@ export function FormTag(props) {
           onChange={e => {
             return props.onChange(props.name, e ? e.map(v => props.returnAll ? v : v.label) : [])
           }}
-          className="form-control border-0 p-0" 
+          className="p-0 w-100 border-black"
           value={props.selected}
           options={props.choices}
           />
@@ -84,7 +84,7 @@ export function FormTextArea(props) {
     <div className="form-group text-left">
       <label htmlFor={props.id}>{props.label}</label>
       <div className="d-flex">
-        <textarea rows={props.rows} onChange={e => props.onChange(props.name, e.target.value)} 
+        <textarea rows={props.rows} onChange={e => props.onChange(props.name, e.target.value)}
           id={props.id} className="form-control h-100"
           placeholder={props.placeholder} value={props.value}></textarea>
         {!props.noHelp && <FontAwesomeIcon icon={faQuestion} className="form-question-icon" />}
@@ -98,7 +98,7 @@ export function FormDate(props) {
     <div className="form-group text-left">
       <label htmlFor={props.id}>{props.label}</label>
       <div className="d-flex">
-        <DatePicker onChange={date => props.onChange(props.name, date)} 
+        <DatePicker onChange={date => props.onChange(props.name, date)}
           readOnly={props.readOnly} selected={props.value} className="form-control"/>
         {!props.noIcon && <FontAwesomeIcon icon={faCalendar} className="form-date-icon" />}
       </div>
@@ -148,7 +148,7 @@ export function FormUpload(props) {
     <div className="form-group text-left">
       <label htmlFor={props.id}>{props.label}</label>
       <div className="d-flex">
-        <DropZone dropColor={props.dropColor} 
+        <DropZone dropColor={props.dropColor}
           onChange={e => props.onChange(props.name, e.target.files[0])}
           id={props.id} placeholder={props.placeholder} />
         {!props.noHelp && <FontAwesomeIcon icon={faQuestion} className="form-question-icon" />}
@@ -158,8 +158,8 @@ export function FormUpload(props) {
 }
 
 export function FormUploadImage(props) {
-  const [crop, setCrop] = useState({ 
-    aspect: 1, 
+  const [crop, setCrop] = useState({
+    aspect: 1,
     width: 80,
     unit: '%'
   });
@@ -175,7 +175,7 @@ export function FormUploadImage(props) {
     }
     reader.readAsDataURL(imgFile);
   };
-  
+
   const saveChange = () => {
     imgToBlog(img, crop, 'profilepic').then(res => {
       props.onChange(props.name, res, () => {
@@ -188,17 +188,17 @@ export function FormUploadImage(props) {
     <div className="form-group text-left">
       <label htmlFor={props.id}>{props.label}</label>
       <div className="d-flex">
-        <DropZone dropColor={props.dropColor} 
+        <DropZone dropColor={props.dropColor}
           text="Select your profile picture"
           onChange={e => handleChange(e.target.files[0])}
           id={props.id} placeholder={props.placeholder} />
       </div>
-      { src ? 
+      { src ?
         <div className="text-center p-4">
           <ReactCrop keepSelection={true}
             onImageLoaded={image => setImg(image)}
             src={src} crop={crop} onChange={newCrop => setCrop(newCrop)} />
-          {saving ? 
+          {saving ?
             <div class="m-2 p-3 text-center">Saving...</div>
             :
             <div>
@@ -209,7 +209,7 @@ export function FormUploadImage(props) {
         </div>
         :
         <div className="text-center p-4">
-          {props.value && 
+          {props.value &&
             <img src={props.value} alt="profile" className="img-fluid"/>
           }
         </div>

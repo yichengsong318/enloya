@@ -115,6 +115,23 @@ const FooterData = {
         icon: 'ti-pinterest',
       }
     ],
+    sharableSocialIcon:[
+      {
+        id: 1,
+        url: '',
+        icon: 'ti-facebook',
+      },
+      {
+        id: 2,
+        url: '#',
+        icon: 'ti-twitter-alt',
+      },
+      {
+        id: 3,
+        url: '#',
+        icon: 'ti-linkedin',
+      },
+    ],
     copywrite:"© Enloya Inc.. 2019 All rights reserved.",
     TestimonialText: [
       {

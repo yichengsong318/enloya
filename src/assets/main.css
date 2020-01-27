@@ -10328,6 +10328,10 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
   transition: all 0.4s ease;
 }
 
+.ex_team_item .fix-hover-content {
+    background-color: rgba(26, 43, 50, .9)!important;
+    background-image: none!important;
+}
 .ex_team_item .hover_content {
   top: 0;
   height: 100%;
@@ -10358,6 +10362,7 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 .ex_team_item .hover_content .n_hover_content {
   width: 100%;
+  text-align: center;
 }
 
 .ex_team_item .hover_content .n_hover_content ul {
