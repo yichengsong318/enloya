@@ -36,7 +36,7 @@ const Team =()=>{
             <div className="container text-center py-5">
               Would you like to become our Ambassador? <a className="btn btn_get btn_get_two" href="/register">Become our Ambassador</a>
             </div>
-            <Footer FooterData={FooterData}/>
+            <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
 }

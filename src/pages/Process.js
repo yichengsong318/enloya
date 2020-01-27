@@ -26,7 +26,7 @@ const Process = () => {
                     </div>
                 </div>
             </section>
-            <Footer FooterData={FooterData}/>
+            <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
 }

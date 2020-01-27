@@ -94,7 +94,7 @@ export class SignUpLawyer extends Component {
               <button type="submit" className="btn_hover btn_four mt_40 btn-block">Join now</button>
           </form>
         </div>
-        <Footer FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
     )
   }

@@ -3,7 +3,7 @@ const FooterData = {
         {
             id: 1,
             title: "Stay updated",
-            description: "is the legal marketplace specialized in startups and growing businesses. We provide quick and easy access to quality legal solutions with , making the process of buying legal services fast, agile and affordable.",
+            description: " is the legal marketplace specialized in startups and growing businesses. We provide quick and easy access to quality legal solutions with , making the process of buying legal services fast, agile and affordable.",
         }
     ],
     AboutWidget: [

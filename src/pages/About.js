@@ -17,7 +17,7 @@ const About = () => {
             <Sservice/>
             <AgencyAbout ServiceData={ServiceData}/>
             <Partner pClass="partner_logo_area_five bg_color"/>
-            <Footer FooterData={FooterData}/>
+            <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
 }

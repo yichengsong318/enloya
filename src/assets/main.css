@@ -1736,8 +1736,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .menu_four .btn_get:hover {
-  background: #52a7fe;
-  border-color: #52a7fe;
+  background: #ffb347;
+  border-color: #ffb347;
 }
 
 .menu_four .btn_get_radious {
@@ -2077,18 +2077,18 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .header_area_three .menu_four .btn_get {
-  border-color: #52a7fe;
-  background: #52a7fe;
+  border-color: #ffb347;
+  background: #ffb347;
   color: #fff;
 }
 
 .header_area_three .menu_four .btn_get:hover {
   background: transparent;
-  color: #52a7fe;
+  color: #ffb347;
 }
 
 .header_area_three.navbar_fixed .menu_four .btn_get {
-  border-color: #52a7fe !important;
+  border-color: #ffb347 !important;
 }
 
 .header_area_four .header_top {
@@ -2357,8 +2357,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
   box-shadow: none;
 }
 .menu_four .btn_get:hover {
-  background: #52a7fe;
-  border-color: #52a7fe;
+  background: #ffb347;
+  border-color: #ffb347;
 }
 .navbar_fixed .header_area .menu_four .btn_get:hover {
   border-color: #6754e2;

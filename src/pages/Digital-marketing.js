@@ -23,7 +23,7 @@ const DigitalMarketing = () => {
             <Features/>
             <MarketingTestimonial BannerData={BannerData}/>
             <AgencyAction/>
-            <Footer FooterData={FooterData}/>
+            <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
 }

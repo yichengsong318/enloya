@@ -136,7 +136,7 @@ export class SignUpClient extends Component {
             </div>
           </form>
         </div>
-        <Footer FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
      </div>
     )
   }

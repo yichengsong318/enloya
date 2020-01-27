@@ -61,7 +61,7 @@ const Register = () => {
             </div>
           </div>
         </div>
-        <Footer FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
      </div>
     )
 }

@@ -56,7 +56,7 @@ export class Login extends Component {
             <Link className="auth-link" to="/forgot-password">Have trouble logging in ?</Link>
           </div>
         </div>
-        <Footer FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
     )
   }

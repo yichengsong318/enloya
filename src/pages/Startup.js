@@ -24,7 +24,7 @@ const Startup = () => (
         CnumberOne="7" CnumberTwo="100"/>
         <MarketingTestimonial BannerData={BannerData}/>
         <Partner pClass="partner_logo_area bg_color"/>
-        <Footer FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
     </div>
 )
 export default Startup;
