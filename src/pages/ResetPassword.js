@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import CustomNavbar from '../components/CustomNavbar';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 
 const ResetPassword = () => {
@@ -18,7 +19,7 @@ const ResetPassword = () => {
             <Link className="auth-link" to="/Login">Try logging again</Link>
           </div>
       </div>
-      <FooterTwo FooterData={FooterData}/>
+      <Footer FooterData={FooterData}/>
     </div>
   )
 }

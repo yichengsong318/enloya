@@ -5,7 +5,8 @@ import HRService from '../components/Service/HRService';
 import PrototypeService from '../components/Service/Sservice/PrototypeService';
 import Partner from '../components/Partner';
 import ServiceSubscribe from '../components/ServiceSubscribe';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import ServiceData from '../components/Service/ServiceData';
 import FooterData from '../components/Footer/FooterData';
 
@@ -18,7 +19,7 @@ const Service = () => {
             <PrototypeService/>
             <Partner pClass="partner_logo_area_two" pClasst="pt-0 mb-0"/>
             <ServiceSubscribe/>
-            <FooterTwo fClass="pt_150" FooterData={FooterData}/>
+            <Footer fClass="pt_150" FooterData={FooterData}/>
         </div>
     )
 }

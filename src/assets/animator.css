@@ -131,12 +131,6 @@
       max-width: 1080px;
   }
 }
-.signup-wrapper {
-  margin: 55px 100px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 7px rgba(24, 24, 24, .44);
-}
 
 .signup-icon {
   font-size: 3em;

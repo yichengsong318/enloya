@@ -1,11 +1,12 @@
 import React from 'react';
+import FooterData from '../components/Footer/FooterData';
 
 export default function FixedServiceCard (props) {
   return (
     <div className="fixed-service">
       <div className="bg-gray header">
         <a style={{color: '#4b505e'}}
-          href={props.kind === 'lawyer_profile' ? 
+          href={props.kind === 'lawyer_profile' ?
           "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid}>
           <div className="d-flex justify-content-between">
             <h5>
@@ -31,6 +32,24 @@ export default function FixedServiceCard (props) {
           <>
           <a href={"/account-settings/fix-fee-services-edit?sid=" + props.sid} className="btn btn-primary btn-block">Edit</a></>
         )}
+      </div>
+      <div className="hover_content">
+          <div className="n_hover_content">
+              <ul className="list-unstyled">
+                  {
+                      FooterData.socialIcon.map(item=>{
+                          return(
+                              <li key={item.id}><a href={item.url}><i className={`${item.icon}`}></i></a></li>
+                          )
+                      })
+                  }
+              </ul>
+              <div className="br"></div>
+              <a href=".#">
+                  <h3 className="f_p f_size_16 f_600 w_color">Copy web URL</h3>
+              </a>
+              <h5>Copy web URL</h5>
+          </div>
       </div>
     </div>
   );

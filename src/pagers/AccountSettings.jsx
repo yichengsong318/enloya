@@ -17,7 +17,7 @@ import BookingCreateTwo from './account-settings/BookingCreateTwo';
 import CustomNavbar from '../components/CustomNavbar';
 
 import AlertArea from '../components/AlertArea';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import ScrollToTopRoute from '../ScrollToTopRoute';
 
@@ -38,12 +38,12 @@ function AccountSettings(props) {
       <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
       <div className="h-100 container mb-5 mt_75">
         <AlertArea/>
-        <h1 className="h3 my-5">Account Settings</h1>
+        <h1 className="h3 my-5 text-bold">Account Settings</h1>
         <div className="row">
           <div className="col-sm-3 sidemenu">
             <div className="">
               {
-                props.userType === 'client' ? 
+                props.userType === 'client' ?
                 <NavLink activeClassName="selected" className="sidelink" to={`${url}/general-client`}>General Information</NavLink>
               :
                 <>
@@ -81,7 +81,7 @@ function AccountSettings(props) {
           </div>
         </div>
       </div>
-      <FooterTwo FooterData={FooterData}/>
+      <Footer FooterData={FooterData}/>
     </div>
   );
 }

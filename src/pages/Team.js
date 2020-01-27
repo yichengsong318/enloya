@@ -3,7 +3,8 @@ import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Teams from '../components/Team/Team';
 import Advisors from '../components/Team/Advisor';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 const Team =()=>{
     return(
@@ -35,7 +36,7 @@ const Team =()=>{
             <div className="container text-center py-5">
               Would you like to become our Ambassador? <a className="btn btn_get btn_get_two" href="/register">Become our Ambassador</a>
             </div>
-            <FooterTwo FooterData={FooterData}/>
+            <Footer FooterData={FooterData}/>
         </div>
     )
 }

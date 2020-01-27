@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom';
 import { get } from '../helpers/RemoteApi';
 
 import CustomNavbar from '../components/CustomNavbar';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
 class ValidateAccount extends Component {
@@ -38,8 +38,8 @@ class ValidateAccount extends Component {
               <div className="bg-white p-4 my-5">
                 <h2 className="text-center common-title">{this.state.checking ? 'Checking....' : 'Thank you !'}</h2>
                 <p className="text-justify">
-                  {this.state.checking ? 
-                    'Please wait for us to confirm your account...' 
+                  {this.state.checking ?
+                    'Please wait for us to confirm your account...'
                     : 
                     'Your account was successfully confirmed. Thanks for taking time to complete the process.'}
                 </p>
@@ -47,7 +47,7 @@ class ValidateAccount extends Component {
             </div>
           </div>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData}/>
       </div>
     );
   }

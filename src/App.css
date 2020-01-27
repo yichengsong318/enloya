@@ -117,8 +117,12 @@ input:focus {
   border-color:#222;
   color: #222;
 }
+.text-bold {
+    font-weight: bold;
+}
 .signup-wrapper {
-  margin: 55px auto;
+  margin: auto;
+  margin-top: 100px;
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 0 7px rgba(24, 24, 24, .44);
@@ -443,12 +447,31 @@ hr {
 }
 
 .fixed-service .header {
-  padding: 15px;
-  flex: 1; 
+  padding: 10px;
+  /* flex: 1; */
+}
+
+.fixed-service .header a {
+    color: rgb(75, 80, 94);
+    font-size: .8rem;
+}
+
+.fixed-service .header span {
+    color: rgb(75, 80, 94);
+    font-size: 1rem;
+}
+.fixed-service .six-hours {
+    font-size: .8rem;
+    line-height: 1;
+    font-weight: 500;
+}
+.fixed-service .admiralty {
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 .fixed-service .header h5 {
-  min-height: 50px;
+  min-height: 30px;
   overflow: hidden;
 }
 
@@ -459,6 +482,11 @@ hr {
   flex: 2;
   justify-content: space-between;
   background-color: #fff;
+  line-height: 1.5;
+}
+
+.fixed-service .body p {
+    margin: 0;
 }
 
 .fixed-service .priced {

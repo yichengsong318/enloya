@@ -5,7 +5,7 @@ import { Switch, Route, NavLink, Redirect, withRouter } from "react-router-dom";
 
 import CustomNavbar from '../components/CustomNavbar';
 import AlertArea from '../components/AlertArea';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import pic from '../assets/pic-large.jpg';
 
@@ -44,19 +44,19 @@ export class LawyerProfile extends Component {
   }
 
   getMin = (arr, attrib) => {
-    return (arr.length && arr.reduce(function(prev, curr){ 
-        return prev[attrib] < curr[attrib] ? prev : curr; 
+    return (arr.length && arr.reduce(function(prev, curr){
+        return prev[attrib] < curr[attrib] ? prev : curr;
     })) || null;
   };
 
   getMax = (arr, attrib) => {
-    return (arr.length && arr.reduce(function(prev, curr){ 
-        return prev[attrib] > curr[attrib] ? prev : curr; 
+    return (arr.length && arr.reduce(function(prev, curr){
+        return prev[attrib] > curr[attrib] ? prev : curr;
     })) || null;
   };
 
   readPr = (endpoint, prop, hideNotif) => {
-    this.props.readData(endpoint, {lawyer: this.state.lawyerId}, () => {  
+    this.props.readData(endpoint, {lawyer: this.state.lawyerId}, () => {
       this.setState({[prop]: this.props[prop]});
     });
   };
@@ -71,14 +71,14 @@ export class LawyerProfile extends Component {
     const currentPosition = proexperiences && proexperiences.find(pe => pe.id === userInfo.currentPosition);
     const currentPositionLabel = currentPosition ? currentPosition.title + ' at ' + currentPosition.where : null;
 
-    const licencedCities = licences && licences.map(l => l.where).join(', '); 
+    const licencedCities = licences && licences.map(l => l.where).join(', ');
     const licencedYear = licences && this.getMin(licences, 'since');
 
     const lastMajor = academicDegrees && this.getMax(academicDegrees, 'year');
 
     return (
       <div className="App">
-        <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" 
+        <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"
           isProfile q="team_url"/>
         <div className="bg-white mt_75 pt-2">
           <div className="container pb-4">
@@ -160,7 +160,7 @@ export class LawyerProfile extends Component {
             </div>
           </div>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData}/>
       </div>
     );
   }

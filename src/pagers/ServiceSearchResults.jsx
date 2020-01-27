@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 
 import CustomNavbar from '../components/CustomNavbar';
 import AlertArea from '../components/AlertArea';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
 import { FormInput, FormCheck } from '../shared/FormElement';
@@ -68,15 +68,15 @@ export class ServiceSearchResults extends Component {
       this.search();
     });
   };
-  
+
   handleQueryChange = (name, value) => {
     this.setState({query: {...this.state.query, [name]: value}});
   };
-  
+
   showMore = (name) => {
     this.setState({more: {...this.state.more, [name]: !this.state.more[name]}});
   };
-  
+
   showMoreItems = () => {
     this.setState({pagination: this.state.pagination + this.state.pageStep});
   };
@@ -102,13 +102,13 @@ export class ServiceSearchResults extends Component {
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-sm-4">
-                  <FormInput placeholder="Search" type="text" 
+                  <FormInput placeholder="Search" type="text"
                     value={this.state.query.search}
                     name="search" onChange={this.handleQueryChange}
                     noLabel noHelp />
                 </div>
                 <div className="col-sm-2">
-                  <button type="button" className="btn btn-primary px-5" 
+                  <button type="button" className="btn btn-primary px-5"
                     onClick={() => {this.search()}}>Search</button>
                 </div>
               </div>
@@ -165,8 +165,8 @@ export class ServiceSearchResults extends Component {
                   {this.state.more.subcategories ? 'Show less' : 'Show all'}
                 </span>
               </div>
-              
-              
+
+
               <div className="mb-3">
                 <h5>Client Type</h5>
                 {clientTypes.map(ltype => {
@@ -203,10 +203,10 @@ export class ServiceSearchResults extends Component {
                     }).slice(0, this.state.pagination)
                   }
                 </div>
-                { 
-                  this.state.pagination < this.state.serviceResults.length &&   
-                  
-                  <div className="btn btn-default btn-block bg-white py-2 font-weight-bold" 
+                {
+                  this.state.pagination < this.state.serviceResults.length &&
+
+                  <div className="btn btn-default btn-block bg-white py-2 font-weight-bold"
                   onClick={() => {this.showMoreItems()}}>
                     Show more results
                   </div>
@@ -215,7 +215,7 @@ export class ServiceSearchResults extends Component {
             </div>
           </div>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData}/>
       </div>
     );
   }
@@ -225,8 +225,8 @@ const mapStateToProps = ({ authUser, data }) => {
   const { userInfo } = authUser;
   const { services, categories, clientTypes } = data;
 
-  return { 
-    userInfo, 
+  return {
+    userInfo,
     services,
     categories,
     clientTypes
