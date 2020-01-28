@@ -15,6 +15,7 @@ import { faTh, faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FixedServiceCard from "../shared/FixedServiceCard";
+import FixedServiceCardNew from "../shared/FixedServiceCardNew";
 
 export class ServiceSearchResults extends Component {
   constructor (props) {
@@ -52,6 +53,7 @@ export class ServiceSearchResults extends Component {
 
   search = () => {
     get('services/search', {filter: this.state.filter, query: this.state.query}).then(res => {
+        console.log('res.data', res.data);
       this.setState({
         serviceResults: res.data
       });
@@ -98,7 +100,7 @@ export class ServiceSearchResults extends Component {
           <div className="container">
             <AlertArea/>
           </div>
-          <div className="container-fluid bg-light-blue pt-5 pb-4">
+          <div className="container-fluid bg-light-blue pt-3 pb-1">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-sm-4">
@@ -116,8 +118,8 @@ export class ServiceSearchResults extends Component {
           </div>
         </div>
         <div className="h-100 container">
-          <div className="my-4 d-flex justify-content-between align-items-center">
-            <h3 className="text-left common-title mb-3">Showing results</h3>
+          <div className="mb-2 d-flex justify-content-between align-items-center">
+            <h3 className="text-left common-title">Showing results</h3>
             <div onClick={this.toggle} className="c-pointer">
             { isGrid ?
               <div>
@@ -183,12 +185,12 @@ export class ServiceSearchResults extends Component {
             </div>
             <div className="col-sm-9">
               <div className="mb-5 mx-auto">
-                <div className="row">
+                <div className="row mt-3">
                   {
                     this.state.serviceResults.map(service => {
                       return (
-                        <div key={service.id} className={ isGrid ? "col-sm-4 mb-3" : "col-sm-12 mb-3"} >
-                          <FixedServiceCard
+                        <div key={service.id} className={ isGrid ? "col-sm-6 mb-3" : "col-sm-12 mb-3"} >
+                          {/*<FixedServiceCard
                             kind="lawyer_profile"
                             sid={service.id}
                             name={service.title}
@@ -197,6 +199,18 @@ export class ServiceSearchResults extends Component {
                             category={service.category && service.category.label}
                             deliveryTime={service.deliveryTime}
                             fullDescription={service.longDescription}
+                            />*/}
+                          <FixedServiceCardNew
+                            kind="lawyer_profile"
+                            sid={service.id}
+                            name={service.title}
+                            company={service.lawyer && service.lawyer.companyName}
+                            price={service.price}
+                            category={service.category && service.category.label}
+                            deliveryTime={service.deliveryTime}
+                            fullDescription={service.longDescription}
+                            lawyer={service.lawyer}
+                            isGrid={isGrid}
                             />
                         </div>
                       );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Element } from 'react-scroll';
-import { Link as ScrolLink } from 'react-scroll';
 import SeoTitle from '../Title/SeoTitle';
 import Fade from 'react-reveal/Fade';
 import ServiceData from '../../components/Service/ServiceData';
@@ -16,7 +15,7 @@ const Service = () => {
                         <Fade bottom duration={500}>
                             <div className="col-lg-6 col-md-12">
                                 <div className="seo_service_item">
-                                    <img src={require('../../img/seo/court.svg')} alt="" style={{width: '4rem'}}/>
+                                    <img src={require('../../img/seo/speed.svg')} alt="" style={{width: '4rem'}}/>
                                     <a href=".#">
                                         <h4>Skyrocket your legal business</h4>
                                     </a>
@@ -32,7 +31,7 @@ const Service = () => {
                         <Fade bottom duration={700} >
                             <div className="col-lg-6 col-md-12">
                                 <div className="seo_service_item">
-                                    <img src={require('../../img/seo/speed.svg')} alt="" style={{width: '4rem'}}/>
+                                    <img src={require('../../img/seo/court.svg')} alt="" style={{width: '4rem'}}/>
                                     <a href=".#">
                                         <h4>Hire a lawyer for a tailored solution</h4>
                                     </a>
@@ -41,7 +40,7 @@ const Service = () => {
                                       <li>Reduce your legal risks at a fraction of the cost</li>
                                       <li>Maximum price transparency (surprises no more!)</li>
                                     </ul>
-                                    <ScrolLink title="Service" className="seo_btn seo_btn_one btn_hover wow fadeInUp" to="howbusinessworks" spy smooth duration={300} >Learn more</ScrolLink>
+                                    <a href="/signup-client" className="seo_btn seo_btn_one btn_hover wow fadeInUp">Learn more</a>
                                 </div>
                             </div>
                         </Fade>
