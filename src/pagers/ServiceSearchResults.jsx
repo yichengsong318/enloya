@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 
 import CustomNavbar from '../components/CustomNavbar';
 import AlertArea from '../components/AlertArea';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
 import { FormInput, FormCheck } from '../shared/FormElement';
@@ -15,6 +15,7 @@ import { faTh, faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FixedServiceCard from "../shared/FixedServiceCard";
+import FixedServiceCardNew from "../shared/FixedServiceCardNew";
 
 export class ServiceSearchResults extends Component {
   constructor (props) {
@@ -52,6 +53,7 @@ export class ServiceSearchResults extends Component {
 
   search = () => {
     get('services/search', {filter: this.state.filter, query: this.state.query}).then(res => {
+        console.log('res.data', res.data);
       this.setState({
         serviceResults: res.data
       });
@@ -68,15 +70,15 @@ export class ServiceSearchResults extends Component {
       this.search();
     });
   };
-  
+
   handleQueryChange = (name, value) => {
     this.setState({query: {...this.state.query, [name]: value}});
   };
-  
+
   showMore = (name) => {
     this.setState({more: {...this.state.more, [name]: !this.state.more[name]}});
   };
-  
+
   showMoreItems = () => {
     this.setState({pagination: this.state.pagination + this.state.pageStep});
   };
@@ -98,17 +100,17 @@ export class ServiceSearchResults extends Component {
           <div className="container">
             <AlertArea/>
           </div>
-          <div className="container-fluid bg-light-blue pt-5 pb-4">
+          <div className="container-fluid bg-light-blue pt-3 pb-1">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-sm-4">
-                  <FormInput placeholder="Search" type="text" 
+                  <FormInput placeholder="Search" type="text"
                     value={this.state.query.search}
                     name="search" onChange={this.handleQueryChange}
                     noLabel noHelp />
                 </div>
                 <div className="col-sm-2">
-                  <button type="button" className="btn btn-primary px-5" 
+                  <button type="button" className="btn btn-primary px-5"
                     onClick={() => {this.search()}}>Search</button>
                 </div>
               </div>
@@ -116,8 +118,8 @@ export class ServiceSearchResults extends Component {
           </div>
         </div>
         <div className="h-100 container">
-          <div className="my-4 d-flex justify-content-between align-items-center">
-            <h3 className="text-left common-title mb-3">Showing results</h3>
+          <div className="mb-2 d-flex justify-content-between align-items-center">
+            <h3 className="text-left common-title">Showing results</h3>
             <div onClick={this.toggle} className="c-pointer">
             { isGrid ?
               <div>
@@ -165,8 +167,8 @@ export class ServiceSearchResults extends Component {
                   {this.state.more.subcategories ? 'Show less' : 'Show all'}
                 </span>
               </div>
-              
-              
+
+
               <div className="mb-3">
                 <h5>Client Type</h5>
                 {clientTypes.map(ltype => {
@@ -183,12 +185,12 @@ export class ServiceSearchResults extends Component {
             </div>
             <div className="col-sm-9">
               <div className="mb-5 mx-auto">
-                <div className="row">
+                <div className="row mt-3">
                   {
                     this.state.serviceResults.map(service => {
                       return (
-                        <div key={service.id} className={ isGrid ? "col-sm-4 mb-3" : "col-sm-12 mb-3"} >
-                          <FixedServiceCard
+                        <div key={service.id} className={ isGrid ? "col-sm-6 mb-3" : "col-sm-12 mb-3"} >
+                          {/*<FixedServiceCard
                             kind="lawyer_profile"
                             sid={service.id}
                             name={service.title}
@@ -197,16 +199,28 @@ export class ServiceSearchResults extends Component {
                             category={service.category && service.category.label}
                             deliveryTime={service.deliveryTime}
                             fullDescription={service.longDescription}
+                            />*/}
+                          <FixedServiceCardNew
+                            kind="lawyer_profile"
+                            sid={service.id}
+                            name={service.title}
+                            company={service.lawyer && service.lawyer.companyName}
+                            price={service.price}
+                            category={service.category && service.category.label}
+                            deliveryTime={service.deliveryTime}
+                            fullDescription={service.longDescription}
+                            lawyer={service.lawyer}
+                            isGrid={isGrid}
                             />
                         </div>
                       );
                     }).slice(0, this.state.pagination)
                   }
                 </div>
-                { 
-                  this.state.pagination < this.state.serviceResults.length &&   
-                  
-                  <div className="btn btn-default btn-block bg-white py-2 font-weight-bold" 
+                {
+                  this.state.pagination < this.state.serviceResults.length &&
+
+                  <div className="btn btn-default btn-block bg-white py-2 font-weight-bold"
                   onClick={() => {this.showMoreItems()}}>
                     Show more results
                   </div>
@@ -215,7 +229,7 @@ export class ServiceSearchResults extends Component {
             </div>
           </div>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
     );
   }
@@ -225,8 +239,8 @@ const mapStateToProps = ({ authUser, data }) => {
   const { userInfo } = authUser;
   const { services, categories, clientTypes } = data;
 
-  return { 
-    userInfo, 
+  return {
+    userInfo,
     services,
     categories,
     clientTypes

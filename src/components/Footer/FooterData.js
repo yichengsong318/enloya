@@ -3,7 +3,7 @@ const FooterData = {
         {
             id: 1,
             title: "Stay updated",
-            description: "is the legal marketplace specialized in startups and growing businesses. We provide quick and easy access to quality legal solutions with , making the process of buying legal services fast, agile and affordable.",
+            description: " is the legal marketplace specialized in startups and growing businesses. We provide quick and easy access to quality legal solutions with , making the process of buying legal services fast, agile and affordable.",
         }
     ],
     AboutWidget: [
@@ -114,6 +114,23 @@ const FooterData = {
         url: '#',
         icon: 'ti-pinterest',
       }
+    ],
+    sharableSocialIcon:[
+      {
+        id: 1,
+        url: '',
+        icon: 'ti-facebook',
+      },
+      {
+        id: 2,
+        url: '#',
+        icon: 'ti-twitter-alt',
+      },
+      {
+        id: 3,
+        url: '#',
+        icon: 'ti-linkedin',
+      },
     ],
     copywrite:"© Enloya Inc.. 2019 All rights reserved.",
     TestimonialText: [

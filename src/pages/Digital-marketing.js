@@ -8,7 +8,8 @@ import AgencyAbout from '../components/About/AgencyAbout';
 import Features from '../components/Features/Features';
 import MarketingTestimonial from '../components/Testimonial/MarketingTestimonial';
 import AgencyAction from '../components/AgencyAction';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 
 
@@ -22,7 +23,7 @@ const DigitalMarketing = () => {
             <Features/>
             <MarketingTestimonial BannerData={BannerData}/>
             <AgencyAction/>
-            <FooterTwo FooterData={FooterData}/>
+            <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
 }

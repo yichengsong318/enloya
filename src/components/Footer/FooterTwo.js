@@ -75,4 +75,3 @@ class FooterTwo extends Component {
 }
 
 export default FooterTwo;
-      

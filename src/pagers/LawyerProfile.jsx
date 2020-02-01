@@ -5,7 +5,7 @@ import { Switch, Route, NavLink, Redirect, withRouter } from "react-router-dom";
 
 import CustomNavbar from '../components/CustomNavbar';
 import AlertArea from '../components/AlertArea';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
 import pic from '../assets/fff.png';
@@ -48,19 +48,19 @@ export class LawyerProfile extends Component {
   }
 
   getMin = (arr, attrib) => {
-    return (arr.length && arr.reduce(function(prev, curr){ 
-        return prev[attrib] < curr[attrib] ? prev : curr; 
+    return (arr.length && arr.reduce(function(prev, curr){
+        return prev[attrib] < curr[attrib] ? prev : curr;
     })) || null;
   };
 
   getMax = (arr, attrib) => {
-    return (arr.length && arr.reduce(function(prev, curr){ 
-        return prev[attrib] > curr[attrib] ? prev : curr; 
+    return (arr.length && arr.reduce(function(prev, curr){
+        return prev[attrib] > curr[attrib] ? prev : curr;
     })) || null;
   };
 
   readPr = (endpoint, prop, hideNotif) => {
-    this.props.readData(endpoint, {lawyer: this.state.lawyerId}, () => {  
+    this.props.readData(endpoint, {lawyer: this.state.lawyerId}, () => {
       this.setState({[prop]: this.props[prop]});
     });
   };
@@ -80,7 +80,7 @@ export class LawyerProfile extends Component {
     const currentPosition = proexperiences && proexperiences.find(pe => pe.id === userInfo.currentPosition);
     const currentPositionLabel = currentPosition ? currentPosition.title + ' at ' + currentPosition.where : null;
 
-    const licencedCities = licences && licences.map(l => l.where).join(', '); 
+    const licencedCities = licences && licences.map(l => l.where).join(', ');
     const licencedYear = licences && this.getMin(licences, 'since');
 
     const lastMajor = academicDegrees && this.getMax(academicDegrees, 'year');
@@ -89,7 +89,7 @@ export class LawyerProfile extends Component {
 
     return (
       <div className="App">
-        <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" 
+        <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"
           isProfile q="team_url"/>
         <div className="bg-white mt_75 pt-2">
           <div className="container pb-4">
@@ -127,11 +127,11 @@ export class LawyerProfile extends Component {
                   </div>
                   <div className="row">
                     <div className="col-sm-4 mb-2">
-                      <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-2" />
+                      <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary-o mr-2" />
                       <span>{userLocation}</span>
                     </div>
                     <div className="col-sm-4 mb-2">
-                      <FontAwesomeIcon icon={faGraduationCap} className="text-primary mr-2" />
+                      <FontAwesomeIcon icon={faGraduationCap} className="text-primary-o mr-2" />
                       <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
                     </div>
                     <div className="col-sm-12 mb-2">
@@ -144,12 +144,12 @@ export class LawyerProfile extends Component {
             </div>
           </div>
         </div>
-        <div className="container floating-box-wrapper py-4">
+        {/*<div className="container floating-box-wrapper py-4">
           <div className="floating-box py-3 px-4">
             <h4 className="text-center mb-3">Contact me</h4>
             <button type="button" className="btn btn-outline-primary btn-block">Send a message</button>
           </div>
-        </div>
+        </div>*/}
         <div className="container mb-5 mt-5">
           <div className="row">
             <div className="col-sm-12 px-0">
@@ -164,8 +164,8 @@ export class LawyerProfile extends Component {
                     <FixedServices kind="lawyer_profile" lawyerId={this.state.lawyerId} showCreate={false} />
                   </Route>
                   <Route path={`${path}/about`}>
-                    <About userInfo={userInfo} 
-                      proexperiences={proexperiences} 
+                    <About userInfo={userInfo}
+                      proexperiences={proexperiences}
                       academicDegrees={academicDegrees}
                       memberships={memberships}
                       publications={publications}
@@ -176,7 +176,7 @@ export class LawyerProfile extends Component {
             </div>
           </div>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
     );
   }
@@ -184,24 +184,24 @@ export class LawyerProfile extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
-  const { 
-    proexperiences, 
-    licences, 
-    academicDegrees, 
+  const {
+    proexperiences,
+    licences,
+    academicDegrees,
     specializations,
-    memberships, 
+    memberships,
     publications, } = data;
 
-  return { 
-    userType, 
-    userInfo, 
-    user, 
-    proexperiences, 
-    licences, 
-    memberships, 
-    publications, 
-    academicDegrees, 
-    specializations 
+  return {
+    userType,
+    userInfo,
+    user,
+    proexperiences,
+    licences,
+    memberships,
+    publications,
+    academicDegrees,
+    specializations
   };
 };
 

@@ -5,9 +5,17 @@
   min-height: 100vh;
   background-color: #efecee;
 }
-
+.text-primary-o {
+    color: #1fa5df !important;
+}
 .App-logo {
   height: 40vmin;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: transparent !important;
+    color: #1fa5df !important;
+    font-weight: bold;
 }
 
 .nav-items {
@@ -117,8 +125,12 @@ input:focus {
   border-color:#222;
   color: #222;
 }
+.text-bold {
+    font-weight: bold;
+}
 .signup-wrapper {
-  margin: 55px auto;
+  margin: auto;
+  margin-top: 100px;
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 0 7px rgba(24, 24, 24, .44);
@@ -438,17 +450,38 @@ hr {
   min-width: 240px;
   margin: 14px auto;
   border-radius: 4px;
-  height: 100%;
+  /* height: 100%; */
   flex-direction: column;
+  text-align: left!important;
 }
 
 .fixed-service .header {
-  padding: 15px;
-  flex: 1; 
+  padding: 10px;
+  /* flex: 1; */
+}
+
+.fixed-service .header a {
+    color: rgb(75, 80, 94);
+    font-size: .8rem;
+}
+
+.fixed-service .header span {
+    color: rgb(75, 80, 94);
+    font-size: 1rem;
+    font-weight: 500;
+}
+.fixed-service .six-hours {
+    font-size: .8rem;
+    line-height: 1;
+    font-weight: 500;
+}
+.fixed-service .admiralty {
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 .fixed-service .header h5 {
-  min-height: 50px;
+  min-height: 30px;
   overflow: hidden;
 }
 
@@ -456,9 +489,14 @@ hr {
   padding: 15px;
   display: flex;
   flex-direction: column;
-  flex: 2;
+  /* flex: 2; */
   justify-content: space-between;
   background-color: #fff;
+  line-height: 1.5;
+}
+
+.fixed-service .body p {
+    margin: 0;
 }
 
 .fixed-service .priced {
@@ -651,4 +689,62 @@ hr {
 .lawyer-name-profile {
   font-weight: 500;
   font-size: 2em;
+}
+.line-height-1 {
+    line-height: 1;
+    font-size: 1rem;
+}
+.line-height-1-5 {
+    line-height: 1;
+}
+.size-inherit {
+    font-size: inherit !important;
+}
+.font-italyc {
+    font-style: italic;
+}
+.btn-editable {
+    margin-top: 1rem;
+    z-index: 999;
+}
+.btn-yellowry {
+    border-radius: 2!important;
+    border-color: #F3CA3E!important;
+    background-color: #F3CA3E!important;
+    border-bottom: 3px #F3CA3E solid!important;
+    color: #000!important;
+    font-size: .8rem!important;
+}
+.custom-fix-fee-service {
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #FFF;
+    border: none;
+    /* border: 1px solid #333; */
+    box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.5), 0 2px 4px 0 rgba(0,0,0,0.5);
+    color: #000000;
+}
+.custom-fix-fee-service>.header {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding-bottom: 0;
+}
+.custom-fix-fee-service>.body {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 10px !important;
+    padding-top: 0!important;
+}
+.custom-fix-fee-service>.body>* {
+    color: #000000;
+}
+.custom-fix-fee-service>.body p.subtitle {
+    font-size: 13px;
+}
+.w-80 {
+    width: 80px!important;
+    height: 80px!important;
+}
+.d-grid {
+    display: grid!important;
 }

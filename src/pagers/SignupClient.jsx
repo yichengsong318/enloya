@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import { FormSwitch, FormInput, FormSelect, FormUpload } from '../shared/FormElement';
@@ -83,7 +83,7 @@ const mapStateToProps = ({ data }) => {
 };
 
 const mapActionToProps = {
-  readData 
+  readData
 };
 
 export default withRouter(connect(

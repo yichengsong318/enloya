@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import CustomNavbar from '../components/CustomNavbar';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 import { FormSwitch, FormInput, FormSelect, FormUpload } from '../shared/FormElement';
 
@@ -13,7 +14,7 @@ export class SignUpClient extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       login: {
         type : 'individual',
         firstname : '',
@@ -28,7 +29,7 @@ export class SignUpClient extends Component {
         country : '',
         position : '',
         profilePicFile: ''
-      }  
+      }
     }
   }
 
@@ -70,46 +71,46 @@ export class SignUpClient extends Component {
             <div className="card-body">
               <div className="row">
                 <div className="col-sm-12">
-                  { this.props.errorMessage && 
-                    <div className="alert alert-danger">{this.props.errorMessage}</div> 
+                  { this.props.errorMessage &&
+                    <div className="alert alert-danger">{this.props.errorMessage}</div>
                   }
                   <FormSwitch name="type" onChange={this.handleFormChange}
                     label="I am" id="typeUser" selected="individual" choices={[
                     { key: 'business', label: 'Business' },
                     { key: 'individual', label: 'Individual' }
                   ]} noHelp/>
-                  <FormInput label="First Name" type="text" id="firstname" 
+                  <FormInput label="First Name" type="text" id="firstname"
                     name="firstname" onChange={this.handleFormChange} noHelp/>
-                  <FormInput label="Last Name" type="text" id="lastname" 
+                  <FormInput label="Last Name" type="text" id="lastname"
                     name="lastname" onChange={this.handleFormChange} noHelp/>
-                  <FormInput label="Email" type="email" id="email" 
+                  <FormInput label="Email" type="email" id="email"
                     name="email" onChange={this.handleFormChange} noHelp/>
-                  <FormInput label="Password" type="password" id="password" 
+                  <FormInput label="Password" type="password" id="password"
                     name="password" onChange={this.handleFormChange} noHelp/>
                 </div>
 
                 <div className="col-sm-7">
-                  <FormSelect label="Industry" id="industry" selected="" 
+                  <FormSelect label="Industry" id="industry" selected=""
                     name="industryInputs" onChange={this.handleFormChange}
                     choices={this.props.industries.map(ind => {ind.value = ind.id; return ind})} noHelp/>
                 </div>
                 <div className="col-sm-12">
-                  <FormInput label="Your city" type="text" id="city" 
+                  <FormInput label="Your city" type="text" id="city"
                     name="city" onChange={this.handleFormChange}
                     placeholder="" noHelp/>
-                              
-                  <FormSelect label="Country" id="countries" selected={this.state.login.country} 
+
+                  <FormSelect label="Country" id="countries" selected={this.state.login.country}
                     name="country" onChange={this.handleFormChange}
                     choices={countries} noHelp />
                 </div>
-                {this.state.login.type === "business" && 
+                {this.state.login.type === "business" &&
                   <>
                     <div className="col-sm-12">
-                      <FormInput label="Company Name" type="text" id="companyname" 
+                      <FormInput label="Company Name" type="text" id="companyname"
                         name="companyName" onChange={this.handleFormChange} noHelp/>
                     </div>
                     <div className="col-sm-10">
-                      <FormSwitch label="Company Size" id="companysize" selected="" 
+                      <FormSwitch label="Company Size" id="companysize" selected=""
                         name="companySize" onChange={this.handleFormChange}
                         choices={[
                           { key: '1-10', label: '1-10' },
@@ -135,7 +136,7 @@ export class SignUpClient extends Component {
             </div>
           </form>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
      </div>
     )
   }
@@ -157,4 +158,3 @@ export default connect(
   mapStateToProps,
   mapActionToProps
 )(SignUpClient);
-

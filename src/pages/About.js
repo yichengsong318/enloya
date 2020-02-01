@@ -5,8 +5,9 @@ import Sservice from '../components/Service/Sservice/Sservice';
 import AgencyAbout from '../components/About/AgencyAbout';
 import Partner from '../components/Partner';
 import ServiceData from '../components/Service/ServiceData';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
+// import FooterTwo from '../components/Footer/FooterTwo';
 
 const About = () => {
     return(
@@ -16,7 +17,7 @@ const About = () => {
             <Sservice/>
             <AgencyAbout ServiceData={ServiceData}/>
             <Partner pClass="partner_logo_area_five bg_color"/>
-            <FooterTwo FooterData={FooterData}/>
+            <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
 }

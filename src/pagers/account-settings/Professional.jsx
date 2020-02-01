@@ -12,27 +12,27 @@ export class Professional extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       title: {
         editing: false,
         value : props.userInfo.title,
         placeholder: 'Edit to add a title'
-      }, 
+      },
       shortDescription: {
         editing: false,
         value : props.userInfo.shortDescription,
         placeholder: 'Edit to add a short description'
-      },  
+      },
       longDescription: {
         editing: false,
         value : props.userInfo.longDescription,
         placeholder: 'Edit to add a long description'
-      },  
+      },
       currentPosition: {
         editing: false,
         value : props.userInfo.currentPosition,
         placeholder: 'Edit to select a current position'
-      },  
+      },
       specializationInputs: {
         editing: false,
         value: props.userInfo.specializations ? props.userInfo.specializations.map(l => {l.value = l.id; return l}) : [],
@@ -58,7 +58,7 @@ export class Professional extends Component {
           year: ''
         },
         value : props.academicDegrees || [],
-      },  
+      },
       memberships: {
         adding: false,
         editing: false,
@@ -140,7 +140,7 @@ export class Professional extends Component {
           hasFile: true
         },
         value : props.licences || [],
-      }  
+      }
     }
   }
 
@@ -163,7 +163,7 @@ export class Professional extends Component {
   handlePrChange = (prop, name, value) => {
     this.setState({
       [prop]: {
-        ...this.state[prop], 
+        ...this.state[prop],
         curItem: {
           ...this.state[prop].curItem,
           [name]: value
@@ -174,8 +174,8 @@ export class Professional extends Component {
 
   startPrEditing = (prop, id, curItem) => {
     this.setState({[prop]: {
-      ...this.state[prop], 
-      editing: true, 
+      ...this.state[prop],
+      editing: true,
       adding: false,
       editingId: id,
       curItem: curItem
@@ -187,11 +187,11 @@ export class Professional extends Component {
       if (!hideNotif) {
         NotificationManager.success("The changes were added!", "Success !", 3000);
       }
-      
+
       this.setState({
         [prop]: {
-          ...this.state[prop], 
-          adding: false, 
+          ...this.state[prop],
+          adding: false,
           editing: false,
           editingId: '',
           curItem: this.state[prop].initItem,
@@ -204,13 +204,13 @@ export class Professional extends Component {
   savePr = (endpoint, prop) => {
     if (!this.props.loading) {
       if (this.state[prop].editing) {
-        this.props.updateData(endpoint, this.state[prop].editingId, 
+        this.props.updateData(endpoint, this.state[prop].editingId,
           this.state[prop].curItem, () => {
             this.readPr(endpoint, prop);
           }
         );
       } else if (this.state[prop].adding) {
-        this.props.createData(endpoint, { 
+        this.props.createData(endpoint, {
           ...this.state[prop].curItem,
           lawyerId: this.props.userInfo.id,
         }, () => {
@@ -230,14 +230,14 @@ export class Professional extends Component {
 
   saveAttr = (name) => {
     if (!this.props.loading) {
-      this.props.updateData('lawyers', this.props.userInfo.id, 
+      this.props.updateData('lawyers', this.props.userInfo.id,
         {[name]: this.state[name].value}, () => {
         this.props.loadMe(() => {
           NotificationManager.success("The changes were saved!", "Success !", 3000);
           let value = this.props.userInfo[name] || '';
 
           if (name === 'specializationInputs') {
-            value = this.props.userInfo.specializations ? 
+            value = this.props.userInfo.specializations ?
               this.props.userInfo.specializations.map(l => {l.value = l.id; return l}) : [];
           } else if (name === 'typeInputs') {
             value = this.props.userInfo.types ? this.props.userInfo.types.map(l => l.id)[0] : null;
@@ -276,7 +276,7 @@ export class Professional extends Component {
       });
     }
   }
-  
+
   startMEditing = (item) => {
     this.startPrEditing('memberships', item.id, {
       title: item.title,
@@ -304,7 +304,7 @@ export class Professional extends Component {
       });
     }
   }
-  
+
   startPEditing = (item) => {
     this.startPrEditing('publications', item.id, {
       title: item.title,
@@ -401,7 +401,7 @@ export class Professional extends Component {
     const country = countries.find(c => c.value === code);
     return country ? country.label : "";
   }
-  
+
   render () {
     const { userInfo, proexperiences } = this.props;
     const currentPosition = proexperiences && proexperiences.find(pe => pe.id === userInfo.currentPosition);
@@ -417,7 +417,7 @@ export class Professional extends Component {
         <div>
           <div className="d-flex justify-content-between">
             <h5>Title</h5>
-            { this.state.title.editing ?  
+            { this.state.title.editing ?
               <span className="btn btn-primary btn-sm" onClick={() => {this.saveAttr('title')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('title', true)}}>Edit</span>
@@ -427,13 +427,13 @@ export class Professional extends Component {
             <input className="form-control my-3" type="text"
               onChange={(e) => {this.handleChange('title', e.target.value)}}
               defaultValue={this.state.title.value} placeholder={this.state.title.placeholder}/>
-            : 
+            :
             <p>{userInfo.title || this.state.title.placeholder}</p>}
         </div>
         <div>
           <div className="d-flex justify-content-between">
             <h5>Short Description</h5>
-            { this.state.shortDescription.editing ?  
+            { this.state.shortDescription.editing ?
               <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('shortDescription')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('shortDescription', true)}}>Edit</span>
@@ -443,13 +443,13 @@ export class Professional extends Component {
             <textarea className="form-control my-3 h-100" rows={2}
               onChange={(e) => {this.handleChange('shortDescription', e.target.value)}}
               defaultValue={this.state.shortDescription.value} placeholder={this.state.shortDescription.placeholder}/>
-            : 
+            :
             <p>{userInfo.shortDescription || this.state.shortDescription.placeholder}</p>}
-        </div>        
+        </div>
         <div>
           <div className="d-flex justify-content-between">
             <h5>Long Description</h5>
-            { this.state.longDescription.editing ?  
+            { this.state.longDescription.editing ?
               <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('longDescription')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('longDescription', true)}}>Edit</span>
@@ -459,32 +459,32 @@ export class Professional extends Component {
             <textarea className="form-control my-3 h-100" rows={5}
               onChange={(e) => {this.handleChange('longDescription', e.target.value)}}
               defaultValue={this.state.longDescription.value} placeholder={this.state.longDescription.placeholder}/>
-            : 
+            :
             <p>{userInfo.longDescription || this.state.longDescription.placeholder}</p>}
         </div>
         <div>
           <div className="d-flex justify-content-between mb-2">
             <h5>Current Position</h5>
-            { this.state.currentPosition.editing ?  
+            { this.state.currentPosition.editing ?
               <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('currentPosition')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('currentPosition', true)}}>Edit</span>
             }
           </div>
           { this.state.currentPosition.editing ?
-            <FormSelect id="currentPosition" 
+            <FormSelect id="currentPosition"
               selected={this.state.currentPosition.value}
               name="currentPosition" onChange={this.handleChange}
               choices={this.props.proexperiences
                   .map(ind => {ind.value = ind.id; ind.label = ind.title + ' at ' + ind.where; return ind})}
               noHelp/>
-            : 
+            :
             <p>{currentPositionLabel || this.state.currentPosition.placeholder}</p>}
         </div>
         <div>
           <div className="d-flex justify-content-between mb-2">
             <h5>Specializations</h5>
-            { this.state.specializationInputs.editing ?  
+            { this.state.specializationInputs.editing ?
               <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('specializationInputs')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('specializationInputs', true)}}>Edit</span>
@@ -493,20 +493,20 @@ export class Professional extends Component {
           { this.state.specializationInputs.editing ?
             <div className="row">
               <div className="col-sm-8">
-                <FormTag id="specializations" 
+                <FormTag id="specializations"
                   selected={this.state.specializationInputs.value} isMulti returnAll
                   name="specializationInputs" onChange={this.handleChange}
                   choices={this.props.specializations.map(ind => {ind.value = ind.id; return ind})}
                   noHelp/>
               </div>
             </div>
-            : 
+            :
             <p><strong>{specializations.map(s => s.label).join(', ') || this.state.specializationInputs.placeholder}</strong></p>}
         </div>
         <div>
           <div className="d-flex justify-content-between mb-2">
             <h5>Lawyer Type</h5>
-            { this.state.typeInputs.editing ?  
+            { this.state.typeInputs.editing ?
               <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('typeInputs')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('typeInputs', true)}}>Edit</span>
@@ -515,14 +515,14 @@ export class Professional extends Component {
           { this.state.typeInputs.editing ?
             <div className="row">
               <div className="col-sm-8">
-                <FormSelect id="types" 
+                <FormSelect id="types"
                   selected={this.state.typeInputs.value}
                   name="typeInputs" onChange={this.handleChange}
                   choices={this.props.lawyerTypes.map(ind => {ind.value = ind.id; return ind})}
                   noHelp/>
               </div>
             </div>
-            : 
+            :
             <p><strong>{types.map(s => s.label).join(', ') || this.state.typeInputs.placeholder}</strong></p>}
         </div>
         <div className="mt-5">
@@ -531,7 +531,7 @@ export class Professional extends Component {
               return (
                 <div key={licence.id} className="d-flex justify-content-between">
                   <div>{licence.city} ({this.getCountry(licence.country)}), {licence.since} (Licence # {licence.number})</div>
-                  { !isValidated && 
+                  { !isValidated &&
                   <div>
                     <span className="btn btn-link mr-1" onClick={() => {this.startLEditing(licence)}}>Edit</span>
                     <span className="btn btn-link" onClick={() => {this.deleteL(licence.id)}}>Delete</span>
@@ -541,31 +541,31 @@ export class Professional extends Component {
               );
             }
           )}
-          <span className="btn btn-link px-0" 
+          <span className="btn btn-link px-0"
             onClick={() => {this.startAdding('licences', !this.state.licences.adding)}}
             >{ this.state.licences.adding ? 'Cancel' : 'Add Another Licence'}</span>
 
-          { (this.state.licences.adding || this.state.licences.editing) && 
+          { (this.state.licences.adding || this.state.licences.editing) &&
             <div className="bg-lighter px-3 py-4">
               <div className="row">
                 <div className="col-sm-12">
                   <h5>Licensed in?</h5>
                 </div>
                 <div className="col-sm-6">
-                  <FormInput label="City" type="text" id="lic-city" 
+                  <FormInput label="City" type="text" id="lic-city"
                     value={this.state.licences.curItem.city} name="city" onChange={this.handleLChange} noHelp/>
                 </div>
                 <div className="col-sm-6">
-                  <FormSelect label="Country" id="lic-countries" selected={this.state.licences.curItem.country} 
+                  <FormSelect label="Country" id="lic-countries" selected={this.state.licences.curItem.country}
                     name="country" onChange={this.handleLChange}
                     choices={countries} noHelp />
                 </div>
                 <div className="col-sm-6">
-                  <FormInput label="Licence Number" type="number" id="licensednumber" 
+                  <FormInput label="Licence Number" type="number" id="licensednumber"
                     value={this.state.licences.curItem.number} name="number" onChange={this.handleLChange} noHelp/>
                 </div>
                 <div className="col-sm-10">
-                  <FormUpload dropColor="bg-white" label="Proof of license/admission to bar" id="proof" 
+                  <FormUpload dropColor="bg-white" label="Proof of license/admission to bar" id="proof"
                     name="proofFile" onChange={this.handleLChange} noHelp />
                 </div>
                 <div className="col-sm-12"></div>
@@ -575,7 +575,7 @@ export class Professional extends Component {
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5" 
+                    <button type="button" className="btn btn-primary px-5"
                       onClick={() => {this.saveL()}}>Save</button>
                   </div>
                 </div>
@@ -597,27 +597,27 @@ export class Professional extends Component {
               );
             }
           )}
-          <span className="btn btn-link px-0" 
+          <span className="btn btn-link px-0"
             onClick={() => {this.startAdding('academicDegrees', !this.state.academicDegrees.adding)}}
             >{ this.state.academicDegrees.adding ? 'Cancel' : 'Add Another Degree'}</span>
 
-          { (this.state.academicDegrees.adding || this.state.academicDegrees.editing) && 
+          { (this.state.academicDegrees.adding || this.state.academicDegrees.editing) &&
             <div className="bg-lighter px-3 py-4">
               <div className="row">
                 <div className="col-sm-6">
-                  <FormInput label="Degree" type="text" id="degree" placeholder="Degree" 
+                  <FormInput label="Degree" type="text" id="degree" placeholder="Degree"
                     value={this.state.academicDegrees.curItem.degree} name="degree" onChange={this.handleADChange} noHelp/>
-                  <FormInput label="University" type="text" id="university" placeholder="University" 
+                  <FormInput label="University" type="text" id="university" placeholder="University"
                     value={this.state.academicDegrees.curItem.university} name="university" onChange={this.handleADChange} noHelp/>
                 </div>
                 <div className="col-sm-12"></div>
                 <div className="col-sm-5">
-                  <FormInput label="Year" type="number" id="year" placeholder="Year"
+                  <FormInput label="Year of Graduation" type="number" id="year" placeholder="Year of Graduation"
                     value={this.state.academicDegrees.curItem.year} name="year" onChange={this.handleADChange} noHelp/>
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5" 
+                    <button type="button" className="btn btn-primary px-5"
                       onClick={() => {this.saveAD()}}>Save</button>
                   </div>
                 </div>
@@ -657,11 +657,11 @@ export class Professional extends Component {
               );
             }
           )}
-          <span className="btn btn-link px-0" 
+          <span className="btn btn-link px-0"
             onClick={() => {this.startAdding('proexperiences', !this.state.proexperiences.adding)}}
             >{ this.state.proexperiences.adding ? 'Cancel' : 'Add Another Experience'}</span>
 
-          { (this.state.proexperiences.adding || this.state.proexperiences.editing) && 
+          { (this.state.proexperiences.adding || this.state.proexperiences.editing) &&
             <div className="bg-lighter px-3 py-4">
               <div className="row">
                 <div className="col-sm-4">
@@ -671,31 +671,31 @@ export class Professional extends Component {
                 <div className="col-sm-4">
                   <FormDate label="To" id="pro-to-date" value={this.state.proexperiences.curItem.toDate}
                     name="toDate" onChange={this.handlePEChange} noHelp readOnly={this.state.proexperiences.curItem.present}/>
-                  <FormCheck id="pro-present" label="Present ?" value={this.state.proexperiences.curItem.present} 
+                  <FormCheck id="pro-present" label="Present ?" value={this.state.proexperiences.curItem.present}
                     name="present" onChange={this.handlePEChange}/>
                 </div>
                 <div className="col-sm-12"></div>
                 <div className="col-sm-6">
-                  <FormInput label="Title" type="text" id="pro-title" 
+                  <FormInput label="Title" type="text" id="pro-title"
                     value={this.state.proexperiences.curItem.title} name="title" onChange={this.handlePEChange} noHelp/>
-                  <FormInput label="Description" type="text" id="pro-type" 
+                  <FormInput label="Description" type="text" id="pro-type"
                     value={this.state.proexperiences.curItem.description} name="description" onChange={this.handlePEChange} noHelp/>
-                  <FormInput label="Company" type="text" id="pro-where" 
+                  <FormInput label="Company" type="text" id="pro-where"
                     value={this.state.proexperiences.curItem.where} name="where" onChange={this.handlePEChange} noHelp/>
                 </div>
                 <div className="col-sm-12"></div>
                 <div className="col-sm-6">
-                  <FormInput label="City" type="text" id="city" 
+                  <FormInput label="City" type="text" id="city"
                     value={this.state.proexperiences.curItem.city} name="city" onChange={this.handlePEChange} noHelp/>
                 </div>
                 <div className="col-sm-6">
-                  <FormSelect label="Country" id="countries" selected={this.state.proexperiences.curItem.country} 
+                  <FormSelect label="Country" id="countries" selected={this.state.proexperiences.curItem.country}
                     name="country" onChange={this.handlePEChange}
                     choices={countries} noHelp />
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5" 
+                    <button type="button" className="btn btn-primary px-5"
                       onClick={() => {this.savePE()}}>Save</button>
                   </div>
                 </div>
@@ -726,26 +726,26 @@ export class Professional extends Component {
               );
             }
           )}
-          <span className="btn btn-link px-0" 
+          <span className="btn btn-link px-0"
             onClick={() => {this.startAdding('publications', !this.state.publications.adding)}}
             >{ this.state.publications.adding ? 'Cancel' : 'Add Another Publication'}</span>
 
-          { (this.state.publications.adding || this.state.publications.editing) && 
+          { (this.state.publications.adding || this.state.publications.editing) &&
             <div className="bg-lighter px-3 py-4">
               <div className="row">
                 <div className="col-sm-6">
-                  <FormInput label="Title" type="text" id="pub-title" 
+                  <FormInput label="Title" type="text" id="pub-title"
                     value={this.state.publications.curItem.title} name="title" onChange={this.handlePChange} noHelp/>
-                  <FormInput label="Association/Society/Bar/Institution" type="text" id="pub-type" 
+                  <FormInput label="Association/Society/Bar/Institution" type="text" id="pub-type"
                     value={this.state.publications.curItem.publisher} name="publisher" onChange={this.handlePChange} noHelp/>
                   <FormDate label="Date" id="pub-date" value={this.state.publications.curItem.date}
                     name="date" onChange={this.handlePChange} noHelp/>
-                  <FormInput label="URL" type="url" id="pub-url" 
+                  <FormInput label="URL" type="url" id="pub-url"
                     value={this.state.publications.curItem.url} name="url" onChange={this.handlePChange} noHelp/>
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5" 
+                    <button type="button" className="btn btn-primary px-5"
                       onClick={() => {this.saveP()}}>Save</button>
                   </div>
                 </div>
@@ -770,24 +770,24 @@ export class Professional extends Component {
               );
             }
           )}
-          <span className="btn btn-link px-0" 
+          <span className="btn btn-link px-0"
             onClick={() => {this.startAdding('memberships', !this.state.memberships.adding)}}
             >{ this.state.memberships.adding ? 'Cancel' : 'Add Another Membership'}</span>
 
-          { (this.state.memberships.adding || this.state.memberships.editing) && 
+          { (this.state.memberships.adding || this.state.memberships.editing) &&
             <div className="bg-lighter px-3 py-4">
               <div className="row">
                 <div className="col-sm-6">
-                  <FormInput label="Title" type="text" id="member-title" 
+                  <FormInput label="Title" type="text" id="member-title"
                     value={this.state.memberships.curItem.title} name="title" onChange={this.handleMChange} noHelp/>
-                  <FormInput label="Association/Society/Bar/Institution" type="text" id="member-type" 
+                  <FormInput label="Association/Society/Bar/Institution" type="text" id="member-type"
                     value={this.state.memberships.curItem.association} name="association" onChange={this.handleMChange} noHelp/>
-                  <FormInput label="URL" type="url" id="member-url" 
+                  <FormInput label="URL" type="url" id="member-url"
                     value={this.state.memberships.curItem.url} name="url" onChange={this.handleMChange} noHelp/>
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5" 
+                    <button type="button" className="btn btn-primary px-5"
                       onClick={() => {this.saveM()}}>Save</button>
                   </div>
                 </div>
@@ -802,17 +802,17 @@ export class Professional extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
-  const { 
-    academicDegrees, memberships, publications, proexperiences, 
+  const {
+    academicDegrees, memberships, publications, proexperiences,
     licences, specializations, lawyerTypes } = data;
 
-  return { 
-    userType, 
-    userInfo, 
-    user, 
-    academicDegrees, 
-    memberships, 
-    publications, 
+  return {
+    userType,
+    userInfo,
+    user,
+    academicDegrees,
+    memberships,
+    publications,
     proexperiences,
     licences,
     lawyerTypes,
@@ -822,7 +822,7 @@ const mapStateToProps = ({ authUser, data }) => {
 
 const mapActionToProps = {
   createData,
-  updateData, 
+  updateData,
   readData,
   deleteData,
   loadMe

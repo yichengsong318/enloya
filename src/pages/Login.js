@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import CustomNavbar from '../components/CustomNavbar';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 // import SocialLogin from '../components/SocialLogin';
 
@@ -12,11 +13,11 @@ export class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       login: {
         email : '',
         password : ''
-      }  
+      }
     }
   }
 
@@ -42,10 +43,10 @@ export class Login extends Component {
           <h2 className="f_600 f_size_30 l_height30 t_color3 mb_50 mt_70 pt_70">Member login</h2>
           {/* <SocialLogin /> */}
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
-            { this.props.errorMessage && 
-              <div className="alert alert-danger">{this.props.errorMessage}</div> 
+            { this.props.errorMessage &&
+              <div className="alert alert-danger">{this.props.errorMessage}</div>
             }
-            <input type="email" className="form-control" placeholder="Your email" 
+            <input type="email" className="form-control" placeholder="Your email"
               onChange={e => this.handleFormChange('email', e.target.value)}/>
             <input type="password" className="form-control mt-3" placeholder="Your password"
               onChange={e => this.handleFormChange('password', e.target.value)}/>
@@ -55,7 +56,7 @@ export class Login extends Component {
             <Link className="auth-link" to="/forgot-password">Have trouble logging in ?</Link>
           </div>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
     )
   }

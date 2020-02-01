@@ -6,6 +6,7 @@ import { Link as ScrolLink } from 'react-scroll';
 class Footer extends Component {
     render(){
         let FooterData = this.props.FooterData;
+
         return(
             <footer className="new_footer_area bg_color">
                 <div className="new_footer_top">
@@ -43,8 +44,10 @@ class Footer extends Component {
                                                             return(
                                                                 <li key={item.id}>
                                                                   <Link to={item.url} className={`${item.url === 'howitworks' || item.url === 'whatwedo' ? 'd-none' : ''}`}>{item.text}</Link>
-                                                                  {item.url === 'whatwedo' && <ScrolLink title="Home" to="whatwedo" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
-                                                                  {item.url === 'howitworks' && <ScrolLink title="Home" to="howitworks" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
+                                                                  {(item.url === 'whatwedo' && !this.props.kind) && <ScrolLink title="Home" to="whatwedo" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
+                                                                  {(item.url === 'howitworks' && !this.props.kind) && <ScrolLink title="Home" to="howitworks" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
+                                                                  {(item.url === 'whatwedo' && this.props.kind === 'otherPage') && (<a href="/?q=whatwedo" style={{ cursor: 'pointer'}} >{item.text}</a>)}
+                                                                  {(item.url === 'howitworks' && this.props.kind === 'otherPage') && (<a href="/?q=howitworks" style={{ cursor: 'pointer'}} >{item.text}</a>)}
                                                                 </li>
                                                             )
                                                         })

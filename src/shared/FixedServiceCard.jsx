@@ -1,11 +1,12 @@
 import React from 'react';
+import FooterData from '../components/Footer/FooterData';
 
 export default function FixedServiceCard (props) {
   return (
-    <div className="fixed-service">
+    <div className="fixed-service ex_team_item">
       <div className="bg-gray header">
         <a style={{color: '#4b505e'}}
-          href={props.kind === 'lawyer_profile' ? 
+          href={props.kind === 'lawyer_profile' ?
           "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid}>
           <div className="d-flex justify-content-between">
             <h5>
@@ -14,8 +15,8 @@ export default function FixedServiceCard (props) {
             </h5>
             <div className="priced">${props.price}</div>
           </div>
-          <div>{props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
-          <div>{props.category}</div>
+          <div className="line-height-1-5">{props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
+          <div className="line-height-1-5">{props.category}</div>
         </a>
       </div>
       <div className="body">
@@ -29,8 +30,25 @@ export default function FixedServiceCard (props) {
           </div>
         ) : (
           <>
-          <a href={"/account-settings/fix-fee-services-edit?sid=" + props.sid} className="btn btn-primary btn-block">Edit</a></>
+          <a href={"/account-settings/fix-fee-services-edit?sid=" + props.sid} className="btn btn-primary btn-block btn-editable">Edit</a></>
         )}
+      </div>
+      <div className="hover_content fix-hover-content">
+          <div className="n_hover_content">
+              <ul className="list-unstyled">
+                  {
+                      FooterData.sharableSocialIcon.map(item=>{
+                          return(
+                              <li key={item.id}><a href={item.url}><i className={`${item.icon}`}></i></a></li>
+                          )
+                      })
+                  }
+              </ul>
+              <div className="br"></div>
+              <a href=".#">
+                  <button className="btn btn-primary btn-block">Copy web URL</button>
+              </a>
+          </div>
       </div>
     </div>
   );

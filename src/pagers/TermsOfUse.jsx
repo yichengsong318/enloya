@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
 
@@ -59,7 +59,7 @@ function TermsOfUse() {
           </div>
         </div>
       </div>
-      <FooterTwo FooterData={FooterData}/>
+      <Footer FooterData={FooterData} kind="otherPage"/>
     </div>
   );
 }

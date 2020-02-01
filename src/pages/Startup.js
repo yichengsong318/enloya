@@ -9,7 +9,8 @@ import Partner from '../components/Partner';
 import MarketingTestimonial from '../components/Testimonial/MarketingTestimonial';
 import ServiceData from '../components/Service/ServiceData';
 import BannerData from '../components/Banner/BannerData';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 
 const Startup = () => (
@@ -23,7 +24,7 @@ const Startup = () => (
         CnumberOne="7" CnumberTwo="100"/>
         <MarketingTestimonial BannerData={BannerData}/>
         <Partner pClass="partner_logo_area bg_color"/>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
     </div>
 )
 export default Startup;

@@ -8,7 +8,8 @@ import AppWork from '../components/Service/AppWork';
 import ScreenshowCase from '../components/ScreenshowCase';
 import AppGetstarted from '../components/AppGetstarted';
 import AppTeam from '../components/Team/AppTeam';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import ServiceData from '../components/Service/ServiceData';
 import FooterData from '../components/Footer/FooterData';
 
@@ -24,7 +25,7 @@ const Landing = () => {
             <ScreenshowCase/>
             <AppGetstarted/>
             <AppTeam/>
-            <FooterTwo FooterData={FooterData}/>
+            <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
 }

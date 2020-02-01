@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import CustomNavbar from '../components/CustomNavbar';
-import FooterTwo from '../components/Footer/FooterTwo';
+import Footer from '../components/Footer/Footer';
+// import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 import SocialLogin from '../components/SocialLogin';
 
@@ -15,17 +16,17 @@ export class SignUpLawyer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       login: {
         typeInputs: [],
         firstname : '',
         lastname : '',
         email : '',
         password : ''
-      }  
+      }
     }
   }
-  
+
   componentDidMount() {
     const {readData} = this.props;
     readData('lawyer-types');
@@ -67,8 +68,8 @@ export class SignUpLawyer extends Component {
           <p className="text-black text-center mb-4">Get started - <strong>it's free</strong></p>
           <SocialLogin />
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
-            { this.props.errorMessage && 
-              <div className="alert alert-danger">{this.props.errorMessage}</div> 
+            { this.props.errorMessage &&
+              <div className="alert alert-danger">{this.props.errorMessage}</div>
             }
             <input type="text" className="form-control mt-3" placeholder="First Name"
               onChange={e => this.handleFormChange('firstname', e.target.value)}/>
@@ -78,8 +79,8 @@ export class SignUpLawyer extends Component {
               onChange={e => this.handleFormChange('email', e.target.value)}/>
             <input type="password" className="form-control mt-3 mb-4" placeholder="Password"
               onChange={e => this.handleFormChange('password', e.target.value)}/>
-            <FormSelect id="types" 
-              placeholder="Lawyer Type" 
+            <FormSelect id="types"
+              placeholder="Lawyer Type"
               selected={this.state.typeInputs}
               name="typeInputs" onChange={this.handleFormChange}
               choices={[
@@ -93,7 +94,7 @@ export class SignUpLawyer extends Component {
               <button type="submit" className="btn_hover btn_four mt_40 btn-block">Join now</button>
           </form>
         </div>
-        <FooterTwo FooterData={FooterData}/>
+        <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
     )
   }

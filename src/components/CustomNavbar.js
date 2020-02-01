@@ -114,25 +114,25 @@ class CustomNavbar extends Component {
                       <>
                         <ul className="navbar-nav mr-2 my-3 ml-auto">
                           <li className="nav-item dropdown">
-                            <Dropdown type="search" text={'Search'} 
+                            <Dropdown type="search" text={'Search'}
                               orientation="right">
-                              <NavLink title="Lawyers" className="dropdown-item" 
+                              <NavLink title="Lawyers" className="dropdown-item"
                                 to="/search">Lawyers</NavLink>
 
-                              <NavLink title="Services" className="dropdown-item" 
+                              <NavLink title="Services" className="dropdown-item"
                                 to="/search-service">Services</NavLink>
                             </Dropdown>
                           </li>
                         </ul>
-                        <Dropdown type="button" 
+                        <Dropdown type="button"
                           userImage={this.props.userInfo.profilePic}
-                          text={this.props.userInfo.firstname + ' ' + this.props.userInfo.lastname} 
+                          text={this.props.userInfo.firstname + ' ' + this.props.userInfo.lastname}
                           orientation="right">
-                          <NavLink title="Account Settings" className="dropdown-item" 
+                          <NavLink title="Account Settings" className="dropdown-item"
                             to="/account-settings">Account Settings</NavLink>
 
-                          { this.props.userType === 'lawyer' && 
-                            <NavLink title="My Profile" className="dropdown-item" 
+                          { this.props.userType === 'lawyer' &&
+                            <NavLink title="My Profile" className="dropdown-item"
                               to={"/lawyer-profile/" + this.props.userInfo.id}>My Profile</NavLink>}
                           <span className="dropdown-item" onClick={() => this.handleLogout()}>Logout</span>
                         </Dropdown>
