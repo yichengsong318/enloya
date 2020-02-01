@@ -5,9 +5,17 @@
   min-height: 100vh;
   background-color: #efecee;
 }
-
+.text-primary-o {
+    color: #1fa5df !important;
+}
 .App-logo {
   height: 40vmin;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: transparent !important;
+    color: #1fa5df !important;
+    font-weight: bold;
 }
 
 .nav-items {
@@ -682,8 +690,18 @@ hr {
   font-weight: 500;
   font-size: 2em;
 }
+.line-height-1 {
+    line-height: 1;
+    font-size: 1rem;
+}
 .line-height-1-5 {
-    line-height: 1.5;
+    line-height: 1;
+}
+.size-inherit {
+    font-size: inherit !important;
+}
+.font-italyc {
+    font-style: italic;
 }
 .btn-editable {
     margin-top: 1rem;

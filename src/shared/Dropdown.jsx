@@ -16,15 +16,15 @@ export default function Dropdown (props) {
     <div className="dropdown-wrapper ml-auto">
       {
         props.type === 'button' ?
-          <div className="btn btn-outline-secondary dropdown-trigger" onClick={handleClick}>
-            { 
+          <div className="dropdown-trigger" onClick={handleClick}>
+            {
               props.userImage ?
               <img className="img-fluid rounded-circle img-menu-user" src={props.userImage} alt="user"/>
               :
               <FontAwesomeIcon icon={faUserCircle}/>
             }
             <span className="mx-3">{props.text}</span>
-            { show ? 
+            { show ?
               <FontAwesomeIcon icon={faAngleUp} className="angle-icon align-middle" />
               :
               <FontAwesomeIcon icon={faAngleDown} className="angle-icon align-middle" />
@@ -34,13 +34,13 @@ export default function Dropdown (props) {
           (props.type === 'search' ?
             <div className="search-block" onClick={handleClick}>
               <input className="form-control mr-sm-2 input-search" readOnly type="search"
-                placeholder="What legal job do you want done?" aria-label="Search"/>
+                placeholder="Which legal job do you want done?" aria-label="Search"/>
               <FontAwesomeIcon icon={faSearch} className="icon-search mt-1" />
             </div>
           :
             <div className="dropdown-trigger" onClick={handleClick}>
               <span className="mr-2">{props.text}</span>
-              { show ? 
+              { show ?
                 <FontAwesomeIcon icon={faAngleUp} className="angle-icon" />
                 :
                 <FontAwesomeIcon icon={faAngleDown} className="angle-icon" />

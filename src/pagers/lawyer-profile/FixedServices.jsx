@@ -41,8 +41,8 @@ const mapStateToProps = ({ authUser, data }) => {
   const { userInfo } = authUser;
   const { services } = data;
 
-  return { 
-    userInfo, 
+  return {
+    userInfo,
     services
   };
 };
