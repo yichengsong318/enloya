@@ -365,7 +365,7 @@ export class Professional extends Component {
     }
   }
 
-  startPEditing = (item) => {
+  startPEEditing = (item) => {
     this.startPrEditing('proexperiences', item.id, {
       title: item.title,
       description: item.description,
@@ -650,7 +650,7 @@ export class Professional extends Component {
                     <div>{proexperience.description}</div>
                   </div>
                   <div>
-                    <span className="btn btn-link mr-1" onClick={() => {this.startPEditing(proexperience)}}>Edit</span>
+                    <span className="btn btn-link mr-1" onClick={() => {this.startPEEditing(proexperience)}}>Edit</span>
                     <span className="btn btn-link" onClick={() => {this.deleteP(proexperience.id)}}>Delete</span>
                   </div>
                 </div>

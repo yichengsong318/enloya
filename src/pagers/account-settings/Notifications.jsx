@@ -39,7 +39,6 @@ export class Notifications extends Component {
   }
 
   onFormSubmit = () => {
-    console.log(this.state.user);
     if (!this.props.loading) {
       this.props.updateData(this.props.userType + 's', this.props.userInfo.id, 
         {notifications: this.state.notifications}, () => {

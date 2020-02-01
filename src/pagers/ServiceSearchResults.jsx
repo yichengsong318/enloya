@@ -53,7 +53,6 @@ export class ServiceSearchResults extends Component {
 
   search = () => {
     get('services/search', {filter: this.state.filter, query: this.state.query}).then(res => {
-        console.log('res.data', res.data);
       this.setState({
         serviceResults: res.data
       });

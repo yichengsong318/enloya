@@ -4,7 +4,7 @@ import { NotificationManager } from "react-notifications";
 import { createData, readData } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 
-import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag } from '../../shared/FormElement';
+import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag, FormDate } from '../../shared/FormElement';
 
 export class FixFeesCreate extends Component {
   constructor(props) {
@@ -22,6 +22,7 @@ export class FixFeesCreate extends Component {
         longDescription: '',
         deliveryTimeLength: 0,
         deliveryTimeUnits: '',
+        estimatedTime: '',
         tags: [],
         faq: [],
         requirements: []
@@ -234,6 +235,11 @@ export class FixFeesCreate extends Component {
                   { value: 'days', label: 'Days' },
                   { value: 'hours', label: 'Hours' }
                 ]} noHelp />
+            </div>
+            <div className="col-sm-4">
+              <FormDate label="Estimate Time Delivery" id="estimated-time" 
+                value={this.state.service.estimatedTime}
+                name="estimatedTime" onChange={this.handleFormChange} noHelp/>
             </div>
           </div>
         </div>

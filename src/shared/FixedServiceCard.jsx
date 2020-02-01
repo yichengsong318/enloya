@@ -30,7 +30,7 @@ export default function FixedServiceCard (props) {
           </div>
         ) : (
           <>
-          <a href={"/account-settings/fix-fee-services-edit?sid=" + props.sid} className="btn btn-primary btn-block btn-editable">Edit</a></>
+          <a href={"/account-settings/fix-fee-services-detail?sid=" + props.sid} className="btn btn-primary btn-block btn-editable">Details</a></>
         )}
       </div>
       <div className="hover_content fix-hover-content">

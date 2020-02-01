@@ -4,6 +4,7 @@ import { readData } from "../../redux/actions";
 import { get, remove, put } from '../../helpers/RemoteApi';
 import { withRouter } from "react-router-dom";
 import queryString from 'query-string';
+import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
 
 export class FixFeesDetail extends Component {
@@ -41,8 +42,6 @@ export class FixFeesDetail extends Component {
     const params = queryString.parse(this.props.location.search);
     const isPublished = this.state.service.isPublished;
     
-    console.log({isPublished: !isPublished});
-
     if (params.sid) {
       put('services/' + params.sid, {isPublished: !isPublished}).then((res) => {
         if (res.status === 200) {
@@ -120,6 +119,11 @@ export class FixFeesDetail extends Component {
               <tr><th>Description</th><td>{serv.longDescription}</td></tr>
               <tr><th>Client Type</th><td>{clientTypes}</td></tr>
               <tr><th>Delivery Time</th><td>{serv.deliveryTime.amount + ' ' + serv.deliveryTime.unit}</td></tr>
+              <tr><th>Estimated Time Delivery</th><td>
+                <Moment format="DD MMMM YYYY">
+                  {serv.estimatedTime}
+                </Moment>
+                </td></tr>
             </tbody>
           </table>
         </div>

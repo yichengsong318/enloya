@@ -6,7 +6,7 @@ import { get } from '../../helpers/RemoteApi';
 import queryString from 'query-string';
 import { withRouter } from "react-router-dom";
 
-import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag } from '../../shared/FormElement';
+import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag, FormDate } from '../../shared/FormElement';
 
 export class FixFeesEdit extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ export class FixFeesEdit extends Component {
         longDescription: '',
         deliveryTimeLength: 0,
         deliveryTimeUnits: '',
+        estimatedTime: '',
         tags: [],
         faq: [],
         requirements: []
@@ -58,6 +59,7 @@ export class FixFeesEdit extends Component {
               longDescription: oldService.longDescription || '',
               deliveryTimeLength: oldService.deliveryTime ? oldService.deliveryTime.amount : 0,
               deliveryTimeUnits: oldService.deliveryTime ? oldService.deliveryTime.unit : '',
+              estimatedTime: new Date(oldService.estimatedTime),
               tags: oldService.tags || [],
               faq: oldService.faq || [],
               requirements: oldService.requirements || []
@@ -272,6 +274,11 @@ export class FixFeesEdit extends Component {
                   { value: 'days', label: 'Days' },
                   { value: 'hours', label: 'Hours' }
                 ]} noHelp />
+            </div>
+            <div className="col-sm-4">
+              <FormDate label="Estimate Time Delivery" id="estimated-time" 
+                value={this.state.service.estimatedTime}
+                name="estimatedTime" onChange={this.handleFormChange} noHelp/>
             </div>
           </div>
         </div>
