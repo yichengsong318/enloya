@@ -22974,7 +22974,6 @@ a .h_head:hover {
 
 .new_footer_area .footer_bottom {
   padding-top: 5px;
-  padding-bottom: 50px;
 }
 
 .new_footer_area .footer_bottom .p_o {
@@ -22992,7 +22991,7 @@ a .h_head:hover {
 }
 
 .new_footer_top {
-  padding: 120px 0px 270px;
+  padding: 40px 0 0;
   position: relative;
 }
 

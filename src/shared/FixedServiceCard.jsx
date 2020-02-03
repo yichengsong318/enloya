@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FooterData from '../components/Footer/FooterData';
 
 export default function FixedServiceCard (props) {
+
+    const shareLink = `${window.origin}/account-settings/fix-fee-services-detail?sid=${props.sid}`;
+    const [state, setState] = useState({ copied: false });
+
+    const handleCopyUrl = () => {
+        setState({ copied: true });
+        setTimeout(() => {
+          setState({ copied: false });
+        }, 5000);
+    }
   return (
     <div className="fixed-service ex_team_item">
       <div className="bg-gray header">
@@ -34,21 +45,26 @@ export default function FixedServiceCard (props) {
         )}
       </div>
       <div className="hover_content fix-hover-content">
-          <div className="n_hover_content">
-              <ul className="list-unstyled">
-                  {
-                      FooterData.sharableSocialIcon.map(item=>{
-                          return(
-                              <li key={item.id}><a href={item.url}><i className={`${item.icon}`}></i></a></li>
-                          )
-                      })
+      <div className="n_hover_content">
+            <CopyToClipboard
+                    text={shareLink}
+                    onCopy={handleCopyUrl}
+                  >
+                  <button className="btn btn-primary btn-block">
+                  { state.copied ?
+                    <span
+                      style={{color: '#47c431', float: 'right'}}
+                    >
+                      Web URL Copied!
+                    </span>
+                    :
+                    <span>
+                    Copy web URL
+                    </span>
                   }
-              </ul>
-              <div className="br"></div>
-              <a href=".#">
-                  <button className="btn btn-primary btn-block">Copy web URL</button>
-              </a>
-          </div>
+                  </button>
+            </CopyToClipboard>
+      </div>
       </div>
     </div>
   );
