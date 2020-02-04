@@ -122,8 +122,8 @@ export class LawyerProfile extends Component {
                         <span className="ml-2 mt-1">4.0 (11,345 ratings)</span>
                       </div>
                     </div> */}
-                    <div className="col-sm-4 mb-2 pt-1">Licensed in: {licencedCities}</div>
-                    <div className="col-sm-4 mb-2 pt-1">Licensed since: {licencedYear && licencedYear.since}</div>
+                    <div className="col-sm-4 mt-2 line-height-1-1">Licensed in: {licencedCities}</div>
+                    <div className="col-sm-4 mt-2 line-height-1-1">Licensed since: {licencedYear && licencedYear.since}</div>
                   </div>
                   <div className="row">
                     <div className="col-sm-4 mb-2">

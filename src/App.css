@@ -705,6 +705,10 @@ hr {
   font-weight: 500;
   font-size: 2em;
 }
+.line-height-1-1 {
+    line-height: 1;
+}
+
 .line-height-1 {
     line-height: 1;
     font-size: 1rem;
@@ -735,9 +739,10 @@ hr {
     border-radius: 8px;
     background-color: #FFF;
     border: none;
-    /* border: 1px solid #333; */
     box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.5), 0 2px 4px 0 rgba(0,0,0,0.5);
     color: #000000;
+    max-height: initial !important;
+    height: initial !important;
 }
 .custom-fix-fee-service>.header {
     border-top-left-radius: 8px;
@@ -755,6 +760,7 @@ hr {
 }
 .custom-fix-fee-service>.body p.subtitle {
     font-size: 13px;
+    height: initial !important;
 }
 .w-80 {
     width: 80px!important;

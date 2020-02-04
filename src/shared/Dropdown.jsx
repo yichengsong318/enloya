@@ -34,7 +34,7 @@ export default function Dropdown (props) {
           (props.type === 'search' ?
             <div className="search-block" onClick={handleClick}>
               <input className="form-control mr-sm-2 input-search" readOnly type="search"
-                placeholder="Which legal job do you want done?" aria-label="Search"/>
+                placeholder="Which legal job do you want?" aria-label="Search"/>
               <FontAwesomeIcon icon={faSearch} className="icon-search mt-1" />
             </div>
           :
