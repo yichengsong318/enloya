@@ -66,8 +66,8 @@ class CustomNavbar extends Component {
             <nav className={`navbar navbar-expand-lg menu_one ${mClass} ${isHome ? '' : 'bg-white'}`}>
               <div className={`container ${cClass}`}>
                 <Link className={`navbar-brand ${slogo}`} to="/">
-                  <img src={require("../img/enloya-logo.png")} alt=""/>
-                  <img src={require("../img/enloya-logo.png")} alt="logo"/>
+                  <img src={require("../img/enloya-logo.svg")} alt="" style={{ height: "65px"}}/>
+                  <img src={require("../img/enloya-logo.svg")} alt="logo" style={{ height: "65px"}}/>
                 </Link>
                 <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="menu_toggle">
