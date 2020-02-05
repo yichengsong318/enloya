@@ -442,7 +442,10 @@ hr {
   padding-right: 10px;
   /* display: flex; */
 }
-
+.fixed-service-lawyer {
+    max-height: 350px!important;
+    height: 330px!important;
+}
 .fixed-service {
   border: 1px solid #454554;
   display: flex;
@@ -512,6 +515,7 @@ hr {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 0.95em;
 }
 
 .fixed-service .priced {

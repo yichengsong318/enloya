@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import FooterData from '../components/Footer/FooterData';
 
 export default function FixedServiceCard (props) {
 
     const shareLink = `${window.origin}/account-settings/fix-fee-services-detail?sid=${props.sid}`;
     const [state, setState] = useState({ copied: false });
+    const hoverRef = React.createRef();
 
     const handleCopyUrl = () => {
         setState({ copied: true });
         setTimeout(() => {
           setState({ copied: false });
         }, 5000);
+        hoverRef.current.classList.remove('hover_content');
+    }
+    const handleShare = () => {
+        hoverRef.current.classList.add('hover_content');
     }
   return (
-    <div className="fixed-service ex_team_item">
+    <div className={`${props.kind === 'lawyer_profile' ? 'fixed-service-lawyer' : ''} fixed-service ex_team_item`}>
       <div className="bg-gray header">
         <a style={{color: '#4b505e'}}
           href={props.kind === 'lawyer_profile' ?
@@ -36,7 +40,7 @@ export default function FixedServiceCard (props) {
           <div>
             <button type="type" className="btn btn-primary btn-block">Buy Now</button>
             <div className="text-center mt-2">
-              <button type="type" className="btn btn-primary btn-block mx-auto">Share</button>
+              <button type="type" className="btn btn-primary btn-block mx-auto" onClick={handleShare}>Share</button>
             </div>
           </div>
         ) : (
@@ -44,13 +48,13 @@ export default function FixedServiceCard (props) {
           <a href={"/account-settings/fix-fee-services-detail?sid=" + props.sid} className="btn btn-primary btn-block btn-editable">Details</a></>
         )}
       </div>
-      <div className="hover_content fix-hover-content">
+      <div className={`${props.kind !== 'lawyer_profile' ? 'hover_content' : ''} fix-hover-content`} ref={hoverRef}>
       <div className="n_hover_content">
             <CopyToClipboard
-                    text={shareLink}
-                    onCopy={handleCopyUrl}
-                  >
-                  <button className="btn btn-primary btn-block">
+                text={shareLink}
+                onCopy={handleCopyUrl}
+            >
+              <button className="btn btn-primary btn-block">
                   { state.copied ?
                     <span
                       style={{color: '#47c431', float: 'right'}}
@@ -62,7 +66,7 @@ export default function FixedServiceCard (props) {
                     Copy web URL
                     </span>
                   }
-                  </button>
+              </button>
             </CopyToClipboard>
       </div>
       </div>
