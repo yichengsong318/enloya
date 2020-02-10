@@ -14,10 +14,10 @@ export class FixedServices extends Component {
   render () {
     return (
       <div className="px-2 py-4 fixed-services">
-        <div className="row mx-auto p-2">
+        <div className="row mx-auto">
           {this.props.services.map(srv => {
             return (
-              <div className="col-sm-3" key={srv.id}>
+              <div className="col-sm-4 px-1" key={srv.id}>
                 <FixedServiceCard
                   kind="lawyer_profile"
                   sid={srv.id}
@@ -27,6 +27,7 @@ export class FixedServices extends Component {
                   category={srv.category && srv.category.label}
                   deliveryTime={srv.deliveryTime}
                   fullDescription={srv.longDescription}
+                  lawyer={srv.lawyer && srv.lawyer}
                   />
               </div>
             );

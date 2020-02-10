@@ -18,11 +18,11 @@ export class FixFees extends Component {
         <div className="pb-4 text-right">
           <a href="/account-settings/fix-fee-services-create" className="btn btn-primary px-5">Create a new service</a>
         </div>
-        <div className="px-2 py-4 fixed-services">
-          <div className="row mx-auto p-2">
+        <div className="py-4 fixed-services">
+          <div className="row mx-auto">
             {this.props.services.map(srv => {
               return (
-                <div className="col-sm-4" key={srv.id}>
+                <div className="col-sm-6 px-1" key={srv.id}>
                   <FixedServiceCard
                     kind="lawyer_services"
                     sid={srv.id}
@@ -32,6 +32,7 @@ export class FixFees extends Component {
                     category={srv.category && srv.category.label}
                     deliveryTime={srv.deliveryTime}
                     fullDescription={srv.longDescription}
+                    lawyer={srv.lawyer && srv.lawyer}
                     />
                 </div>
               );
