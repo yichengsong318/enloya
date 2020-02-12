@@ -9,6 +9,9 @@ import 'jquery-mousewheel';
 import { Link as ScrolLink, Events, scroller } from 'react-scroll';
 import Dropdown from '../shared/Dropdown';
 import { logoutUser } from "../redux/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 
 class CustomNavbar extends Component {
   componentDidMount() {
@@ -66,8 +69,8 @@ class CustomNavbar extends Component {
             <nav className={`navbar navbar-expand-lg menu_one ${mClass} ${isHome ? '' : 'bg-white'}`}>
               <div className={`container ${cClass}`}>
                 <Link className={`navbar-brand ${slogo}`} to="/">
-                  <img src={require("../img/enloya-logo.svg")} alt="" style={{ height: "65px"}}/>
-                  <img src={require("../img/enloya-logo.svg")} alt="logo" style={{ height: "65px"}}/>
+                  <img src={require("../img/enloya-logo.svg")} alt="" style={{ height: "75px"}}/>
+                  <img src={require("../img/enloya-logo.svg")} alt="logo" style={{ height: "75px"}}/>
                 </Link>
                 <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="menu_toggle">
@@ -122,6 +125,13 @@ class CustomNavbar extends Component {
                               <NavLink title="Services" className="dropdown-item"
                                 to="/search-service">Services</NavLink>
                             </Dropdown>
+                          </li>
+                          <li className="nav-item ml-2">
+                          <div className="search-block d-flex">
+                              <input className="form-control mr-sm-2 input-search-w10rem" readOnly type="search"
+                                placeholder="Where?" aria-label="Where"/>
+                              <button type="button" className="btn btn-primary px-5">Search</button>
+                              </div>
                           </li>
                         </ul>
                         <Dropdown type="button"

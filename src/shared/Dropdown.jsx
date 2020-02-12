@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Dropdown.css';
 
-import { faAngleDown, faAngleUp, faUserCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleUp, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Dropdown (props) {
@@ -34,8 +34,7 @@ export default function Dropdown (props) {
           (props.type === 'search' ?
             <div className="search-block" onClick={handleClick}>
               <input className="form-control mr-sm-2 input-search" readOnly type="search"
-                placeholder="Which legal job do you want?" aria-label="Search"/>
-              <FontAwesomeIcon icon={faSearch} className="icon-search mt-1" />
+                placeholder="Which legal job do you want done?" aria-label="Search"/>
             </div>
           :
             <div className="dropdown-trigger" onClick={handleClick}>

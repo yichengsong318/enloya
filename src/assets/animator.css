@@ -192,3 +192,18 @@ color: #fff!important;
 .border-black>.css-yk16xz-control {
     border-color: #000000!important;
 }
+.input-search::-webkit-input-placeholder, .input-search-w10rem::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 12px;
+}
+.input-search::-moz-placeholder, .input-search-w10rem::-moz-placeholder { /* Firefox 19+ */
+    font-size: 12px;
+}
+.input-search:-ms-input-placeholder, .input-search-w10rem:-ms-input-placeholder { /* IE 10+ */
+    font-size: 12px;
+}
+.input-search:-moz-placeholder, .input-search-w10rem:-moz-placeholder { /* Firefox 18- */
+    font-size: 12px;
+}
+.input-search-w10rem {
+    width: 10rem;
+}
