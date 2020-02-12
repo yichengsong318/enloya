@@ -101,7 +101,7 @@ export class LawyerProfile extends Component {
               </Link>
             </div> */}
             <div className="row mx-0 align-items-center">
-              <div className="col-sm-12 px-0 d-flex lawyer-card-large align-items-center">
+              <div className="col-sm-12 px-0 d-flex lawyer-card-large align-items-top">
                 <div>
                   <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4" alt="user_pic" />
                 </div>
