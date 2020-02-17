@@ -5,6 +5,7 @@ import { updateData, readData } from "../../redux/actions";
 import { get } from '../../helpers/RemoteApi';
 import queryString from 'query-string';
 import { withRouter } from "react-router-dom";
+import countries from "../../constants/fullCountries";
 
 import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag, FormDate } from '../../shared/FormElement';
 
@@ -28,6 +29,7 @@ export class FixFeesEdit extends Component {
         estimatedTime: '',
         tags: [],
         faq: [],
+        country: '',
         requirements: []
       },
       requirement: '',
@@ -62,6 +64,7 @@ export class FixFeesEdit extends Component {
               estimatedTime: new Date(oldService.estimatedTime),
               tags: oldService.tags || [],
               faq: oldService.faq || [],
+              country: oldService.country || '',
               requirements: oldService.requirements || []
             },
             serviceId: oldService.id
@@ -229,6 +232,11 @@ export class FixFeesEdit extends Component {
                 selected={tags} 
                 name="tags" onChange={this.handleFormChange}
                 noHelp />
+            </div>
+            <div className="col-sm-8">
+              <FormSelect label="Country" id="countries" selected={this.state.service.country} 
+                name="country" onChange={this.handleFormChange}
+                choices={countries} noHelp />
             </div>
           </div>
         </div>

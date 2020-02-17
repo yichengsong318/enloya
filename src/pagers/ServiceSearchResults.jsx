@@ -14,12 +14,14 @@ import { FormInput, FormCheck } from '../shared/FormElement';
 import { faTh, faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import FixedServiceCard from "../shared/FixedServiceCard";
 import FixedServiceCardNew from "../shared/FixedServiceCardNew";
+import queryString from 'query-string';
 
 export class ServiceSearchResults extends Component {
   constructor (props) {
     super(props);
+
+    const params = queryString.parse(this.props.location.search) || {};
 
     this.state = {
       isGrid: true,
@@ -33,7 +35,8 @@ export class ServiceSearchResults extends Component {
         clientTypes: []
       },
       query: {
-        search: ''
+        search: params.q || '',
+        country: params.c || '',
       },
       more: {
         subcategories: false,
@@ -49,6 +52,22 @@ export class ServiceSearchResults extends Component {
     readData('client-types');
 
     this.search();
+  }
+
+  componentDidUpdate(prevProps) {    
+    const oldParams = queryString.parse(prevProps.location.search) || {};
+    const params = queryString.parse(this.props.location.search) || {};
+
+    if (!(oldParams.q === params.q && oldParams.c === params.c)) {
+      this.setState({
+        query: {
+          search: params.q || '',
+          country: params.c || '',
+        }
+      }, () => {
+        this.search();
+      });
+    }
   }
 
   search = () => {
@@ -99,7 +118,7 @@ export class ServiceSearchResults extends Component {
           <div className="container">
             <AlertArea/>
           </div>
-          <div className="container-fluid bg-light-blue pt-3 pb-1">
+          {/* <div className="container-fluid bg-light-blue pt-3 pb-1">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-sm-4">
@@ -114,10 +133,10 @@ export class ServiceSearchResults extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="h-100 container">
-          <div className="mb-2 d-flex justify-content-between align-items-center">
+          <div className="mb-2 d-flex justify-content-between align-items-center mt-5">
             <h3 className="text-left common-title">Showing results</h3>
             <div onClick={this.toggle} className="c-pointer">
             { isGrid ?

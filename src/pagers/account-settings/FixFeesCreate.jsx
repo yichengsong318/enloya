@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { NotificationManager } from "react-notifications";
 import { createData, readData } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
+import countries from "../../constants/fullCountries";
 
 import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag, FormDate } from '../../shared/FormElement';
 
@@ -25,6 +26,7 @@ export class FixFeesCreate extends Component {
         estimatedTime: '',
         tags: [],
         faq: [],
+        country: '',
         requirements: []
       },
       requirement: '',
@@ -34,10 +36,11 @@ export class FixFeesCreate extends Component {
   } 
 
   componentDidMount() {
-    const {readData} = this.props;
+    const {readData, userInfo} = this.props;
     readData('client-types');
     readData('industries');
     readData('categories');
+    readData('licences', {lawyer: userInfo.id});
   }
 
   onFormSubmit = () => {
@@ -131,8 +134,18 @@ export class FixFeesCreate extends Component {
     }
   };
 
+  getMax = (arr, attrib) => {
+    return (arr.length && arr.reduce(function(prev, curr){
+        return prev[attrib] > curr[attrib] ? prev : curr;
+    })) || null;
+  };
+
   render () {
-    const { categories, clientTypes, industries } = this.props;
+    const { categories, clientTypes, industries, licences } = this.props;
+
+    const lastLicence = licences && this.getMax(licences, 'since');
+    const defaultCountry = lastLicence && lastLicence.country;
+
     return (
       <div className="py-4 px-2 account-settings">
         <h2 className="mt-3 mb-5">Create New Fixed-Fee Service</h2>
@@ -190,6 +203,11 @@ export class FixFeesCreate extends Component {
                 value={this.state.service.tags} 
                 name="tags" onChange={this.handleFormChange}
                 noHelp />
+            </div>
+            <div className="col-sm-8">
+              <FormSelect label="Country" id="countries" selected={this.state.service.country || defaultCountry} 
+                name="country" onChange={this.handleFormChange}
+                choices={countries} noHelp />
             </div>
           </div>
         </div>
@@ -315,7 +333,7 @@ export class FixFeesCreate extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
-  const { clientTypes, industries, categories } = data;
+  const { clientTypes, industries, categories, licences } = data;
 
   return { 
     userType, 
@@ -323,7 +341,8 @@ const mapStateToProps = ({ authUser, data }) => {
     user, 
     clientTypes,
     industries,
-    categories
+    categories,
+    licences
   };
 };
 

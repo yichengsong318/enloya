@@ -28,7 +28,7 @@ export function FormSwitch(props) {
 
 export function FormSelect(props) {
   return (
-    <div className="form-group text-left">
+    <div className={"form-group text-left" + (props.customClass ? ' ' + props.customClass : '')}>
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
       <div className="d-flex">
         <Select
@@ -68,7 +68,7 @@ export function FormTag(props) {
 
 export function FormInput(props) {
   return (
-    <div className="form-group text-left">
+    <div className={"form-group text-left" + (props.customClass ? ' ' + props.customClass : '')}>
       {!props.noLabel && <label htmlFor={props.id}>{props.label}</label>}
       <div className="d-flex">
         <input type={props.type} onChange={e => props.onChange(props.name, e.target.value)} id={props.id} className="form-control"

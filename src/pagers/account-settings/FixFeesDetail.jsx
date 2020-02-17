@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import queryString from 'query-string';
 import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
+import countries from "../../constants/fullCountries";
 
 export class FixFeesDetail extends Component {
 
@@ -70,12 +71,18 @@ export class FixFeesDetail extends Component {
     }
   }
 
+  getCountry = (code) => {
+    const country = countries.find(c => c.value === code);
+    return country ? country.label : "";
+  }
+
   render () {
     const serv = this.state.service;
     const clientTypes = serv.types.map(t => t.label).join(', ');
     const industry = serv.industries.map(t => t.label).join(', ');
     const tags = serv.tags.join(', ');
     const isPublished = serv.isPublished;
+    const country = this.getCountry(serv.country);
 
     return (
       <div className="py-4 px-4 account-settings">
@@ -102,6 +109,7 @@ export class FixFeesDetail extends Component {
               <tr><th>Client Type</th><td>{clientTypes}</td></tr>
               <tr><th>Industry</th><td>{industry}</td></tr>
               <tr><th>Search Tags</th><td>{tags}</td></tr>
+              <tr><th>Country</th><td>{country}</td></tr>
             </tbody>
           </table>
         </div>

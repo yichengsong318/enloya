@@ -205,5 +205,5 @@ color: #fff!important;
     font-size: 12px;
 }
 .input-search-w10rem {
-    width: 10rem;
+    width: 10rem !important;
 }

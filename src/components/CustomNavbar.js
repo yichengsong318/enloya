@@ -9,11 +9,22 @@ import 'jquery-mousewheel';
 import { Link as ScrolLink, Events, scroller } from 'react-scroll';
 import Dropdown from '../shared/Dropdown';
 import { logoutUser } from "../redux/actions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-
+import countries from "../constants/fullCountries";
+import { FormInput, FormSelect } from '../shared/FormElement';
+import queryString from 'query-string';
 
 class CustomNavbar extends Component {
+  constructor(props) {
+    super(props);
+
+    const params = queryString.parse(this.props.location.search) || {};
+    
+    this.state = {
+      searchquery: params.q || '',
+      searchcountry: params.c || '',
+    };
+  } 
+
   componentDidMount() {
     $(window).on("load",function(){
       $('.mega_menu_two .scroll').mCustomScrollbar({
@@ -60,6 +71,15 @@ class CustomNavbar extends Component {
       this.props.history.push('/login');
     });
   };
+
+  handleSearchChange = (name, value) => {
+    this.setState({[name]: value});
+  };
+  
+  launchSearch = () => {
+    this.props.history.push("/search?q=" +  this.state.searchquery + "&c=" + this.state.searchcountry);
+  };
+  
 
   render() {
     var {mClass, nClass, cClass, slogo, q, isHome} = this.props;
@@ -117,21 +137,24 @@ class CustomNavbar extends Component {
                       <>
                         <ul className="navbar-nav mr-2 my-3 ml-auto">
                           <li className="nav-item dropdown">
-                            <Dropdown type="search" text={'Search'}
-                              orientation="right">
-                              <NavLink title="Lawyers" className="dropdown-item"
-                                to="/search">Lawyers</NavLink>
-
-                              <NavLink title="Services" className="dropdown-item"
-                                to="/search-service">Services</NavLink>
-                            </Dropdown>
+                            <FormInput type="text" id="searchquery" customClass="mb-0"
+                              value={this.state.searchquery} placeholder="Which legal job do you want done?"
+                              name="searchquery" onChange={this.handleSearchChange}
+                              noHelp noLabel/>
                           </li>
                           <li className="nav-item ml-2">
-                          <div className="search-block d-flex">
-                              <input className="form-control mr-sm-2 input-search-w10rem" readOnly type="search"
-                                placeholder="Where?" aria-label="Where"/>
-                              <button type="button" className="btn btn-primary px-5">Search</button>
-                              </div>
+                            <div className="search-block">
+                              <FormSelect id="countries"  
+                                placeholder="Where"
+                                selected={this.state.searchcountry}
+                                name="searchcountry" onChange={this.handleSearchChange}
+                                choices={countries} noHelp customClass="d-inline-block mw-170 mr-2 mb-0"/>
+                                
+                              <button type="button" className={"btn btn-primary px-5" + 
+                                (this.state.searchquery && this.state.searchcountry ? '' : ' ddisabled')}
+                                onClick={this.launchSearch}
+                                >Search</button>
+                            </div>
                           </li>
                         </ul>
                         <Dropdown type="button"

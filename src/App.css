@@ -785,3 +785,7 @@ hr {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.mw-170 {
+  min-width: 170px;
+}
