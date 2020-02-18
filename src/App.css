@@ -797,8 +797,11 @@ hr {
 }
 .advanced-search {
     position: absolute;
-bottom: -25px;
-font-size: 12px;
-left: 25%;
-color: #42a5df;
+    bottom: -25px;
+    font-size: 12px;
+    left: 25%;
+    color: #42a5df;
+}
+.mw-170 {
+  min-width: 170px;
 }

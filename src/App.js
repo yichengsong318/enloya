@@ -90,8 +90,8 @@ class App extends Component{
             <ScrollToTopRoute path="/jobs" component={Jobs} />
             <ScrollToTopRoute path="/job-detail" component={JobDetail} />
             <ScrollToTopRoute path="/contracts" component={Contracts} />
-            <ScrollToTopRoute path="/search" component={SearchResults} />
-            <ScrollToTopRoute path="/search-service" component={ServiceSearchResults} />
+            <ScrollToTopRoute path="/search-lawyer" component={SearchResults} />
+            <ScrollToTopRoute path="/search" component={ServiceSearchResults} />
             <ScrollToTopRoute path="/lawyer-profile/:lawyerId" component={LawyerProfile} />
             <ScrollToTopRoute path="/account-settings" component={AccountSettings} />
             <ScrollToTopRoute path="/confirm-token" component={ValidateAccount} />
