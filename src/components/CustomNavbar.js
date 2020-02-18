@@ -128,9 +128,11 @@ class CustomNavbar extends Component {
                           </li>
                           <li className="nav-item ml-2">
                           <div className="search-block d-flex">
+                              <span className="advanced-search">Advanced search</span>
                               <input className="form-control mr-sm-2 input-search-w10rem" readOnly type="search"
                                 placeholder="Where?" aria-label="Where"/>
                               <button type="button" className="btn btn-primary px-5">Search</button>
+
                               </div>
                           </li>
                         </ul>

@@ -785,3 +785,20 @@ hr {
 .cursor-pointer {
     cursor: pointer;
 }
+.text-elipsis {
+    height: 35px;
+    max-height: 35px;
+    margin: 0 auto;
+    line-height: 1.3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.advanced-search {
+    position: absolute;
+bottom: -25px;
+font-size: 12px;
+left: 25%;
+color: #42a5df;
+}

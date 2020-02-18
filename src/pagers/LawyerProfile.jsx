@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Switch, Route, NavLink, Redirect, withRouter } from "react-router-dom";
 
 import CustomNavbar from '../components/CustomNavbar';
-import AlertArea from '../components/AlertArea';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
@@ -150,7 +149,7 @@ export class LawyerProfile extends Component {
             <button type="button" className="btn btn-outline-primary btn-block">Send a message</button>
           </div>
         </div>*/}
-        <div className="container mb-5 mt-5">
+        <div className="container mb-5">
           <div className="row">
             <div className="col-sm-12 px-0">
               <div className="mt-5">

@@ -99,22 +99,6 @@ export class ServiceSearchResults extends Component {
           <div className="container">
             <AlertArea/>
           </div>
-          <div className="container-fluid bg-light-blue pt-3 pb-1">
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-sm-4">
-                  <FormInput placeholder="Search" type="text"
-                    value={this.state.query.search}
-                    name="search" onChange={this.handleQueryChange}
-                    noLabel noHelp />
-                </div>
-                <div className="col-sm-2">
-                  <button type="button" className="btn btn-primary px-5"
-                    onClick={() => {this.search()}}>Search</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div className="h-100 container">
           <div className="mb-2 d-flex justify-content-between align-items-center">

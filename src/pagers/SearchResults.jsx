@@ -21,6 +21,7 @@ export class SearchResults extends Component {
     super(props);
 
     this.state = {
+      isAdvanced: false,
       isGrid: true,
       pagination: 9,
       pageStep: 9,
@@ -55,8 +56,9 @@ export class SearchResults extends Component {
 
   search = () => {
     get('lawyers/search', {filter: this.state.filter, query: this.state.query}).then(res => {
+        console.log('res.data', res.data);
       this.setState({
-        lawyerResults: res.data
+        lawyerResults: res.data,
       });
     });
   };
@@ -88,6 +90,11 @@ export class SearchResults extends Component {
     this.setState({isGrid: !this.state.isGrid});
   }
 
+  checkedAdvanceSearch = () => {
+      console.log('checked');
+      this.setState({isAdvanced: !this.state.isAdvanced});
+  }
+
   render () {
     const partFilter = 3;
     const isGrid = this.state.isGrid;
@@ -96,7 +103,7 @@ export class SearchResults extends Component {
 
     return (
       <div className="App">
-        <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"/>
+        <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" />
         <div className="pb-3 mt_75">
           <div className="container">
             <AlertArea/>
@@ -155,6 +162,19 @@ export class SearchResults extends Component {
           </div>
           <div className="row">
             <div className="col-sm-3">
+                <div className="mb-3">
+                  <h5>Specialization</h5>
+                  {specializations.map(spec => {
+                    return (
+                      <FormCheck id={"check-" + spec.id} key={spec.id} label={spec.label} val={spec.id}
+                        name="specializations" onChange={this.handleFilterChange}
+                        />
+                    );
+                  }).slice(0, this.state.more.specialization ? specializations.length : partFilter)}
+                  <span className="btn btn-link" onClick={() => {this.showMore('specialization')}}>
+                    {this.state.more.specialization ? 'Show less' : 'Show all'}
+                  </span>
+                </div>
               <div className="mb-3">
                 <h5>Level of experience</h5>
                 <FormCheck id="junior" label="Junior" />
@@ -172,20 +192,6 @@ export class SearchResults extends Component {
                 }).slice(0, this.state.more.language ? languages.length : partFilter)}
                 <span className="btn btn-link" onClick={() => {this.showMore('language')}}>
                   {this.state.more.language ? 'Show less' : 'Show all'}
-                </span>
-              </div>
-
-              <div className="mb-3">
-                <h5>Specialization</h5>
-                {specializations.map(spec => {
-                  return (
-                    <FormCheck id={"check-" + spec.id} key={spec.id} label={spec.label} val={spec.id}
-                      name="specializations" onChange={this.handleFilterChange}
-                      />
-                  );
-                }).slice(0, this.state.more.specialization ? specializations.length : partFilter)}
-                <span className="btn btn-link" onClick={() => {this.showMore('specialization')}}>
-                  {this.state.more.specialization ? 'Show less' : 'Show all'}
                 </span>
               </div>
               <div className="mb-3">
@@ -216,8 +222,8 @@ export class SearchResults extends Component {
                             profilePic={lawyer.profilePic}
                             name={lawyer.firstname + ' ' + lawyer.lastname}
                             title={lawyer.title} expertises={lawyer.specializations.map(s => s.label).join(', ')}
-                            location={lawyer.location} languages={lawyer.languages.map(s => s.label).join(', ')}
-                            status="Government ID Verified" registration={"Tradmark registration in " + licencedCities} />
+                            location={`${lawyer.city}, ${lawyer.country}`} languages={lawyer.languages.map(s => s.label).join(', ')}
+                            status="Government ID Verified" registration={"Trademark registration in " + licencedCities} />
                         </div>
                       );
                     }).slice(0, this.state.pagination)

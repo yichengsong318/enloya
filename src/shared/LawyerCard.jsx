@@ -7,10 +7,11 @@ import { faMapMarkerAlt, faLanguage, faCheck, faPenAlt } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function LawyerCard (props) {
+    const nameSize = props.name.length;
   return (
-    <a href={"/lawyer-profile/" + props.lid} 
-      className={"lawyer-card" + 
-      (props.type === 'grid' ? " p-3" : " px-3 py-2") + 
+    <a href={"/lawyer-profile/" + props.lid}
+      className={"lawyer-card" +
+      (props.type === 'grid' ? " p-3" : " px-3 py-2") +
       (props.bordered ? ' card-bordered' : '')}>
       {props.special && <img src={special} alt="en_pic" className="img-fluid special" />}
       <div className={"row mx-0 h-100 align-items-" + (props.type === 'grid' ? "start" : "center")}>
@@ -18,8 +19,8 @@ export default function LawyerCard (props) {
           <div>
             <img src={props.profilePic || pic} className="img-pic-user mr-2" alt="user_pic"/>
           </div>
-          <div className="mt-2">
-            <span className="lawyer-name">{props.name}</span>
+          <div>
+            <span className={`${nameSize >= 29 ? 'text-elipsis' : ''} lawyer-name line-height-1`}>{props.name}</span>
             <div className="lawyer-title">{props.title || 'Lawyer'}</div>
             {/* <Ratings rate={props.rateValue} total={props.rateTotal} /> */}
           </div>
