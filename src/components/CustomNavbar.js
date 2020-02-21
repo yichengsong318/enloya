@@ -18,12 +18,12 @@ class CustomNavbar extends Component {
     super(props);
 
     const params = queryString.parse(this.props.location.search) || {};
-    
+
     this.state = {
       searchquery: params.q || '',
       searchcountry: params.c || '',
     };
-  } 
+  }
 
   componentDidMount() {
     $(window).on("load",function(){
@@ -75,11 +75,11 @@ class CustomNavbar extends Component {
   handleSearchChange = (name, value) => {
     this.setState({[name]: value});
   };
-  
+
   launchSearch = () => {
     this.props.history.push("/search?q=" +  this.state.searchquery + "&c=" + this.state.searchcountry);
   };
-  
+
 
   render() {
     var {mClass, nClass, cClass, slogo, q, isHome} = this.props;
@@ -128,6 +128,9 @@ class CustomNavbar extends Component {
                         <li className="nav-item">
                           <NavLink title="Contact" className="nav-link" to="/contact">Contact</NavLink>
                         </li>
+                        <li className="nav-item">
+                          <NavLink title="Pricing" className="nav-link" to="/pricing">Pricing</NavLink>
+                        </li>
                       </ul>
                     )
                   }
@@ -144,13 +147,13 @@ class CustomNavbar extends Component {
                           </li>
                           <li className="nav-item ml-2">
                             <div className="search-block">
-                              <FormSelect id="countries"  
+                              <FormSelect id="countries"
                                 placeholder="Where"
                                 selected={this.state.searchcountry}
                                 name="searchcountry" onChange={this.handleSearchChange}
                                 choices={countries} noHelp customClass="d-inline-block mw-170 mr-2 mb-0"/>
-                                
-                              <button type="button" className={"btn btn-primary px-5" + 
+
+                              <button type="button" className={"btn btn-primary px-5" +
                                 (this.state.searchquery && this.state.searchcountry ? '' : ' ddisabled')}
                                 onClick={this.launchSearch}
                                 >Search</button>

@@ -805,3 +805,65 @@ hr {
 .mw-170 {
   min-width: 170px;
 }
+.checkout-title {
+    color: #000;
+    margin: 0;
+    line-height: 1;
+}
+.font-12 {
+    font-size: 12px;
+}
+.checkout-details {
+    font-size: 14px;
+    line-height: 1;
+    color: #000;
+    margin: 0;
+}
+.checkout-summary {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    color: #000;
+}
+.line-1-5 {
+    line-height: 1.5!important;
+}
+.tooltip-details {
+    background-color: #000;
+    position: absolute;
+    bottom: 100%;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.font-1-5rem {
+    font-size: 1.5rem;
+}
+
+.px-15 {
+    padding-left: 15rem;
+    padding-right: 15rem;
+}
+.font-3rem {
+    font-size: 3rem;
+    font-weight: 100;
+}
+.btn-blue-sky {
+    background: #52a7fe!important;
+    color: #fff!important;
+}
+.c-title {
+    font-size: 1.5rem;
+    color: #000;
+    padding: 1rem!important;
+}
+.card-shadow-custom {
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)!important;
+    border: 0!important;
+}
