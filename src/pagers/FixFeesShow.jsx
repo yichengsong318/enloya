@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { readData } from "../redux/actions";
 import { get } from '../helpers/RemoteApi';
 import { withRouter } from "react-router-dom";
@@ -27,6 +28,13 @@ export class FixFeesShow extends Component {
     };
   }
 
+  handleCopyUrl = () => {
+      this.setState({ copied: true });
+      setTimeout(() => {
+        this.setState({ copied: false });
+      }, 5000);
+  }
+
   componentDidMount() {
     const params = queryString.parse(this.props.location.search);
     if (params.sid) {
@@ -43,6 +51,8 @@ export class FixFeesShow extends Component {
     // const clientTypes = serv.types.map(t => t.label).join(', ');
     // const industry = serv.industries.map(t => t.label).join(', ');
     // const isPublished = serv.isPublished;
+    const params = queryString.parse(this.props.location.search);
+    const shareLink = `${window.origin}/fix-fee-services-show?sid=${params.sid}`;
 
     return (
       <div className="App">
@@ -53,7 +63,21 @@ export class FixFeesShow extends Component {
             <div className="col-sm-8 mx-auto">
               <div className="bg-white my-5 border-radius-8">
                 <div className="px-5 pt-5 bg-blurd pb-2">
-                    <h2 className="text-left common-title mb-4 text-white">{serv.title}</h2>
+
+                    <div className="row">
+                      <div className="col-md-8 col-lg-8 col-sm-12">
+                          <h2 className="text-left common-title mb-4 text-white">{serv.title}</h2>
+                      </div>
+                      <div className="col-md-4 col-lg-4 col-sm-12 text-right">
+                      { this.state.copied ? (<span className="copied-success text-white mt-3">Fix fee service URL Copied!</span>) : ''}
+                      <CopyToClipboard
+                          text={shareLink}
+                          onCopy={this.handleCopyUrl}
+                      >
+                        <img src={require("../img/share-icon.png")} className="h-20 cursor-pointer"/>
+                      </CopyToClipboard>
+                      </div>
+                    </div>
                     <div className="row mb-4">
                       <div className="col-sm-6">
                         <h4 className="text-16 text-white">{serv.category && serv.category.label}</h4>

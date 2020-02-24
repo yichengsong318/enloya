@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import { connect } from "react-redux";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Switch, Route, NavLink, Redirect, withRouter } from "react-router-dom";
@@ -12,6 +12,7 @@ import countries from '../constants/countries';
 
 import FixedServices from './lawyer-profile/FixedServices';
 import About from './lawyer-profile/About';
+import Fees from './lawyer-profile/Fees';
 
 import { faGraduationCap, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -101,7 +102,7 @@ export class LawyerProfile extends Component {
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"
           isProfile q="team_url"/>
         <div className="bg-white mt_75 pt-2">
-          <div className="container pb-4">
+          <div className="pb-4 m-5">
             {/* <AlertArea/> */}
             {/* <div className="text-left py-4">
               <Link className="text-dark" to="/search">
@@ -109,10 +110,10 @@ export class LawyerProfile extends Component {
                 <span>Back to search results</span>
               </Link>
             </div> */}
-            <div className="row mx-0 align-items-center">
+            <div className="row mx-0 align-items-center pt-4">
               <div className="col-sm-12 px-0 d-flex lawyer-card-large align-items-top">
                 <div>
-                  <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4" alt="user_pic" />
+                  <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
                 </div>
                 <div className="w-100">
                     <div className="row">
@@ -184,8 +185,9 @@ export class LawyerProfile extends Component {
               <div className="mt-5">
                 <NavLink activeClassName="selected" className="toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
                 <NavLink activeClassName="selected" className="toplink" to={`${url}/about`}>About</NavLink>
+                <NavLink activeClassName="selected" className="toplink" to={`${url}/fees`}>Fees</NavLink>
               </div>
-              <div className="bg-white mt-2 p-3">
+              <div className="bg-white mt-2 p-3 border-radius-8">
                 <Switch>
                   <Redirect exact from={path} to={`${path}/fixed-services`}/>
                   <Route path={`${path}/fixed-services`}>
@@ -198,6 +200,9 @@ export class LawyerProfile extends Component {
                       memberships={memberships}
                       publications={publications}
                       />
+                  </Route>
+                  <Route path={`${path}/fees`}>
+                    <Fees kind="lawyer_profile" lawyerId={this.state.lawyerId} showCreate={false} />
                   </Route>
                 </Switch>
               </div>
