@@ -126,9 +126,6 @@ class CustomNavbar extends Component {
                           }
                         </li>
                         <li className="nav-item">
-                          <NavLink title="Contact" className="nav-link" to="/contact">Contact</NavLink>
-                        </li>
-                        <li className="nav-item">
                           <NavLink title="Pricing" className="nav-link" to="/pricing">Pricing</NavLink>
                         </li>
                       </ul>
@@ -154,7 +151,7 @@ class CustomNavbar extends Component {
                                 choices={countries} noHelp customClass="d-inline-block mw-170 mr-2 mb-0"/>
 
                               <button type="button" className={"btn btn-primary px-5 bg-yellow" +
-                                (this.state.searchquery && this.state.searchcountry ? '' : ' ddisabled')}
+                                (this.state.searchquery && this.state.searchcountry ? '' : ' disabled')}
                                 onClick={this.launchSearch}
                                 >Search</button>
                             </div>

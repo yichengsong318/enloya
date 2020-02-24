@@ -102,7 +102,7 @@ export class LawyerProfile extends Component {
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"
           isProfile q="team_url"/>
         <div className="bg-white mt_75 pt-2">
-          <div className="pb-4 m-5">
+          <div className="pb-4 mx-5">
             {/* <AlertArea/> */}
             {/* <div className="text-left py-4">
               <Link className="text-dark" to="/search">
@@ -184,8 +184,8 @@ export class LawyerProfile extends Component {
             <div className="col-sm-12 px-0">
               <div className="mt-5">
                 <NavLink activeClassName="selected" className="toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
-                <NavLink activeClassName="selected" className="toplink" to={`${url}/about`}>About</NavLink>
                 <NavLink activeClassName="selected" className="toplink" to={`${url}/fees`}>Fees</NavLink>
+                <NavLink activeClassName="selected" className="toplink" to={`${url}/about`}>About</NavLink>
               </div>
               <div className="bg-white mt-2 p-3 border-radius-8">
                 <Switch>
