@@ -153,7 +153,7 @@ class CustomNavbar extends Component {
                                 name="searchcountry" onChange={this.handleSearchChange}
                                 choices={countries} noHelp customClass="d-inline-block mw-170 mr-2 mb-0"/>
 
-                              <button type="button" className={"btn btn-primary px-5" +
+                              <button type="button" className={"btn btn-primary px-5 bg-yellow" +
                                 (this.state.searchquery && this.state.searchcountry ? '' : ' ddisabled')}
                                 onClick={this.launchSearch}
                                 >Search</button>
