@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
 import { createData, updateData, readData, deleteData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-import { FormDate, FormInput, FormUpload, FormCheck, FormSelect, FormTag } from '../../shared/FormElement';
+import { FormDate, FormInput, FormUpload, FormCheck, FormSelect, FormTag, FormCity } from '../../shared/FormElement';
 
 import countries from "../../constants/countries";
 
@@ -552,7 +552,7 @@ export class Professional extends Component {
                   <h5>Licensed in?</h5>
                 </div>
                 <div className="col-sm-6">
-                  <FormInput label="City" type="text" id="lic-city"
+                  <FormCity label="City" type="text" id="lic-city"
                     value={this.state.licences.curItem.city} name="city" onChange={this.handleLChange} noHelp/>
                 </div>
                 <div className="col-sm-6">
@@ -685,7 +685,7 @@ export class Professional extends Component {
                 </div>
                 <div className="col-sm-12"></div>
                 <div className="col-sm-6">
-                  <FormInput label="City" type="text" id="city"
+                  <FormCity label="City" type="text" id="city"
                     value={this.state.proexperiences.curItem.city} name="city" onChange={this.handlePEChange} noHelp/>
                 </div>
                 <div className="col-sm-6">

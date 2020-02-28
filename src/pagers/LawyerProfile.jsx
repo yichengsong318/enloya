@@ -9,9 +9,16 @@ import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
 import pic from '../assets/fff.png';
+
+import facebookIcon from '../assets/facebook_enloya.svg';
+import twitterIcon from '../assets/twitter_enloya.svg';
+import youtubeIcon from '../assets/youtube_enloya.svg';
+import linkedinIcon from '../assets/linkedin_enloya.svg';
+
 import countries from '../constants/countries';
 
 import FixedServices from './lawyer-profile/FixedServices';
+import FeeArrangements from './lawyer-profile/FeeArrangements';
 import About from './lawyer-profile/About';
 
 import { faGraduationCap, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
@@ -74,6 +81,8 @@ export class LawyerProfile extends Component {
     let { path, url } = this.props.match;
     const { proexperiences, licences, academicDegrees, memberships, publications } = this.props;
     const { userInfo } = this.state;
+
+    const socialLinks = userInfo.socialLinks || {};
 
     const specializations = userInfo.specializations || [];
 
@@ -139,6 +148,20 @@ export class LawyerProfile extends Component {
                       <span>{specializations.map(s => s.label).join(', ')}</span>
                     </div>
                   </div>
+                  <div className="d-flex">
+                    {socialLinks.linkedin && <div className="social-icon">
+                      <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a> 
+                    </div>}
+                    {socialLinks.twitter && <div className="social-icon">
+                      <a href={socialLinks.twitter}><img className="img-fluid" src={twitterIcon} alt="twitter"/></a> 
+                    </div>}
+                    {socialLinks.facebook && <div className="social-icon">
+                      <a href={socialLinks.facebook}><img className="img-fluid" src={facebookIcon} alt="facebook"/></a> 
+                    </div>}
+                    {socialLinks.youtube && <div className="social-icon">
+                      <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a> 
+                    </div>}
+                  </div>
                 </div>
               </div>
             </div>
@@ -156,6 +179,7 @@ export class LawyerProfile extends Component {
               <div className="mt-5">
                 <NavLink activeClassName="selected" className="toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
                 <NavLink activeClassName="selected" className="toplink" to={`${url}/about`}>About</NavLink>
+                <NavLink activeClassName="selected" className="toplink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>
               </div>
               <div className="bg-white mt-2 p-3">
                 <Switch>
@@ -170,6 +194,10 @@ export class LawyerProfile extends Component {
                       memberships={memberships}
                       publications={publications}
                       />
+                  </Route>
+
+                  <Route path={`${path}/fee-arrangements`}>
+                    <FeeArrangements userInfo={userInfo} />
                   </Route>
                 </Switch>
               </div>

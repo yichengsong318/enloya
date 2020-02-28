@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { FormText, FormInput, FormSelect, FormUploadImage } from '../../shared/FormElement';
+import { FormText, FormInput, FormSelect, FormUploadImage, FormCity } from '../../shared/FormElement';
 import { NotificationManager } from "react-notifications";
 import { updateData, readData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
@@ -112,10 +112,8 @@ export class General extends Component {
             <FormText label="First Name" id="firstname" value={userInfo.firstname} noHelp/>
             <FormText label="Last Name" id="lastname" value={userInfo.lastname} noHelp/>
             <FormText label="Email" id="email" value={userInfo.email} noHelp/>
-            {/* <FormInput label="Email" type="email" id="email" noHelp/> */}
-            {/* <FormInput label="Password" type="password" id="password" noHelp/> */}
 
-            <FormInput label="City" type="text" id="city" 
+            <FormCity label="City" type="text" id="city" 
               value={this.state.user.city} name="city" onChange={this.handleFormChange} noHelp/>
             
             <FormSelect label="Country" id="countries" selected={this.state.user.country} 

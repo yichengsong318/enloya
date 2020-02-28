@@ -33,14 +33,19 @@ export default (state = INIT_STATE, action) => {
     case LOGIN_USER:
       return { ...state, loading: true, errorMessage: '' };
     case LOGIN_USER_SUCCESS:
-      return { ...state, loading: false, user: action.payload.access_token, 
-        userType: action.payload.user_type, userInfo: action.payload.user, errorMessage: '' };
+      return { ...state, loading: false, 
+        user: action.payload.access_token, 
+        userType: action.payload.user_type, 
+        userInfo: action.payload.user, errorMessage: '' };
     case LOGIN_USER_ERROR:
       return { ...state, loading: false, user: '', errorMessage: action.payload.message };
     case LOAD_ME:
       return { ...state, loading: true, errorMessage: '' };
     case LOAD_ME_SUCCESS:
-      return { ...state, loading: false, userInfo: action.payload, errorMessage: '' };
+      return { ...state, loading: false, 
+        userInfo: action.payload.userInfo, 
+        userType: action.payload.userType, 
+        user: action.payload.user, errorMessage: '' };
     case LOAD_ME_ERROR:
       return { ...state, loading: false, errorMessage: action.payload.message };
     case FORGOT_PASSWORD:

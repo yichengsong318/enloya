@@ -14,6 +14,8 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 import "react-datepicker/dist/react-datepicker.css";
 
+import AlgoliaPlaces from 'algolia-places-react';
+
 export function FormSwitch(props) {
   return (
     <div className="form-group text-left">
@@ -74,6 +76,34 @@ export function FormInput(props) {
         <input type={props.type} onChange={e => props.onChange(props.name, e.target.value)} id={props.id} className="form-control"
           value={props.value} placeholder={props.placeholder} />
         {!props.noHelp && <FontAwesomeIcon icon={faQuestion} className="form-question-icon" />}
+      </div>
+    </div>
+  );
+}
+
+export function FormCity(props) {
+  return (
+    <div className={"form-group text-left" + (props.customClass ? ' ' + props.customClass : '')}>
+      {!props.noLabel && <label htmlFor={props.id}>{props.label}</label>}
+      <div className="d-flex">
+        <AlgoliaPlaces
+          defaultValue={props.value}
+          placeholder={props.placeholder || props.label}
+          options={{
+            appId: 'plHXOK0ULSLL',
+            apiKey: '1229daf30ea13a3371d7f517598d65bf',
+            language: 'en',
+            // countries: ['se'],
+            type: 'city',
+            templates: {
+              value: function(suggestion) {
+                return suggestion.name;
+              }
+            }
+          }}
+          onChange={({ suggestion }) => 
+            props.onChange(props.name, suggestion.name)}
+          />
       </div>
     </div>
   );

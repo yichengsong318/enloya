@@ -166,7 +166,7 @@ export class FixFeesDetail extends Component {
             <tbody>
               {serv.requirements.map((req, i) => {
                 return (
-                  <tr key={i}><th className="w-25">Requirement {i + 1}</th><td>{req.requirement}</td></tr>
+                  <tr key={i}><th className="w-25">Requirement {i + 1}</th><td>{req.requirement} ({req.type || 'Text'})</td></tr>
                 )
               })}
             </tbody>

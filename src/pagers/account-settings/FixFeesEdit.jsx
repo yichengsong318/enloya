@@ -32,6 +32,7 @@ export class FixFeesEdit extends Component {
         country: '',
         requirements: []
       },
+      requirementType: '',
       requirement: '',
       qQuestion: '',
       qAnswer: ''
@@ -76,7 +77,6 @@ export class FixFeesEdit extends Component {
   }
 
   onFormSubmit = () => {
-
     let s = {
       ...this.state.service, 
       lawyerId: this.props.userInfo.id,
@@ -129,11 +129,12 @@ export class FixFeesEdit extends Component {
     this.setState({service: {
       ...this.state.service, 
       requirements: [...this.state.service.requirements, {
-        requirement: this.state.requirement
+        requirement: this.state.requirement,
+        type: this.state.requirementType
       }]
     }});
 
-    this.setState({requirement: ''});
+    this.setState({requirement: '', requirementType: 'Text'});
   };
 
   deleteRequirement = (index) => {
@@ -333,7 +334,7 @@ export class FixFeesEdit extends Component {
             return (
               <div key={i} className="d-flex justify-content-between mb-4">
                 <div>
-                  <div>Requirement: {r.requirement}</div>
+                  <div>Requirement: {r.requirement} ({r.type || 'Text'})</div>
                 </div>
                 <div>
                   <span className="btn btn-link" onClick={() => {this.deleteRequirement(i)}}>Delete</span>
@@ -346,6 +347,11 @@ export class FixFeesEdit extends Component {
               value={this.state.requirement} 
               name="requirement" onChange={this.handleFormChange}
               noHelp />
+            <FormSelect label="Type of requirement" id="reqtype" 
+                selected={this.state.requirementType}
+                name="requirementType" onChange={this.handleFormChange}
+                choices={[{label: 'Text', value: 'Text'}, {label: 'Document', value: 'Document'}]}
+                noHelp/>
           </div>
           <div className="py-4 text-right">
             <button type="button" onClick={this.onAddRequirement} className="btn btn-primary px-5">Add requirement</button>

@@ -656,6 +656,7 @@ hr {
   color: #000;
 }
 
+.ap-input,
 .form-control {
   border-color: #494a4a !important;
   height: calc(1.8em + 0.75rem + 2px) !important;
@@ -788,4 +789,13 @@ hr {
 
 .mw-170 {
   min-width: 170px;
+}
+
+.social-icon {
+  width: 40px;
+}
+
+.social-icon img {
+  width: 25px;
+  margin: 5px 10px 5px 0;
 }

@@ -10,9 +10,14 @@ import SocialLogin from '../components/SocialLogin';
 import { FormSelect } from '../shared/FormElement';
 
 import { createData, readData } from "../redux/actions";
-import { loginUser } from "../redux/actions";
+import { loginUser, loadMe } from "../redux/actions";
+import {apiConfig} from '../constants/defaultValues'
 
 export class SignUpLawyer extends Component {
+
+  externalWindow;
+  animationFrameId;
+
   constructor(props) {
     super(props);
 
@@ -27,9 +32,39 @@ export class SignUpLawyer extends Component {
     }
   }
 
+  createPopup = () => {
+    const url = apiConfig.apiURL + 'auth/linkedin';
+    const width = 800;
+    const height = 600;
+    const left = window.screenX + (window.outerWidth - width) / 2;
+    const top = window.screenY + (window.outerHeight - height) / 2.5;
+
+    window.addEventListener("message", (event) => {
+      if (event.origin !== apiConfig.apiDomain)
+        return;
+    
+      localStorage.setItem('user_token', event.data);
+      localStorage.setItem('user_type', 'lawyer');
+
+      this.props.loadMe(() => {
+        this.props.history.push('/account-settings');
+      });
+    }, false);
+
+    this.externalWindow = window.open(
+      url,
+      'Sign in with LinkedIn',
+      `width=${width},height=${height},left=${left},top=${top}`
+    );
+  };
+
   componentDidMount() {
     const {readData} = this.props;
     readData('lawyer-types');
+  }
+
+  componentWillUnmount() {
+    this.externalWindow && this.externalWindow.close()
   }
 
   onFormSubmit = (e) => {
@@ -66,7 +101,7 @@ export class SignUpLawyer extends Component {
         <div className="subscribe_form_info s_form_info_two text-center mb-0">
           <h2 className="f_600 f_size_30 l_height30 t_color3 mb-0 mt_70 pt_70">Unlock the digital lawyer in you</h2><br/>
           <p className="text-black text-center mb-4">Get started - <strong>it's free</strong></p>
-          <SocialLogin />
+          <SocialLogin linkedinClick={() => {this.createPopup()}}/>
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
             { this.props.errorMessage &&
               <div className="alert alert-danger">{this.props.errorMessage}</div>
@@ -108,7 +143,8 @@ const mapStateToProps = ({data}) => {
 const mapActionToProps = {
   createData,
   readData,
-  loginUser
+  loginUser,
+  loadMe
 };
 
 export default connect(

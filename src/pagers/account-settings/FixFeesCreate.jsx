@@ -29,6 +29,7 @@ export class FixFeesCreate extends Component {
         country: '',
         requirements: []
       },
+      requirementType: '',
       requirement: '',
       qQuestion: '',
       qAnswer: ''
@@ -97,11 +98,12 @@ export class FixFeesCreate extends Component {
     this.setState({service: {
       ...this.state.service, 
       requirements: [...this.state.service.requirements, {
-        requirement: this.state.requirement
+        requirement: this.state.requirement,
+        type: this.state.requirementType
       }]
     }});
 
-    this.setState({requirement: ''});
+    this.setState({requirement: '', requirementType: 'Text'});
   };
 
   deleteRequirement = (index) => {
@@ -129,6 +131,8 @@ export class FixFeesCreate extends Component {
       this.setState({qAnswer: value});
     } else if (name === 'requirement') {
       this.setState({requirement: value});
+    } else if (name === 'requirementType') {
+      this.setState({requirementType: value});
     } else {
       this.setState({service: {...this.state.service, [name]: value}});
     }
@@ -304,7 +308,7 @@ export class FixFeesCreate extends Component {
             return (
               <div key={i} className="d-flex justify-content-between mb-4">
                 <div>
-                  <div>Requirement: {r.requirement}</div>
+                  <div>Requirement: {r.requirement} ({r.type || 'text'})</div>
                 </div>
                 <div>
                   <span className="btn btn-link" onClick={() => {this.deleteRequirement(i)}}>Delete</span>
@@ -316,7 +320,12 @@ export class FixFeesCreate extends Component {
             <FormInput label="Please provide a requirement" type="text" id="requirement" 
               value={this.state.requirement} 
               name="requirement" onChange={this.handleFormChange}
-              noHelp />
+              noHelp />  
+            <FormSelect label="Type of requirement" id="reqtype" 
+                selected={this.state.requirementType}
+                name="requirementType" onChange={this.handleFormChange}
+                choices={[{label: 'Text', value: 'Text'}, {label: 'Document', value: 'Document'}]}
+                noHelp/>
           </div>
           <div className="py-4 text-right">
             <button type="button" onClick={this.onAddRequirement} className="btn btn-primary px-5">Add requirement</button>

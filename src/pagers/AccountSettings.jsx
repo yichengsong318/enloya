@@ -7,6 +7,7 @@ import Professional from './account-settings/Professional';
 import Billing from './account-settings/Billing';
 import Team from './account-settings/Team';
 import Notifications from './account-settings/Notifications';
+import SocialLinks from './account-settings/SocialLinks';
 import FixFees from './account-settings/FixFees';
 import FixFeesCreate from './account-settings/FixFeesCreate';
 import FixFeesEdit from './account-settings/FixFeesEdit';
@@ -15,6 +16,7 @@ import Booking from './account-settings/Booking';
 import BookingCreate from './account-settings/BookingCreate';
 import BookingCreateTwo from './account-settings/BookingCreateTwo';
 import CustomNavbar from '../components/CustomNavbar';
+import FeeArrangements from './account-settings/FeeArrangements';
 
 import AlertArea from '../components/AlertArea';
 import Footer from '../components/Footer/Footer';
@@ -50,6 +52,8 @@ function AccountSettings(props) {
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/general-lawyer`}>General Information</NavLink>
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/professional-bg`}>Professional background</NavLink>
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/fix-fee-services`}>Fix-fee Services</NavLink>
+                  <NavLink activeClassName="selected" className="sidelink" to={`${url}/social-links`}>Social Links</NavLink>
+                  <NavLink activeClassName="selected" className="sidelink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>
                 </>
               }
               {/* <NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing methods</NavLink> */}
@@ -73,6 +77,8 @@ function AccountSettings(props) {
                 <ScrollToTopRoute path={`${path}/fix-fee-services-create`} component={FixFeesCreate}/>
                 <ScrollToTopRoute path={`${path}/fix-fee-services-edit`} component={FixFeesEdit}/>
                 <ScrollToTopRoute path={`${path}/fix-fee-services-detail`} component={FixFeesDetail}/>
+                <ScrollToTopRoute path={`${path}/social-links`} component={SocialLinks}/>
+                <ScrollToTopRoute path={`${path}/fee-arrangements`} component={FeeArrangements}/>
                 <ScrollToTopRoute path={`${path}/booking`} component={Booking}/>
                 <ScrollToTopRoute path={`${path}/booking-create`} component={BookingCreate}/>
                 <ScrollToTopRoute path={`${path}/booking-create-two`} component={BookingCreateTwo}/>

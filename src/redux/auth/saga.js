@@ -63,7 +63,13 @@ function* loadMe({ payload }) {
     const userInfo = yield call(loadMeAsync);
     if (!userInfo.message) {
       localStorage.setItem('user_info', JSON.stringify(userInfo.data));
-      yield put(loadMeSuccess(userInfo.data));
+
+      yield put(loadMeSuccess({
+        userInfo: userInfo.data,
+        userType: localStorage.getItem('user_type'),
+        user: localStorage.getItem('user_token')
+      }));
+
       if (onSuccess) {
         yield onSuccess();
       }
