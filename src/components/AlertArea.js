@@ -20,23 +20,23 @@ class AlertArea extends Component {
     const isValidated = this.props.userInfo && this.props.userInfo.isValidated;
     return (
       <>
-        { !isConfirmed && 
+        { !isConfirmed &&
           <div className="row mb-2">
             <div className="col-sm-12">
-              <div className="alert alert-info mb-0">
-                <div>Please confirm your account to have a full experience of Enloya. if you don't find the mail, 
+              <div className="alert alert-info mb-0 mt-4">
+                <div>Please confirm your account to have a full experience of Enloya. if you don't find the mail,
                   <span className="btn btn-link" onClick={this.resendConfirmMsg}>We can resend it to you</span>
                 </div>
               </div>
             </div>
           </div>
         }
-        { this.props.userType === 'lawyer' && !isValidated && 
+        { this.props.userType === 'lawyer' && !isValidated &&
           <div className="row mb-2">
             <div className="col-sm-12">
               <div className="alert alert-warning mb-0">
-                <div>Your account is currently under validation. 
-                  Please update your information as much as possible. 
+                <div>Your account is currently under validation.
+                  Please update your information as much as possible.
                   We will contact you as soon as possible.
                 </div>
               </div>

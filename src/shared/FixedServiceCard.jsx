@@ -17,10 +17,10 @@ export default function FixedServiceCard (props) {
     <div className="fixed-service custom-fix-fee-service">
       <div className="header bg-white text-white">
           <div className="d-flex justify-content-between">
-            <h5 className="mb-0">
-              <span style={{color: '#fff'}}>{props.name}</span>
+            <h3 className="mb-0">
+              <a href={shareLink} style={{color: '#fff', fontSize: "16px"}}>{props.name}</a> 
               {/* <div>{props.company}</div> */}
-            </h5>
+            </h3>
             <CopyToClipboard
                 text={shareLink}
                 onCopy={handleCopyUrl}

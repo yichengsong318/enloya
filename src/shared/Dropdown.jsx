@@ -23,12 +23,13 @@ export default function Dropdown (props) {
               :
               <FontAwesomeIcon icon={faUserCircle}/>
             }
-            <span className="mx-3">{props.text}</span>
+            <span className="mx-2">{props.text}</span>
             { show ?
               <FontAwesomeIcon icon={faAngleUp} className="angle-icon align-middle" />
               :
               <FontAwesomeIcon icon={faAngleDown} className="angle-icon align-middle" />
             }
+            <a href="/checkout"><img src={require("../img/cart-icon.svg")} alt="" style={{ height: "25px", marginLeft: "10px"}}/></a>
           </div>
         :
           (props.type === 'search' ?

@@ -28,21 +28,26 @@ const FooterData = {
           },
           {
             id: 3,
+            url: '/pricing',
+            text: 'Pricing',
+          },
+          {
+            id: 4,
             url: '/become-ambassador',
             text: 'Become an Ambassador',
           },
           {
-            id: 4,
+            id: 5,
             url: '/become-investor',
             text: 'Investor Relations',
           },
           {
-            id: 5,
+            id: 6,
             url: '/bloglist',
             text: 'Our Blog',
           },
           {
-            id: 6,
+            id: 7,
             url: '#',
             text: 'Careers',
           },

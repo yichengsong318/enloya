@@ -33,6 +33,7 @@ import CookiesPreferences from './pagers/CookiesPreferences';
 import BecomeInvestor from './pagers/BecomeInvestor';
 import BecomeAmbassador from './pagers/BecomeAmbassador';
 import Checkout from './pagers/Checkout';
+import Pricing from './pagers/Pricing';
 
 import Jobs from './pagers/Jobs';
 import JobDetail from './pagers/JobDetail';
@@ -52,7 +53,7 @@ class App extends Component{
       this.props.loadMe();
     }
   }
-  
+
   render() {
     return(
       <div>
@@ -79,6 +80,7 @@ class App extends Component{
             <ScrollToTopRoute path="/signup-lawyer" component={SignUpLawyer} />
             <ScrollToTopRoute path="/signup-client" component={SignUpClient} />
             <ScrollToTopRoute path="/checkout" component={Checkout} />
+            <ScrollToTopRoute path="/pricing" component={Pricing} />
             <ScrollToTopRoute path="/checkout-success" component={CheckoutSuccess} />
             <ScrollToTopRoute path="/terms-of-use" component={TermsOfUse} />
             <ScrollToTopRoute path="/fix-fee-services-show" component={FixFeesShow} />

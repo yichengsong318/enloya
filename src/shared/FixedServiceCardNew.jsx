@@ -48,7 +48,7 @@ export default function FixedServiceCard (props) {
         { state.copied ? (<span className="copied-success">Web URL Copied!</span>) : ''}
         <div className="row mt-3">
             <div className="col-md-7">
-              <b>{props.lawyer.firstname} {props.lawyer.lastname}</b>
+              <b><a className="text-dark" href={"/lawyer-profile/" + props.lawyer.id}>{props.lawyer.firstname} {props.lawyer.lastname}</a></b>
               <p className="subtitle font-italyc">{props.lawyer.title}</p>
               <p className="subtitle">Location: {props.lawyer.city}, {props.lawyer.country}</p>
               <p className="subtitle">Licenced in: {props.lawyer.country}</p>
