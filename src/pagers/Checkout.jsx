@@ -24,19 +24,19 @@ function Checkout() {
                 <div className="col-sm-12 mb-3">
                   <p className="checkout-summary">Summary</p>
                 </div>
-                <div className="col-sm-8 mb-3">
+                <div className="col-8 col-sm-8 mb-3">
                   <p className="checkout-title">Service One name</p>
                   <span className="font-12">Lawyer name</span>
                 </div>
-                <div className="col-sm-4 text-right">
+                <div className="col-4 col-sm-4 text-right">
                     <p className="checkout-title">$9.99</p>
                     <span className="font-12 text-danger">Delete</span>
                 </div>
-                <div className="col-sm-8 mb-3">
+                <div className="col-8 col-sm-8 mb-3">
                   <p className="checkout-title">Service Two name</p>
                   <span className="font-12">Lawyer name</span>
                 </div>
-                <div className="col-sm-4 text-right">
+                <div className="col-4 col-sm-4 text-right">
                     <p className="checkout-title">$3.99</p>
                     <span className="font-12 text-danger">Delete</span>
                 </div>
@@ -54,16 +54,16 @@ function Checkout() {
                     />
                   </p>
                 </div>
-                <div className="col-sm-8 mb-3">
+                <div className="col-8 col-sm-8 mb-3">
                   <p className="checkout-title">Total</p>
                 </div>
-                <div className="col-sm-4 text-right text-bold"><span>$13.98</span></div>
+                <div className="col-4 col-sm-4 text-right text-bold"><span>$13.98</span></div>
 
               </div>
               <hr/>
               <div className="py-3">
-                <a href="/checkout-success" className="btn btn-primary mr-5">Continue shopping</a>
-                <a href="/checkout-success" className="btn btn-primary bg-yellow ml-5">Go to checkout</a>
+                <a href="/checkout-success" className="btn btn-primary mr-5 col-12 checkout-btn">Continue shopping</a>
+                <a href="/checkout-success" className="btn btn-primary bg-yellow ml-5 col-12 checkout-btn checkout-btn-go">Go to checkout</a>
               </div>
             </div>
           </div>

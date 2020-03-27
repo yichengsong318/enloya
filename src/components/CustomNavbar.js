@@ -162,7 +162,7 @@ class CustomNavbar extends Component {
                           text={this.props.userInfo.firstname + ' ' + this.props.userInfo.lastname}
                           orientation="right">
                           <NavLink title="Account Settings" className="dropdown-item"
-                            to="/account-settings">Account Settings</NavLink>
+                            to="/account-settings/general-lawyer">Account Settings</NavLink>
 
                           { this.props.userType === 'lawyer' &&
                             <NavLink title="My Profile" className="dropdown-item"
@@ -173,10 +173,10 @@ class CustomNavbar extends Component {
                     )
                     :
                     (
-                      <>
-                        <a className="btn_get btn_hover" href="/login">Login</a>
-                        <a className="btn btn_get btn_get_two" href="/register">Sign Up</a>
-                      </>
+                      <div className="d-flex mobile-margin-bottom">
+                        <a className="btn_get btn_hover col-5" href="/login">Login</a>
+                        <a className="btn btn_get btn_get_two col-5" href="/register">Sign Up</a>
+                      </div>
                     )
                   }
                 </div>

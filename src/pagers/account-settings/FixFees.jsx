@@ -22,7 +22,7 @@ export class FixFees extends Component {
           <div className="row mx-auto">
             {this.props.services.map(srv => {
               return (
-                <div className="col-sm-6 px-1" key={srv.id}>
+                <div className="col-sm-12 col-md-6 px-1" key={srv.id}>
                   <FixedServiceCard
                     kind="lawyer_services"
                     sid={srv.id}

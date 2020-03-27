@@ -13,8 +13,8 @@ const Register = () => {
         <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn" q="team_url"/>
         <div className="h-100 container mt-5 pt-5">
           <div className="row">
-            <div className="col-sm-6">
-              <div className="auth-block">
+            <div className="col-sm-6 col-md-6">
+              <div className="auth-block web-only">
                 <h1 className="h1">Create your Enloya account</h1>
                 <div className="row signup-wrapper">
                   <div className="col-sm-6 text-white">
@@ -51,6 +51,47 @@ const Register = () => {
                       <div>
                         <Link to="/signup-lawyer" className="btn btn-primary btn-block">Sign Up Now</Link>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="auth-block mobile-only">
+              <h1 className="h1">Create your Enloya account</h1>
+              <div className="row signup-wrapper">
+                <div className="col-6 text-white">
+                  <div className="signup-container signup-left">
+                    <div className="header d-flex">
+                      <FontAwesomeIcon icon={faUsers} className="signup-icon"/>
+                      <div>
+                        <h3 className="text-white mb-1">Clients</h3>
+                      </div>
+                    </div>
+                    <ul className="mb-4">
+                      <li>- We need some facts here</li>
+                      <li>- Why they should sign up</li>
+                      <li>- Why they should go premium</li>
+                    </ul>
+                    <div>
+                      <Link to="/signup-client" className="btn btn-outline-white btn-block">Sign Up Now</Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="signup-container">
+                    <div className="header d-flex">
+                      <FontAwesomeIcon icon={faUsers} className="signup-icon text-logo-primary"/>
+                      <div>
+                        <h3 className="mb-1">Lawyers</h3>
+                      </div>
+                    </div>
+                    <ul className="mb-4">
+                      <li>- We need some facts here</li>
+                      <li>- Why they should sign up</li>
+                      <li>- Why they should go premium</li>
+                    </ul>
+                    <div>
+                      <Link to="/signup-lawyer" className="btn btn-primary btn-block">Sign Up Now</Link>
                     </div>
                   </div>
                 </div>

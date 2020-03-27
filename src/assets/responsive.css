@@ -1109,6 +1109,9 @@
 
 
 @media (max-width:991px){
+    .register-imager {
+        display: none;
+    }
     .s_service_section {
         margin-top: 280px;
     }
@@ -2377,7 +2380,21 @@
     }
 }
 
+@media (min-width:770px){
+    .mobile-only {
+        display: none;
+    }
+    .web-only {
+        display: inline-block;
+    }
+}
 @media (max-width:768px){
+    .mobile-only {
+        display: block;
+    }
+    .web-only {
+        display: none;
+    }
     .sec_title br,.prototype_service_info h2 br,.hosting_title h2 br{
         display: none;
     }
@@ -4200,6 +4217,28 @@
 }
 
 @media (max-width:480px){
+    .btn {
+        font-size: 10px !important;
+    }
+    .mobile-padding-x-0 {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .mobile-margin-bottom {
+        margin-bottom: 1rem;
+    }
+    .mobile-margin-top {
+        margin-top: 1rem;
+    }
+    .mobile-ml-0 {
+        margin-left: 0rem!important;
+    }
+    .checkout-btn {
+        margin: 0!important;
+    }
+    .checkout-btn-go {
+        margin-top: 1rem!important;
+    }
     .feedback_area_three{
         height: auto;
     }
