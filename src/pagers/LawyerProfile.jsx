@@ -112,62 +112,64 @@ export class LawyerProfile extends Component {
             </div> */}
             <div className="row mx-0 align-items-center pt-4">
               <div className="col-sm-12 px-0 d-flex lawyer-card-large align-items-top">
-                <div>
-                  <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
-                </div>
-                <div className="w-100">
-                    <div className="row">
-                      { this.state.copied ? (<span className="copied-success">Lowyer profile URL Copied!</span>) : ''}
-                      <div className="col-md-8 col-lg-8 col-sm-12">
-                          <h2 className="font-weight-bold text-left">
-                            {userInfo.title}
-                            {/* <img src={special} alt="en_pic" className="img-fluid special-profil ml-3"/> */}
-                          </h2>
+                <div className="row">
+                    <div className="col-md-2 col-sm-12 ml-auto">
+                      <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
+                    </div>
+                    <div className="col-md-9 com-sm-12">
+                        <div className="row">
+                          { this.state.copied ? (<span className="copied-success">Lowyer profile URL Copied!</span>) : ''}
+                          <div className="col-md-8 col-lg-8 col-sm-12">
+                              <h2 className="font-weight-bold text-left">
+                                {userInfo.title}
+                                {/* <img src={special} alt="en_pic" className="img-fluid special-profil ml-3"/> */}
+                              </h2>
+                          </div>
+                          <div className="col-md-4 col-lg-4 col-sm-12 text-right">
+                          <CopyToClipboard
+                              text={shareLink}
+                              onCopy={this.handleCopyUrl}
+                          >
+                            <img src={require("../img/share.png")} className="h-20 cursor-pointer"/>
+                          </CopyToClipboard>
+                          </div>
+                        </div>
+                      <div className="lawyer-name-profile">{userInfo.firstname} {userInfo.lastname}</div>
+                      <div className="font-weight-bold">{currentPositionLabel}</div>
+                      <div className="mt-1">
+                        {userInfo.shortDescription}
                       </div>
-                      <div className="col-md-4 col-lg-4 col-sm-12 text-right">
-                      <CopyToClipboard
-                          text={shareLink}
-                          onCopy={this.handleCopyUrl}
-                      >
-                        <img src={require("../img/share.png")} className="h-20 cursor-pointer"/>
-                      </CopyToClipboard>
+                      <div className="row align-items-center">
+                        {/* <div className="col-sm-4 mb-2">
+                          <div className="d-flex align-items-center">
+                            <Ratings rate={4} total={5} />
+                            <span className="ml-2 mt-1">4.0 (11,345 ratings)</span>
+                          </div>
+                        </div> */}
+                        <div className="col-sm-4 mt-2 line-height-1-1">Licensed in: {licencedCities}</div>
+                        <div className="col-sm-4 mt-2 line-height-1-1">Licensed since: {licencedYear && licencedYear.since}</div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-4 mb-2 col-sm-12">
+                          <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary-o mr-2" />
+                          <span>{userLocation}</span>
+                        </div>
+                        <div className="col-md-8 mb-2 col-sm-12">
+                          <FontAwesomeIcon icon={faGraduationCap} className="text-primary-o mr-2" />
+                          <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
+                        </div>
+                        <div className="col-sm-12 mb-2">
+                          <img src={require("../img/socials/link.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
+                          <img src={require("../img/socials/tw.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
+                          <img src={require("../img/socials/face.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
+                          <img src={require("../img/socials/yout.svg")} alt="" style={{ height: "25px"}}/>
+                        </div>
+                        <div className="col-sm-12 mb-2">
+                          <span className="font-weight-bold mr-3">Area(s) of expertise</span>
+                          <span>{specializations.map(s => s.label).join(', ')}</span>
+                        </div>
                       </div>
                     </div>
-                  <div className="lawyer-name-profile">{userInfo.firstname} {userInfo.lastname}</div>
-                  <div className="font-weight-bold">{currentPositionLabel}</div>
-                  <div className="mt-1">
-                    {userInfo.shortDescription}
-                  </div>
-                  <div className="row align-items-center">
-                    {/* <div className="col-sm-4 mb-2">
-                      <div className="d-flex align-items-center">
-                        <Ratings rate={4} total={5} />
-                        <span className="ml-2 mt-1">4.0 (11,345 ratings)</span>
-                      </div>
-                    </div> */}
-                    <div className="col-sm-4 mt-2 line-height-1-1">Licensed in: {licencedCities}</div>
-                    <div className="col-sm-4 mt-2 line-height-1-1">Licensed since: {licencedYear && licencedYear.since}</div>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-4 mb-2">
-                      <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary-o mr-2" />
-                      <span>{userLocation}</span>
-                    </div>
-                    <div className="col-sm-4 mb-2">
-                      <FontAwesomeIcon icon={faGraduationCap} className="text-primary-o mr-2" />
-                      <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
-                    </div>
-                    <div className="col-sm-12 mb-2">
-                      <img src={require("../img/socials/link.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
-                      <img src={require("../img/socials/tw.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
-                      <img src={require("../img/socials/face.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
-                      <img src={require("../img/socials/yout.svg")} alt="" style={{ height: "25px"}}/>
-                    </div>
-                    <div className="col-sm-12 mb-2">
-                      <span className="font-weight-bold mr-3">Area(s) of expertise</span>
-                      <span>{specializations.map(s => s.label).join(', ')}</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -182,10 +184,10 @@ export class LawyerProfile extends Component {
         <div className="container mb-5">
           <div className="row">
             <div className="col-sm-12 px-0">
-              <div className="mt-5">
-                <NavLink activeClassName="selected" className="toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
-                <NavLink activeClassName="selected" className="toplink" to={`${url}/fees`}>Fees</NavLink>
-                <NavLink activeClassName="selected" className="toplink" to={`${url}/about`}>About</NavLink>
+              <div className="mt-5 mt-5-mobile">
+                <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
+                <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fees`}>Fees</NavLink>
+                <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/about`}>About me</NavLink>
               </div>
               <div className="bg-white mt-2 p-3 border-radius-8">
                 <Switch>
