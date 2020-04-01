@@ -137,7 +137,7 @@ class CustomNavbar extends Component {
                       <>
                         <ul className="navbar-nav mr-2 my-3 ml-auto">
                           <li className="nav-item dropdown">
-                            <FormInput type="text" id="searchquery" customClass="mb-0"
+                            <FormInput type="text" id="searchquery" customClass="mb-0 w-320"
                               value={this.state.searchquery} placeholder="Which legal job do you want done?"
                               name="searchquery" onChange={this.handleSearchChange}
                               noHelp noLabel/>

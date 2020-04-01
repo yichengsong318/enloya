@@ -48,8 +48,8 @@ const FooterData = {
           },
           {
             id: 7,
-            url: '#',
-            text: 'Careers',
+            url: 'support',
+            text: 'Support',
           },
         ],
       },
@@ -247,8 +247,8 @@ const FooterData = {
       },
       {
         id: 2,
-        url: '#',
-        text: 'Careers',
+        url: 'support',
+        text: 'Support',
       },
       {
         id: 3,

@@ -4336,7 +4336,7 @@
         display: block;
         text-align: center;
     }
-    .mt-5-mobile {
+    .mt-5-mobile, .mt-3-mobile {
         margin-top: 0!important;
     }
 }
