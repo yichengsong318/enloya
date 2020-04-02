@@ -114,10 +114,10 @@ export class LawyerProfile extends Component {
             <div className="row mx-0 align-items-center pt-4">
               <div className="col-sm-12 px-0 lawyer-card-large">
                 <div className="row">
-                  <div className="col-md-3 col-sm-12 ml-auto">
+                  <div className="col-md-2 col-sm-12 ml-auto">
                     <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
                   </div>
-                  <div className="col-md-8 com-sm-12">
+                  <div className="col-md-9 com-sm-12">
                       <div className="row">
                         { this.state.copied ? (<span className="copied-success">Lowyer profile URL Copied!</span>) : ''}
                         <div className="col-md-8 col-lg-8 col-sm-12">
@@ -161,16 +161,16 @@ export class LawyerProfile extends Component {
                       </div>
                       <div className="col-sm-12 mb-2">
                         {socialLinks.linkedin && <div className="social-icon">
-                          <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a> 
+                          <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a>
                         </div>}
                         {socialLinks.twitter && <div className="social-icon">
-                          <a href={socialLinks.twitter}><img className="img-fluid" src={twitterIcon} alt="twitter"/></a> 
+                          <a href={socialLinks.twitter}><img className="img-fluid" src={twitterIcon} alt="twitter"/></a>
                         </div>}
                         {socialLinks.facebook && <div className="social-icon">
-                          <a href={socialLinks.facebook}><img className="img-fluid" src={facebookIcon} alt="facebook"/></a> 
+                          <a href={socialLinks.facebook}><img className="img-fluid" src={facebookIcon} alt="facebook"/></a>
                         </div>}
                         {socialLinks.youtube && <div className="social-icon">
-                          <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a> 
+                          <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a>
                         </div>}
                       </div>
                       <div className="col-sm-12 mb-2">
@@ -190,8 +190,8 @@ export class LawyerProfile extends Component {
               <div className="mt-5 mt-5-mobile">
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fees`}>Fees</NavLink>
-                <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/about`}>About</NavLink>
-                <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>
+                <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/about`}>About me</NavLink>
+                {/*<NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>*/}
               </div>
               <div className="bg-white mt-2 p-3 border-radius-8">
                 <Switch>
