@@ -112,7 +112,7 @@ export class LawyerProfile extends Component {
         <div className="bg-white mt_75 pt-2">
           <div className="pb-4 mx-5">
             <div className="row mx-0 align-items-center pt-4">
-              <div className="col-sm-12 px-0 d-flex lawyer-card-large align-items-top">
+              <div className="col-sm-12 px-0 lawyer-card-large">
                 <div className="row">
                   <div className="col-md-3 col-sm-12 ml-auto">
                     <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
@@ -160,10 +160,18 @@ export class LawyerProfile extends Component {
                         <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
                       </div>
                       <div className="col-sm-12 mb-2">
-                        <img src={require("../img/socials/link.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
-                        <img src={require("../img/socials/tw.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
-                        <img src={require("../img/socials/face.svg")} alt="" style={{ height: "25px"}} className="mr-2"/>
-                        <img src={require("../img/socials/yout.svg")} alt="" style={{ height: "25px"}}/>
+                        {socialLinks.linkedin && <div className="social-icon">
+                          <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a> 
+                        </div>}
+                        {socialLinks.twitter && <div className="social-icon">
+                          <a href={socialLinks.twitter}><img className="img-fluid" src={twitterIcon} alt="twitter"/></a> 
+                        </div>}
+                        {socialLinks.facebook && <div className="social-icon">
+                          <a href={socialLinks.facebook}><img className="img-fluid" src={facebookIcon} alt="facebook"/></a> 
+                        </div>}
+                        {socialLinks.youtube && <div className="social-icon">
+                          <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a> 
+                        </div>}
                       </div>
                       <div className="col-sm-12 mb-2">
                         <span className="font-weight-bold mr-3">Area(s) of expertise</span>
@@ -171,20 +179,6 @@ export class LawyerProfile extends Component {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="d-flex">
-                  {socialLinks.linkedin && <div className="social-icon">
-                    <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a> 
-                  </div>}
-                  {socialLinks.twitter && <div className="social-icon">
-                    <a href={socialLinks.twitter}><img className="img-fluid" src={twitterIcon} alt="twitter"/></a> 
-                  </div>}
-                  {socialLinks.facebook && <div className="social-icon">
-                    <a href={socialLinks.facebook}><img className="img-fluid" src={facebookIcon} alt="facebook"/></a> 
-                  </div>}
-                  {socialLinks.youtube && <div className="social-icon">
-                    <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a> 
-                  </div>}
                 </div>
               </div>
             </div>
