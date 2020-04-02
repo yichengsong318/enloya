@@ -114,10 +114,10 @@ export class LawyerProfile extends Component {
             <div className="row mx-0 align-items-center pt-4">
               <div className="col-sm-12 px-0 d-flex lawyer-card-large align-items-top">
                 <div className="row">
-                  <div className="col-md-2 col-sm-12 ml-auto">
+                  <div className="col-md-3 col-sm-12 ml-auto">
                     <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
                   </div>
-                  <div className="col-md-9 com-sm-12">
+                  <div className="col-md-8 com-sm-12">
                       <div className="row">
                         { this.state.copied ? (<span className="copied-success">Lowyer profile URL Copied!</span>) : ''}
                         <div className="col-md-8 col-lg-8 col-sm-12">
