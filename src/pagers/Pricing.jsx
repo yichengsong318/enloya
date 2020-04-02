@@ -28,7 +28,7 @@ function Pricing() {
                             <h1 class="card-title">$0<span className="font-12">/mo</span></h1>
                             <p class="card-text">1 user account</p>
                             <p class="card-text">5 service listings</p>
-                            <a href="#" class="seo_btn seo_btn_one btn_hover bg-yellow">Sign up for free</a>
+                            <a href="/" class="seo_btn seo_btn_one btn_hover bg-yellow">Sign up for free</a>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ function Pricing() {
                             <h1 class="card-title">$49<span className="font-12">/mo</span></h1>
                             <p class="card-text">1 user account</p>
                             <p class="card-text">Unlimited service listings</p>
-                            <a href="#" class="seo_btn seo_btn_one btn_hover bg-yellow btn-blue-sky">Get started</a>
+                            <a href="/" class="seo_btn seo_btn_one btn_hover bg-yellow btn-blue-sky">Get started</a>
                         </div>
                     </div>
                 </div>

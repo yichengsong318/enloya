@@ -196,7 +196,7 @@ export function FormUploadImage(props) {
 
   const [src, setSrc] = useState();
   const [img, setImg] = useState();
-  const [saving, setSaving] = useState();
+  const [saving] = useState();
 
   const handleChange = (imgFile) => {
     var reader = new FileReader();

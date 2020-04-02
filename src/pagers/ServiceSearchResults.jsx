@@ -9,7 +9,7 @@ import AlertArea from '../components/AlertArea';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
-import { FormInput, FormCheck } from '../shared/FormElement';
+import { FormCheck } from '../shared/FormElement';
 
 import { faTh, faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -29,7 +29,6 @@ export default function Dropdown (props) {
               :
               <FontAwesomeIcon icon={faAngleDown} className="angle-icon align-middle" />
             }
-            <a href="/checkout"><img src={require("../img/cart-icon.svg")} alt="" style={{ height: "25px", marginLeft: "10px"}}/></a>
           </div>
         :
           (props.type === 'search' ?

@@ -25,7 +25,7 @@ export default function FixedServiceCard (props) {
                 text={shareLink}
                 onCopy={handleCopyUrl}
             >
-              <img src={require("../img/share-icon.png")} className="h-20 cursor-pointer"/>
+              <img alt="" src={require("../img/share-icon.png")} className="h-20 cursor-pointer"/>
             </CopyToClipboard>
           </div>
           <div className={`${nameSize <= 45 ? 'mt-4' : ''} line-height-1`}><b>Area of law:</b> {props.category}</div>
@@ -42,7 +42,7 @@ export default function FixedServiceCard (props) {
               <p className="subtitle">Licenced in: {props.lawyer.country}</p>
             </div>
             <div className="col-md-2 px-0">
-              <img src={props.lawyer.profilePic} className="w-100"/>
+              <img alt="" src={props.lawyer.profilePic} className="w-100"/>
             </div>
             <div className={props.isGrid ? "col-md-3 pl-1 text-right" : "d-grid col-md-3 pl-1 text-right"}>
               <div className="priced">${props.price}</div>

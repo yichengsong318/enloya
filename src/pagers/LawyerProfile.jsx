@@ -137,7 +137,7 @@ export class LawyerProfile extends Component {
                           text={shareLink}
                           onCopy={this.handleCopyUrl}
                       >
-                        <img src={require("../img/share.png")} className="h-20 cursor-pointer"/>
+                        <img alt="" src={require("../img/share.png")} className="h-20 cursor-pointer"/>
                       </CopyToClipboard>
                       </div>
                     </div>

@@ -74,7 +74,7 @@ export class FixFeesShow extends Component {
                           text={shareLink}
                           onCopy={this.handleCopyUrl}
                       >
-                        <img src={require("../img/share-icon.png")} className="h-20 cursor-pointer"/>
+                        <img alt="" src={require("../img/share-icon.png")} className="h-20 cursor-pointer"/>
                       </CopyToClipboard>
                       </div>
                     </div>

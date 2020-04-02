@@ -58,6 +58,7 @@ function AccountSettings(props) {
               }
               {/* <NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing methods</NavLink> */}
               {/*<NavLink activeClassName="selected" className="sidelink" to={`${url}/teams`}>Teams</NavLink>*/}
+              <NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing</NavLink>
               <NavLink activeClassName="selected" className="sidelink" to={`${url}/notifications`}>Notification settings</NavLink>
               {/*<NavLink activeClassName="selected" className="sidelink" to={`${url}/booking`}>Booking Settings</NavLink>*/}
               {/* <NavLink activeClassName="selected" className="sidelink" to={`${url}/booking-create`}>Booking Settings Create</NavLink> */}
@@ -67,21 +68,21 @@ function AccountSettings(props) {
             <div className="h-100">
               <Switch>
                 <Redirect exact from={path} to={`${path}/general-${props.userType}`}/>
-                <ScrollToTopRoute path={`${path}/general-lawyer`} component={General}/>
-                <ScrollToTopRoute path={`${path}/general-client`} component={GeneralBasic}/>
-                <ScrollToTopRoute path={`${path}/professional-bg`} component={Professional}/>
-                <ScrollToTopRoute path={`${path}/billing`} component={Billing}/>
-                <ScrollToTopRoute path={`${path}/teams`} component={Team}/>
-                <ScrollToTopRoute path={`${path}/notifications`} component={Notifications}/>
-                <ScrollToTopRoute path={`${path}/fix-fee-services`} component={FixFees}/>
-                <ScrollToTopRoute path={`${path}/fix-fee-services-create`} component={FixFeesCreate}/>
-                <ScrollToTopRoute path={`${path}/fix-fee-services-edit`} component={FixFeesEdit}/>
-                <ScrollToTopRoute path={`${path}/fix-fee-services-detail`} component={FixFeesDetail}/>
-                <ScrollToTopRoute path={`${path}/social-links`} component={SocialLinks}/>
-                <ScrollToTopRoute path={`${path}/fee-arrangements`} component={FeeArrangements}/>
-                <ScrollToTopRoute path={`${path}/booking`} component={Booking}/>
-                <ScrollToTopRoute path={`${path}/booking-create`} component={BookingCreate}/>
-                <ScrollToTopRoute path={`${path}/booking-create-two`} component={BookingCreateTwo}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/general-lawyer`} component={General}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/general-client`} component={GeneralBasic}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/professional-bg`} component={Professional}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/billing`} component={Billing}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/teams`} component={Team}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/notifications`} component={Notifications}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/fix-fee-services`} component={FixFees}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/fix-fee-services-create`} component={FixFeesCreate}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/fix-fee-services-edit`} component={FixFeesEdit}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/fix-fee-services-detail`} component={FixFeesDetail}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/social-links`} component={SocialLinks}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/fee-arrangements`} component={FeeArrangements}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/booking`} component={Booking}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/booking-create`} component={BookingCreate}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/booking-create-two`} component={BookingCreateTwo}/>
               </Switch>
             </div>
           </div>

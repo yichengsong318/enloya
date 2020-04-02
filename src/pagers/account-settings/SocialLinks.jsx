@@ -53,8 +53,6 @@ export class SocialLinks extends Component {
   };
 
   render () {
-    const { userInfo } = this.props;
-
     return (
       <div className="py-4 px-4 account-settings">
         <h2 className="mt-2 mb-4">Social Links Settings</h2>

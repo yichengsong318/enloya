@@ -79,13 +79,14 @@ const putFile = (endpoint, body) => {
   });
 };
 
-const remove = (endpoint) => {
+const remove = (endpoint, body) => {
   var token = localStorage.getItem('user_token');
 
   return axios({
     method: 'delete',
     headers: { Authorization: `Bearer ${token}` },
-    url: apiConfig.apiURL + endpoint
+    url: apiConfig.apiURL + endpoint,
+    data: body
   });
 };
 

@@ -1,8 +1,34 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
+import { loadMe, logoutUser } from "./redux/actions";
+import { connect } from "react-redux";
+
 import './App.css';
 
 class ScrollToTopRoute extends Component {
+
+  componentDidMount() {
+    if (this.props.hideLoader) {
+      this.props.hideLoader()
+    }
+    if (this.props.user) {
+      this.props.loadMe(null, (err, status) => {
+        if (status === 401) {
+          console.log(this.props);
+          if (this.props.authRequired) {
+            this.props.logoutUser();
+            this.props.history.replace('/login')
+          }
+        }
+      });
+    } else {
+      if (this.props.authRequired) {
+        this.props.logoutUser();
+        this.props.history.replace('/login')
+      }
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.path === this.props.location.pathname && this.props.location.pathname !== prevProps.location.pathname) {
       window.scrollTo(0, 0)
@@ -16,4 +42,18 @@ class ScrollToTopRoute extends Component {
   }
 }
 
-export default withRouter(ScrollToTopRoute);
+const mapStateToProps = ({ authUser }) => {
+  const { user } = authUser;
+
+  return { user };
+};
+
+const mapActionToProps = {
+  loadMe,
+  logoutUser
+};
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapActionToProps
+)(ScrollToTopRoute));

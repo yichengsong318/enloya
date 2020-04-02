@@ -58,7 +58,7 @@ const loadMeAsync = async () =>
     .catch(error => error);
 
 function* loadMe({ payload }) {
-  const { onSuccess } = payload;
+  const { onSuccess, onFailure } = payload;
   try {
     const userInfo = yield call(loadMeAsync);
     if (!userInfo.message) {
@@ -74,9 +74,16 @@ function* loadMe({ payload }) {
         yield onSuccess();
       }
     } else {
+      if (onFailure) {
+        const status = userInfo.request ? userInfo.request.status : 0;
+        yield onFailure(userInfo.message, status);
+      }
       yield put(loadMeError(userInfo.message));
     }
   } catch (error) {
+    if (onFailure) {
+      yield onFailure(error);
+    }
     yield put(loadMeError(error));
     
   }

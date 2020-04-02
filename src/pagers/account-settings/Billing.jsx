@@ -1,86 +1,192 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from "react-redux";
+import { NotificationManager } from "react-notifications";
+import { updateData, loadMe } from "../../redux/actions";
+import { withRouter, NavLink } from "react-router-dom";
 
-import { FormCheck, FormInput } from '../../shared/FormElement';
+import {loadStripe} from '@stripe/stripe-js';
+import {CardElement, Elements, ElementsConsumer} from '@stripe/react-stripe-js';
 
-function Billing() {
+import {post, remove} from '../../helpers/RemoteApi';
 
-  return (
-    <div className="py-4 px-2 account-settings">
-      <h2 className="mt-2 mb-3">Billing methods</h2>
-      <div className="row">
-        <div className="col-sm-6">
-          <div>Card Number: 5678 6789 0123 4567</div>
-          <div>Name: James Smith</div>
-          <div>Adress: 456 Avenue JP II, Switzerland</div>
-          <div className="edit-billing-method">Edit</div>
-        </div>
-        <div className="col-sm-3">
-          <div>Expiry: 09/2021</div>
-        </div>
-        <div className="col-sm-3">
-          <div>Security Code: 091</div>
-        </div>
-      </div>
-      <div className="my-4 bg-lighter p-5">
-        <div className="d-flex">
-          <h4>Primary billing method</h4>
-          <img src={require('../../img/visas-master.jpg')} alt="" className="float-left" style={{width: "10%", marginLeft: "25rem"}}/>
-        </div>
-        <hr/>
+import '../../assets/billing.css';
+
+const CARD_ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      color: "#32325d",
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "16px",
+      "::placeholder": {
+        color: "#aab7c4",
+      },
+    },
+    invalid: {
+      color: "#fa755a",
+      iconColor: "#fa755a",
+    },
+  },
+};
+
+class CheckoutForm extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = { 
+      error: ''
+    }
+  }
+
+
+  handleChange = (event) => {
+    if (event.error) {
+      this.setState({error: event.error.message});
+    } else {
+      this.setState({error: null});
+    }
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const {stripe, elements, userId, userType, loadMe} = this.props;
+    const {token} = await stripe.createToken(elements.getElement(CardElement));
+    post('customers/add-card', {
+      type: userType,
+      id: userId,
+      token: token.id
+    }).then(() => {
+      elements.getElement(CardElement).clear();
+      loadMe(() => {
+        NotificationManager.success(
+          "The credit card was successfully added!",
+          "Success !",
+          3000,
+          null,
+          null,
+          ''
+        );
+      });
+    })
+  };
+
+  render() {
+    return (
+      <form className="my-5 p-4 bg-lighter" onSubmit={this.handleSubmit}>
+        {this.state.error && 
+          <div className="alert alert-danger" role="alert">{this.state.error}</div>}
+        <h5 className="mt-2 mb-3">Add a credit card</h5>
         <div className="row">
           <div className="col-sm-6">
-            <label>Card number</label>
-            <FormInput placeholder="Card Number" type="text" id="card-number" noHelp noLabel/>
-          </div>
-          <div className="col-sm-2">
-            <label>Expiry</label>
-            <FormInput placeholder="MM" type="number" id="month" noHelp noLabel/>
-          </div>
-          <div className="col-sm-2">
-            <label>Year</label>
-            <FormInput placeholder="YYY" type="number" id="security" noHelp noLabel/>
-          </div>
-          <div className="col-sm-2">
-            <label>Security</label>
-            <FormInput placeholder="Security code" type="number" id="security" noHelp noLabel/>
+            <CardElement options={CARD_ELEMENT_OPTIONS} onChange={(e) => this.handleChange(e)}/>
           </div>
           <div className="col-sm-6">
-            <label>First Name</label>
-            <FormInput placeholder="Fist Name" type="text" id="first-name" noHelp noLabel/>
-          </div>
-          <div className="col-sm-6">
-            <label>Last Name</label>
-            <FormInput placeholder="Last Name" type="text" id="last-name" noHelp noLabel/>
-          </div>
-          <div className="col-sm-6">
-            <label>City</label>
-            <FormInput placeholder="City" type="text" id="city" noHelp noLabel/>
-          </div>
-          <div className="col-sm-6">
-            <label>Country</label>
-            <FormInput placeholder="Country" type="text" id="country" noHelp noLabel/>
+            <div className="text-left pr-0">
+              <button type="submit" className="btn btn-primary px-5">Add the card</button>
+            </div>
           </div>
         </div>
-        <div className="mt-5">
-          <div className="col-sm-12 text-right pr-0">
-            <button type="button" className="btn btn-primary px-5">Save</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="my-4 bg-lighter p-5">
-        <h4>Secondary billing method</h4>
-        <hr/>
-        <div className="mt-5">
-          <FormCheck id="check-4" label="Pay using PayPal as your billing methods" />
-          <FormCheck id="check-5" label="Pay using Stripe as your billing methods" />
-          <div className="col-sm-12 text-right pr-0">
-            <button type="button" className="btn btn-primary px-5">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+      </form>
+    );
+  }
 }
 
-export default Billing;
+const InjectedCheckoutForm = (props) => (
+  <ElementsConsumer>
+    {({stripe, elements}) => (
+      <CheckoutForm stripe={stripe} elements={elements} 
+        userId={props.userId} userType={props.userType} loadMe={props.loadMe}/>
+    )}
+  </ElementsConsumer>
+);
+
+const stripePromise = loadStripe("pk_test_ZbpDLpu7alIoXGpdqS34AClR");
+
+export class Billing extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = { 
+      error: ''
+    }
+  }
+
+  deleteCard = (id) => {
+    const {userInfo, userType} = this.props;
+
+    if (!this.props.loading) {
+      remove('customers/remove-card/' + id, {
+        userId: userInfo.id,
+        userType: userType
+      }).then(() => {
+        this.props.loadMe(() => {
+          NotificationManager.success(
+            "The credit card was successfully removed!",
+            "Success !",
+            3000,
+            null,
+            null,
+            ''
+          );
+        });
+      });
+    }
+  }
+  
+  render () {
+    const { userInfo, userType, loadMe } = this.props;
+    return (
+      <div className="py-4 px-2 account-settings">
+        <h2 className="mt-2 mb-3">Cuurent Biling plan</h2>
+        <hr/>
+        <div>
+          <div className="py-5">
+            <NavLink className="btn btn-primary" to="/upgrade">Upgrade your plan</NavLink>
+          </div>
+        </div>
+        <h2 className="mt-2 mb-3">Billing methods</h2>
+        <hr/>
+        <h5 className="mb-2">Credit Cards</h5>
+        { userInfo.paymentInfo && userInfo.paymentInfo.cards.map(card => {
+            return (
+              <div key={card.id} className="credit-card">
+                <div className="d-flex justify-content-between">
+                  <h6 className="d-flex w-100 mt-3 mb-2">
+                    {(card.brand === 'MasterCard' || card.brand === 'Visa') &&
+                      <img className="credit-card-icon" src={require('../../assets/icons/' + card.brand + '.png')} alt={card.brand} />}
+                    <div className="mr-4">****{card.last4}</div>
+                    <div>Exp. Date: {card.exp_month}/{card.exp_year}</div>
+                  </h6>
+                  <div>
+                    <span className="btn btn-link" onClick={() => {this.deleteCard(card.id)}}>Delete</span>
+                  </div>
+                </div>
+                <hr className="my-1"/>
+              </div>
+            );
+          }
+        )}
+        
+        <Elements stripe={stripePromise}>
+          <InjectedCheckoutForm userId={userInfo.id} userType={userType} loadMe={loadMe}/>
+        </Elements>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ authUser, data }) => {
+  const { userType, userInfo, user } = authUser;
+
+  return { userType, userInfo, user };
+};
+
+const mapActionToProps = {
+  updateData, 
+  loadMe
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapActionToProps
+)(Billing));

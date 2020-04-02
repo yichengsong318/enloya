@@ -30,9 +30,9 @@ export const loginUserError = (message) => ({
   payload: { message }
 });
 
-export const loadMe = (onSuccess) => ({
+export const loadMe = (onSuccess, onFailure) => ({
   type: LOAD_ME,
-  payload: { onSuccess }
+  payload: { onSuccess, onFailure }
 });
 export const loadMeSuccess = (userInfo) => ({
   type: LOAD_ME_SUCCESS,

@@ -9,13 +9,15 @@ export class FeeArrangements extends Component {
   constructor(props) {
     super(props);
 
-    const other = this.props.userInfo.feeArrangements.find(fa => fa[0] === '#');
+    const other = this.props.userInfo.feeArrangements && 
+      this.props.userInfo.feeArrangements.find(fa => fa[0] === '#');
 
     this.state = {
       otherFee: other ? true : false,
-      otherText: other && other.slice(1) || '',
+      otherText: other ? other.slice(1) : '',
       hourlyRate: this.props.userInfo.hourlyRate || '',
-      feeArrangements: this.props.userInfo.feeArrangements.filter(fa => fa[0] !== '#') || []
+      feeArrangements: this.props.userInfo.feeArrangements ? 
+        this.props.userInfo.feeArrangements.filter(fa => fa[0] !== '#') : []
     }
   }
 
@@ -71,8 +73,6 @@ export class FeeArrangements extends Component {
   };
 
   render () {
-    const { userInfo } = this.props;
-
     return (
       <div className="py-4 px-4 account-settings">
         <h2 className="mt-2 mb-4">Fee arrangements Settings</h2>

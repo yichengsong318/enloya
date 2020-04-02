@@ -169,6 +169,7 @@ class CustomNavbar extends Component {
                               to={"/lawyer-profile/" + this.props.userInfo.id}>My Profile</NavLink>}
                           <span className="dropdown-item" onClick={() => this.handleLogout()}>Logout</span>
                         </Dropdown>
+                        <NavLink to="/checkout"><img src={require("../img/cart-icon.svg")} alt="" style={{ height: "25px", marginLeft: "10px"}}/></NavLink>
                       </>
                     )
                     :

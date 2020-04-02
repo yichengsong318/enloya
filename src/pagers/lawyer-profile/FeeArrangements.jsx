@@ -1,5 +1,4 @@
 import React from 'react';
-import Moment from 'react-moment';
 
 function FeeArrangements(props) {
   const { hourlyRate, feeArrangements } = props.userInfo;
@@ -15,7 +14,7 @@ function FeeArrangements(props) {
       <div className="text-justify">
         {feeArrangements && feeArrangements.map((fa, i) => {
           return (
-            <div key={i}><strong>{fa[0] == "#" ? fa.slice(0) : fa}</strong></div>
+            <div key={i}><strong>{fa[0] === "#" ? fa.slice(0) : fa}</strong></div>
           )
         })}
       </div>
