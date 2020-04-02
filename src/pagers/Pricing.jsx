@@ -14,11 +14,11 @@ function Pricing() {
         <AlertArea/>
         <div className="row">
           <div className="col-sm-12 mx-auto">
-            <div className="p-5 my-5">
+            <div className="p-5 my-5 mobile-padding-x-0">
               <h1 className="text-center mb-4 font-3rem text-bold">Pricing</h1>
-              <div className="mt-3 pricing-summary text-center mx-5 px-4">
-                <p className="font-1-6rem px-5">Unlock new business opportunities with the power of digital trade</p>
-                <p className="font-1-4rem px-5">Start building your digital legal practice today</p>
+              <div className="mt-3 pricing-summary text-center mx-5 px-4 mobile-padding-x-0">
+                <p className="font-1-6rem px-5 mobile-padding-x-0">Unlock new business opportunities with the power of digital trade</p>
+                <p className="font-1-4rem px-5 mobile-padding-x-0">Start building your digital legal practice today</p>
               </div>
               <div className="row justify-content-md-center mt-5">
                 <div className="col-sm-12 col-md-4 col-lg-4 mb-3">

@@ -907,3 +907,7 @@ hr {
   width: 50px;
   margin-right: 20px;
 }
+
+.w-320 {
+    width: 320px!important;
+}

@@ -18,7 +18,7 @@ export default function FixedServiceCard (props) {
       <div className="header bg-white text-white">
           <div className="d-flex justify-content-between">
             <h3 className="mb-0">
-              <a href={shareLink} style={{color: '#fff', fontSize: "16px"}}>{props.name}</a> 
+              <a href={shareLink} style={{color: '#fff', fontSize: "16px"}}>{props.name}</a>
               {/* <div>{props.company}</div> */}
             </h3>
             <CopyToClipboard
@@ -34,17 +34,17 @@ export default function FixedServiceCard (props) {
       </div>
       <div className="body">
           { state.copied ? (<span className="copied-success">Web URL Copied!</span>) : ''}
-        <div className="row mt-3">
-            <div className="col-md-7">
+        <div className="row mt-3 mt-3-mobile">
+            <div className="col-md-7 col-7 col-lg-7">
               <b>{props.lawyer.firstname} {props.lawyer.lastname}</b>
               <p className="subtitle font-italyc">{props.lawyer.title}</p>
               <p className="subtitle">Location: {props.lawyer.city}, {props.lawyer.country}</p>
               <p className="subtitle">Licenced in: {props.lawyer.country}</p>
             </div>
-            <div className="col-md-2 px-0">
+            <div className="col-md-2 px-0 col-2">
               <img alt="" src={props.lawyer.profilePic} className="w-100"/>
             </div>
-            <div className={props.isGrid ? "col-md-3 pl-1 text-right" : "d-grid col-md-3 pl-1 text-right"}>
+            <div className={props.isGrid ? "col-md-3 pl-1 text-right col-3" : "col-3 d-grid col-md-3 pl-1 text-right"}>
               <div className="priced">${props.price}</div>
               <a href={props.kind === 'lawyer_profile' ?
               "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid} className="btn btn-yellowry btn-block mt-2">Details</a>

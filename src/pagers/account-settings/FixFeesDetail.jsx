@@ -20,10 +20,10 @@ export class FixFeesDetail extends Component {
         deliveryTime: {},
         lawyer: {},
         industries: [],
-        faq: [], 
-        requirements: [], 
-        types: [], 
-        tags: [] 
+        faq: [],
+        requirements: [],
+        types: [],
+        tags: []
       }
     };
   }
@@ -42,7 +42,7 @@ export class FixFeesDetail extends Component {
   publishService = () => {
     const params = queryString.parse(this.props.location.search);
     const isPublished = this.state.service.isPublished;
-    
+
     if (params.sid) {
       put('services/' + params.sid, {isPublished: !isPublished}).then((res) => {
         if (res.status === 200) {
@@ -88,11 +88,11 @@ export class FixFeesDetail extends Component {
       <div className="py-4 px-4 account-settings">
         <h2 className="mt-2 mb-3">Fixed-Fee Service Detail</h2>
         <div className="pb-4 text-right">
-          <a href={"/account-settings/fix-fee-services-edit?sid=" + serv.id} className="btn btn-primary px-5">Edit the service</a>
-          <span className={ isPublished ? "btn btn-warning ml-3" : "btn btn-success ml-3"} onClick={this.publishService}>
+          <a href={"/account-settings/fix-fee-services-edit?sid=" + serv.id} className="btn btn-primary px-5 col-12 col-md-4">Edit the service</a>
+          <span className={ isPublished ? "btn btn-warning ml-3 col-12 mobile-margin-top mobile-ml-0 col-md-3" : "btn btn-success ml-3 col-12 mobile-margin-top mobile-ml-0 col-md-3"} onClick={this.publishService}>
             { isPublished ? "Unpublish the service" : "Publish the service"}
           </span>
-          <span className="btn btn-danger ml-3" onClick={this.deleteService}>Delete the service</span>
+          <span className="btn btn-danger ml-3 col-12 mobile-margin-top mobile-ml-0 col-md-3" onClick={this.deleteService}>Delete the service</span>
         </div>
         <div className="bg-lighter px-4 py-4">
           <div className="d-flex justify-content-between">
@@ -181,8 +181,8 @@ const mapStateToProps = ({ authUser, data }) => {
   const { userInfo } = authUser;
   const { services } = data;
 
-  return { 
-    userInfo, 
+  return {
+    userInfo,
     services
   };
 };
