@@ -114,7 +114,7 @@ export class LawyerProfile extends Component {
             <div className="row mx-0 align-items-center pt-4">
               <div className="col-sm-12 px-0 lawyer-card-large">
                 <div className="row">
-                  <div className="col-md-2 col-sm-12 ml-auto">
+                  <div className="col-md-2 col-sm-12 ml-auto mr-4">
                     <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
                   </div>
                   <div className="col-md-9 com-sm-12">
