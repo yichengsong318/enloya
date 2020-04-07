@@ -13,7 +13,7 @@ import { updateData, readData, loadMe } from "../redux/actions";
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, Elements, ElementsConsumer} from '@stripe/react-stripe-js';
 
-import {post, remove} from '../helpers/RemoteApi';
+import {post} from '../helpers/RemoteApi';
 
 import '../assets/billing.css';
 

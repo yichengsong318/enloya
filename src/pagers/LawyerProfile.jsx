@@ -131,7 +131,7 @@ export class LawyerProfile extends Component {
                             text={shareLink}
                             onCopy={this.handleCopyUrl}
                         >
-                          <img src={require("../img/share.png")} className="h-20 cursor-pointer"/>
+                          <img src={require("../img/share.png")} alt="share" className="h-20 cursor-pointer"/>
                         </CopyToClipboard>
                         </div>
                       </div>
@@ -207,7 +207,7 @@ export class LawyerProfile extends Component {
                       publications={publications}
                       />
                   </Route>
-                  <Route path={`${path}/fee-arrangements`}>
+                  <Route path={`${path}/fees`}>
                     <FeeArrangements userInfo={userInfo} />
                   </Route>
                 </Switch>

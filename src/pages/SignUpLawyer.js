@@ -95,6 +95,13 @@ export class SignUpLawyer extends Component {
 
   render() {
     const lawyerTypes = this.props.lawyerTypes || [];
+    let errorMessage = this.props.errorMessage;
+    if (this.props.errorMessage && this.props.errorMessage.length > 0) {
+      if (this.props.errorMessage[0].property == 'password') {
+       errorMessage = "Password must be longer than or equal to 6 characters" 
+      }
+    }
+    console.log(this.props.errorMessage)
     return(
       <div className="body_wrapper">
         <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn" q="team_url"/>
@@ -103,8 +110,8 @@ export class SignUpLawyer extends Component {
           <p className="text-black text-center mb-4">Get started - <strong>it's free</strong></p>
           <SocialLogin linkedinClick={() => {this.createPopup()}}/>
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
-            { this.props.errorMessage &&
-              <div className="alert alert-danger">{this.props.errorMessage}</div>
+            { errorMessage &&
+              <div className="alert alert-danger">{errorMessage}</div>
             }
             <input type="text" className="form-control mt-3" placeholder="First Name"
               onChange={e => this.handleFormChange('firstname', e.target.value)}/>

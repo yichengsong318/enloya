@@ -171,7 +171,14 @@ input:focus {
 .social-logins .btn {
   display: inline-block;
   vertical-align: middle;
-  width: 50%;
+}
+
+.mw-300 {
+  max-width: 300px;
+}
+
+.mw-600 {
+  max-width: 600px;
 }
 
 .some-text-required {

@@ -42,9 +42,11 @@ function* createDataSaga({ payload }) {
         yield onSuccess();
       }
     } else {
+      console.log(newData.response.data);
       yield put(createDataError(newData.response.data.message));
     }
   } catch (error) {
+    console.log(error.response.data);
     yield put(createDataError(error));
     
   }

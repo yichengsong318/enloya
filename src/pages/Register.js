@@ -25,10 +25,10 @@ const Register = () => {
                           <h3 className="text-white mb-1">Clients</h3>
                         </div>
                       </div>
-                      <ul className="mb-4">
-                        <li>- We need some facts here</li>
+                      <ul className="mb-5">
+                        {/* <li>- We need some facts here</li>
                         <li>- Why they should sign up</li>
-                        <li>- Why they should go premium</li>
+                        <li>- Why they should go premium</li> */}
                       </ul>
                       <div>
                         <Link to="/signup-client" className="btn btn-outline-white btn-block">Sign Up Now</Link>
@@ -43,10 +43,10 @@ const Register = () => {
                           <h3 className="mb-1">Lawyers</h3>
                         </div>
                       </div>
-                      <ul className="mb-4">
-                        <li>- We need some facts here</li>
+                      <ul className="mb-5">
+                        {/* <li>- We need some facts here</li>
                         <li>- Why they should sign up</li>
-                        <li>- Why they should go premium</li>
+                        <li>- Why they should go premium</li> */}
                       </ul>
                       <div>
                         <Link to="/signup-lawyer" className="btn btn-primary btn-block">Sign Up Now</Link>

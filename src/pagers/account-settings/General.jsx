@@ -83,7 +83,10 @@ export class General extends Component {
   }
 
   render () {
-    const { userInfo } = this.props;
+    let { userInfo } = this.props;
+
+    userInfo = userInfo || {};
+    
     return (
       <div className="py-4 px-2">
         <h2 className="mt-2 mb-3">General Information</h2>

@@ -37,7 +37,7 @@ export class ForgotPassword extends Component {
       <div className="body_wrapper">
         <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn" q="team_url"/>
         <div className="subscribe_form_info s_form_info_two text-center mb-0">
-          <h2 className="f_600 f_size_30 l_height30 t_color3 mb_50 mt_70 pt_70">Please enter your email address so we can send you a new password.</h2>
+          <h2 className="f_600 f_size_30 l_height30 t_color3 mb_50 mt_70 pt_70 mw-600 mx-auto">Please enter your email address so we can send you a new password.</h2>
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
             { this.state.errorMessage && 
               <div className="alert alert-danger">{this.state.errorMessage}</div> 
