@@ -32,9 +32,9 @@ const Team =()=>{
                     <div className="col-lg-3 col-sm-6">
                         <Teamitem teamImage="team_08.png" memberN="Mashkour Abdel Aziz" memberd="Frontend Developer"/>
                     </div>
-                    <div className="col-lg-3 col-sm-6">
+                    {/*<div className="col-lg-3 col-sm-6">
                         <Teamitem teamImage="team_09.png" memberN="Waleed Hamza" memberd="Co-Founder"/>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         </section>

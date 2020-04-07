@@ -1,11 +1,15 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
 import CustomNavbar from '../components/CustomNavbar';
 import AlertArea from '../components/AlertArea';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
-function Pricing() {
+
+const Pricing = ({ children, location: { pathname } }) => {
+
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, [pathname]);
 
   return (
     <div className="App">
@@ -78,7 +82,7 @@ function Pricing() {
       </div>
       <Footer FooterData={FooterData} kind="otherPage"/>
     </div>
-  );
-}
+  )
+};
 
 export default Pricing;

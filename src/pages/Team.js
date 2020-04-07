@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Teams from '../components/Team/Team';
@@ -6,7 +6,13 @@ import Advisors from '../components/Team/Advisor';
 import Footer from '../components/Footer/Footer';
 // import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
-const Team =()=>{
+
+const Team = ({ children, location: { pathname } }) => {
+
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, [pathname]);
+
     return(
         <div className="body_wrapper">
             <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
