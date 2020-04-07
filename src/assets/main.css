@@ -7040,6 +7040,10 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
   background-color: orange;
   color: #fff;
   text-align: center;
+  background-image: url(/assets/img/suitcase.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+
 }
 .custom-breadcrumb {
   padding: 70px 0px 70px

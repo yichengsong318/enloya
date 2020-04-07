@@ -18,7 +18,7 @@ const Team =()=>{
               <div className="who-we-are-container pb-3-1">
                 <h3 className="pb-3">Who we are</h3>
                 <p>
-                <strong>Enloya</strong> is the most clieny-centric legal marketplace for startups. Our platform matches specific legal solutions to specific legal problems through
+                <strong>Enloya</strong> is the most client-centric legal marketplace for startups. Our platform matches specific legal solutions to specific legal problems through
                 the use of computer algorithms and carefully designed use-experience. In doing so, we have in mind what tipycal and atipycal startups struggle with, from opening a simple brick-and-mortar business to selling sophisticated goods and services accross borders.
                 We make it easier for startups to accept affordable legal services in just a few clicks, and for lawyers to find new clients-especially from outside their own country
                 or juridiction.

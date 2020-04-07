@@ -62,8 +62,8 @@ function Checkout() {
               </div>
               <hr/>
               <div className="py-3">
-                <a href="/checkout-success" className="btn btn-primary mr-5 col-12 checkout-btn">Continue shopping</a>
-                <a href="/checkout-success" className="btn btn-primary bg-yellow ml-5 col-12 checkout-btn checkout-btn-go">Go to checkout</a>
+                <a href="/checkout-success" className="btn btn-primary col-12 checkout-btn">Continue shopping</a>
+                <a href="/checkout-success" className="btn btn-primary bg-yellow col-12 checkout-btn checkout-btn-go mt-3">Go to checkout</a>
               </div>
             </div>
           </div>

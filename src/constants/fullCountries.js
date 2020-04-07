@@ -1,5 +1,5 @@
 export default [
-  { value: "II", label: "International"},
+  { value: "INY", label: "Anywhere"}, 
   { value: "AF", label: "Afghanistan"},
   { value: "AX", label: "Åland Islands"},
   { value: "AL", label: "Albania"},

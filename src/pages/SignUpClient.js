@@ -129,8 +129,11 @@ export class SignUpClient extends Component {
                   </>
                 }
                 <div className="col-sm-12 text-right mt-5">
+                <p className="text-black small mt-3">
+                  By Clicking Join now, you agree to Enloya's Terms of Use Agreement,
+                  Privacy Policy and Cookie Policy</p>
                   <button type="button" onClick={this.onFormSubmit}
-                    className="btn btn_get btn_get_two btn-block">Sign up</button>
+                    className="btn btn_get btn_get_two btn-block">Join now</button>
                 </div>
               </div>
             </div>
