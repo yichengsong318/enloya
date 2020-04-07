@@ -109,7 +109,7 @@ input:focus {
 }
 .common-title {
   font-weight: bold!important;
-  color: rgb(0, 22, 30)!important;
+  color: rgb(0, 22, 30);
 }
 .text-logo-primary {
   color: #1fa5df !important;
@@ -458,8 +458,8 @@ hr {
   /* height: 100%; */
   flex-direction: column;
   text-align: left!important;
-  max-height: 255px;
-  height: 255px;
+  /* max-height: 255px; */
+  min-height: 255px;
 }
 
 .fixed-service .header {
@@ -910,4 +910,16 @@ hr {
 
 .w-320 {
     width: 320px!important;
+}
+.font-large {
+  font-size: large;
+}
+.span-for-lawyer {
+  font-size: 20px;
+    line-height: 28px;
+    color: #263b5e;
+    font-weight: 500;
+    margin-top: 35px;
+    margin-bottom: 16px;
+    transition: color 0.2s linear;
 }

@@ -16,13 +16,14 @@ const Service = () => {
                             <div className="col-lg-6 col-md-12">
                                 <div className="seo_service_item">
                                     <img src={require('../../img/seo/speed.svg')} alt="" style={{width: '4rem'}}/>
+                                    <span className="span-for-lawyer ml-4">For lawyers</span>
                                     <a href=".#">
                                         <h4>Skyrocket your legal business</h4>
                                     </a>
                                     <ul>
                                       <li>Reach new entrepreneur clients worldwide</li>
+                                      <li>Find remote legal jobs in your area of expertise</li>
                                       <li>Manage your legal business digitally</li>
-                                      <li>Increase your revenue</li>
                                     </ul>
                                     <a href="/signup-lawyer" className="seo_btn seo_btn_one btn_hover wow fadeInUp">Apply now</a>
                                 </div>

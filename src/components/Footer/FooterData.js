@@ -3,7 +3,7 @@ const FooterData = {
         {
             id: 1,
             title: "Stay updated",
-            description: " is the legal marketplace specialized in startups and growing businesses. We provide quick and easy access to quality legal solutions with , making the process of buying legal services fast, agile and affordable.",
+            description: " connects startups & SMEs with verified lawyers around the globe. We make it easier for businesses worldwide to access affordable legal solutions in just a few clicks, and for lawyers to find new clients—especially from outside their own country or jurisdiction.",
         }
     ],
     AboutWidget: [
@@ -14,7 +14,7 @@ const FooterData = {
           {
             id: 0,
             url: '/team',
-            text: 'Team',
+            text: 'About us',
           },
           {
             id: 1,
@@ -48,8 +48,8 @@ const FooterData = {
           },
           {
             id: 7,
-            url: 'support',
-            text: 'Support',
+            url: 'Help Center',
+            text: 'Help Center',
           },
         ],
       },
@@ -94,6 +94,11 @@ const FooterData = {
             id: 3,
             url: 'https://www.linkedin.com/company/enloyalaw',
             icon: 'ti-linkedin',
+          },
+          {
+            id: 4,
+            url: 'https://www.youtube.com/channel/UC8eIyX7RQgpJ6Zc1HHXM-uw',
+            icon: 'ti-youtube',
           },
         ]
       }

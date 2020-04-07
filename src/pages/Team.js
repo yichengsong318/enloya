@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Teams from '../components/Team/Team';
@@ -6,7 +6,13 @@ import Advisors from '../components/Team/Advisor';
 import Footer from '../components/Footer/Footer';
 // import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
-const Team =()=>{
+
+const Team = ({ children, location: { pathname } }) => {
+
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, [pathname]);
+
     return(
         <div className="body_wrapper">
             <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
@@ -18,7 +24,7 @@ const Team =()=>{
               <div className="who-we-are-container pb-3-1">
                 <h3 className="pb-3">Who we are</h3>
                 <p>
-                <strong>Enloya</strong> is the most clieny-centric legal marketplace for startups. Our platform matches specific legal solutions to specific legal problems through
+                <strong>Enloya</strong> is the most client-centric legal marketplace for startups. Our platform matches specific legal solutions to specific legal problems through
                 the use of computer algorithms and carefully designed use-experience. In doing so, we have in mind what tipycal and atipycal startups struggle with, from opening a simple brick-and-mortar business to selling sophisticated goods and services accross borders.
                 We make it easier for startups to accept affordable legal services in just a few clicks, and for lawyers to find new clients-especially from outside their own country
                 or juridiction.

@@ -159,7 +159,7 @@ export class LawyerProfile extends Component {
                         <FontAwesomeIcon icon={faGraduationCap} className="text-primary-o mr-2" />
                         <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
                       </div>
-                      <div className="col-sm-12 mb-2">
+                      <div className="col-sm-12 mb-2 d-flex">
                         {socialLinks.linkedin && <div className="social-icon">
                           <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a>
                         </div>}
@@ -187,7 +187,7 @@ export class LawyerProfile extends Component {
         <div className="container mb-5">
           <div className="row">
             <div className="col-sm-12 px-0">
-              <div className="mt-5 mt-5-mobile">
+              <div className="mt-4 mt-5-mobile">
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fees`}>Fees</NavLink>
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/about`}>About me</NavLink>

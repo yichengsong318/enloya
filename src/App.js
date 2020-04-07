@@ -18,7 +18,7 @@ class App extends Component{
               return <ScrollToTopRoute key={i}
                 authRequired={route.authRequired}
                 exact={route.exact}
-                path={route.path} 
+                path={route.path}
                 component={route.component}
                 hideLoader={this.props.hideLoader}
                 showLoader={this.props.showLoader}

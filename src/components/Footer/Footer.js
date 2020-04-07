@@ -43,13 +43,12 @@ class Footer extends Component {
                                                         widget.menuItems.map(item =>{
                                                             return(
                                                                 <li key={item.id}>
-                                                                  <Link to={item.url !== 'blog' && item.url} className={`${item.url === 'howitworks' || item.url === 'whatwedo' || item.url === 'blog' || item.url === 'support' ? 'd-none' : ''}`}>{item.text}</Link>
+                                                                  <Link to={item.url !== 'blog' && item.url} className={`${item.url === 'howitworks' || item.url === 'whatwedo' || item.url === 'blog' || item.url === 'Help Center' ? 'd-none' : ''}`}>{item.text}</Link>
                                                                   {(item.url === 'whatwedo' && !this.props.kind) && <ScrolLink title="Home" to="whatwedo" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
                                                                   {(item.url === 'howitworks' && !this.props.kind) && <ScrolLink title="Home" to="howitworks" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
                                                                   {(item.url === 'whatwedo' && this.props.kind === 'otherPage') && (<a href="/?q=whatwedo" style={{ cursor: 'pointer'}} >{item.text}</a>)}
                                                                   {(item.url === 'howitworks' && this.props.kind === 'otherPage') && (<a href="/?q=howitworks" style={{ cursor: 'pointer'}} >{item.text}</a>)}
                                                                   {(item.url === 'blog' && <a href="http://blog.enloya.com" style={{ cursor: 'pointer'}} >{item.text}</a>)}
-                                                                  {(item.url === 'support' && <a href="http://help.enloya.com" style={{ cursor: 'pointer'}} >{item.text}</a>)}
                                                                 </li>
                                                             )
                                                         })
@@ -79,9 +78,9 @@ class Footer extends Component {
                                                 </div>
                                                 <div className="f_widget about-widget pt_70 wow fadeInLeft" data-wow-delay="0.4s">
                                                   <ul className="list-unstyled f_list mt_11">
-                                                    <li><Link to="/">+41 (0)78 694 1217</Link></li>
-                                                    <li><Link to="/">Chemin EugËne-Rigot 2, 1202 Geneva, Switzerland</Link></li>
+                                                    <li><Link to="/">Chemin Eugene-Rigot 2, 1202 Geneva, Switzerland</Link></li>
                                                     <li><Link to="/">info@enloya.com</Link></li>
+                                                    <li><a href="http://help.enloya.com">Help Center</a></li>
                                                   </ul>
                                                 </div>
                                             </div>
@@ -102,7 +101,7 @@ class Footer extends Component {
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-sm-7">
                                 <p className="mb-0 f_400">{FooterData.copywrite}</p>
-                                <p className="mb-0 f_400 p_o">Enloya SARL is registered and incorporated in Switzerland, company registration number 000010.</p>
+                                {/*<p className="mb-0 f_400 p_o">Enloya SARL is registered and incorporated in Switzerland, company registration number 000010.</p>*/}
                             </div>
                             <div className="col-lg-6 col-sm-5 text-right">
                                 <p>Made with <i className="icon_heart"></i> at <a href="/">Enloya</a></p>
