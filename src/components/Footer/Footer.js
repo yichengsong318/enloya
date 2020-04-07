@@ -101,7 +101,7 @@ class Footer extends Component {
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-sm-7">
                                 <p className="mb-0 f_400">{FooterData.copywrite}</p>
-                                <p className="mb-0 f_400 p_o">Enloya SARL is registered and incorporated in Switzerland, company registration number 000010.</p>
+                                {/*<p className="mb-0 f_400 p_o">Enloya SARL is registered and incorporated in Switzerland, company registration number 000010.</p>*/}
                             </div>
                             <div className="col-lg-6 col-sm-5 text-right">
                                 <p>Made with <i className="icon_heart"></i> at <a href="/">Enloya</a></p>
