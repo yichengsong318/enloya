@@ -135,19 +135,32 @@ export class Billing extends Component {
   
   render () {
     const { userInfo, userType, loadMe } = this.props;
+    let currentPlan = null;
+    if (userInfo.paymentInfo && userInfo.paymentInfo.premium) {
+      if (userInfo.paymentInfo.subscriptions && userInfo.paymentInfo.subscriptions.length > 0) {
+        currentPlan = userInfo.paymentInfo.subscriptions[0].plan.nickname;
+      }
+    }
+
+    
     return (
       <div className="py-4 px-2 account-settings">
-        <h2 className="mt-2 mb-3">Cuurent Biling plan</h2>
+        <h2 className="mt-2 mb-3">Current billing plan</h2>
         <hr/>
         <div>
           <div className="py-5">
+            {currentPlan ? 
+              <h6 className="mb-4">Your current plan is: <strong>{currentPlan}</strong></h6>
+              :
+              <h6 className="mb-4">You don't have any plan currently. Please upgrade to get access to great features.</h6>
+            }
             <NavLink className="btn btn-primary" to="/upgrade">Upgrade your plan</NavLink>
           </div>
         </div>
         <h2 className="mt-2 mb-3">Billing methods</h2>
         <hr/>
         <h5 className="mb-2">Credit Cards</h5>
-        { userInfo.paymentInfo && userInfo.paymentInfo.cards.map(card => {
+        { userInfo.paymentInfo && userInfo.paymentInfo.cards && userInfo.paymentInfo.cards.map(card => {
             return (
               <div key={card.id} className="credit-card">
                 <div className="d-flex justify-content-between">

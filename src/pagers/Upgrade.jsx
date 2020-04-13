@@ -173,7 +173,7 @@ export class Upgrade extends Component {
               <div className="bg-white p-4 my-5">
                 <h5 className="mb-2">Credit Cards</h5>
                 <hr/>
-                { userInfo.paymentInfo && userInfo.paymentInfo.cards.map(card => {
+                { userInfo.paymentInfo && userInfo.paymentInfo.cards && userInfo.paymentInfo.cards.map(card => {
                     return (
                       <div key={card.id} className="credit-card">
                         <div className="d-flex justify-content-between align-items-center">
