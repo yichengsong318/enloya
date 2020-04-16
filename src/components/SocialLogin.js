@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  faGooglePlusG,
+  // faGooglePlusG,
   faLinkedinIn
 } from "@fortawesome/free-brands-svg-icons";
 

@@ -51,23 +51,25 @@ class CheckoutForm extends React.Component {
     event.preventDefault();
     const {stripe, elements, userId, userType, loadMe} = this.props;
     const {token} = await stripe.createToken(elements.getElement(CardElement));
-    post('customers/add-card', {
-      type: userType,
-      id: userId,
-      token: token.id
-    }).then(() => {
-      elements.getElement(CardElement).clear();
-      loadMe(() => {
-        NotificationManager.success(
-          "The credit card was successfully added!",
-          "Success !",
-          3000,
-          null,
-          null,
-          ''
-        );
-      });
-    })
+    if (token && token.id) {
+      post('customers/add-card', {
+        type: userType,
+        id: userId,
+        token: token.id
+      }).then(() => {
+        elements.getElement(CardElement).clear();
+        loadMe(() => {
+          NotificationManager.success(
+            "The credit card was successfully added!",
+            "Success !",
+            3000,
+            null,
+            null,
+            ''
+          );
+        });
+      })
+    }
   };
 
   render() {
@@ -145,18 +147,22 @@ export class Billing extends Component {
     
     return (
       <div className="py-4 px-2 account-settings">
-        <h2 className="mt-2 mb-3">Current billing plan</h2>
-        <hr/>
-        <div>
-          <div className="py-5">
-            {currentPlan ? 
-              <h6 className="mb-4">Your current plan is: <strong>{currentPlan}</strong></h6>
-              :
-              <h6 className="mb-4">You don't have any plan currently. Please upgrade to get access to great features.</h6>
-            }
-            <NavLink className="btn btn-primary" to="/upgrade">Upgrade your plan</NavLink>
-          </div>
-        </div>
+        {userType === 'lawyer' && 
+          <>
+            <h2 className="mt-2 mb-3">Current billing plan</h2>
+            <hr/>
+            <div>
+              <div className="py-5">
+                {currentPlan ? 
+                  <h6 className="mb-4">Your current plan is: <strong>{currentPlan}</strong></h6>
+                  :
+                  <h6 className="mb-4">You don't have any plan currently. Please upgrade to get access to great features.</h6>
+                }
+                <NavLink className="btn btn-primary" to="/upgrade">Upgrade your plan</NavLink>
+              </div>
+            </div>
+          </>
+        }
         <h2 className="mt-2 mb-3">Billing methods</h2>
         <hr/>
         <h5 className="mb-2">Credit Cards</h5>

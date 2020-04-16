@@ -169,14 +169,15 @@ class CustomNavbar extends Component {
                               to={"/lawyer-profile/" + this.props.userInfo.id}>My Profile</NavLink>}
                           <span className="dropdown-item" onClick={() => this.handleLogout()}>Logout</span>
                         </Dropdown>
-                        <NavLink to="/checkout"><img src={require("../img/cart-icon.svg")} alt="" style={{ height: "25px", marginLeft: "10px"}}/></NavLink>
+                        {this.props.userType === 'client' && 
+                        <NavLink to="/checkout"><img src={require("../img/cart-icon.svg")} alt="" style={{ height: "25px", marginLeft: "10px"}}/></NavLink>}
                       </>
                     )
                     :
                     (
                       <div className="d-flex mobile-margin-bottom">
-                        <a className="btn_get btn_hover col-5" href="/login">Login</a>
-                        <a className="btn btn_get btn_get_two col-5" href="/register">Sign Up</a>
+                        <NavLink className="btn_get btn_hover col-5" to="/login">Login</NavLink>
+                        <NavLink className="btn btn_get btn_get_two col-5" to="/register">Sign Up</NavLink>
                       </div>
                     )
                   }

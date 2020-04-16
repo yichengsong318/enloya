@@ -1,6 +1,10 @@
 /* SETTINGS */
 export const CHANGE_LOCALE = "CHANGE_LOCALE";
 
+/* CART */
+export const MODIFY_CART = "MODIFY_CART";
+export const EMPTY_CART = "EMPTY_CART";
+
 /* DATA */
 export const CREATE_DATA = "CREATE_DATA";
 export const CREATE_DATA_SUCCESS = "CREATE_DATA_SUCCESS";
@@ -33,6 +37,7 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
 export const RESET_PASSWORD_ERROR = "RESET_PASSWORD_ERROR";
 
+export * from "./cart/actions";
 export * from "./settings/actions";
 export * from "./auth/actions";
 export * from "./data/actions";

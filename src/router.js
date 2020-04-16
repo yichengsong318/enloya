@@ -18,6 +18,7 @@ import BlogSingle from './pages/BlogSingle';
 import Contact from './pages/Contact';
 import Landing from './pages/Landing';
 
+import CheckoutConfirm from './pagers/CheckoutConfirm';
 import CheckoutSuccess from './pagers/CheckoutSuccess';
 import TermsOfUse from './pagers/TermsOfUse';
 import FixFeesShow from './pagers/FixFeesShow';
@@ -138,7 +139,7 @@ export default [
   { 
     path: "/checkout", 
     component: Checkout, 
-    authRequired: false 
+    authRequired: true 
   },
   { 
     path: "/pricing", 
@@ -151,9 +152,14 @@ export default [
     authRequired: true 
   },
   { 
+    path: "/checkout-confirm", 
+    component: CheckoutConfirm, 
+    authRequired: true 
+  },
+  { 
     path: "/checkout-success", 
     component: CheckoutSuccess, 
-    authRequired: false 
+    authRequired: true 
   },
   { 
     path: "/terms-of-use", 

@@ -97,7 +97,7 @@ export class SignUpLawyer extends Component {
     const lawyerTypes = this.props.lawyerTypes || [];
     let errorMessage = this.props.errorMessage;
     if (this.props.errorMessage && this.props.errorMessage.length > 0) {
-      if (this.props.errorMessage[0].property == 'password') {
+      if (this.props.errorMessage[0].property === 'password') {
        errorMessage = "Password must be longer than or equal to 6 characters" 
       }
     }

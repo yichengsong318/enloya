@@ -99,10 +99,10 @@ function* logout({ payload }) {
     localStorage.removeItem('user_info');
     localStorage.removeItem('user_token');
     localStorage.removeItem('user_type');
+    localStorage.removeItem('cart_services');
     if (onSuccess) {
       yield onSuccess();
     }
-    localStorage.removeItem('user_token');
   } catch (error) {
   }
 }

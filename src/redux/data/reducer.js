@@ -22,6 +22,7 @@ const INIT_STATE = {
   lawyerTypes: [],
   clientTypes: [],
   categories: [],
+  orders: [],
   services: [],
   loading: false,
   errorMessage: ''

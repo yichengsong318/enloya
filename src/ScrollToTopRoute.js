@@ -14,17 +14,16 @@ class ScrollToTopRoute extends Component {
     if (this.props.user) {
       this.props.loadMe(null, (err, status) => {
         if (status === 401) {
-          console.log(this.props);
           if (this.props.authRequired) {
-            this.props.logoutUser();
             this.props.history.replace('/login')
+            this.props.logoutUser();
           }
         }
       });
     } else {
       if (this.props.authRequired) {
-        this.props.logoutUser();
         this.props.history.replace('/login')
+        this.props.logoutUser();
       }
     }
   }

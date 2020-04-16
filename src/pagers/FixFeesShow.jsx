@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { readData } from "../redux/actions";
+import { readData, addToCart, removeFromCart } from "../redux/actions";
 import { get } from '../helpers/RemoteApi';
 import { withRouter } from "react-router-dom";
 import queryString from 'query-string';
@@ -53,6 +53,8 @@ export class FixFeesShow extends Component {
     // const isPublished = serv.isPublished;
     const params = queryString.parse(this.props.location.search);
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${params.sid}`;
+
+    const isInCart = this.props.cartServices.find(cs => cs === serv.id);
 
     return (
       <div className="App">
@@ -123,9 +125,16 @@ export class FixFeesShow extends Component {
                         })}
                       </div>
                       <div className="col-sm-12 text-right">
-                          <button className="btn btn-primary px-5 bg-yellow">
+                        {
+                          isInCart ? 
+                          <button className="btn btn-secondary px-5" onClick={() => {this.props.removeFromCart(serv.id)}}>
+                            Remove from cart
+                          </button>
+                          :
+                          <button className="btn btn-primary px-5 bg-yellow"  onClick={() => {this.props.addToCart(serv.id)}}>
                             Save and add to cart
                           </button>
+                        }
                       </div>
                     </div>
                 </div>
@@ -138,18 +147,22 @@ export class FixFeesShow extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, data }) => {
+const mapStateToProps = ({ authUser, data, cart }) => {
   const { userInfo } = authUser;
   const { services } = data;
+  const { cartServices } = cart;
 
   return {
     userInfo,
-    services
+    services,
+    cartServices
   };
 };
 
 const mapActionToProps = {
-  readData
+  readData,
+  addToCart,
+  removeFromCart
 }
 
 export default withRouter(connect(

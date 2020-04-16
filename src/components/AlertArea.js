@@ -21,7 +21,7 @@ class AlertArea extends Component {
     return (
       <>
         { !isConfirmed &&
-          <div className="row mb-2">
+          <div className="row mb-2 pt-1">
             <div className="col-sm-12">
               <div className="alert alert-info mb-0 mt-4">
                 <div>Please confirm your account to have a full experience of Enloya. if you don't find the mail,
