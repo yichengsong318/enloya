@@ -163,13 +163,15 @@ class CustomNavbar extends Component {
                           orientation="right">
                           <NavLink title="Account Settings" className="dropdown-item"
                             to="/account-settings/general-lawyer">Account Settings</NavLink>
+                          <NavLink title="Messages" className="dropdown-item"
+                            to="/conversations">Messages</NavLink>
 
                           { this.props.userType === 'lawyer' &&
                             <NavLink title="My Profile" className="dropdown-item"
                               to={"/lawyer-profile/" + this.props.userInfo.id}>My Profile</NavLink>}
                           <span className="dropdown-item" onClick={() => this.handleLogout()}>Logout</span>
                         </Dropdown>
-                        {this.props.userType === 'client' && 
+                        {this.props.userType === 'client' &&
                         <NavLink to="/checkout"><img src={require("../img/cart-icon.svg")} alt="" style={{ height: "25px", marginLeft: "10px"}}/></NavLink>}
                       </>
                     )
