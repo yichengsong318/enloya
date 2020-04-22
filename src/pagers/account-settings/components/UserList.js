@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ChatList } from "react-chat-elements";
-import { FormControl, FormGroup } from "react-bootstrap";
+import { FormControl } from "react-bootstrap";
 /**
  *
  * Renders user list
