@@ -6,6 +6,6 @@ export const localeOptions = [
 ];
 
 export const apiConfig = {
-  apiURL: process.env.NODE_ENV === "development" ? "http://localhost:3030/" : "http://backend.next.enloya.com/",
-  apiDomain: process.env.NODE_ENV === "development" ? "http://localhost:3030" : "http://backend.next.enloya.com"
+  apiURL: process.env.NODE_ENV === "development" ? "http://localhost:3030/" : "https://backend.next.enloya.com/",
+  apiDomain: process.env.NODE_ENV === "development" ? "http://localhost:3030" : "https://backend.next.enloya.com"
 };
