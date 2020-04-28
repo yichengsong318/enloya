@@ -29,7 +29,7 @@ export default function FixedServiceCard (props) {
                     </h5>
                   </div>
                   <div className={`${nameSize <= 45 ? 'mt-4' : ''} line-height-1`}><b>Area of law:</b> {props.category}</div>
-                  <div className="line-height-1-5 mt-3"><b>Delivrable:</b> {props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
+                  <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
                   <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> {props.estimatedDelivery ? props.estimatedDelivery : <span className="text-warning size-inherit">Not defined</span>}</div>
                 </Link>
             </div>
