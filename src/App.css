@@ -805,6 +805,12 @@ hr {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.text-elipsis-vertical {
+  width: 30em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .advanced-search {
     position: absolute;
     bottom: -25px;

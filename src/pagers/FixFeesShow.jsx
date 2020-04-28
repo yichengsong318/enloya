@@ -65,7 +65,6 @@ export class FixFeesShow extends Component {
             <div className="col-sm-8 mx-auto">
               <div className="bg-white my-5 border-radius-8">
                 <div className="px-5 pt-5 bg-blurd pb-2">
-
                     <div className="row">
                       <div className="col-md-8 col-lg-8 col-sm-12">
                           <h2 className="text-left common-title mb-4 text-white">{serv.title}</h2>
