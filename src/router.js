@@ -38,11 +38,13 @@ import ServiceSearchResults from './pagers/ServiceSearchResults';
 import LawyerProfile from './pagers/LawyerProfile';
 import AccountSettings from './pagers/AccountSettings';
 import ValidateAccount from './pagers/ValidateAccount';
+import Conversations from './pagers/chat/Conversations';
+
 
 import StripeAccountConfirm from './pages/StripeAccountConfirm';
 
 export default [
-  { 
+  {
     exact: true,
     path: "/", 
     component: Home, 
@@ -237,5 +239,10 @@ export default [
     path: "/stripe-account-cb", 
     component: StripeAccountConfirm, 
     authRequired: false 
+  },
+  {
+    path: "/conversations",
+    component: Conversations,
+    authRequired: true
   },
 ]

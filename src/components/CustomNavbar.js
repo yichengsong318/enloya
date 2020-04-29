@@ -163,6 +163,8 @@ class CustomNavbar extends Component {
                           orientation="right">
                           <NavLink title="Account Settings" className="dropdown-item"
                             to="/account-settings/general-lawyer">Account Settings</NavLink>
+                          <NavLink title="Messages" className="dropdown-item"
+                            to="/conversations">Messages</NavLink>
 
                           { this.props.userType === 'lawyer' &&
                             <NavLink title="My Profile" className="dropdown-item"
