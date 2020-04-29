@@ -22,7 +22,7 @@ const Register = () => {
                       <div className="header d-flex">
                         <FontAwesomeIcon icon={faUsers} className="signup-icon"/>
                         <div>
-                          <h3 className="text-white mb-1">Clients</h3>
+                          <h3 className="text-white mb-1">I’m a business</h3>
                         </div>
                       </div>
                       <ul className="mb-5">
@@ -40,7 +40,7 @@ const Register = () => {
                       <div className="header d-flex">
                         <FontAwesomeIcon icon={faUsers} className="signup-icon text-logo-primary"/>
                         <div>
-                          <h3 className="mb-1">Lawyers</h3>
+                          <h3 className="mb-1">I’m a lawyer</h3>
                         </div>
                       </div>
                       <ul className="mb-5">

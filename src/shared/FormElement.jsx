@@ -49,6 +49,7 @@ export function FormSelect(props) {
 }
 
 export function FormTag(props) {
+  const customOptions = props.choices.slice(0, 10);
   return (
     <div className="form-group text-left">
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
@@ -60,7 +61,7 @@ export function FormTag(props) {
           }}
           className="p-0 w-100 border-black"
           value={props.selected}
-          options={props.choices}
+          options={customOptions}
           />
         {!props.noHelp && <FontAwesomeIcon icon={faQuestion} className="form-question-icon" />}
       </div>
@@ -101,7 +102,7 @@ export function FormCity(props) {
               }
             }
           }}
-          onChange={({ suggestion }) => 
+          onChange={({ suggestion }) =>
             props.onChange(props.name, suggestion.name)}
           />
       </div>

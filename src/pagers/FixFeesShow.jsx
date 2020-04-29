@@ -65,7 +65,6 @@ export class FixFeesShow extends Component {
             <div className="col-sm-8 mx-auto">
               <div className="bg-white my-5 border-radius-8">
                 <div className="px-5 pt-5 bg-blurd pb-2">
-
                     <div className="row">
                       <div className="col-md-8 col-lg-8 col-sm-12">
                           <h2 className="text-left common-title mb-4 text-white">{serv.title}</h2>
@@ -118,7 +117,7 @@ export class FixFeesShow extends Component {
                         {serv.requirements.map((req, i) => {
                           return (
                             <React.Fragment key={i}>
-                              <p className="text-bold mt-3">Requirement {i + i}</p>
+                              <p className="text-bold mt-3">Requirement {i + 1}</p>
                               <p className="text-justify">{req.requirement}</p>
                             </React.Fragment>
                           )
@@ -126,7 +125,7 @@ export class FixFeesShow extends Component {
                       </div>
                       <div className="col-sm-12 text-right">
                         {
-                          isInCart ? 
+                          isInCart ?
                           <button className="btn btn-secondary px-5" onClick={() => {this.props.removeFromCart(serv.id)}}>
                             Remove from cart
                           </button>

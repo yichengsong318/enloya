@@ -37,13 +37,17 @@ export class LawyerProfile extends Component {
       lawyerId: id || props.userInfo.id,
       userInfo: {},
       copied: false,
+      titleCLasses: '',
     };
   }
 
   componentDidMount() {
 
     get('lawyers/' + this.state.lawyerId, {}).then(res => {
-      this.setState({userInfo: res.data});
+      const currentlawyer = res.data;
+      const titleSize = currentlawyer.title;
+      const classes = titleSize.length >= 45 && 'text-elipsis-vertical';
+      this.setState({userInfo: currentlawyer, titleCLasses: classes});
     })
 
     this.readPr('proexperiences', 'proexperiences');
@@ -121,7 +125,7 @@ export class LawyerProfile extends Component {
                       <div className="row">
                         { this.state.copied ? (<span className="copied-success">Lowyer profile URL Copied!</span>) : ''}
                         <div className="col-md-8 col-lg-8 col-sm-12">
-                            <h2 className="font-weight-bold text-left">
+                            <h2 className={`${this.state.titleCLasses} font-weight-bold text-left`}>
                               {userInfo.title}
                               {/* <img src={special} alt="en_pic" className="img-fluid special-profil ml-3"/> */}
                             </h2>
