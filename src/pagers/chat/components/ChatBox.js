@@ -28,7 +28,6 @@ export default class ChatBox extends Component {
    * Sends a message only if it is not falsy.
    */
   onSendClicked() {
-    console.log('message sending enclenched',this.state.messageText);
     if (!this.state.messageText) {
       return;
     }
@@ -51,9 +50,6 @@ export default class ChatBox extends Component {
   }
 
   render() {
-    console.log('this.props.signedInUser', this.props.signedInUser);
-    console.log('this.state.messageText', this.state.messageText);
-    console.log('this.props.targetUser', this.props.targetUser);
     return (
       <div>
         {this.props.targetUser ? (
@@ -62,14 +58,12 @@ export default class ChatBox extends Component {
               left={
                 <div>
                   <Avatar
-                    src={require(`../static/images/avatar/${
-                      this.props.targetUser.id
-                    }.jpg`)}
+                    src={this.props.targetUser.profilePic || require(`../static/images/avatar/1.jpg`)}
                     alt={"logo"}
                     size="large"
                     type="circle flexible"
                   />
-                  <p className="navBarText">{this.props.targetUser.firstname}</p>
+                  <p className="navBarText">{this.props.targetUser.firstname} {this.props.targetUser.lastname}</p>
                 </div>
               }
             />

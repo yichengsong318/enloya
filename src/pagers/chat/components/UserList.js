@@ -9,11 +9,15 @@ import { FormControl } from "react-bootstrap";
  */
 
 export default class UserList extends Component {
+  
   state = {
     userData: [],
     searchQuery: null
   };
-  componentDidMount() {}
+  
+  componentDidMount() {
+  }
+
   searchInput(e) {
     let value = e.target.value;
     let searchQuery = null;
@@ -27,11 +31,23 @@ export default class UserList extends Component {
    * Implement filter logic on basis of search query.
    */
   getFilteredUserList() {
-    return !this.state.searchQuery
-      ? this.props.userData
-      : this.props.userData.filter(user =>
-          user.firstname.toLowerCase().includes(this.state.searchQuery.toLowerCase())
-        );
+    if (this.state.searchQuery) {
+      let list = [];
+      
+      if (this.props.lawyers) {
+        list.push(...this.props.lawyers);
+      }
+  
+      if (this.props.clients) {
+        list.push(...this.props.clients);
+      }
+  
+      return list.filter(user =>
+        (user.firstname + ' ' + user.lastname).toLowerCase().includes(this.state.searchQuery.toLowerCase())
+      );
+    } else {
+      return this.props.chatList.filter(cl => cl.messages && cl.messages.length);
+    }
   }
   render() {
     let users = this.getFilteredUserList();
@@ -59,13 +75,13 @@ export default class UserList extends Component {
                 let lastMessage = f.messages[f.messages.length - 1];
                 date = new Date(lastMessage.timeStamp);
                 subtitle =
-                  (lastMessage.position === "right" ? "You: " : f.firstname + ": ") +
+                  (lastMessage.position === "right" ? "You: " : f.firstname + " " + f.lastname + ": ") +
                   lastMessage.text;
               }
               return {
-                avatar: require(`../static/images/avatar/${f.id}.jpg`),
-                alt: f.firstname,
-                title: f.firstname,
+                avatar: f.profilePic || require(`../static/images/avatar/1.jpg`),
+                alt: f.firstname + ' ' + f.lastname,
+                title: f.firstname + ' ' + f.lastname,
                 subtitle: subtitle,
                 date: date,
                 unread: f.unread,

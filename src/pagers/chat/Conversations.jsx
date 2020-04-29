@@ -3,12 +3,9 @@ import { connect } from "react-redux";
 import io from "socket.io-client";
 import { NotificationManager } from "react-notifications";
 import axios from "axios";
-import { FormInput } from '../../shared/FormElement';
 import { updateData, readData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 import UserList from "./components/UserList";
-import { fetchUsers } from "./requests";
 import ChatBox from "./components/ChatBox";
 
 import AlertArea from '../../components/AlertArea';
@@ -18,24 +15,15 @@ import FooterData from '../../components/Footer/FooterData';
 
 import { apiConfig } from '../../constants/defaultValues';
 
-const DUMMY_USERS = [
-    {
-      id:  1,
-      firstname: "Perborgen DOE",
-    },
-    {
-      id:  2,
-      firstname: "Janedoe YOAN",
-    }
-  ]
+
 export class Conversations extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       signInModalShow: false,
-      users: DUMMY_USERS, // Avaiable users for signing-in
-      userChatData: DUMMY_USERS, // this contains users from which signed-in user can chat and its message data.
+      users: [], // Avaiable users for signing-in
+      userChatData: [], // this contains users from which signed-in user can chat and its message data.
       user: null, // Signed-In User
       selectedUserIndex: null,
       showChatBox: false, // For small devices only
@@ -46,15 +34,23 @@ export class Conversations extends Component {
   }
 
   componentDidMount() {
-    this.setState({user: this.props.userInfo})
-    this.initAxios();
-    this.initSocketConnection();
+    this.props.loadMe(() => {
+      this.setState({user: this.props.userInfo})
+      this.initAxios();
+      this.initSocketConnection();
+      this.setupSocketListeners();
+    });
     // fetchUsers().then(users => this.setState({ users }));
-    this.setupSocketListeners();
+    this.props.readData('lawyers',{}, () => {
+      this.props.readData('clients', {}, () => {
+        this.setState({userChatData: [...this.props.lawyers, ...this.props.clients]})
+      });
+    });
   }
 
   initSocketConnection = () => {
-    this.socket = io.connect(apiConfig);
+    this.socket = io.connect(apiConfig.apiURL);
+    this.socket.emit("sign-in", this.state.user.id);
   }
 
   initAxios = () => {
@@ -97,13 +93,14 @@ export class Conversations extends Component {
 
   onReconnection = () => {
     if (this.state.user) {
-      this.socket.emit("sign-in", this.state.user);
+      this.socket.emit("sign-in", this.state.user.id);
       NotificationManager.success("Connection Established.", "Reconnected!");
     }
   }
 
   setupSocketListeners = () => {
     this.socket.on("message", this.onMessageRecieved.bind(this));
+    this.socket.on("messages", this.onMessageLoaded.bind(this));
     this.socket.on("reconnect", this.onReconnection.bind(this));
     this.socket.on("disconnect", this.onClientDisconnected.bind(this));
   }
@@ -132,6 +129,46 @@ export class Conversations extends Component {
     userChatData[targetIndex].messages.push(messageData);
     this.setState({ userChatData });
   }
+  
+  onMessageLoaded = (messages) => {
+
+    console.log(messages)
+    let userChatData = this.state.userChatData;
+
+    userChatData.forEach(uc => {
+      uc.messages = [];
+    });
+
+    messages.forEach(message => {
+      let messageData = message.message;
+      let targetId;
+      
+      if (message.from === this.state.user.id) {
+        messageData.position = "right";
+        targetId = message.to;
+      } else {
+        messageData.position = "left";
+        targetId = message.from;
+      }
+      
+      let targetIndex = userChatData.findIndex(u => u.id === targetId);
+      
+      if (!userChatData[targetIndex].messages) {
+        userChatData[targetIndex].messages = [];
+      }
+      
+      if (targetIndex !== this.state.selectedUserIndex) {
+        if (!userChatData[targetIndex].unread) {
+          userChatData[targetIndex].unread = 0;
+        }
+        userChatData[targetIndex].unread++;
+      }
+      
+      userChatData[targetIndex].messages.push(messageData);
+    });
+
+    this.setState({ userChatData });
+  }
 
   onUserClicked = (e) => {
     let user = e.user;
@@ -153,12 +190,12 @@ export class Conversations extends Component {
   }
 
   createMessage = (text) => {
-    console.log('message receiving enclenched',text);
-    console.log('Current user infos this.state.user.id', this.state.user.id);
-    console.log('this.state.userChatData[this.state.selectedUserIndex].id', this.state.userChatData[this.state.selectedUserIndex].id);
-    console.log('this.state.user.id', this.state.user.id);
+    const fromType = this.state.user.type ? 'client' : 'lawyer';
+    const toType = this.state.userChatData[this.state.selectedUserIndex].type ? 'client' : 'lawyer';
+
     let message = {
       to: this.state.userChatData[this.state.selectedUserIndex].id,
+      usertype: fromType + '-to-' + toType,
       message: {
         type: "text",
         text: text,
@@ -167,7 +204,6 @@ export class Conversations extends Component {
       },
       from: this.state.user.id
     };
-    console.log('messagemessagemessage', message);
     this.socket.emit("message", message);
   }
 
@@ -180,9 +216,6 @@ export class Conversations extends Component {
 
 
   render () {
-    console.log('this.state.users', this.state.users);
-    console.log('this.state single user', this.state.user);
-    console.log('this.props.users', this.props.userInfo);
     return (
       <div className="App">
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
@@ -192,7 +225,9 @@ export class Conversations extends Component {
           <div className="row px-3">
             <div className="col-sm-3 sidemenu pt-3">
               <UserList
-                userData={this.state.userChatData}
+                lawyers={this.props.lawyers}
+                clients={this.props.clients}
+                chatList = {this.state.userChatData}
                 onChatClicked={this.onChatClicked.bind(this)}
               />
             </div>
@@ -219,9 +254,9 @@ export class Conversations extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
-  const { languages } = data;
+  const { languages, lawyers, clients } = data;
 
-  return { userType, userInfo, user, languages };
+  return { userType, userInfo, user, languages, lawyers, clients };
 };
 
 const mapActionToProps = {

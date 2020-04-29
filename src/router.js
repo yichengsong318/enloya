@@ -38,7 +38,7 @@ import ServiceSearchResults from './pagers/ServiceSearchResults';
 import LawyerProfile from './pagers/LawyerProfile';
 import AccountSettings from './pagers/AccountSettings';
 import ValidateAccount from './pagers/ValidateAccount';
-import Conversations from './pagers/account-settings/Conversations';
+import Conversations from './pagers/chat/Conversations';
 
 
 export default [
