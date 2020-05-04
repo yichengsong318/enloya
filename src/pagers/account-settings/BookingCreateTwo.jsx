@@ -19,7 +19,7 @@ function BookingCreate() {
             ]} noHelp/>
           </div>
           <div className="col-sm-12">
-            <FormSwitch label="How much notice do you need before providing a consultation" id="notice-frequency" 
+            <FormSwitch label="How much notice do you need before providing a consultation" id="notice-frequency"
               selected="" choices={[
               { key: '0', label: '0 Days' },
               { key: '1', label: '1 Days' },
@@ -33,7 +33,7 @@ function BookingCreate() {
           </div>
           <div className="col-sm-12">
             <FormSwitch label="How often do you want to give a consultation" id="often-2" selected="part-time" choices={[
-              { key: 'anytime', label: 'Anytime' }, 
+              { key: 'anytime', label: 'Anytime' },
               { key: '1-month', label: '1 Month' },
               { key: '2-month', label: '2 Month' },
               { key: '3-month', label: '3 Month' },
@@ -71,7 +71,7 @@ function BookingCreate() {
       </div>
       <div className="mt-4 mb-5">
         <div className="col-sm-12 text-right">
-          <button type="button" className="btn btn-primary px-5">Next</button>
+          <button type="button" className="btn btn-yellow px-5">Next</button>
         </div>
       </div>
     </div>

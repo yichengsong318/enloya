@@ -24,7 +24,7 @@ function JobItem (props) {
           </div>
         </div>
         <div className="col-sm-3 text-right">
-          <Link class="btn btn-primary px-5" to="/job-detail">View</Link>
+          <Link class="btn btn-yellow px-5" to="/job-detail">View</Link>
         </div>
       </div>
     </div>

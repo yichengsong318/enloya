@@ -150,7 +150,7 @@ class CustomNavbar extends Component {
                                 name="searchcountry" onChange={this.handleSearchChange}
                                 choices={countries} noHelp customClass="d-inline-block mw-170 mr-2 mb-0"/>
 
-                              <button type="button" className={"text-bold btn btn-primary px-5 bg-yellow" +
+                              <button type="button" className={"text-bold btn btn-yellow px-5 bg-yellow" +
                                 (this.state.searchquery && this.state.searchcountry ? '' : ' disabled')}
                                 onClick={this.launchSearch}
                                 >Search</button>
@@ -169,7 +169,7 @@ class CustomNavbar extends Component {
                               to={"/lawyer-profile/" + this.props.userInfo.id}>My Profile</NavLink>}
                           <span className="dropdown-item" onClick={() => this.handleLogout()}>Logout</span>
                         </Dropdown>
-                        {this.props.userType === 'client' && 
+                        {this.props.userType !== 'client' &&
                         <NavLink to="/checkout"><img src={require("../img/cart-icon.svg")} alt="" style={{ height: "25px", marginLeft: "10px"}}/></NavLink>}
                       </>
                     )

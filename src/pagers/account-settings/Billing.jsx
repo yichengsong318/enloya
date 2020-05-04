@@ -32,8 +32,8 @@ const CARD_ELEMENT_OPTIONS = {
 class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state = { 
+
+    this.state = {
       error: ''
     }
   }
@@ -75,7 +75,7 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <form className="my-5 p-4 bg-lighter" onSubmit={this.handleSubmit}>
-        {this.state.error && 
+        {this.state.error &&
           <div className="alert alert-danger" role="alert">{this.state.error}</div>}
         <h5 className="mt-2 mb-3">Add a credit card</h5>
         <div className="row">
@@ -84,7 +84,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className="col-sm-6">
             <div className="text-left pr-0">
-              <button type="submit" className="btn btn-primary px-5">Add the card</button>
+              <button type="submit" className="btn btn-yellow px-5">Add the card</button>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ class CheckoutForm extends React.Component {
 const InjectedCheckoutForm = (props) => (
   <ElementsConsumer>
     {({stripe, elements}) => (
-      <CheckoutForm stripe={stripe} elements={elements} 
+      <CheckoutForm stripe={stripe} elements={elements}
         userId={props.userId} userType={props.userType} loadMe={props.loadMe}/>
     )}
   </ElementsConsumer>
@@ -107,8 +107,8 @@ const stripePromise = loadStripe("pk_test_ZbpDLpu7alIoXGpdqS34AClR");
 export class Billing extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = { 
+
+    this.state = {
       error: ''
     }
   }
@@ -134,7 +134,7 @@ export class Billing extends Component {
       });
     }
   }
-  
+
   render () {
     const { userInfo, userType, loadMe } = this.props;
     let currentPlan = null;
@@ -144,21 +144,21 @@ export class Billing extends Component {
       }
     }
 
-    
+
     return (
       <div className="py-4 px-2 account-settings">
-        {userType === 'lawyer' && 
+        {userType === 'lawyer' &&
           <>
             <h2 className="mt-2 mb-3">Current billing plan</h2>
             <hr/>
             <div>
               <div className="py-5">
-                {currentPlan ? 
+                {currentPlan ?
                   <h6 className="mb-4">Your current plan is: <strong>{currentPlan}</strong></h6>
                   :
                   <h6 className="mb-4">You don't have any plan currently. Please upgrade to get access to great features.</h6>
                 }
-                <NavLink className="btn btn-primary" to="/upgrade">Upgrade your plan</NavLink>
+                <NavLink className="btn btn-yellow" to="/upgrade">Upgrade your plan</NavLink>
               </div>
             </div>
           </>
@@ -185,7 +185,7 @@ export class Billing extends Component {
             );
           }
         )}
-        
+
         <Elements stripe={stripePromise}>
           <InjectedCheckoutForm userId={userInfo.id} userType={userType} loadMe={loadMe}/>
         </Elements>
@@ -201,7 +201,7 @@ const mapStateToProps = ({ authUser, data }) => {
 };
 
 const mapActionToProps = {
-  updateData, 
+  updateData,
   loadMe
 }
 

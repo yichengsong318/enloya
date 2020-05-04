@@ -79,7 +79,6 @@ class Footer extends Component {
                                                 <div className="f_widget about-widget pt_70 wow fadeInLeft" data-wow-delay="0.4s">
                                                   <ul className="list-unstyled f_list mt_11">
                                                     <li><Link to="/">Chemin Eugene-Rigot 2, 1202 Geneva, Switzerland</Link></li>
-                                                    <li><Link to="/">info@enloya.com</Link></li>
                                                     <li><a href="http://help.enloya.com">Help Center</a></li>
                                                   </ul>
                                                 </div>

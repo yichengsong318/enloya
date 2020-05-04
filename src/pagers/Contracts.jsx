@@ -33,7 +33,7 @@ function ContractItem (props) {
           <div>${props.activeMilestone}</div>
         </div>
         <div className="col-sm-3 text-right">
-          <Link class="btn btn-primary px-2" to="#">Active Milestone</Link>
+          <Link class="btn btn-yellow px-2" to="#">Active Milestone</Link>
           <FontAwesomeIcon icon={faPlusCircle} className="text-dark ml-3" />
         </div>
       </div>
@@ -57,7 +57,7 @@ function Contracts() {
                       <FormInput placeholder="Search Contracts" id="search" type="text" noHelp noLabel/>
                     </div>
                     <div className="col-sm-2 pl-0">
-                      <button type="button" className="btn btn-primary px-4 ml-4">Filter</button>
+                      <button type="button" className="btn btn-yellow px-4 ml-4">Filter</button>
                     </div>
                   </div>
                 </div>

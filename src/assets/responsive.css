@@ -2380,6 +2380,11 @@
     }
 }
 
+@media (min-width: 1450px) {
+  .container {
+    max-width: 1480px!important;
+  }
+}
 @media (min-width:770px){
     .mobile-only {
         display: none;

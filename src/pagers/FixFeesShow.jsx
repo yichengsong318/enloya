@@ -130,7 +130,7 @@ export class FixFeesShow extends Component {
                             Remove from cart
                           </button>
                           :
-                          <button className="btn btn-primary px-5 bg-yellow"  onClick={() => {this.props.addToCart(serv.id)}}>
+                          <button className="btn btn-yellow px-5 bg-yellow"  onClick={() => {this.props.addToCart(serv.id)}}>
                             Save and add to cart
                           </button>
                         }

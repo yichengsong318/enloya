@@ -52,7 +52,7 @@ function Login() {
                       <li>- Why they should go premium</li>
                     </ul>
                     <div>
-                      <Link to="/signup-lawyer" className="btn btn-primary btn-block">Sign Up Now</Link>
+                      <Link to="/signup-lawyer" className="btn btn-yellow btn-block">Sign Up Now</Link>
                     </div>
                   </div>
                 </div>

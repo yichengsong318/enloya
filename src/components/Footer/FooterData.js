@@ -142,7 +142,7 @@ const FooterData = {
         icon: 'ti-linkedin',
       },
     ],
-    copywrite:"© Enloya Inc.. 2019 All rights reserved.",
+    copywrite:"© Enloya. All rights reserved 2020.",
     TestimonialText: [
       {
         id: 1,

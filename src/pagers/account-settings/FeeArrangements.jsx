@@ -9,14 +9,14 @@ export class FeeArrangements extends Component {
   constructor(props) {
     super(props);
 
-    const other = this.props.userInfo.feeArrangements && 
+    const other = this.props.userInfo.feeArrangements &&
       this.props.userInfo.feeArrangements.find(fa => fa[0] === '#');
 
     this.state = {
       otherFee: other ? true : false,
       otherText: other ? other.slice(1) : '',
       hourlyRate: this.props.userInfo.hourlyRate || '',
-      feeArrangements: this.props.userInfo.feeArrangements ? 
+      feeArrangements: this.props.userInfo.feeArrangements ?
         this.props.userInfo.feeArrangements.filter(fa => fa[0] !== '#') : []
     }
   }
@@ -35,10 +35,10 @@ export class FeeArrangements extends Component {
       }
 
       const d = {
-        hourlyRate: this.state.hourlyRate, 
+        hourlyRate: this.state.hourlyRate,
         feeArrangements
-      }; 
-      
+      };
+
       this.props.updateData(this.props.userType + 's', this.props.userInfo.id, d, () => {
         this.props.loadMe(() => {
           NotificationManager.success(
@@ -81,32 +81,32 @@ export class FeeArrangements extends Component {
             <div className="col-sm-7">
               <FormInput label="Hourly Rate (average)" type="text" id="hourlyRate"
                 value={this.state.hourlyRate} name="hourlyRate" onChange={this.handleChange} noHelp/>
-            
+
               <div className="mt-5 mb-4">
                 <h4>Fee arrangements</h4>
                 <hr/>
-                <FormCheck id="fa-hourly" 
+                <FormCheck id="fa-hourly"
                   label="Hourly rate" val="Hourly rate"
-                  value={this.state.feeArrangements.indexOf('Hourly rate') > -1} 
+                  value={this.state.feeArrangements.indexOf('Hourly rate') > -1}
                   name="feeArrangements" onChange={this.handleChange}/>
-                
-                <FormCheck id="fa-flat" 
+
+                <FormCheck id="fa-flat"
                   label="Flat fees" val="Flat fees"
-                  value={this.state.feeArrangements.indexOf('Flat fees') > -1} 
+                  value={this.state.feeArrangements.indexOf('Flat fees') > -1}
                   name="feeArrangements" onChange={this.handleChange}/>
-                
-                <FormCheck id="fa-contigency" 
+
+                <FormCheck id="fa-contigency"
                   label="Contingency fees" val="Contingency fees"
-                  value={this.state.feeArrangements.indexOf('Contingency fees') > -1} 
+                  value={this.state.feeArrangements.indexOf('Contingency fees') > -1}
                   name="feeArrangements" onChange={this.handleChange}/>
-                
-                <FormCheck id="fa-retainer" 
+
+                <FormCheck id="fa-retainer"
                   label="Retainer" val="Retainer"
-                  value={this.state.feeArrangements.indexOf('Retainer') > -1} 
+                  value={this.state.feeArrangements.indexOf('Retainer') > -1}
                   name="feeArrangements" onChange={this.handleChange}/>
-                
-                <FormCheck id="fa-other" 
-                  label="Other" value={this.state.otherFee} 
+
+                <FormCheck id="fa-other"
+                  label="Other" value={this.state.otherFee}
                   name="otherFee" onChange={this.handleChange}/>
 
                 {this.state.otherFee && <FormInput label="" type="text" id="otherText"
@@ -114,7 +114,7 @@ export class FeeArrangements extends Component {
               </div>
             </div>
             <div className="col-sm-7 mt-4 text-right">
-              <button onClick={this.onFormSubmit} type="button" className="btn btn-primary px-5">Save</button>
+              <button onClick={this.onFormSubmit} type="button" className="btn btn-yellow px-5">Save</button>
             </div>
           </div>
         </div>
@@ -129,7 +129,7 @@ const mapStateToProps = ({ authUser }) => {
 };
 
 const mapActionToProps = {
-  updateData, 
+  updateData,
   loadMe
 }
 
@@ -137,4 +137,3 @@ export default withRouter(connect(
   mapStateToProps,
   mapActionToProps
 )(FeeArrangements));
-

@@ -296,7 +296,7 @@ export class FixFeesCreate extends Component {
                 noHelp />
               <div className="small text-right">500 Characters max</div>
               <div className="py-4 text-right">
-                <button type="button" onClick={this.onAddQuestion} className="btn btn-primary px-5">Add Question</button>
+                <button type="button" onClick={this.onAddQuestion} className="btn btn-yellow px-5">Add Question</button>
               </div>
             </div>
           </div>
@@ -329,11 +329,11 @@ export class FixFeesCreate extends Component {
                 noHelp/>
           </div>
           <div className="py-4 text-right">
-            <button type="button" onClick={this.onAddRequirement} className="btn btn-primary px-5">Add requirement</button>
+            <button type="button" onClick={this.onAddRequirement} className="btn btn-yellow px-5">Add requirement</button>
           </div>
         </div>
         <div className="pb-4 text-right">
-          <button type="button" onClick={this.onFormSubmit} className="btn btn-primary px-5">Publish</button>
+          <button type="button" onClick={this.onFormSubmit} className="btn btn-yellow px-5">Publish</button>
         </div>
       </div>
     );

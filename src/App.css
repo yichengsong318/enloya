@@ -748,6 +748,16 @@ hr {
     border-bottom: 3px #F3CA3E solid!important;
     color: #000!important;
     font-size: .8rem!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+.btn-yellow{
+    border-radius: 2!important;
+    border-color: #F3CA3E!important;
+    background-color: #F3CA3E!important;
+    border-bottom: 3px #F3CA3E solid!important;
+    color: #000!important;
 }
 .custom-fix-fee-service {
     box-sizing: border-box;

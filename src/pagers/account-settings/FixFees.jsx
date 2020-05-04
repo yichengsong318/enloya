@@ -17,7 +17,7 @@ export class FixFees extends Component {
         <h2 className="mt-2 mb-3 pl-4">Fix-fee Services</h2>
         <div className="pb-4 text-right">
           <Link to="/account-settings/fix-fee-services-create"
-            className="btn btn-primary px-5">Create a new service</Link>
+            className="btn btn-yellow px-5">Create a new service</Link>
         </div>
         <div className="py-4 fixed-services">
           <div className="row mx-auto">

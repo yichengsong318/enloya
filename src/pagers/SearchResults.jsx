@@ -136,7 +136,7 @@ export class SearchResults extends Component {
                     noLabel noHelp />
                 </div>
                 <div className="col-sm-4">
-                  <button type="button" className="btn btn-primary px-5"
+                  <button type="button" className="btn btn-yellow px-5"
                     onClick={() => {this.search()}}>Search</button>
                 </div>
               </div>
