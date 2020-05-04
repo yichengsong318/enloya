@@ -53,20 +53,9 @@ const BecomeAmbassador = ({ children, location: { pathname } }) => {
           </div>
         </div>
         <div className="row">
-          <h3 className="text-left common-title mt-5 mb-3">Why Joining ?</h3>
-          <div className="col-sm-12">
-            <div className="">
-              <div className="text-justify mb-1">- Commission for each premium member that signs up to Enloya using your personal code and remains a premium member for a period of 12 months</div>
-              <div className="text-justify mb-1">- Supplementary annual bonus *</div>
-              <div className="text-justify mb-1">- Free premium membership **</div>
-              <div className="text-justify mb-1">- Atted our annual Enloya Ambassadors retreat (all travelling expenses covered) *</div>
-            </div>
-          </div>
-        </div>
-        <div className="row">
           <div className="my-5">
             <h4 className="text-left common-title mb-3">
-              <span className="btn btn-warning text-white btn-lg">Apply Now</span> to become an Enloya Ambassador and join us in our exciting journey. Go <a className="text-primary" href="/">Enloya</a>!
+              <a href="mailto:info@enloya.com" className="btn btn-yellow text-white btn-lg">Apply Now</a> to become an Enloya Ambassador and join us in our exciting journey. Go Enloya!
             </h4>
             <div className="text-justify mb-1">* Dependent upon and subject to meeting targets.</div>
             <div className="text-justify mb-1">** Subject to meeting our applicable conditions.</div>
