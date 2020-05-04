@@ -66,6 +66,8 @@ i:before {
 }
 
 body {
+  background: #ffffff!important;
+  background-color: #ffffff!important;
   font-size: 15px;
   font-weight: 300;
   line-height: 28px;
@@ -439,8 +441,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 .btn_get {
   font: 500 14px/47px "Poppins", sans-serif;
-  color: #ffb347;
-  border: 2px solid #ffb347;
+  color: #F3CA3E;
+  border: 2px solid #F3CA3E;
   border-radius: 4px;
   -webkit-box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
   box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
@@ -466,8 +468,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 .btn_get:hover {
   color: #fff;
-  background: #ffb347;
-  border-color: #ffb347;
+  background: #F3CA3E;
+  border-color: #F3CA3E;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -477,8 +479,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 .btn_get_two {
   -webkit-box-shadow: none;
   box-shadow: none;
-  background: #ffb347!important;
-  border-color: #ffb347!important;
+  background: #F3CA3E!important;
+  border-color: #F3CA3E!important;
   color: #fff;
 }
 
@@ -1736,8 +1738,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .menu_four .btn_get:hover {
-  background: #ffb347;
-  border-color: #ffb347;
+  background: #F3CA3E;
+  border-color: #F3CA3E;
 }
 
 .menu_four .btn_get_radious {
@@ -2077,18 +2079,18 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .header_area_three .menu_four .btn_get {
-  border-color: #ffb347;
-  background: #ffb347;
+  border-color: #F3CA3E;
+  background: #F3CA3E;
   color: #fff;
 }
 
 .header_area_three .menu_four .btn_get:hover {
   background: transparent;
-  color: #ffb347;
+  color: #F3CA3E;
 }
 
 .header_area_three.navbar_fixed .menu_four .btn_get {
-  border-color: #ffb347 !important;
+  border-color: #F3CA3E !important;
 }
 
 .header_area_four .header_top {
@@ -2292,14 +2294,14 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 .navbar_fixed .header_area .menu_one .btn_get.new_btn{
   color: #6754e2;
-  border: 2px solid #ffb347;
+  border: 2px solid #F3CA3E;
   background: transparent;
 }
 
 .navbar_fixed .header_area .menu_one .btn_get.new_btn:hover{
   color: #fff;
-  background: #ffb347;
-  border-color: #ffb347;
+  background: #F3CA3E;
+  border-color: #F3CA3E;
 }
 
 .navbar_fixed .header_area .sticky_logo img {
@@ -2352,13 +2354,13 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .menu_four .btn_get {
-  border: 2px solid #ffb347;
+  border: 2px solid #F3CA3E;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 .menu_four .btn_get:hover {
-  background: #ffb347;
-  border-color: #ffb347;
+  background: #F3CA3E;
+  border-color: #F3CA3E;
 }
 .navbar_fixed .header_area .menu_four .btn_get:hover {
   border-color: #6754e2;
@@ -7005,11 +7007,11 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .p_service_item .icon.icon_three {
-  background: #ffb347;
+  background: #F3CA3E;
 }
 
 .p_service_item .icon.icon_three:before {
-  background: #ffb347;
+  background: #F3CA3E;
 }
 
 .p_service_item .icon.icon_four {

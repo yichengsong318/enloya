@@ -16,10 +16,7 @@ const Team = ({ children, location: { pathname } }) => {
     return(
         <div className="body_wrapper">
             <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
-            <div className="video-container">
-              Video will be added here soon...
-            </div>
-            <Breadcrumb breadcrumbClass="custom-breadcrumb breadcrumb_area_three" imgName="Img-05.jpg" Ptitle="Our mission" Pdescription="To provide the best legal solution to fast growing companies!"/>
+            <Breadcrumb breadcrumbClass="custom-breadcrumb breadcrumb_area_three mt-5" imgName="Img-05.jpg" Ptitle="Our mission" Pdescription="To provide the best legal solution to fast growing companies!"/>
             <div className="container">
               <div className="who-we-are-container pb-3-1">
                 <h3 className="pb-3">Who we are</h3>

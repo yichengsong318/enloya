@@ -495,14 +495,6 @@ hr {
     font-weight: 500;
 }
 
-/* .fixed-service .header h5 {
-    width: 170px;
-    max-width: 170px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-} */
-
 .fixed-service .body {
   padding: 15px;
   display: flex;
@@ -945,4 +937,7 @@ hr {
     margin-top: 35px;
     margin-bottom: 16px;
     transition: color 0.2s linear;
+}
+.pricing-card-body {
+  height: 22rem!important;
 }
