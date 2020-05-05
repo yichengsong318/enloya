@@ -119,7 +119,7 @@ export class LawyerProfile extends Component {
               <div className="col-sm-12 px-0 lawyer-card-large">
                 <div className="row">
                   <div className="col-md-2 col-sm-12 ml-auto mr-4">
-                    <img src={userInfo.profilePic || pic} className="img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
+                    <img src={userInfo.profilePic || pic} className="w-100c img-pic-user-large mr-4 border-radius-8" alt="user_pic" />
                   </div>
                   <div className="col-md-9 com-sm-12">
                       <div className="row">

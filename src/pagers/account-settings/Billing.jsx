@@ -84,7 +84,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className="col-sm-6">
             <div className="text-left pr-0">
-              <button type="submit" className="btn btn-yellow px-5">Add the card</button>
+              <button type="submit" className="btn btn-yellow px-5 mobile-margin-top">Add the card</button>
             </div>
           </div>
         </div>

@@ -361,7 +361,19 @@
     }
 }
 
+@media (max-width:1250px) {
+  .w-100c {
+    width: 100%!important;
+  }
+  .w-320 {
+    width: initial !important;
+  }
+}
 @media (max-width:1199px){
+    .mobile-px-1 {
+        padding-left: .5rem!important;
+        padding-right: .5rem!important;
+    }
     .s_service_item{
         padding: 50px 22px 40px;
     }
@@ -1106,9 +1118,11 @@
     }
 }
 
-
-
 @media (max-width:991px){
+    .message-me-now {
+      right: 0%;
+      top: -23%;
+    }
     .register-imager {
         display: none;
     }
@@ -3473,6 +3487,13 @@
 }
 
 @media (max-width:576px){
+    .mobile-toplink {
+        display: block;
+        text-align: center;
+    }
+    .mobile-margin-top {
+        margin-top: 1rem;
+    }
     .app_featured_area{
         padding-top: 135px;
     }
@@ -4337,10 +4358,6 @@
 }
 
 @media (max-width:460px){
-    .mobile-toplink {
-        display: block;
-        text-align: center;
-    }
     .mt-5-mobile, .mt-3-mobile {
         margin-top: 0!important;
     }

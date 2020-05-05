@@ -150,7 +150,7 @@ class CustomNavbar extends Component {
                                 name="searchcountry" onChange={this.handleSearchChange}
                                 choices={countries} noHelp customClass="d-inline-block mw-170 mr-2 mb-0"/>
 
-                              <button type="button" className={"text-bold btn btn-yellow px-5 bg-yellow" +
+                              <button type="button" className={"mobile-px-1 text-bold btn btn-yellow px-5 bg-yellow" +
                                 (this.state.searchquery && this.state.searchcountry ? '' : ' disabled')}
                                 onClick={this.launchSearch}
                                 >Search</button>
