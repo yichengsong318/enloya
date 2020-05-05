@@ -13,6 +13,7 @@ export class Professional extends Component {
     super(props);
 
     this.state = {
+      showAlert: false,
       title: {
         editing: false,
         value : props.userInfo.title,
@@ -157,7 +158,14 @@ export class Professional extends Component {
   }
 
   handleChange = (name, value) => {
-    this.setState({[name]: {...this.state[name], value: value }});
+    if (value.length > 30 && name === 'title') {
+      this.setState({showAlert: true})
+    } else {
+      this.setState({
+        showAlert: false,
+        [name]: {...this.state[name], value: value },
+      })
+    }
   };
 
   handlePrChange = (prop, name, value) => {
@@ -233,7 +241,9 @@ export class Professional extends Component {
       this.props.updateData('lawyers', this.props.userInfo.id,
         {[name]: this.state[name].value}, () => {
         this.props.loadMe(() => {
-          NotificationManager.success("The changes were saved!", "Success !", 3000);
+          if (name === 'title' && !this.state.showAlert) {
+            NotificationManager.success("The changes were saved!", "Success !", 3000);
+          }
           let value = this.props.userInfo[name] || '';
 
           if (name === 'specializationInputs') {
@@ -416,9 +426,9 @@ export class Professional extends Component {
         <h2 className="mt-2 mb-3">Professional Background</h2>
         <div>
           <div className="d-flex justify-content-between">
-            <h5>Title</h5>
+            <h5>Title {this.state.showAlert &&(<span className="text-danger">(should be 30 characters maximum)</span>)}</h5>
             { this.state.title.editing ?
-              <span className="btn btn-primary btn-sm" onClick={() => {this.saveAttr('title')}}>Save</span>
+              <span className="btn btn-yellow btn-sm" onClick={() => {this.saveAttr('title')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('title', true)}}>Edit</span>
             }
@@ -434,7 +444,7 @@ export class Professional extends Component {
           <div className="d-flex justify-content-between">
             <h5>Short Description</h5>
             { this.state.shortDescription.editing ?
-              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('shortDescription')}}>Save</span>
+              <span className="btn btn-yellow btn-sm"  onClick={() => {this.saveAttr('shortDescription')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('shortDescription', true)}}>Edit</span>
             }
@@ -450,7 +460,7 @@ export class Professional extends Component {
           <div className="d-flex justify-content-between">
             <h5>Long Description</h5>
             { this.state.longDescription.editing ?
-              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('longDescription')}}>Save</span>
+              <span className="btn btn-yellow btn-sm"  onClick={() => {this.saveAttr('longDescription')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('longDescription', true)}}>Edit</span>
             }
@@ -466,7 +476,7 @@ export class Professional extends Component {
           <div className="d-flex justify-content-between mb-2">
             <h5>Current Position</h5>
             { this.state.currentPosition.editing ?
-              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('currentPosition')}}>Save</span>
+              <span className="btn btn-yellow btn-sm"  onClick={() => {this.saveAttr('currentPosition')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('currentPosition', true)}}>Edit</span>
             }
@@ -485,7 +495,7 @@ export class Professional extends Component {
           <div className="d-flex justify-content-between mb-2">
             <h5>Specializations</h5>
             { this.state.specializationInputs.editing ?
-              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('specializationInputs')}}>Save</span>
+              <span className="btn btn-yellow btn-sm"  onClick={() => {this.saveAttr('specializationInputs')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('specializationInputs', true)}}>Edit</span>
             }
@@ -507,7 +517,7 @@ export class Professional extends Component {
           <div className="d-flex justify-content-between mb-2">
             <h5>Lawyer Type</h5>
             { this.state.typeInputs.editing ?
-              <span className="btn btn-primary btn-sm"  onClick={() => {this.saveAttr('typeInputs')}}>Save</span>
+              <span className="btn btn-yellow btn-sm"  onClick={() => {this.saveAttr('typeInputs')}}>Save</span>
               :
               <span className="btn btn-link" onClick={() => {this.startEditing('typeInputs', true)}}>Edit</span>
             }
@@ -575,7 +585,7 @@ export class Professional extends Component {
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5"
+                    <button type="button" className="btn btn-yellow px-5"
                       onClick={() => {this.saveL()}}>Save</button>
                   </div>
                 </div>
@@ -617,7 +627,7 @@ export class Professional extends Component {
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5"
+                    <button type="button" className="btn btn-yellow px-5"
                       onClick={() => {this.saveAD()}}>Save</button>
                   </div>
                 </div>
@@ -695,7 +705,7 @@ export class Professional extends Component {
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5"
+                    <button type="button" className="btn btn-yellow px-5"
                       onClick={() => {this.savePE()}}>Save</button>
                   </div>
                 </div>
@@ -745,7 +755,7 @@ export class Professional extends Component {
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5"
+                    <button type="button" className="btn btn-yellow px-5"
                       onClick={() => {this.saveP()}}>Save</button>
                   </div>
                 </div>
@@ -787,7 +797,7 @@ export class Professional extends Component {
                 </div>
                 <div className="col-sm-12">
                   <div className="p-4 text-right">
-                    <button type="button" className="btn btn-primary px-5"
+                    <button type="button" className="btn btn-yellow px-5"
                       onClick={() => {this.saveM()}}>Save</button>
                   </div>
                 </div>

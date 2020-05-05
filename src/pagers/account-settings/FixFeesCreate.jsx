@@ -5,7 +5,7 @@ import { createData, readData } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import countries from "../../constants/fullCountries";
 
-import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag, FormDate } from '../../shared/FormElement';
+import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag } from '../../shared/FormElement';
 
 export class FixFeesCreate extends Component {
   constructor(props) {
@@ -114,27 +114,34 @@ export class FixFeesCreate extends Component {
   };
 
   handleFormChange = (name, value, add) => {
-    if (name === 'typeInputs') {
-      if (value) {
-        value = [...this.state.service.typeInputs, add];
-      } else {
-        value = this.state.service.typeInputs.filter(ti => ti !== add);
-      }
-
-      this.setState({service: {...this.state.service, [name]: value}});
-    } else if (name === 'industryInputs') {
-      value = [value];
-      this.setState({service: {...this.state.service, [name]: value}});
-    } else if (name === 'qQuestion') {
-      this.setState({qQuestion: value});
-    } else if (name === 'qAnswer') {
-      this.setState({qAnswer: value});
-    } else if (name === 'requirement') {
-      this.setState({requirement: value});
-    } else if (name === 'requirementType') {
-      this.setState({requirementType: value});
+    console.log('valuevalue', value);
+    if (value.length >= 70 && name === "title") {
+      console.log('title is too much');
+      this.setState({showAlert: true})
     } else {
-      this.setState({service: {...this.state.service, [name]: value}});
+      this.setState({showAlert: false})
+      if (name === 'typeInputs') {
+        if (value) {
+          value = [...this.state.service.typeInputs, add];
+        } else {
+          value = this.state.service.typeInputs.filter(ti => ti !== add);
+        }
+
+        this.setState({service: {...this.state.service, [name]: value}});
+      } else if (name === 'industryInputs') {
+        value = [value];
+        this.setState({service: {...this.state.service, [name]: value}});
+      } else if (name === 'qQuestion') {
+        this.setState({qQuestion: value});
+      } else if (name === 'qAnswer') {
+        this.setState({qAnswer: value});
+      } else if (name === 'requirement') {
+        this.setState({requirement: value});
+      } else if (name === 'requirementType') {
+        this.setState({requirementType: value});
+      } else {
+        this.setState({service: {...this.state.service, [name]: value}});
+      }
     }
   };
 
@@ -160,7 +167,7 @@ export class FixFeesCreate extends Component {
             <div className="col-sm-6">
               <FormInput label="Title" type="text" id="serv-title"
                 value={this.state.service.title}
-                name="title" onChange={this.handleFormChange}
+                name="title" onChange={this.handleFormChange} showAlert={this.state.showAlert}
                 noHelp />
             </div>
             <div className="col-sm-4 d-flex justify-content-start align-items-center">
@@ -296,7 +303,7 @@ export class FixFeesCreate extends Component {
                 noHelp />
               <div className="small text-right">500 Characters max</div>
               <div className="py-4 text-right">
-                <button type="button" onClick={this.onAddQuestion} className="btn btn-primary px-5">Add Question</button>
+                <button type="button" onClick={this.onAddQuestion} className="btn btn-yellow px-5">Add Question</button>
               </div>
             </div>
           </div>
@@ -329,11 +336,11 @@ export class FixFeesCreate extends Component {
                 noHelp/>
           </div>
           <div className="py-4 text-right">
-            <button type="button" onClick={this.onAddRequirement} className="btn btn-primary px-5">Add requirement</button>
+            <button type="button" onClick={this.onAddRequirement} className="btn btn-yellow px-5">Add requirement</button>
           </div>
         </div>
         <div className="pb-4 text-right">
-          <button type="button" onClick={this.onFormSubmit} className="btn btn-primary px-5">Publish</button>
+          <button type="button" onClick={this.onFormSubmit} className="btn btn-yellow px-5">Publish</button>
         </div>
       </div>
     );

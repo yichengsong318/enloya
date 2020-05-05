@@ -13,7 +13,7 @@ export class GeneralBasic extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       user: {
         languageInputs : props.userInfo.languages.map(l => l.id) || [],
         city : props.userInfo.city || '',
@@ -21,7 +21,7 @@ export class GeneralBasic extends Component {
         timezone : props.userInfo.timezone || '',
         address : props.userInfo.address || '',
         vatID: props.userInfo.vatID || '',
-      }  
+      }
     }
   }
 
@@ -42,7 +42,7 @@ export class GeneralBasic extends Component {
             null,
             ''
           );
-          this.setState({ 
+          this.setState({
             user: {
               languageInputs : this.props.userInfo.languages.map(l => l.id) || [],
               city : this.props.userInfo.city || '',
@@ -51,7 +51,7 @@ export class GeneralBasic extends Component {
               address : this.props.userInfo.address || '',
               vatID: this.props.userInfo.vatID || '',
               hasFile: true
-            }  
+            }
           });
         });
       });
@@ -64,7 +64,7 @@ export class GeneralBasic extends Component {
 
 
   handleFormImageChange = (name, value, onComplete) => {
-    let userPic = {hasFile: true}; 
+    let userPic = {hasFile: true};
     userPic[name] = value;
     this.props.updateData('clients', this.props.userInfo.id, userPic, () => {
       this.props.loadMe(() => {
@@ -96,22 +96,22 @@ export class GeneralBasic extends Component {
             <FormText label="Last Name" id="lastname" value={userInfo.lastname} noHelp/>
             <FormText label="Email" id="email" value={userInfo.email} noHelp/>
 
-            <FormCity label="City" type="text" id="city" 
+            <FormCity label="City" type="text" id="city"
               value={this.state.user.city} name="city" onChange={this.handleFormChange} noHelp/>
-            
-            <FormSelect label="Country" id="countries" selected={this.state.user.country} 
+
+            <FormSelect label="Country" id="countries" selected={this.state.user.country}
               name="country" onChange={this.handleFormChange}
               choices={countries} noHelp />
 
-            <FormSelect label="Languages" id="languages" 
+            <FormSelect label="Languages" id="languages"
               selected={this.state.user.languageInputs} isMulti
               name="languageInputs" onChange={this.handleFormChange}
               choices={this.props.languages.map(ind => {ind.value = ind.id; return ind})}
               noHelp/>
-            <FormInput label="VAT ID" type="number" id="vatid" 
+            <FormInput label="VAT ID" type="number" id="vatid"
               value={this.state.user.vatID} name="vatID" onChange={this.handleFormChange} noHelp />
 
-            
+
             <FormSelect label="Timezones" id="timezones" selected={this.state.user.timezone} 
               name="timezone" onChange={this.handleFormChange}
               choices={timezones} noHelp />
@@ -122,11 +122,11 @@ export class GeneralBasic extends Component {
         </div>
         <div className="row mt-4 mb-5">
           <div className="col-sm-12 text-right">
-            <button onClick={this.onFormSubmit} type="button" className="btn btn-primary px-5">Save</button>
+            <button onClick={this.onFormSubmit} type="button" className="btn btn-yellow px-5">Save</button>
           </div>
         </div>
       </div>
-    );   
+    );
   }
 }
 
@@ -138,7 +138,7 @@ const mapStateToProps = ({ authUser, data }) => {
 };
 
 const mapActionToProps = {
-  updateData, 
+  updateData,
   readData,
   loadMe
 }
@@ -147,4 +147,3 @@ export default withRouter(connect(
   mapStateToProps,
   mapActionToProps
 )(GeneralBasic));
-

@@ -81,7 +81,7 @@ function JobDetail() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <Link class="btn btn-primary px-3" to="/">Apply Now</Link>
+                  <Link class="btn btn-yellow px-3" to="/">Apply Now</Link>
                 </div>
               </div>
             </div>

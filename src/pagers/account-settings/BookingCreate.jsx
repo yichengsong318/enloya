@@ -11,19 +11,19 @@ function BookingCreate() {
         <h4>Organization is the key to success</h4>
         <hr/>
         <p className="my-5">
-          Client will book instant consultations through your profile. 
+          Client will book instant consultations through your profile.
           Only get booked when you're available by keeping your calendar and settings up-to-date.
           Canceling disrupts client's plans and may even put in danger their assets and physical integrity.
-          If you cancel because your calendar in inaccurate, you'll be charged a penalty fee and the dates 
-          won't be available for anyone else to book. 
+          If you cancel because your calendar in inaccurate, you'll be charged a penalty fee and the dates
+          won't be available for anyone else to book.
         </p>
 
-        <FormCheck id="booking-create" 
+        <FormCheck id="booking-create"
           label="I hereby agree to keep my calendar and availability settings up-to-date"/>
       </div>
       <div className="mt-4 mb-5">
         <div className="col-sm-12 text-right">
-          <button type="button" className="btn btn-primary px-5">Next</button>
+          <button type="button" className="btn btn-yellow px-5">Next</button>
         </div>
       </div>
     </div>

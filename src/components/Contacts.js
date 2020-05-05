@@ -15,7 +15,7 @@ class Contacts extends Component {
                                 <h6 className="f_p f_size_20 t_color3 f_500 mb_20">Contact Info</h6>
                                 <p className="f_400 f_size_15"><span className="f_400 t_color3">Phone:</span> <a href="tel:+41 (0)78 694 1217">+41 (0)78 694 1217</a></p>
                                 <p className="f_400 f_size_15"><span className="f_400 t_color3">Fax:</span> <a href="tel:3024437488">(+87) 12131 12312</a></p>
-                                <p className="f_400 f_size_15"><span className="f_400 t_color3">Email:</span> <a href="mailto:saasland@gmail.com">info@enloya.com</a></p>
+                                <p className="f_400 f_size_15"><span className="f_400 t_color3">Email:</span> <a href="mailto:info@enloya.com">info@enloya.com</a></p>
                             </div>
                         </div>
                         <div className="contact_form col-lg-9">

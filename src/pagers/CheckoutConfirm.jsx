@@ -39,8 +39,8 @@ const CARD_ELEMENT_OPTIONS = {
 class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state = { 
+
+    this.state = {
       error: ''
     }
   }
@@ -79,7 +79,7 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <form className="my-5 p-4 bg-lighter" onSubmit={this.handleSubmit}>
-        {this.state.error && 
+        {this.state.error &&
           <div className="alert alert-danger" role="alert">{this.state.error}</div>}
         <h5 className="mt-2 mb-3">Add a credit card</h5>
         <div className="row">
@@ -88,7 +88,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className="col-sm-12 mt-4">
             <div className="text-left pr-0">
-              <button type="submit" className="btn btn-primary btn-block px-5">Add the card</button>
+              <button type="submit" className="btn btn-yellow btn-block px-5">Add the card</button>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ class CheckoutForm extends React.Component {
 const InjectedCheckoutForm = (props) => (
   <ElementsConsumer>
     {({stripe, elements}) => (
-      <CheckoutForm stripe={stripe} elements={elements} 
+      <CheckoutForm stripe={stripe} elements={elements}
         userId={props.userId} userType={props.userType} loadMe={props.loadMe}/>
     )}
   </ElementsConsumer>
@@ -111,8 +111,8 @@ const stripePromise = loadStripe("pk_test_ZbpDLpu7alIoXGpdqS34AClR");
 export class Upgrade extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = { 
+
+    this.state = {
       error: '',
       currentCard: null,
       cartServices: [],
@@ -147,7 +147,7 @@ export class Upgrade extends Component {
       this.props.emptyCart();
     })
   };
-  
+
   render () {
     const { userInfo, userType, loadMe } = this.props;
     return (
@@ -155,7 +155,7 @@ export class Upgrade extends Component {
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
         <div className="h-100 container mt-5 pt-5">
           <div className="row">
-            {!this.state.currentCard && 
+            {!this.state.currentCard &&
             <div className="col-sm-5 mx-auto">
               <div className="bg-white p-4 my-5">
                 <h5 className="mb-2">Your cart</h5>
@@ -171,7 +171,7 @@ export class Upgrade extends Component {
                           </div>
                           <div className="col-4 col-sm-4 text-right">
                             <p className="checkout-title">${cs.price}</p>
-                            <span className="font-12 text-danger c-pointer" 
+                            <span className="font-12 text-danger c-pointer"
                               onClick={() => {this.removeItem(cs.id)}}>Delete</span>
                           </div>
                         </div>
@@ -196,7 +196,7 @@ export class Upgrade extends Component {
                             <div>Exp. Date: {card.exp_month}/{card.exp_year}</div>
                           </h6>
                           <div>
-                            <span className="btn btn-primary" onClick={() => {this.setState({currentCard: card})}}>Select</span>
+                            <span className="btn btn-yellow" onClick={() => {this.setState({currentCard: card})}}>Select</span>
                           </div>
                         </div>
                         <hr className="my-1"/>
@@ -204,22 +204,22 @@ export class Upgrade extends Component {
                     );
                   }
                 )}
-                
+
                 <Elements stripe={stripePromise}>
                   <InjectedCheckoutForm userId={userInfo.id} userType={userType} loadMe={loadMe}/>
                 </Elements>
               </div>
             </div>
             }
-            {this.state.currentCard && 
+            {this.state.currentCard &&
             <div className="col-sm-5 mx-auto">
-              <div className="btn btn-link float-left mr-2 text-dark" 
+              <div className="btn btn-link float-left mr-2 text-dark"
                 onClick={() => {this.setState({currentCard: null})}}>Go back</div>
               <div className="bg-white p-4 my-5">
                 <h5 className="mb-2">Summary</h5>
                 <hr/>
                 <div>
-                  <h5 className="mb-4">Your total checkout</h5>  
+                  <h5 className="mb-4">Your total checkout</h5>
                   <div className="credit-plan">
                     <div className="d-flex justify-content-between align-items-center">
                       <h6 className="d-flex w-100 justify-content-between mb-0">
@@ -228,7 +228,7 @@ export class Upgrade extends Component {
                       </h6>
                     </div>
                   </div>
-                  <h5 className="mb-4 mt-5">Your credit card</h5>   
+                  <h5 className="mb-4 mt-5">Your credit card</h5>
                   <div key={this.state.currentCard.id} className="credit-card">
                     <div className="d-flex justify-content-between align-items-center">
                       <h6 className="d-flex w-100 mb-0">
@@ -238,14 +238,14 @@ export class Upgrade extends Component {
                         <div>Exp. Date: {this.state.currentCard.exp_month}/{this.state.currentCard.exp_year}</div>
                       </h6>
                     </div>
-                  </div>   
+                  </div>
                   <div className="col-sm-12 mt-4">
                     <div className="text-left pr-0">
-                      <button type="submit" className="btn btn-primary btn-block px-5"
+                      <button type="submit" className="btn btn-yellow btn-block px-5"
                         onClick={() => {this.checkout()}}>Proceed to payment</button>
                     </div>
-                  </div> 
-                </div>        
+                  </div>
+                </div>
               </div>
             </div>
             }
@@ -261,11 +261,11 @@ const mapStateToProps = ({ authUser, data, cart }) => {
   const { userType, userInfo, user } = authUser;
   const { cartServices } = cart;
 
-  return { 
-    userType, 
-    userInfo, 
-    user, 
-    cartServices 
+  return {
+    userType,
+    userInfo,
+    user,
+    cartServices
   };
 };
 

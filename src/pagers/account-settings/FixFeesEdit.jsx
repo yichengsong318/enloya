@@ -37,7 +37,7 @@ export class FixFeesEdit extends Component {
       qQuestion: '',
       qAnswer: ''
     };
-  } 
+  }
 
   componentDidMount() {
     const {readData} = this.props;
@@ -78,7 +78,7 @@ export class FixFeesEdit extends Component {
 
   onFormSubmit = () => {
     let s = {
-      ...this.state.service, 
+      ...this.state.service,
       lawyerId: this.props.userInfo.id,
     };
 
@@ -107,7 +107,7 @@ export class FixFeesEdit extends Component {
 
   onAddQuestion = () => {
     this.setState({service: {
-      ...this.state.service, 
+      ...this.state.service,
       faq: [...this.state.service.faq, {
         question: this.state.qQuestion,
         answer: this.state.qAnswer
@@ -120,14 +120,14 @@ export class FixFeesEdit extends Component {
 
   deleteQuestion = (index) => {
     this.setState({service: {
-      ...this.state.service, 
+      ...this.state.service,
       faq: this.state.service.faq.filter((qa, i) => i !== index)
     }});
   };
 
   onAddRequirement = () => {
     this.setState({service: {
-      ...this.state.service, 
+      ...this.state.service,
       requirements: [...this.state.service.requirements, {
         requirement: this.state.requirement,
         type: this.state.requirementType
@@ -139,7 +139,7 @@ export class FixFeesEdit extends Component {
 
   deleteRequirement = (index) => {
     this.setState({service: {
-      ...this.state.service, 
+      ...this.state.service,
       requirements: this.state.service.requirements.filter((r, i) => i !== index)
     }});
   };
@@ -185,8 +185,8 @@ export class FixFeesEdit extends Component {
           <hr className="my-4"/>
           <div className="row">
             <div className="col-sm-6">
-              <FormInput label="Title" type="text" id="serv-title" 
-                value={this.state.service.title} 
+              <FormInput label="Title" type="text" id="serv-title"
+                value={this.state.service.title}
                 name="title" onChange={this.handleFormChange}
                 noHelp />
             </div>
@@ -194,14 +194,14 @@ export class FixFeesEdit extends Component {
               <div className="small mt-3">50 Characters max</div>
             </div>
             <div className="col-sm-6">
-              <FormSelect label="Category" id="category" 
+              <FormSelect label="Category" id="category"
                 selected={this.state.service.categoryId}
                 name="categoryId" onChange={this.handleFormChange}
                 choices={categories.map(ind => {ind.value = ind.id; return ind})}
                 noHelp/>
             </div>
             <div className="col-sm-6">
-              <FormSelect label="Sub Category" id="subcategory" 
+              <FormSelect label="Sub Category" id="subcategory"
                 selected={this.state.service.subcategoryId}
                 name="subcategoryId" onChange={this.handleFormChange}
                 choices={categories
@@ -214,7 +214,7 @@ export class FixFeesEdit extends Component {
               {clientTypes.map(ctp => {
                 return (
                   <FormCheck id={"check-" + ctp.id} key={ctp.id} label={ctp.label} val={ctp.id}
-                    name="typeInputs" onChange={this.handleFormChange} 
+                    name="typeInputs" onChange={this.handleFormChange}
                     value={this.state.service.typeInputs.includes(ctp.id)}
                     />
                 );
@@ -222,20 +222,20 @@ export class FixFeesEdit extends Component {
             </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-6">
-              <FormSelect label="Industries" id="industry" 
+              <FormSelect label="Industries" id="industry"
                 selected={this.state.service.industryInputs}
                 name="industryInputs" onChange={this.handleFormChange}
                 choices={industries.map(ind => {ind.value = ind.id; return ind})}
                 noHelp/>
             </div>
             <div className="col-sm-8">
-              <FormTag label="Search Tags" type="text" id="search" 
-                selected={tags} 
+              <FormTag label="Search Tags" type="text" id="search"
+                selected={tags}
                 name="tags" onChange={this.handleFormChange}
                 noHelp />
             </div>
             <div className="col-sm-8">
-              <FormSelect label="Country" id="countries" selected={this.state.service.country} 
+              <FormSelect label="Country" id="countries" selected={this.state.service.country}
                 name="country" onChange={this.handleFormChange}
                 choices={countries} noHelp />
             </div>
@@ -246,15 +246,15 @@ export class FixFeesEdit extends Component {
           <hr className="my-4"/>
           <div className="row">
             <div className="col-sm-6">
-              <FormInput label="Price" type="number" id="price" 
-                value={this.state.service.price} 
+              <FormInput label="Price" type="number" id="price"
+                value={this.state.service.price}
                 name="price" onChange={this.handleFormChange}
                 noHelp />
             </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-6">
-              <FormInput label="Short Description" type="text" id="shortDescription" 
-                value={this.state.service.shortDescription} 
+              <FormInput label="Short Description" type="text" id="shortDescription"
+                value={this.state.service.shortDescription}
                 name="shortDescription" onChange={this.handleFormChange}
                 noHelp />
             </div>
@@ -263,21 +263,21 @@ export class FixFeesEdit extends Component {
             </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-9">
-              <FormTextArea label="Description" rows="4" id="longDescription" 
-                value={this.state.service.longDescription} 
+              <FormTextArea label="Description" rows="4" id="longDescription"
+                value={this.state.service.longDescription}
                 name="longDescription" onChange={this.handleFormChange} noHelp />
               <div className="small text-right">250 Characters max</div>
             </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-4">
-              <FormInput label="Delivery Time (Length)" type="number" id="deliverytimelength" 
-                value={this.state.service.deliveryTimeLength} 
+              <FormInput label="Delivery Time (Length)" type="number" id="deliverytimelength"
+                value={this.state.service.deliveryTimeLength}
                 name="deliveryTimeLength" onChange={this.handleFormChange}
                 noHelp />
             </div>
             <div className="col-sm-4">
-              <FormSelect label="Delivery Time (Units)" id="deliverytimeunit" 
-                selected={this.state.service.deliveryTimeUnits} 
+              <FormSelect label="Delivery Time (Units)" id="deliverytimeunit"
+                selected={this.state.service.deliveryTimeUnits}
                 name="deliveryTimeUnits" onChange={this.handleFormChange}
                 choices={[
                   { value: 'days', label: 'Days' },
@@ -285,7 +285,7 @@ export class FixFeesEdit extends Component {
                 ]} noHelp />
             </div>
             <div className="col-sm-4">
-              <FormDate label="Estimate Time Delivery" id="estimated-time" 
+              <FormDate label="Estimate Time Delivery" id="estimated-time"
                 value={this.state.service.estimatedTime}
                 name="estimatedTime" onChange={this.handleFormChange} noHelp/>
             </div>
@@ -310,18 +310,18 @@ export class FixFeesEdit extends Component {
                   </div>
                 )
               })}
-              <FormTextArea label="Question" rows="2" id="question" 
-                value={this.state.qQuestion} 
+              <FormTextArea label="Question" rows="2" id="question"
+                value={this.state.qQuestion}
                 name="qQuestion" onChange={this.handleFormChange}
                 noHelp />
               <div className="small text-right">500 Characters max</div>
-              <FormTextArea label="Answer" rows="2" id="answer" 
-                value={this.state.qAnswer} 
+              <FormTextArea label="Answer" rows="2" id="answer"
+                value={this.state.qAnswer}
                 name="qAnswer" onChange={this.handleFormChange}
                 noHelp />
               <div className="small text-right">500 Characters max</div>
               <div className="py-4 text-right">
-                <button type="button" onClick={this.onAddQuestion} className="btn btn-primary px-5">Add Question</button>
+                <button type="button" onClick={this.onAddQuestion} className="btn btn-yellow px-5">Add Question</button>
               </div>
             </div>
           </div>
@@ -343,26 +343,26 @@ export class FixFeesEdit extends Component {
             )
           })}
           <div className="bg-white p-4">
-            <FormInput label="Please provide a requirement" type="text" id="requirement" 
-              value={this.state.requirement} 
+            <FormInput label="Please provide a requirement" type="text" id="requirement"
+              value={this.state.requirement}
               name="requirement" onChange={this.handleFormChange}
               noHelp />
-            <FormSelect label="Type of requirement" id="reqtype" 
+            <FormSelect label="Type of requirement" id="reqtype"
                 selected={this.state.requirementType}
                 name="requirementType" onChange={this.handleFormChange}
                 choices={[{label: 'Text', value: 'Text'}, {label: 'Document', value: 'Document'}]}
                 noHelp/>
           </div>
           <div className="py-4 text-right">
-            <button type="button" onClick={this.onAddRequirement} className="btn btn-primary px-5">Add requirement</button>
+            <button type="button" onClick={this.onAddRequirement} className="btn btn-yellow px-5">Add requirement</button>
           </div>
         </div>
         <div className="pb-4 text-right">
-          <button type="button" onClick={this.onFormSubmit} className="btn btn-primary px-5">Update</button>
+          <button type="button" onClick={this.onFormSubmit} className="btn btn-yellow px-5">Update</button>
         </div>
       </div>
     );
-  }  
+  }
 }
 
 
@@ -370,10 +370,10 @@ const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
   const { clientTypes, industries, categories } = data;
 
-  return { 
-    userType, 
-    userInfo, 
-    user, 
+  return {
+    userType,
+    userInfo,
+    user,
     clientTypes,
     industries,
     categories

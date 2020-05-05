@@ -11,7 +11,7 @@ export class General extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       preview: false,
       user: {
         companyName : props.userInfo.companyName || '',
@@ -22,7 +22,7 @@ export class General extends Component {
         timezone : props.userInfo.timezone || '',
         address : props.userInfo.address || '',
         vatID: props.userInfo.vatID || ''
-      }  
+      }
     }
   }
 
@@ -43,7 +43,7 @@ export class General extends Component {
             null,
             ''
           );
-          this.setState({ 
+          this.setState({
             user: {
               companyName : this.props.userInfo.companyName || '',
               companyUrl : this.props.userInfo.companyUrl || '',
@@ -53,7 +53,7 @@ export class General extends Component {
               timezone : this.props.userInfo.timezone || '',
               address : this.props.userInfo.address || '',
               vatID: this.props.userInfo.vatID || ''
-            }  
+            }
           });
         });
       });
@@ -65,7 +65,7 @@ export class General extends Component {
   };
 
   handleFormImageChange = (name, value, onComplete) => {
-    let userPic = {hasFile: true}; 
+    let userPic = {hasFile: true};
     userPic[name] = value;
     this.props.updateData('lawyers', this.props.userInfo.id, userPic, () => {
       this.props.loadMe(() => {
@@ -86,7 +86,7 @@ export class General extends Component {
     let { userInfo } = this.props;
 
     userInfo = userInfo || {};
-    
+
     return (
       <div className="py-4 px-2">
         <h2 className="mt-2 mb-3">General Information</h2>
@@ -96,13 +96,13 @@ export class General extends Component {
               name="companyPictureFile" onChange={this.handleFormImageChange} noHelp/>
           </div>
           <div className="col-sm-5">
-            <FormInput label="Company Name" type="text" id="companyname" 
-              value={this.state.user.companyName} 
+            <FormInput label="Company Name" type="text" id="companyname"
+              value={this.state.user.companyName}
               name="companyName" onChange={this.handleFormChange}
               noHelp/>
-            <FormInput label="Company Website" type="url" id="companywebsite" 
-              value={this.state.user.companyUrl} 
-              name="companyUrl" onChange={this.handleFormChange} 
+            <FormInput label="Company Website" type="url" id="companywebsite"
+              value={this.state.user.companyUrl}
+              name="companyUrl" onChange={this.handleFormChange}
               noHelp/>
           </div>
         </div>
@@ -116,23 +116,23 @@ export class General extends Component {
             <FormText label="Last Name" id="lastname" value={userInfo.lastname} noHelp/>
             <FormText label="Email" id="email" value={userInfo.email} noHelp/>
 
-            <FormCity label="City" type="text" id="city" 
+            <FormCity label="City" type="text" id="city"
               value={this.state.user.city} name="city" onChange={this.handleFormChange} noHelp/>
-            
-            <FormSelect label="Country" id="countries" selected={this.state.user.country} 
+
+            <FormSelect label="Country" id="countries" selected={this.state.user.country}
               name="country" onChange={this.handleFormChange}
               choices={countries} noHelp />
 
-            <FormSelect label="Languages" id="languages" 
+            <FormSelect label="Languages" id="languages"
               selected={this.state.user.languageInputs} isMulti
               name="languageInputs" onChange={this.handleFormChange}
               choices={this.props.languages.map(ind => {ind.value = ind.id; return ind})}
               noHelp/>
 
-            <FormInput label="VAT ID" type="number" id="vatid" 
+            <FormInput label="VAT ID" type="number" id="vatid"
               value={this.state.user.vatID} name="vatID" onChange={this.handleFormChange} noHelp />
 
-            <FormSelect label="Timezones" id="timezones" selected={this.state.user.timezone} 
+            <FormSelect label="Timezones" id="timezones" selected={this.state.user.timezone}
               name="timezone" onChange={this.handleFormChange}
               choices={timezones} noHelp />
 
@@ -142,11 +142,11 @@ export class General extends Component {
         </div>
         <div className="row mt-4 mb-5">
           <div className="col-sm-12 text-right">
-            <button onClick={this.onFormSubmit} type="button" className="btn btn-primary px-5">Save</button>
+            <button onClick={this.onFormSubmit} type="button" className="btn btn-yellow px-5">Save</button>
           </div>
         </div>
       </div>
-    );   
+    );
   }
 }
 
@@ -158,7 +158,7 @@ const mapStateToProps = ({ authUser, data }) => {
 };
 
 const mapActionToProps = {
-  updateData, 
+  updateData,
   readData,
   loadMe
 }
@@ -167,4 +167,3 @@ export default withRouter(connect(
   mapStateToProps,
   mapActionToProps
 )(General));
-

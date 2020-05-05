@@ -54,7 +54,7 @@ export class ServiceSearchResults extends Component {
     this.search();
   }
 
-  componentDidUpdate(prevProps) {    
+  componentDidUpdate(prevProps) {
     const oldParams = queryString.parse(prevProps.location.search) || {};
     const params = queryString.parse(this.props.location.search) || {};
 
@@ -128,7 +128,7 @@ export class ServiceSearchResults extends Component {
                     noLabel noHelp />
                 </div>
                 <div className="col-sm-2">
-                  <button type="button" className="btn btn-primary px-5"
+                  <button type="button" className="btn btn-yellow px-5"
                     onClick={() => {this.search()}}>Search</button>
                 </div>
               </div>

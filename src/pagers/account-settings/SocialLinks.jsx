@@ -9,13 +9,13 @@ export class SocialLinks extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       socialLinks: {
         linkedin: this.props.userInfo.socialLinks.linkedin,
         twitter: this.props.userInfo.socialLinks.twitter,
         facebook: this.props.userInfo.socialLinks.facebook,
         youtube: this.props.userInfo.socialLinks.youtube
-      }  
+      }
     }
   }
 
@@ -24,7 +24,7 @@ export class SocialLinks extends Component {
 
   onFormSubmit = () => {
     if (!this.props.loading) {
-      this.props.updateData(this.props.userType + 's', this.props.userInfo.id, 
+      this.props.updateData(this.props.userType + 's', this.props.userInfo.id,
         {socialLinks: this.state.socialLinks}, () => {
         this.props.loadMe(() => {
           NotificationManager.success(
@@ -35,13 +35,13 @@ export class SocialLinks extends Component {
             null,
             ''
           );
-          this.setState({ 
+          this.setState({
             socialLinks: {
               linkedin: this.props.userInfo.socialLinks.linkedin,
               twitter: this.props.userInfo.socialLinks.twitter,
               facebook: this.props.userInfo.socialLinks.facebook,
               youtube: this.props.userInfo.socialLinks.youtube
-            }  
+            }
           });
         });
       });
@@ -61,18 +61,18 @@ export class SocialLinks extends Component {
             <div className="col-sm-7">
               <FormInput label="Linkedin" type="text" id="linkedin"
                 value={this.state.socialLinks.linkedin} name="linkedin" onChange={this.handleChange} noHelp/>
-                
+
               <FormInput label="Twitter" type="text" id="twitter"
                 value={this.state.socialLinks.twitter} name="twitter" onChange={this.handleChange} noHelp/>
 
               <FormInput label="Facebook" type="text" id="facebook"
                 value={this.state.socialLinks.facebook} name="facebook" onChange={this.handleChange} noHelp/>
-              
+
               <FormInput label="Youtube" type="text" id="youtube"
                 value={this.state.socialLinks.youtube} name="youtube" onChange={this.handleChange} noHelp/>
             </div>
             <div className="col-sm-7 mt-4 text-right">
-              <button onClick={this.onFormSubmit} type="button" className="btn btn-primary px-5">Save</button>
+              <button onClick={this.onFormSubmit} type="button" className="btn btn-yellow px-5">Save</button>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@ const mapStateToProps = ({ authUser }) => {
 };
 
 const mapActionToProps = {
-  updateData, 
+  updateData,
   loadMe
 }
 
@@ -96,4 +96,3 @@ export default withRouter(connect(
   mapStateToProps,
   mapActionToProps
 )(SocialLinks));
-

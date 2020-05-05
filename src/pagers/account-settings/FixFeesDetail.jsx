@@ -88,7 +88,7 @@ export class FixFeesDetail extends Component {
       <div className="py-4 px-4 account-settings">
         <h2 className="mt-2 mb-3">Fixed-Fee Service Detail</h2>
         <div className="pb-4 text-right">
-          <a href={"/account-settings/fix-fee-services-edit?sid=" + serv.id} className="btn btn-primary px-5 col-12 col-md-4">Edit the service</a>
+          <a href={"/account-settings/fix-fee-services-edit?sid=" + serv.id} className="btn btn-yellow px-5 col-12 col-md-4">Edit the service</a>
           <span className={ isPublished ? "btn btn-warning ml-3 col-12 mobile-margin-top mobile-ml-0 col-md-3" : "btn btn-success ml-3 col-12 mobile-margin-top mobile-ml-0 col-md-3"} onClick={this.publishService}>
             { isPublished ? "Unpublish the service" : "Publish the service"}
           </span>

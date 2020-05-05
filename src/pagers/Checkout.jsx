@@ -18,7 +18,7 @@ export class Checkout extends Component {
   }
 
   infoDesc = React.createRef();
-  
+
   handleMouseOver = () => {
     this.infoDesc.current.classList.remove('d-none');
   }
@@ -73,7 +73,7 @@ export class Checkout extends Component {
                           </div>
                           <div className="col-4 col-sm-4 text-right">
                             <p className="checkout-title">${cs.price}</p>
-                            <span className="font-12 text-danger c-pointer" 
+                            <span className="font-12 text-danger c-pointer"
                               onClick={() => {this.removeItem(cs.id)}}>Delete</span>
                           </div>
                         </div>
@@ -98,12 +98,12 @@ export class Checkout extends Component {
                     <p className="checkout-title">Total</p>
                   </div>
                   <div className="col-4 col-sm-4 text-right text-bold"><span>${this.state.totalAmount}</span></div>
-  
+
                 </div>
                 <hr/>
                 <div className="py-3">
-                  <Link to="/search" className="btn btn-primary col-12 checkout-btn">Continue shopping</Link>
-                  <Link to="/checkout-confirm" className="btn btn-primary bg-yellow col-12 checkout-btn checkout-btn-go mt-3">Go to checkout</Link>
+                  <Link to="/search" className="btn btn-yellow col-12 checkout-btn">Continue shopping</Link>
+                  <Link to="/checkout-confirm" className="btn btn-yellow bg-yellow col-12 checkout-btn checkout-btn-go mt-3">Go to checkout</Link>
                 </div>
               </div>
             </div>
