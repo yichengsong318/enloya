@@ -5,8 +5,6 @@ export default function FixedServiceCard (props) {
     const nameSize = props.name.length;
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${props.sid}`;
     const [state, setState] = useState({ copied: false });
-    console.log('props.name', props.name);
-    console.log('nameSize', nameSize);
     const handleCopyUrl = () => {
         setState({ copied: true });
         setTimeout(() => {
@@ -20,7 +18,6 @@ export default function FixedServiceCard (props) {
           <div className="d-flex justify-content-between">
             <h3 className={`${nameSize >= 30 && 'text-elipsis'} mb-0`}>
               <a href={shareLink} style={{color: '#fff', fontSize: "16px"}}>{props.name}</a>
-              {/* <div>{props.company}</div> */}
             </h3>
             <CopyToClipboard
                 text={shareLink}

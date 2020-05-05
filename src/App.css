@@ -11,7 +11,9 @@
 .App-logo {
   height: 40vmin;
 }
-
+.text-underlined {
+  text-decoration: underline!important;
+}
 .dropdown-item.active, .dropdown-item:active {
     background-color: transparent !important;
     color: #1fa5df !important;

@@ -23,12 +23,12 @@ export default function FixedServiceCard (props) {
                   to={props.kind === 'lawyer_profile' ?
                   "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid}>
                   <div className="d-flex justify-content-between">
-                    <h5 className="mb-0">
+                    <h3 className={`${nameSize >= 30 && 'text-elipsis'} mb-0`}>
                       <span style={{color: '#fff'}}>{props.name}</span>
                       {/* <div>{props.company}</div> */}
-                    </h5>
+                    </h3>
                   </div>
-                  <div className={`${nameSize <= 45 ? 'mt-4' : ''} line-height-1`}><b>Area of law:</b> {props.category}</div>
+                  <div className="mt-4"><b>Area of law:</b> {props.category}</div>
                   <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
                   <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> {props.estimatedDelivery ? props.estimatedDelivery : <span className="text-warning size-inherit">Not defined</span>}</div>
                 </Link>

@@ -158,7 +158,7 @@ export class Professional extends Component {
   }
 
   handleChange = (name, value) => {
-    if (value.length >30) {
+    if (value.length > 30 && name === 'title') {
       this.setState({showAlert: true})
     } else {
       this.setState({
@@ -241,8 +241,6 @@ export class Professional extends Component {
       this.props.updateData('lawyers', this.props.userInfo.id,
         {[name]: this.state[name].value}, () => {
         this.props.loadMe(() => {
-           // this.state.showAlert
-          console.log('name+++', name);
           if (name === 'title' && !this.state.showAlert) {
             NotificationManager.success("The changes were saved!", "Success !", 3000);
           }

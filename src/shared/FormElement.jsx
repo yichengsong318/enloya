@@ -73,6 +73,7 @@ export function FormInput(props) {
   return (
     <div className={"form-group text-left" + (props.customClass ? ' ' + props.customClass : '')}>
       {!props.noLabel && <label htmlFor={props.id}>{props.label}</label>}
+       {props.showAlert &&(<span className="text-danger">(should be 70 characters maximum)</span>)}
       <div className="d-flex">
         <input type={props.type} onChange={e => props.onChange(props.name, e.target.value)} id={props.id} className="form-control"
           value={props.value} placeholder={props.placeholder} />

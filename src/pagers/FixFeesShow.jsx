@@ -48,6 +48,7 @@ export class FixFeesShow extends Component {
 
   render () {
     const serv = this.state.service;
+    console.log('serv.lawyer',serv.lawyer);
     // const clientTypes = serv.types.map(t => t.label).join(', ');
     // const industry = serv.industries.map(t => t.label).join(', ');
     // const isPublished = serv.isPublished;
@@ -55,6 +56,14 @@ export class FixFeesShow extends Component {
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${params.sid}`;
 
     const isInCart = this.props.cartServices.find(cs => cs === serv.id);
+
+    const contStyle = {
+      link: {
+        fontWeight: "bold",
+        color: "#fff",
+        textDecoration: "underline",
+      }
+    }
 
     return (
       <div className="App">
@@ -66,10 +75,10 @@ export class FixFeesShow extends Component {
               <div className="bg-white my-5 border-radius-8">
                 <div className="px-5 pt-5 bg-blurd pb-2">
                     <div className="row">
-                      <div className="col-md-8 col-lg-8 col-sm-12">
+                      <div className="col-md-11 col-lg-11 col-sm-11">
                           <h2 className="text-left common-title mb-4 text-white">{serv.title}</h2>
                       </div>
-                      <div className="col-md-4 col-lg-4 col-sm-12 text-right">
+                      <div className="col-md-1 col-lg-1 col-sm-1 text-right">
                       { this.state.copied ? (<span className="copied-success text-white mt-3">Fix fee service URL Copied!</span>) : ''}
                       <CopyToClipboard
                           text={shareLink}
@@ -80,6 +89,11 @@ export class FixFeesShow extends Component {
                       </div>
                     </div>
                     <div className="row mb-4">
+                      <div className="col-sm-12">
+                        <h4 className="text-16">
+                          <a href={`lawyer-profile/${serv.lawyer && serv.lawyer.id}`} className="text-white text-bold text-underlined">{serv.lawyer.firstname && serv.lawyer.firstname} {serv.lawyer.lastname && serv.lawyer.lastname}</a>
+                        </h4>
+                      </div>
                       <div className="col-sm-6">
                         <h4 className="text-16 text-white">{serv.category && serv.category.label}</h4>
                         <div className="price-fixed text-white">${serv.price}</div>
