@@ -49,7 +49,7 @@ export function FormSelect(props) {
 }
 
 export function FormTag(props) {
-  const customOptions = props.choices && props.choices.slice(0, 10);
+  const customOptions = props.choices && props.choices.slice(0, 5);
   return (
     <div className="form-group text-left">
       {props.label && <label htmlFor={props.id}>{props.label}</label>}

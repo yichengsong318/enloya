@@ -163,7 +163,7 @@ export class LawyerProfile extends Component {
                         <FontAwesomeIcon icon={faGraduationCap} className="text-primary-o mr-2" />
                         <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
                       </div>
-                      <div className="col-sm-12 mb-2 d-flex">
+                      <div className="col-sm-4 mb-2 d-flex">
                         {socialLinks.linkedin && <div className="social-icon">
                           <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a>
                         </div>}
@@ -177,7 +177,7 @@ export class LawyerProfile extends Component {
                           <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a>
                         </div>}
                       </div>
-                      <div className="col-sm-12 mb-2">
+                      <div className="col-sm-8 mb-2">
                         <span className="font-weight-bold mr-3">Area(s) of expertise</span>
                         <span>{specializations.map(s => s.label).join(', ')}</span>
                       </div>
@@ -191,11 +191,12 @@ export class LawyerProfile extends Component {
         <div className="container mb-5">
           <div className="row">
             <div className="col-sm-12 px-0">
-              <div className="mt-4 mt-5-mobile">
+              <div className="mt-3 mt-5-mobile relative-position">
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fixed-services`}>Fixed Price Services</NavLink>
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fees`}>Fees</NavLink>
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/about`}>About me</NavLink>
                 {/*<NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>*/}
+                <a href="#" className="btn btn-yellow message-me-now">Message me now</a>
               </div>
               <div className="bg-white mt-2 p-3 border-radius-8">
                 <Switch>

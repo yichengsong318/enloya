@@ -13,7 +13,7 @@ export class FixedServices extends Component {
 
   render () {
     return (
-      <div className="px-2 py-4 fixed-services">
+      <div className="px-2 pb-4 fixed-services">
         <div className="row mx-auto">
           {this.props.services.map(srv => {
             return (

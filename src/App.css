@@ -19,7 +19,14 @@
     color: #1fa5df !important;
     font-weight: bold;
 }
-
+.message-me-now {
+  position: absolute;
+  right: 10%;
+  top: 40%;
+}
+.relative-position {
+  position: relative;
+}
 .nav-items {
   background-color: #fff;
   padding: 1rem 7rem;
