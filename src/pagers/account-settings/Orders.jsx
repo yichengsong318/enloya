@@ -6,11 +6,16 @@ import { withRouter } from "react-router-dom";
 export class Orders extends Component {
   componentDidMount() {
     const {readData} = this.props;
-    const params = this.props.userType === 'lawyer' ? {lawyer: this.props.userInfo.id} : {client: this.props.userInfo.id}; 
+    const params = this.props.userType === 'lawyer' ? [
+        {lawyer: this.props.userInfo.id}, 
+        {buyerLawyer: this.props.userInfo.id}
+      ] : {client: this.props.userInfo.id}; 
+
     readData('orders', params);
   }
 
   render () {
+    console.log(this.props.orders);
     return (
       <div className="py-4 px-2 account-settings">
         <h2 className="mt-2 mb-3 pl-4">Orders</h2>
@@ -20,10 +25,19 @@ export class Orders extends Component {
           <div className="row mx-auto">
             {this.props.orders.map(order => {
               return (
+                order.transactionType == 'client-to-lawyer' ?
                 <div className="col-sm-8 px-1" key={order.id}>
                   <div className="d-flex justify-content-between">
-                    <h6 className="my-2">{order.serviceData.service.title}</h6>
+                    <h6 className="my-2">{order.serviceData.service.title} (Ordered by client)</h6>
                     <h6 className="my-2">{order.client.firstname + ' ' + order.client.lastname}</h6>
+                  </div>
+                  <hr/>
+                </div>
+                :
+                <div className="col-sm-8 px-1" key={order.id}>
+                  <div className="d-flex justify-content-between">
+                    <h6 className="my-2">{order.serviceData.service.title} (Ordered by you)</h6>
+                    <h6 className="my-2">{order.buyerLawyer.firstname + ' ' + order.buyerLawyer.lastname}</h6>
                   </div>
                   <hr/>
                 </div>

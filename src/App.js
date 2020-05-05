@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch} from 'react-router-dom';
 import {NotificationContainer} from 'react-notifications';
 import ScrollToTopRoute from './ScrollToTopRoute';
 import routes from './router';
+import "react-chat-elements/dist/main.css";
 /*------ Pages-----*/
 
 
