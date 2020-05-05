@@ -49,7 +49,9 @@ export default class ChatBox extends Component {
     }
   }
 
+
   render() {
+
     return (
       <div>
         {this.props.targetUser ? (
@@ -68,9 +70,13 @@ export default class ChatBox extends Component {
               }
             />
             <MessageList
+              ref={(node) => {
+                if (node && node.mlistRef) {
+                  node.setState({ scrollBottom: node.getBottom(node.mlistRef) }, node.checkScroll.bind(node));
+                }
+              }}
               className="message-list"
               lockable={true}
-              toBottomHeight={"100%"}
               dataSource={this.props.targetUser.messages}
             />
             <FormGroup className="border-0 px-3">

@@ -49,8 +49,12 @@ export class Conversations extends Component {
   }
 
   initSocketConnection = () => {
+    console.log('connected....', this.socket && this.socket.id);
     this.socket = io.connect(apiConfig.apiURL);
-    this.socket.emit("sign-in", this.state.user.id);
+    this.socket.on('connect', () => {
+      this.socket.emit("sign-in", this.state.user.id);
+      console.log(this.socket.id); // 'G5p5...'
+    });
   }
 
   initAxios = () => {
@@ -85,10 +89,11 @@ export class Conversations extends Component {
   }
 
   onClientDisconnected = () => {
-    NotificationManager.error(
-      "Connection Lost from server please check your connection.",
-      "Error!"
-    );
+    this.socket.disconnect();
+    // NotificationManager.error(
+    //   "Connection Lost from server please check your connection.",
+    //   "Error!"
+    // );
   }
 
   onReconnection = () => {
@@ -101,13 +106,17 @@ export class Conversations extends Component {
   setupSocketListeners = () => {
     this.socket.on("message", this.onMessageRecieved.bind(this));
     this.socket.on("messages", this.onMessageLoaded.bind(this));
-    this.socket.on("reconnect", this.onReconnection.bind(this));
-    this.socket.on("disconnect", this.onClientDisconnected.bind(this));
+    // this.socket.on("reconnect", this.onReconnection.bind(this));
+    // this.socket.on("disconnect", this.onClientDisconnected.bind(this));
   }
 
   onMessageRecieved = (message) => {
     let userChatData = this.state.userChatData;
     let messageData = message.message;
+    messageData.id = message.id;
+    messageData.read = message.read;
+    messageData.to = message.to;
+
     let targetId;
     if (message.from === this.state.user.id) {
       messageData.position = "right";
@@ -117,30 +126,42 @@ export class Conversations extends Component {
       targetId = message.from;
     }
     let targetIndex = userChatData.findIndex(u => u.id === targetId);
+    
     if (!userChatData[targetIndex].messages) {
       userChatData[targetIndex].messages = [];
     }
+
     if (targetIndex !== this.state.selectedUserIndex) {
       if (!userChatData[targetIndex].unread) {
         userChatData[targetIndex].unread = 0;
       }
-      userChatData[targetIndex].unread++;
+
+      if (!message.read && message.to === this.state.user.id) {
+        userChatData[targetIndex].unread++;
+      }
+    } else {
+      if (!message.read && message.to === this.state.user.id) {
+        this.socket.emit("read", messageData.id);
+      }
     }
+
     userChatData[targetIndex].messages.push(messageData);
     this.setState({ userChatData });
   }
   
   onMessageLoaded = (messages) => {
-
-    console.log(messages)
     let userChatData = this.state.userChatData;
 
     userChatData.forEach(uc => {
       uc.messages = [];
+      uc.unread = 0;
     });
 
     messages.forEach(message => {
       let messageData = message.message;
+      messageData.id = message.id;
+      messageData.read = message.read;
+      messageData.to = message.to;
       let targetId;
       
       if (message.from === this.state.user.id) {
@@ -161,7 +182,10 @@ export class Conversations extends Component {
         if (!userChatData[targetIndex].unread) {
           userChatData[targetIndex].unread = 0;
         }
-        userChatData[targetIndex].unread++;
+
+        if (!message.read && message.to === this.state.user.id) {
+          userChatData[targetIndex].unread++;
+        }
       }
       
       userChatData[targetIndex].messages.push(messageData);
@@ -172,7 +196,7 @@ export class Conversations extends Component {
 
   onUserClicked = (e) => {
     let user = e.user;
-    this.socket.emit("sign-in", user);
+    // this.socket.emit("sign-in", user);
     let userChatData = this.state.users.filter(u => u.id !== user.id);
     this.setState({ user, signInModalShow: false, userChatData });
   }
@@ -183,6 +207,12 @@ export class Conversations extends Component {
     for (let index = 0; index < users.length; index++) {
       if (users[index].id === e.user.id) {
         users[index].unread = 0;
+        users[index].messages.forEach(msg => {
+          if (!msg.read && msg.to === this.state.user.id) {
+            this.socket.emit("read", msg.id);
+          }
+        });
+        // console.log(users[index].messages);
         this.setState({ selectedUserIndex: index, userChatData: users });
         return;
       }
@@ -212,6 +242,11 @@ export class Conversations extends Component {
       showChatBox: !this.state.showChatBox,
       showChatList: !this.state.showChatList
     });
+  }
+
+  componentWillUnmount() {
+    this.socket.disconnect();
+    console.log('byyyyyyeeeeeeeeeeeeeeeeee');
   }
 
 
