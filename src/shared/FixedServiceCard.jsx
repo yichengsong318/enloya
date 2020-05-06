@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Link } from 'react-router-dom';
 
 export default function FixedServiceCard (props) {
     const nameSize = props.name.length;
@@ -15,20 +16,20 @@ export default function FixedServiceCard (props) {
   return (
     <div className="fixed-service custom-fix-fee-service">
       <div className="header bg-white text-white">
-          <div className="d-flex justify-content-between">
-            <h3 className={`${nameSize >= 30 && 'text-elipsis'} mb-0`}>
-              <a href={shareLink} style={{color: '#fff', fontSize: "16px"}}>{props.name}</a>
-            </h3>
-            <CopyToClipboard
-                text={shareLink}
-                onCopy={handleCopyUrl}
-            >
-              <img alt="" src={require("../img/share-icon.png")} className="h-20 cursor-pointer"/>
-            </CopyToClipboard>
-          </div>
-          <div className="mt-4"><b>Area of law:</b> {props.category}</div>
-          <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
-          <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> {props.estimatedDelivery ? props.estimatedDelivery : <span className="text-warning size-inherit">Not defined</span>}</div>
+        <div className="d-flex justify-content-between">
+          <h3 className={`${nameSize >= 30 && 'text-elipsis'} mb-0`}>
+            <Link to={shareLink} style={{color: '#fff', fontSize: "16px"}}>{props.name}</Link>
+          </h3>
+          <CopyToClipboard
+              text={shareLink}
+              onCopy={handleCopyUrl}
+          >
+            <img alt="" src={require("../img/share-icon.png")} className="h-20 cursor-pointer"/>
+          </CopyToClipboard>
+        </div>
+        <div className="mt-4"><b>Area of law:</b> {props.category}</div>
+        <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliverable ? props.deliverable : 'N/A'}</div>
+        <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> <span className="text-warning size-inherit">{props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit)}</span></div>
       </div>
       <div className="body">
           { state.copied ? (<span className="copied-success">Web URL Copied!</span>) : ''}
@@ -43,9 +44,12 @@ export default function FixedServiceCard (props) {
               <img alt="" src={props.lawyer.profilePic} className="w-100"/>
             </div>
             <div className={props.isGrid ? "col-md-3 pl-1 text-right col-3" : "col-3 d-grid col-md-3 pl-1 text-right"}>
-              <div className="priced">${props.price}</div>
-              <a href={props.kind === 'lawyer_profile' ?
-              "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid} className="btn btn-yellowry btn-block mt-2">Details</a>
+              <div className="priced">{
+                props.currency == '$' || props.currency == 'CHF' ? 
+                  props.currency + '' + props.price : 
+                  props.currency == '€' ? props.price + '€' : '$' + props.price}</div>
+              <Link to={props.kind === 'lawyer_profile' ?
+              "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid} className="btn btn-yellowry btn-block mt-2">Details</Link>
             </div>
         </div>
       </div>

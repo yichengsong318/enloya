@@ -96,7 +96,10 @@ export class FixFeesShow extends Component {
                       </div>
                       <div className="col-sm-6">
                         <h4 className="text-16 text-white">{serv.category && serv.category.label}</h4>
-                        <div className="price-fixed text-white">${serv.price}</div>
+                        <div className="price-fixed text-white">{
+                          serv.currency == '$' || serv.currency == 'CHF' ? 
+                            serv.currency + '' + serv.price : 
+                            serv.currency == '€' ? serv.price + '€' : '$' + serv.price}</div>
                       </div>
                       <div className="col-sm-6">
                         <h4 className="text-16 text-white">{(serv.subcategory && serv.subcategory.label ) || "N/A"}</h4>
@@ -111,6 +114,7 @@ export class FixFeesShow extends Component {
                     <p className="text-justify">
                       {serv.longDescription}
                     </p>
+                    <div><span className="text-bold">Deliverable:</span> {serv.deliverable || ' '}</div>
                     <div><span className="text-bold">Delivery Time:</span> {serv.deliveryTime.amount + ' ' + serv.deliveryTime.unit}</div>
                     <div className="row mt-5">
                       <div className="col-sm-12">
@@ -139,11 +143,7 @@ export class FixFeesShow extends Component {
                       </div>
                       <div className="col-sm-12 text-right">
                         {
-                          isInCart ?
-                          <button className="btn btn-secondary px-5" onClick={() => {this.props.removeFromCart(serv.id)}}>
-                            Remove from cart
-                          </button>
-                          :
+                          !isInCart &&
                           <button className="btn btn-yellow px-5 bg-yellow"  onClick={() => {this.props.addToCart(serv.id)}}>
                             Save and add to cart
                           </button>

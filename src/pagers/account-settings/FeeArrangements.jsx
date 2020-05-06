@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { FormInput, FormCheck} from '../../shared/FormElement';
+import { FormInput, FormCheck, FormSelect} from '../../shared/FormElement';
 import { NotificationManager } from "react-notifications";
 import { updateData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
@@ -16,6 +16,7 @@ export class FeeArrangements extends Component {
       otherFee: other ? true : false,
       otherText: other ? other.slice(1) : '',
       hourlyRate: this.props.userInfo.hourlyRate || '',
+      hourlyRateCurrency: this.props.userInfo.hourlyRateCurrency || '',
       feeArrangements: this.props.userInfo.feeArrangements ?
         this.props.userInfo.feeArrangements.filter(fa => fa[0] !== '#') : []
     }
@@ -36,8 +37,11 @@ export class FeeArrangements extends Component {
 
       const d = {
         hourlyRate: this.state.hourlyRate,
+        hourlyRateCurrency: this.state.hourlyRateCurrency,
         feeArrangements
       };
+
+      console.log(d)
 
       this.props.updateData(this.props.userType + 's', this.props.userInfo.id, d, () => {
         this.props.loadMe(() => {
@@ -52,6 +56,7 @@ export class FeeArrangements extends Component {
           this.setState({
             other: false,
             hourlyRate: this.props.userInfo.hourlyRate,
+            hourlyRateCurrency: this.props.userInfo.hourlyRateCurrency,
             feeArrangements: this.props.userInfo.feeArrangements
           });
         });
@@ -68,6 +73,7 @@ export class FeeArrangements extends Component {
       }
       this.setState({feeArrangements: value});
     } else {
+      console.log(name, value);
       this.setState({[name]: value});
     }
   };
@@ -81,6 +87,14 @@ export class FeeArrangements extends Component {
             <div className="col-sm-7">
               <FormInput label="Hourly Rate (average)" type="text" id="hourlyRate"
                 value={this.state.hourlyRate} name="hourlyRate" onChange={this.handleChange} noHelp/>
+              <FormSelect label="Currency" id="currency"
+                selected={this.state.hourlyRateCurrency}
+                name="hourlyRateCurrency" onChange={this.handleChange}
+                choices={[
+                  { value: '$', label: 'US Dollars ($)' },
+                  { value: '€', label: 'Euro (€)' },
+                  { value: 'CHF', label: 'Swiss francs (CHF)' }
+                ]} noHelp />
 
               <div className="mt-5 mb-4">
                 <h4>Fee arrangements</h4>

@@ -29,8 +29,8 @@ export default function FixedServiceCard (props) {
                     </h3>
                   </div>
                   <div className="mt-4"><b>Area of law:</b> {props.category}</div>
-                  <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
-                  <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> {props.estimatedDelivery ? props.estimatedDelivery : <span className="text-warning size-inherit">Not defined</span>}</div>
+                  <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliverable ? props.deliverable : 'N/A'}</div>
+                  <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> <span className="text-warning size-inherit">{props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit)}</span></div>
                 </Link>
             </div>
 
@@ -58,7 +58,10 @@ export default function FixedServiceCard (props) {
               <img alt="" src={props.lawyer.profilePic} className={props.isGrid ? "w-100" : "w-80"}/>
             </div>
             <div className={props.isGrid ? "col-3 col-md-3 pl-1 text-right" : "col-3 d-grid col-md-3 pl-1 text-right"}>
-              <div className="priced">${props.price}</div>
+              <div className="priced">{
+                props.currency == '$' || props.currency == 'CHF' ? 
+                  props.currency + '' + props.price : 
+                  props.currency == '€' ? props.price + '€' : '$' + props.price}</div>
               <button type="type" className="btn btn-yellowry btn-block mt-2">Buy Now</button>
             </div>
         </div>

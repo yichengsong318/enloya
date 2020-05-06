@@ -45,7 +45,7 @@ export class LawyerProfile extends Component {
 
     get('lawyers/' + this.state.lawyerId, {}).then(res => {
       const currentlawyer = res.data;
-      const titleSize = currentlawyer.title;
+      const titleSize = currentlawyer.title || '';
       const classes = titleSize.length >= 45 && 'text-elipsis-vertical';
       this.setState({userInfo: currentlawyer, titleCLasses: classes});
     })
