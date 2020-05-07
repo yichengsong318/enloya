@@ -18,7 +18,7 @@ export default function FixedServiceCard (props) {
       <div className="header bg-white text-white">
         <div className="d-flex justify-content-between">
           <h3 className={`${nameSize >= 30 && 'text-elipsis'} mb-0`}>
-            <Link to={shareLink} style={{color: '#fff', fontSize: "16px"}}>{props.name}</Link>
+            <Link to={`/fix-fee-services-show?sid=${props.sid}`} style={{color: '#fff', fontSize: "16px"}}>{props.name}</Link>
           </h3>
           <CopyToClipboard
               text={shareLink}
@@ -45,9 +45,9 @@ export default function FixedServiceCard (props) {
             </div>
             <div className={props.isGrid ? "col-md-3 pl-1 text-right col-3" : "col-3 d-grid col-md-3 pl-1 text-right"}>
               <div className="priced">{
-                props.currency == '$' || props.currency == 'CHF' ? 
+                props.currency === '$' || props.currency === 'CHF' ? 
                   props.currency + '' + props.price : 
-                  props.currency == '€' ? props.price + '€' : '$' + props.price}</div>
+                  props.currency === '€' ? props.price + '€' : '$' + props.price}</div>
               <Link to={props.kind === 'lawyer_profile' ?
               "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid} className="btn btn-yellowry btn-block mt-2">Details</Link>
             </div>

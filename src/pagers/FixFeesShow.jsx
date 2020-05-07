@@ -48,7 +48,6 @@ export class FixFeesShow extends Component {
 
   render () {
     const serv = this.state.service;
-    console.log('serv.lawyer',serv.lawyer);
     // const clientTypes = serv.types.map(t => t.label).join(', ');
     // const industry = serv.industries.map(t => t.label).join(', ');
     // const isPublished = serv.isPublished;
@@ -57,13 +56,13 @@ export class FixFeesShow extends Component {
 
     const isInCart = this.props.cartServices.find(cs => cs === serv.id);
 
-    const contStyle = {
-      link: {
-        fontWeight: "bold",
-        color: "#fff",
-        textDecoration: "underline",
-      }
-    }
+    // const contStyle = {
+    //   link: {
+    //     fontWeight: "bold",
+    //     color: "#fff",
+    //     textDecoration: "underline",
+    //   }
+    // }
 
     return (
       <div className="App">
@@ -97,9 +96,9 @@ export class FixFeesShow extends Component {
                       <div className="col-sm-6">
                         <h4 className="text-16 text-white">{serv.category && serv.category.label}</h4>
                         <div className="price-fixed text-white">{
-                          serv.currency == '$' || serv.currency == 'CHF' ? 
+                          serv.currency === '$' || serv.currency === 'CHF' ? 
                             serv.currency + '' + serv.price : 
-                            serv.currency == '€' ? serv.price + '€' : '$' + serv.price}</div>
+                            serv.currency === '€' ? serv.price + '€' : '$' + serv.price}</div>
                       </div>
                       <div className="col-sm-6">
                         <h4 className="text-16 text-white">{(serv.subcategory && serv.subcategory.label ) || "N/A"}</h4>
@@ -143,7 +142,9 @@ export class FixFeesShow extends Component {
                       </div>
                       <div className="col-sm-12 text-right">
                         {
-                          !isInCart &&
+                          isInCart ?
+                          <span className="badge badge-secondary px-4 py-2">Added to the cart</span>
+                          :
                           <button className="btn btn-yellow px-5 bg-yellow"  onClick={() => {this.props.addToCart(serv.id)}}>
                             Save and add to cart
                           </button>

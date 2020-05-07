@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import { withRouter } from "react-router-dom";
 import countries from "../../constants/fullCountries";
 
-import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag, FormDate } from '../../shared/FormElement';
+import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag } from '../../shared/FormElement';
 
 export class FixFeesEdit extends Component {
   constructor(props) {
@@ -303,7 +303,8 @@ export class FixFeesEdit extends Component {
                 name="deliveryTimeUnits" onChange={this.handleFormChange}
                 choices={[
                   { value: 'days', label: 'Days' },
-                  { value: 'hours', label: 'Hours' }
+                  { value: 'hours', label: 'Hours' },
+                  { value: 'minutes', label: 'Minutes' }
                 ]} noHelp />
             </div>
           </div>

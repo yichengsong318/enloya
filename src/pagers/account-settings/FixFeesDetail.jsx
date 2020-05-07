@@ -4,7 +4,6 @@ import { readData } from "../../redux/actions";
 import { get, remove, put } from '../../helpers/RemoteApi';
 import { withRouter } from "react-router-dom";
 import queryString from 'query-string';
-import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
 import countries from "../../constants/fullCountries";
 import { Link } from 'react-router-dom';
@@ -124,9 +123,9 @@ export class FixFeesDetail extends Component {
           <table className="table table-borderless">
             <tbody>
               <tr><th>Price</th><td>{
-                serv.currency == '$' || serv.currency == 'CHF' ? 
+                serv.currency === '$' || serv.currency === 'CHF' ? 
                   serv.currency + '' + serv.price : 
-                  serv.currency == '€' ? serv.price + '€' : '$' + serv.price}</td></tr>
+                  serv.currency === '€' ? serv.price + '€' : '$' + serv.price}</td></tr>
               <tr><th>Short Description</th><td>{serv.shortDescription}</td></tr>
               <tr><th>Description</th><td>{serv.longDescription}</td></tr>
               <tr><th>Client Type</th><td>{clientTypes}</td></tr>

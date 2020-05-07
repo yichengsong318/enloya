@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Switch, Route, NavLink, Redirect, withRouter } from "react-router-dom";
+import { Switch, Route, NavLink, Redirect, withRouter, Link } from "react-router-dom";
 
 import CustomNavbar from '../components/CustomNavbar';
 import Footer from '../components/Footer/Footer';
@@ -196,7 +196,7 @@ export class LawyerProfile extends Component {
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fees`}>Fees</NavLink>
                 <NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/about`}>About me</NavLink>
                 {/*<NavLink activeClassName="selected" className="toplink mobile-toplink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>*/}
-                <a href="#" className="btn btn-yellow message-me-now">Message me now</a>
+                <Link to={'/conversations'} className="btn btn-yellow message-me-now">Message me now</Link>
               </div>
               <div className="bg-white mt-2 p-3 border-radius-8">
                 <Switch>

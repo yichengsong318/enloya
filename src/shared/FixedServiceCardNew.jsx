@@ -59,10 +59,14 @@ export default function FixedServiceCard (props) {
             </div>
             <div className={props.isGrid ? "col-3 col-md-3 pl-1 text-right" : "col-3 d-grid col-md-3 pl-1 text-right"}>
               <div className="priced">{
-                props.currency == '$' || props.currency == 'CHF' ? 
+                props.currency === '$' || props.currency === 'CHF' ? 
                   props.currency + '' + props.price : 
-                  props.currency == '€' ? props.price + '€' : '$' + props.price}</div>
-              <button type="type" className="btn btn-yellowry btn-block mt-2">Buy Now</button>
+                  props.currency === '€' ? props.price + '€' : '$' + props.price}</div>
+              {props.isInCart ?
+                <span className="badge badge-secondary px-2 py-2 mt-2">In the cart</span>
+                : 
+                <Link to={"/fix-fee-services-show?sid=" + props.sid} className="btn btn-yellowry btn-block mt-2">Buy Now</Link>
+              }
             </div>
         </div>
       </div>

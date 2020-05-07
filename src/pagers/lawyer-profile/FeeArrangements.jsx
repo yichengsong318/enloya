@@ -8,9 +8,9 @@ function FeeArrangements(props) {
       <h4 className="mt-4">Hourly Rate</h4>
       <p className="text-justify pl-4">
       {
-        hourlyRateCurrency == '$' || hourlyRateCurrency == 'CHF' ? 
+        hourlyRateCurrency === '$' || hourlyRateCurrency === 'CHF' ? 
           hourlyRateCurrency + '' + hourlyRate : 
-          hourlyRateCurrency == '€' ? hourlyRate + '€' : '$' + hourlyRate}
+          hourlyRateCurrency === '€' ? hourlyRate + '€' : '$' + hourlyRate}
       </p>
       
       <h4 className="mt-4">Fee Arrangements</h4>

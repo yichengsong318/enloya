@@ -16,36 +16,41 @@ class AlertArea extends Component {
   };
 
   render() {
-    const isConfirmed = this.props.userInfo && this.props.userInfo.isConfirmed;
-    const isValidated = this.props.userInfo && this.props.userInfo.isValidated;
-    return (
-      <>
-        { !isConfirmed &&
-          <div className="row mb-2 pt-1">
-            <div className="col-sm-12">
-              <div className="alert alert-info mb-0 mt-4">
-                <div>Please confirm your account to have a full experience of Enloya. if you don't find the mail,
-                  <span className="btn btn-link" onClick={this.resendConfirmMsg}>We can resend it to you</span>
+    console.log(this.props.userInfo);
+    if (this.props.userInfo && this.props.userInfo.id) {
+      const isConfirmed = this.props.userInfo && this.props.userInfo.isConfirmed;
+      const isValidated = this.props.userInfo && this.props.userInfo.isValidated;
+      return (
+        <>
+          { !isConfirmed &&
+            <div className="row mb-2 pt-1">
+              <div className="col-sm-12">
+                <div className="alert alert-info mb-0 mt-4">
+                  <div>Please confirm your account to have a full experience of Enloya. if you don't find the mail,
+                    <span className="btn btn-link" onClick={this.resendConfirmMsg}>We can resend it to you</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        }
-        { this.props.userType === 'lawyer' && !isValidated &&
-          <div className="row mb-2">
-            <div className="col-sm-12">
-              <div className="alert alert-warning mb-0">
-                <div>Your account is currently under validation.
-                  Please update your information as much as possible.
-                  We will contact you as soon as possible.
+          }
+          { this.props.userType === 'lawyer' && !isValidated &&
+            <div className="row mb-2">
+              <div className="col-sm-12">
+                <div className="alert alert-warning mb-0">
+                  <div>Your account is currently under validation.
+                    Please update your information as much as possible.
+                    We will contact you as soon as possible.
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        }
-      </>
-    );
-  }
+          }
+        </>
+      );
+    } else {
+      return (<></>)
+    }
+  } 
 }
 
 const mapStateToProps = ({ authUser }) => {

@@ -206,6 +206,7 @@ export class ServiceSearchResults extends Component {
                 <div className="row mt-3">
                   {
                     this.state.serviceResults.map(service => {
+                      const isInCart = this.props.cartServices.find(cs => cs === service.id);
                       return (
                         <div key={service.id} className={ isGrid ? "col-sm-6 mb-3" : "col-sm-12 mb-3"} >
                           {/*<FixedServiceCard
@@ -229,6 +230,7 @@ export class ServiceSearchResults extends Component {
                             fullDescription={service.longDescription}
                             lawyer={service.lawyer}
                             isGrid={isGrid}
+                            isInCart={isInCart}
                             />
                         </div>
                       );
@@ -253,15 +255,17 @@ export class ServiceSearchResults extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, data }) => {
+const mapStateToProps = ({ authUser, data, cart }) => {
   const { userInfo } = authUser;
   const { services, categories, clientTypes } = data;
+  const { cartServices } = cart;
 
   return {
     userInfo,
     services,
     categories,
-    clientTypes
+    clientTypes,
+    cartServices
   };
 };
 

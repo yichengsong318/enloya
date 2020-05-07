@@ -281,7 +281,8 @@ export class FixFeesCreate extends Component {
                 name="deliveryTimeUnits" onChange={this.handleFormChange}
                 choices={[
                   { value: 'days', label: 'Days' },
-                  { value: 'hours', label: 'Hours' }
+                  { value: 'hours', label: 'Hours' },
+                  { value: 'minutes', label: 'Minutes' }
                 ]} noHelp />
             </div>
             {/*
