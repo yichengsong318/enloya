@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function FixedServiceCard (props) {
     const nameSize = props.name.length;
+    const titleSize = props.lawyer.title.length;
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${props.sid}`;
     const [state, setState] = useState({ copied: false });
 
@@ -50,7 +51,7 @@ export default function FixedServiceCard (props) {
         <div className="row mt-3 d-flex align-items-end">
             <div className="col-md-7 col-7">
               <b><Link className="text-dark" to={"/lawyer-profile/" + props.lawyer.id}>{props.lawyer.firstname} {props.lawyer.lastname}</Link></b>
-              <p className="subtitle font-italyc">{props.lawyer.title}</p>
+              <p className={`${titleSize >= 45 && 'text-elipsis-vertical'} subtitle font-italyc`}>{props.lawyer.title}</p>
               <p className="subtitle">Location: {props.lawyer.city}, {props.lawyer.country}</p>
               <p className="subtitle">Licenced in: {props.lawyer.country}</p>
             </div>
@@ -59,7 +60,7 @@ export default function FixedServiceCard (props) {
             </div>
             <div className={props.isGrid ? "col-3 col-md-3 pl-1 text-right" : "col-3 d-grid col-md-3 pl-1 text-right"}>
               <div className="priced">${props.price}</div>
-              <button type="type" className="btn btn-yellowry btn-block mt-2">Buy Now</button>
+              <Link className="btn btn-yellowry btn-block mt-2" to={"/fix-fee-services-show?sid=" + props.sid}>Buy Now</Link>
             </div>
         </div>
       </div>

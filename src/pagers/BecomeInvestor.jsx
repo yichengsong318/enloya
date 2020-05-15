@@ -24,9 +24,9 @@ const BecomeInvestor = ({ children, location: { pathname } }) => {
               <p className="text-left">
                 Enloya is currently seed funding and offers attractive investment scenarios to investors.
                 We would be happy to provide you further information about our company at your request.
-                Please contact us at <a class="enl-link" href="mailto:investors@enloya.com">investors@enloya.com</a>. Meanwhile, take a look at our company's
-                <a className="text-primary" href="https://www.crunchbase.com/organization/enloya">Crunchbase</a>,
-                <a className="text-primary" href="https://angel.co/company/enloya">Angelist</a>,
+                Please contact us at <a class="enl-link" href="mailto:investors@enloya.com">investors@enloya.com</a>. Meanwhile, take a look at our company's &nbsp;
+                <a className="text-primary" href="https://www.crunchbase.com/organization/enloya">Crunchbase, </a>
+                <a className="text-primary" href="https://angel.co/company/enloya">Angelist, </a>
                 <a className="text-primary" href="https://www.linkedin.com/company/enloyalaw">LinkedIn profiles</a>
               </p>
             </div>

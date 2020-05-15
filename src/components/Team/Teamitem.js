@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FooterData from '../Footer/FooterData';
+// import FooterData from '../Footer/FooterData';
 
 class Teamitem extends Component {
     render(){
@@ -13,7 +13,7 @@ class Teamitem extends Component {
                     </a>
                     <h5>{memberd}</h5>
                 </div>
-                <div className="hover_content">
+                {/*<div className="hover_content">
                     <div className="n_hover_content">
                         <ul className="list-unstyled">
                             {
@@ -30,7 +30,7 @@ class Teamitem extends Component {
                         </a>
                         <h5>{memberd}</h5>
                     </div>
-                </div>
+                </div>*/}
             </div>
         )
     }
