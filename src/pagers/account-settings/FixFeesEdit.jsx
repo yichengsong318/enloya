@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import { withRouter } from "react-router-dom";
 import countries from "../../constants/fullCountries";
 
-import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag, FormDate } from '../../shared/FormElement';
+import { FormCheck, FormInput, FormSelect, FormTextArea, FormTag } from '../../shared/FormElement';
 
 export class FixFeesEdit extends Component {
   constructor(props) {
@@ -22,11 +22,13 @@ export class FixFeesEdit extends Component {
         typeInputs: [],
         industryInputs: '',
         price: '',
+        currency: '',
+        deliverable: '',
         shortDescription: '',
         longDescription: '',
         deliveryTimeLength: 0,
         deliveryTimeUnits: '',
-        estimatedTime: '',
+        estimatedTime: null,
         tags: [],
         faq: [],
         country: '',
@@ -50,6 +52,7 @@ export class FixFeesEdit extends Component {
       get('services/' + params.sid).then((res) => {
         if (res.status === 200) {
           const oldService = res.data;
+          console.log(oldService);
           this.setState({
             service: {
               title: oldService.title || '',
@@ -58,11 +61,12 @@ export class FixFeesEdit extends Component {
               typeInputs: oldService.types ? oldService.types.map(t => t.id) : [],
               industryInputs: oldService.industries ? oldService.industries.map(ind => ind.id)[0] : [],
               price: oldService.price || 0,
+              currency: oldService.currency || 0,
+              deliverable: oldService.deliverable || '',
               shortDescription: oldService.shortDescription || '',
               longDescription: oldService.longDescription || '',
               deliveryTimeLength: oldService.deliveryTime ? oldService.deliveryTime.amount : 0,
               deliveryTimeUnits: oldService.deliveryTime ? oldService.deliveryTime.unit : '',
-              estimatedTime: new Date(oldService.estimatedTime),
               tags: oldService.tags || [],
               faq: oldService.faq || [],
               country: oldService.country || '',
@@ -177,6 +181,8 @@ export class FixFeesEdit extends Component {
       };
     });
 
+    console.log(this.state.service)
+
     return (
       <div className="py-4 px-2 account-settings">
         <h2 className="mt-3 mb-5">Update Fixed-Fee Service</h2>
@@ -251,6 +257,16 @@ export class FixFeesEdit extends Component {
                 name="price" onChange={this.handleFormChange}
                 noHelp />
             </div>
+            <div className="col-sm-4">
+              <FormSelect label="Currency" id="currency"
+                selected={this.state.service.currency}
+                name="currency" onChange={this.handleFormChange}
+                choices={[
+                  { value: '$', label: 'US Dollars ($)' },
+                  { value: '€', label: 'Euro (€)' },
+                  { value: 'CHF', label: 'Swiss francs (CHF)' }
+                ]} noHelp />
+            </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-6">
               <FormInput label="Short Description" type="text" id="shortDescription"
@@ -268,26 +284,28 @@ export class FixFeesEdit extends Component {
                 name="longDescription" onChange={this.handleFormChange} noHelp />
               <div className="small text-right">250 Characters max</div>
             </div>
+            <div className="col-sm-8">
+              <FormInput label="Deliverable" type="text" id="deliverable"
+                value={this.state.service.deliverable} maxLength={40}
+                name="deliverable" onChange={this.handleFormChange}
+                noHelp />
+            </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-4">
-              <FormInput label="Delivery Time (Length)" type="number" id="deliverytimelength"
+              <FormInput label="Estimated delivery (Length)" type="number" id="deliverytimelength"
                 value={this.state.service.deliveryTimeLength}
                 name="deliveryTimeLength" onChange={this.handleFormChange}
                 noHelp />
             </div>
             <div className="col-sm-4">
-              <FormSelect label="Delivery Time (Units)" id="deliverytimeunit"
+              <FormSelect label="Estimated delivery (Units)" id="deliverytimeunit"
                 selected={this.state.service.deliveryTimeUnits}
                 name="deliveryTimeUnits" onChange={this.handleFormChange}
                 choices={[
                   { value: 'days', label: 'Days' },
-                  { value: 'hours', label: 'Hours' }
+                  { value: 'hours', label: 'Hours' },
+                  { value: 'minutes', label: 'Minutes' }
                 ]} noHelp />
-            </div>
-            <div className="col-sm-4">
-              <FormDate label="Estimate Time Delivery" id="estimated-time"
-                value={this.state.service.estimatedTime}
-                name="estimatedTime" onChange={this.handleFormChange} noHelp/>
             </div>
           </div>
         </div>

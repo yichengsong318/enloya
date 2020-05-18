@@ -24,6 +24,8 @@ export class FixedServices extends Component {
                   name={srv.title}
                   company={srv.lawyer && srv.lawyer.companyName}
                   price={srv.price}
+                  currency={srv.currency}
+                  deliverable={srv.deliverable}
                   category={srv.category && srv.category.label}
                   deliveryTime={srv.deliveryTime}
                   fullDescription={srv.longDescription}

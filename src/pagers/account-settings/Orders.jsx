@@ -25,11 +25,11 @@ export class Orders extends Component {
           <div className="row mx-auto">
             {this.props.orders.map(order => {
               return (
-                order.transactionType == 'client-to-lawyer' ?
+                order.transactionType === 'client-to-lawyer' ?
                 <div className="col-sm-8 px-1" key={order.id}>
                   <div className="d-flex justify-content-between">
-                    <h6 className="my-2">{order.serviceData.service.title} (Ordered by client)</h6>
-                    <h6 className="my-2">{order.client.firstname + ' ' + order.client.lastname}</h6>
+                    <h6 className="my-2">{order.serviceData && order.serviceData.service.title} (Ordered by client)</h6>
+                    <h6 className="my-2">{order.client ? order.client.firstname + ' ' + order.client.lastname: ''}</h6>
                   </div>
                   <hr/>
                 </div>

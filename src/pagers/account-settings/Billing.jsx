@@ -169,7 +169,7 @@ export class Billing extends Component {
         { userInfo.paymentInfo && userInfo.paymentInfo.stripeAccount ?
           <h4 className="mt-2 mb-3">Account successfully created.</h4>
           :
-          <a target="_blank" 
+          <a target="_blank" rel="noopener noreferrer"
             href={"https://connect.stripe.com/express/oauth/authorize?client_id=ca_H76saoOep2ATVuBt31jXGf1GBmHzT3NN&stripe_user[email]=" + userInfo.email}
             className="connect-button">
             <span>Connect with Stripe</span>

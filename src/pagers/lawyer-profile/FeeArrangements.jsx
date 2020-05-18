@@ -1,13 +1,16 @@
 import React from 'react';
 
 function FeeArrangements(props) {
-  const { hourlyRate, feeArrangements } = props.userInfo;
+  const { hourlyRate, hourlyRateCurrency, feeArrangements } = props.userInfo;
 
   return (
     <div className="px-4 py-4">
       <h4 className="mt-4">Hourly Rate</h4>
       <p className="text-justify pl-4">
-        {hourlyRate} $
+      {
+        hourlyRateCurrency === '$' || hourlyRateCurrency === 'CHF' ? 
+          hourlyRateCurrency + '' + hourlyRate : 
+          hourlyRateCurrency === '€' ? hourlyRate + '€' : '$' + hourlyRate}
       </p>
       
       <h4 className="mt-4">Fee Arrangements</h4>

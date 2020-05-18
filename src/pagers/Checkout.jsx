@@ -29,7 +29,12 @@ export class Checkout extends Component {
 
   removeItem = (id) => {
     this.props.removeFromCart(id);
-    this.loadServices();
+    const services = this.state.cartServices.filter(serv => serv.id !== id);
+    const amount = services.reduce((pv, cv) => {return pv + parseInt(cv.price)}, 0);
+    this.setState({
+      cartServices: services,
+      totalAmount: amount
+    });
   }
 
   componentDidMount() {
@@ -39,7 +44,6 @@ export class Checkout extends Component {
   loadServices = () => {
     if (this.props.cartServices.length > 0) {
       get('services/query-ids', {ids: this.props.cartServices}).then(res => {
-        console.log(res.data);
         let amount = res.data.reduce((pv, cv) => {return pv + parseInt(cv.price)}, 0);
         this.setState({
           cartServices: res.data,

@@ -4,9 +4,9 @@ import { readData } from "../../redux/actions";
 import { get, remove, put } from '../../helpers/RemoteApi';
 import { withRouter } from "react-router-dom";
 import queryString from 'query-string';
-import Moment from 'react-moment';
 import { NotificationManager } from "react-notifications";
 import countries from "../../constants/fullCountries";
+import { Link } from 'react-router-dom';
 
 export class FixFeesDetail extends Component {
 
@@ -88,7 +88,7 @@ export class FixFeesDetail extends Component {
       <div className="py-4 px-4 account-settings">
         <h2 className="mt-2 mb-3">Fixed-Fee Service Detail</h2>
         <div className="pb-4 text-right">
-          <a href={"/account-settings/fix-fee-services-edit?sid=" + serv.id} className="btn btn-yellow px-5 col-12 col-md-4">Edit the service</a>
+          <Link to={"/account-settings/fix-fee-services-edit?sid=" + serv.id} className="btn btn-yellow px-5 col-12 col-md-4">Edit the service</Link>
           <span className={ isPublished ? "btn btn-warning ml-3 col-12 mobile-margin-top mobile-ml-0 col-md-3" : "btn btn-success ml-3 col-12 mobile-margin-top mobile-ml-0 col-md-3"} onClick={this.publishService}>
             { isPublished ? "Unpublish the service" : "Publish the service"}
           </span>
@@ -122,16 +122,15 @@ export class FixFeesDetail extends Component {
           <hr className="my-4"/>
           <table className="table table-borderless">
             <tbody>
-              <tr><th>Price</th><td>${serv.price}</td></tr>
+              <tr><th>Price</th><td>{
+                serv.currency === '$' || serv.currency === 'CHF' ? 
+                  serv.currency + '' + serv.price : 
+                  serv.currency === '€' ? serv.price + '€' : '$' + serv.price}</td></tr>
               <tr><th>Short Description</th><td>{serv.shortDescription}</td></tr>
               <tr><th>Description</th><td>{serv.longDescription}</td></tr>
               <tr><th>Client Type</th><td>{clientTypes}</td></tr>
+              <tr><th>Deliverable</th><td>{serv.deliverable}</td></tr>
               <tr><th>Delivery Time</th><td>{serv.deliveryTime.amount + ' ' + serv.deliveryTime.unit}</td></tr>
-              <tr><th>Estimated Time Delivery</th><td>
-                <Moment format="DD MMMM YYYY">
-                  {serv.estimatedTime}
-                </Moment>
-                </td></tr>
             </tbody>
           </table>
         </div>

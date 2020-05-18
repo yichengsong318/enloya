@@ -19,11 +19,13 @@ export class FixFeesCreate extends Component {
         typeInputs: '',
         industryInputs: '',
         price: '',
+        currency: '',
         shortDescription: '',
+        deliverable: '',
         longDescription: '',
         deliveryTimeLength: 0,
         deliveryTimeUnits: '',
-        estimatedTime: '',
+        estimatedTime: null,
         tags: [],
         faq: [],
         country: '',
@@ -232,6 +234,16 @@ export class FixFeesCreate extends Component {
                 name="price" onChange={this.handleFormChange}
                 noHelp />
             </div>
+            <div className="col-sm-4">
+              <FormSelect label="Currency" id="currency"
+                value={this.state.service.currency}
+                name="currency" onChange={this.handleFormChange}
+                choices={[
+                  { value: '$', label: 'US Dollars ($)' },
+                  { value: '€', label: 'Euro (€)' },
+                  { value: 'CHF', label: 'Swiss francs (CHF)' }
+                ]} noHelp />
+            </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-6">
               <FormInput label="Short Description" type="text" id="shortDescription"
@@ -250,19 +262,27 @@ export class FixFeesCreate extends Component {
               <div className="small text-right">250 Characters max</div>
             </div>
             <div className="col-sm-12"></div>
+            <div className="col-sm-8">
+              <FormInput label="Deliverable" type="text" id="deliverable"
+                value={this.state.service.deliverable} maxLength={40}
+                name="deliverable" onChange={this.handleFormChange}
+                noHelp />
+            </div>
+            <div className="col-sm-12"></div>
             <div className="col-sm-4">
-              <FormInput label="Delivery Time (Length)" type="number" id="deliverytimelength"
+              <FormInput label="Estimated delivery (Length)" type="number" id="deliverytimelength"
                 value={this.state.service.deliveryTimeLength}
                 name="deliveryTimeLength" onChange={this.handleFormChange}
                 noHelp />
             </div>
             <div className="col-sm-4">
-              <FormSelect label="Delivery Time (Units)" id="deliverytimeunit"
+              <FormSelect label="Estimated delivery (Units)" id="deliverytimeunit"
                 value={this.state.service.deliveryTimeUnits}
                 name="deliveryTimeUnits" onChange={this.handleFormChange}
                 choices={[
                   { value: 'days', label: 'Days' },
-                  { value: 'hours', label: 'Hours' }
+                  { value: 'hours', label: 'Hours' },
+                  { value: 'minutes', label: 'Minutes' }
                 ]} noHelp />
             </div>
             {/*

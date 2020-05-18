@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default function FixedServiceCard (props) {
     const nameSize = props.name.length;
-    const titleSize = props.lawyer.title.length;
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${props.sid}`;
     const [state, setState] = useState({ copied: false });
 
@@ -30,8 +29,8 @@ export default function FixedServiceCard (props) {
                     </h3>
                   </div>
                   <div className="mt-4"><b>Area of law:</b> {props.category}</div>
-                  <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit + " consultation")}</div>
-                  <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> {props.estimatedDelivery ? props.estimatedDelivery : <span className="text-warning size-inherit">Not defined</span>}</div>
+                  <div className="line-height-1-5 mt-3"><b>Deliverable:</b> {props.deliverable ? props.deliverable : 'N/A'}</div>
+                  <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> <span className="text-warning size-inherit">{props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit)}</span></div>
                 </Link>
             </div>
 
@@ -51,7 +50,7 @@ export default function FixedServiceCard (props) {
         <div className="row mt-3 d-flex align-items-end">
             <div className="col-md-7 col-7">
               <b><Link className="text-dark" to={"/lawyer-profile/" + props.lawyer.id}>{props.lawyer.firstname} {props.lawyer.lastname}</Link></b>
-              <p className={`${titleSize >= 45 && 'text-elipsis-vertical'} subtitle font-italyc`}>{props.lawyer.title}</p>
+              <p className="subtitle font-italyc">{props.lawyer.title}</p>
               <p className="subtitle">Location: {props.lawyer.city}, {props.lawyer.country}</p>
               <p className="subtitle">Licenced in: {props.lawyer.country}</p>
             </div>
@@ -59,8 +58,15 @@ export default function FixedServiceCard (props) {
               <img alt="" src={props.lawyer.profilePic} className={props.isGrid ? "w-100" : "w-80"}/>
             </div>
             <div className={props.isGrid ? "col-3 col-md-3 pl-1 text-right" : "col-3 d-grid col-md-3 pl-1 text-right"}>
-              <div className="priced">${props.price}</div>
-              <Link className="btn btn-yellowry btn-block mt-2" to={"/fix-fee-services-show?sid=" + props.sid}>Buy Now</Link>
+              <div className="priced">{
+                props.currency === '$' || props.currency === 'CHF' ? 
+                  props.currency + '' + props.price : 
+                  props.currency === '€' ? props.price + '€' : '$' + props.price}</div>
+              {props.isInCart ?
+                <span className="badge badge-secondary px-2 py-2 mt-2">In the cart</span>
+                : 
+                <Link to={"/fix-fee-services-show?sid=" + props.sid} className="btn btn-yellowry btn-block mt-2">Buy Now</Link>
+              }
             </div>
         </div>
       </div>
