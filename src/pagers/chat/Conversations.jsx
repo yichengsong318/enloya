@@ -10,8 +10,6 @@ import ChatBox from "./components/ChatBox";
 
 import AlertArea from '../../components/AlertArea';
 import CustomNavbar from '../../components/CustomNavbar';
-import Footer from '../../components/Footer/Footer';
-import FooterData from '../../components/Footer/FooterData';
 
 import { apiConfig } from '../../constants/defaultValues';
 
@@ -126,7 +124,7 @@ export class Conversations extends Component {
       targetId = message.from;
     }
     let targetIndex = userChatData.findIndex(u => u.id === targetId);
-    
+
     if (!userChatData[targetIndex].messages) {
       userChatData[targetIndex].messages = [];
     }
@@ -148,7 +146,7 @@ export class Conversations extends Component {
     userChatData[targetIndex].messages.push(messageData);
     this.setState({ userChatData });
   }
-  
+
   onMessageLoaded = (messages) => {
     let userChatData = this.state.userChatData;
 
@@ -163,7 +161,7 @@ export class Conversations extends Component {
       messageData.read = message.read;
       messageData.to = message.to;
       let targetId;
-      
+
       if (message.from === this.state.user.id) {
         messageData.position = "right";
         targetId = message.to;
@@ -171,13 +169,13 @@ export class Conversations extends Component {
         messageData.position = "left";
         targetId = message.from;
       }
-      
+
       let targetIndex = userChatData.findIndex(u => u.id === targetId);
-      
+
       if (!userChatData[targetIndex].messages) {
         userChatData[targetIndex].messages = [];
       }
-      
+
       if (targetIndex !== this.state.selectedUserIndex) {
         if (!userChatData[targetIndex].unread) {
           userChatData[targetIndex].unread = 0;
@@ -187,7 +185,7 @@ export class Conversations extends Component {
           userChatData[targetIndex].unread++;
         }
       }
-      
+
       userChatData[targetIndex].messages.push(messageData);
     });
 
@@ -254,9 +252,8 @@ export class Conversations extends Component {
     return (
       <div className="App">
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
-        <div className="h-100 container mb-5 mt_75">
+        <div className="h-100 container mb-5 mt_100">
           <AlertArea/>
-          <h1 className="h3 my-5 text-bold">Messages</h1>
           <div className="row px-3">
             <div className="col-sm-3 sidemenu pt-3">
               <UserList
@@ -280,7 +277,6 @@ export class Conversations extends Component {
             </div>
           </div>
         </div>
-        <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
 
     );

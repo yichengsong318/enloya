@@ -82,11 +82,11 @@ export default class ChatBox extends Component {
             <FormGroup className="border-0 px-3">
               <InputGroup>
                 <FormControl
-                  type="text"
+                  type="textarea"
+                  rows={5}
                   value={this.state.messageText}
                   onChange={this.onMessageInputChange.bind(this)}
                   onKeyPress={this.onMessageKeyPress.bind(this)}
-                  placeholder="Type a message here (Limit 3000 characters)..."
                   ref="messageTextBox"
                   className="messageTextBox border-radius4"
                   maxLength="3000"
@@ -94,7 +94,7 @@ export default class ChatBox extends Component {
                 />
                 <Button
                   disabled={!this.state.messageText}
-                  className="sendButton ml-2"
+                  className="sendButton ml-2 bg-yellow"
                   onClick={this.onSendClicked.bind(this)}
                 >
                   Send

@@ -221,7 +221,7 @@ input:focus {
 }
 
 .sidemenu {
-  background-color: rgb(3, 22, 29);
+  background-color: #333333;
 }
 
 .sidelink {
@@ -239,6 +239,35 @@ input:focus {
 .sidelink.selected {
   color: #1fa5df;
   text-decoration: none;
+}
+
+.rce-citem-avatar {
+  padding: 0 15px 0 0!important;
+}
+
+.rce-citem-body--bottom {
+  margin-top: 0!important;
+}
+
+.rce-citem-body--top, .rce-citem-body--bottom-title {
+  color: #fff!important;
+}
+
+.rce-citem-body--top-title {
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+.rce-citem-body--bottom-title {
+  font-size: 13px!important;
+}
+
+.rce-citem-body--bottom-status {
+  margin-top: 4px;
+}
+
+.rce-mbox.rce-mbox-right, .rce-mbox.rce-mbox-left {
+  max-width: 22rem;
 }
 
 .form-group label {
@@ -1014,7 +1043,7 @@ hr {
 }
 .chat-list {
   height: 74vh;
-  background-color: rgb(3, 22, 29);
+  background-color: #333333;
 }
 .message-list {
   height: 68vh;
@@ -1032,7 +1061,7 @@ hr {
   padding: 3px;
 }
 .rce-citem  {
-  background-color: rgb(3, 22, 29)!important;
+  background-color: #333333!important;
 }
 .rce-mbox {
   background-color: antiquewhite !important;
