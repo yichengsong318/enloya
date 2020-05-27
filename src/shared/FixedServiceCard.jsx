@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function FixedServiceCard (props) {
     const nameSize = props.name.length;
+    const titleSize = props.lawyer.title.length;
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${props.sid}`;
     const [state, setState] = useState({ copied: false });
     const handleCopyUrl = () => {
@@ -36,7 +37,7 @@ export default function FixedServiceCard (props) {
         <div className="row mt-3 mt-3-mobile d-flex align-items-end">
             <div className="col-md-7 col-7 col-lg-7">
               <b>{props.lawyer.firstname} {props.lawyer.lastname}</b>
-              <p className="subtitle font-italyc">{props.lawyer.title}</p>
+              <p className={`${titleSize >= 45 && 'text-elipsis-vertical'} subtitle font-italyc`}>{props.lawyer.title}</p>
               <p className="subtitle">Location: {props.lawyer.city}, {props.lawyer.country}</p>
               <p className="subtitle">Licenced in: {props.lawyer.country}</p>
             </div>

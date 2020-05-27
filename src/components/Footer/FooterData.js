@@ -43,7 +43,7 @@ const FooterData = {
           },
           {
             id: 6,
-            url: '/blog',
+            url: 'blog',
             text: 'Our Blog',
           },
           {

@@ -13,7 +13,10 @@ class AboutWidget extends Component {
                             {
                                 FooterData.about.map(item =>{
                                     return(
-                                        <li key={item.id}><a href={item.url}>{item.text}</a></li>
+                                        <li key={item.id}>
+                                          <a href={item.url}>{item.text}</a>
+                                          {(item.url === 'blog' && <a href="http://blog.enloya.com" style={{ cursor: 'pointer'}} >{item.text}</a>)}
+                                        </li>
                                     )
                                 })
                             }

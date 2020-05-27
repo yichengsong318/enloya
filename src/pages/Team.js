@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Teams from '../components/Team/Team';
-import Advisors from '../components/Team/Advisor';
 import Footer from '../components/Footer/Footer';
+// import Advisors from '../components/Team/Advisor';
 // import FooterTwo from '../components/Footer/FooterTwo';
 import FooterData from '../components/Footer/FooterData';
 
@@ -35,10 +35,7 @@ const Team = ({ children, location: { pathname } }) => {
             <div className="container text-center py-5">
               Would you like to be part of our team? <a className="btn btn_get btn_get_two" href="/register">Join the team</a>
             </div>
-            <Advisors/>
-            <div className="container text-center py-5">
-              Would you like to become our Ambassador? <a className="btn btn_get btn_get_two" href="/register">Become our Ambassador</a>
-            </div>
+            {/*<Advisors/>*/}
             <Footer FooterData={FooterData} kind="otherPage"/>
         </div>
     )
