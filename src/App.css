@@ -269,6 +269,21 @@ input:focus {
 .rce-mbox.rce-mbox-right, .rce-mbox.rce-mbox-left {
   max-width: 22rem;
 }
+.rce-mbox-time {
+  bottom: -12px!important;
+  font-size: 11px!important;
+}
+
+.right-side-menu-img>.rce-avatar-container.large {
+  display: inline!important;
+}
+
+.right-side-menu-img>.targeted-user-fullname {
+  margin-top: 1rem;
+}
+.right-side-menu-img>.targeted-user-fullname>a>h3, .right-side-menu-img>.targeted-user-fullname>h3 {
+  color: #fff!important;
+}
 
 .form-group label {
   font-weight: 700;

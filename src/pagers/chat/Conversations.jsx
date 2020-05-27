@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import io from "socket.io-client";
 import { NotificationManager } from "react-notifications";
 import axios from "axios";
+import { Avatar } from "react-chat-elements";
+import { Link } from 'react-router-dom';
 import { updateData, readData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import UserList from "./components/UserList";
@@ -220,6 +222,12 @@ export class Conversations extends Component {
   createMessage = (text) => {
     const fromType = this.state.user.type ? 'client' : 'lawyer';
     const toType = this.state.userChatData[this.state.selectedUserIndex].type ? 'client' : 'lawyer';
+    const currentDate = new Date();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const formatedDate = currentDate.toLocaleDateString();
+    const combinedHours = `${hours}:${minutes.toString().padStart(2, "0")}`
+    const combinedDate = `${combinedHours} on ${formatedDate}`
 
     let message = {
       to: this.state.userChatData[this.state.selectedUserIndex].id,
@@ -227,7 +235,8 @@ export class Conversations extends Component {
       message: {
         type: "text",
         text: text,
-        date: +new Date(),
+        // date: +d,
+        dateString: combinedDate,
         className: "message"
       },
       from: this.state.user.id
@@ -249,10 +258,20 @@ export class Conversations extends Component {
 
 
   render () {
+    const targetedUser = this.state.userChatData[this.state.selectedUserIndex];
+    const userId = targetedUser && targetedUser.id;
+    const city = targetedUser && targetedUser.city;
+    const country = targetedUser && targetedUser.country;
+    const firstName = targetedUser && targetedUser.firstname;
+    const lastName = targetedUser && targetedUser.lastname;
+    const langs = targetedUser && targetedUser.languages.map((lang, index) => { return (<span>{lang.label}</span>) })
+    const userType = targetedUser && targetedUser.type;
+    const isLawyer = !(userType === 'business' || userType === 'individual');
+
     return (
       <div className="App">
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" q="team_url"/>
-        <div className="h-100 container mb-5 mt_100">
+        <div className="h-100 mx-5 mb-5 mt_100">
           <AlertArea/>
           <div className="row px-3">
             <div className="col-sm-3 sidemenu pt-3">
@@ -263,22 +282,46 @@ export class Conversations extends Component {
                 onChatClicked={this.onChatClicked.bind(this)}
               />
             </div>
-            <div className="col-sm-9 bg-white px-0">
+            <div className="col-sm-6 bg-white px-0">
               <div className="h-100">
                 <ChatBox
-                    signedInUser={this.state.user}
                     onSendClicked={this.createMessage.bind(this)}
                     onBackPressed={this.toggleViews.bind(this)}
-                    targetUser={
-                      this.state.userChatData[this.state.selectedUserIndex]
-                    }
+                    signedInUser={this.state.user}
+                    targetUser={targetedUser}
                   />
+              </div>
+            </div>
+            <div className="col-sm-3 sidemenu pt-3 text-center right-side-menu-img">
+            {targetedUser &&(
+              <Avatar
+                src={targetedUser && targetedUser.profilePic || require(`./static/images/avatar/1.jpg`)}
+                alt={"logo"}
+                size="large"
+                type="circle flexible"
+              />
+            )}
+              <div className="targeted-user-fullname">
+              {targetedUser ?(
+                <>
+                  {isLawyer ? (
+                    <Link className="text-white" to={"/lawyer-profile/" + userId}>
+                      <h3>{`${firstName} ${lastName}`}</h3>
+                      <h6 className="text-white">Location: {city}, {country}</h6>
+                      <h6 className="text-white">Languages: {langs}</h6>
+                    </Link>
+                  ): (<>
+                    <h3>{`${firstName} ${lastName}`}</h3>
+                    <h6 className="text-white">Location: {city}, {country}</h6>
+                    <h6 className="text-white">Languages: {langs}</h6>
+                  </>)}
+                </>
+              ): (<></>)}
               </div>
             </div>
           </div>
         </div>
       </div>
-
     );
   }
 }
@@ -286,7 +329,6 @@ export class Conversations extends Component {
 const mapStateToProps = ({ authUser, data }) => {
   const { userType, userInfo, user } = authUser;
   const { languages, lawyers, clients } = data;
-
   return { userType, userInfo, user, languages, lawyers, clients };
 };
 

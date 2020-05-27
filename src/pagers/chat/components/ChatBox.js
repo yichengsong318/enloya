@@ -8,7 +8,7 @@ import {
 import {
   MessageList,
   Navbar as NavbarComponent,
-  Avatar
+  Avatar,
 } from "react-chat-elements";
 
 /**
@@ -52,6 +52,8 @@ export default class ChatBox extends Component {
 
   render() {
 
+    console.log('this.props.targetUser.messages', this.props);
+
     return (
       <div>
         {this.props.targetUser ? (
@@ -78,6 +80,7 @@ export default class ChatBox extends Component {
               className="message-list"
               lockable={true}
               dataSource={this.props.targetUser.messages}
+              downButton={true}
             />
             <FormGroup className="border-0 px-3">
               <InputGroup>
