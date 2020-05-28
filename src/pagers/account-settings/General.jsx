@@ -91,10 +91,10 @@ export class General extends Component {
       <div className="py-4 px-2">
         <h2 className="mt-2 mb-3">General Information</h2>
         <div className="row">
-          <div className="col-sm-5">
+          {/*<div className="col-sm-5">
             <FormUploadImage label="Upload Logo" id="logoUpload" value={userInfo.companyPicture}
               name="companyPictureFile" onChange={this.handleFormImageChange} noHelp/>
-          </div>
+          </div>*/}
           <div className="col-sm-5">
             <FormInput label="Company Name" type="text" id="companyname"
               value={this.state.user.companyName}

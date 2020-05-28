@@ -264,7 +264,7 @@ export class Conversations extends Component {
     const country = targetedUser && targetedUser.country;
     const firstName = targetedUser && targetedUser.firstname;
     const lastName = targetedUser && targetedUser.lastname;
-    const langs = targetedUser && targetedUser.languages.map((lang, index) => { return (<span>{lang.label}</span>) })
+    const langs = targetedUser && targetedUser.languages.map((lang, index) => { return (<span className="lang-tag mr-1">{lang.label}</span>) })
     const userType = targetedUser && targetedUser.type;
     const isLawyer = !(userType === 'business' || userType === 'individual');
 
@@ -295,7 +295,7 @@ export class Conversations extends Component {
             <div className="col-sm-3 sidemenu pt-3 text-center right-side-menu-img">
             {targetedUser &&(
               <Avatar
-                src={targetedUser && targetedUser.profilePic || require(`./static/images/avatar/1.jpg`)}
+                src={targetedUser && targetedUser.profilePic || require(`./static/images/avatar/none.svg`)}
                 alt={"logo"}
                 size="large"
                 type="circle flexible"

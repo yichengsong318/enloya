@@ -62,7 +62,7 @@ export default class ChatBox extends Component {
               left={
                 <div>
                   <Avatar
-                    src={this.props.targetUser.profilePic || require(`../static/images/avatar/1.jpg`)}
+                    src={this.props.targetUser.profilePic || require(`../static/images/avatar/none.svg`)}
                     alt={"logo"}
                     size="large"
                     type="circle flexible"

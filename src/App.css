@@ -1093,9 +1093,7 @@ hr {
 body {
   background-color: #e6e6e6;
 }
-/* .form-group{
-  border: 2px solid #f4f4f4;
-} */
+
 input:focus,
 input:active,
 button:focus,
@@ -1109,4 +1107,14 @@ button:focus,
 }
 .border-radius4 {
   border-radius: 4px !important;
+}
+
+.lang-tag {
+  font-size: 90%;
+  border-radius: 4px;
+  padding: 2px 5px;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: #e9ecef;
 }

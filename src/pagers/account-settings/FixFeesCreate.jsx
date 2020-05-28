@@ -269,8 +269,8 @@ export class FixFeesCreate extends Component {
                 noHelp />
             </div>
             <div className="col-sm-12"></div>
-            <div className="col-sm-4">
-              <FormInput label="Estimated delivery (Length)" type="number" id="deliverytimelength"
+            <div className="col-sm-6">
+              <FormInput label="Estimated delivery upon purchase (Length)" type="number" id="deliverytimelength"
                 value={this.state.service.deliveryTimeLength}
                 name="deliveryTimeLength" onChange={this.handleFormChange}
                 noHelp />

@@ -9,12 +9,12 @@ import { FormControl } from "react-bootstrap";
  */
 
 export default class UserList extends Component {
-  
+
   state = {
     userData: [],
     searchQuery: null
   };
-  
+
   componentDidMount() {
   }
 
@@ -33,15 +33,15 @@ export default class UserList extends Component {
   getFilteredUserList() {
     if (this.state.searchQuery) {
       let list = [];
-      
+
       if (this.props.lawyers) {
         list.push(...this.props.lawyers);
       }
-  
+
       if (this.props.clients) {
         list.push(...this.props.clients);
       }
-  
+
       return list.filter(user =>
         (user.firstname + ' ' + user.lastname).toLowerCase().includes(this.state.searchQuery.toLowerCase())
       );
@@ -79,7 +79,7 @@ export default class UserList extends Component {
                   lastMessage.text;
               }
               return {
-                avatar: f.profilePic || require(`../static/images/avatar/1.jpg`),
+                avatar: f.profilePic || require(`../static/images/avatar/none.svg`),
                 alt: f.firstname + ' ' + f.lastname,
                 title: f.firstname + ' ' + f.lastname,
                 subtitle: subtitle,

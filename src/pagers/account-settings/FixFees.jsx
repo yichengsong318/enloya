@@ -9,9 +9,13 @@ export class FixFees extends Component {
   componentDidMount() {
     const {readData} = this.props;
     readData('services', {lawyer: this.props.userInfo.id});
+    readData('licences', 'licences');
   }
 
   render () {
+    const {licences} = this.props;
+    const formatedLicences = licences &&licences.map(l => l.country);
+    const uniqueLicencedIn = formatedLicences&&formatedLicences.filter((v, i, a) => a.indexOf(v) === i)
     return (
       <div className="py-4 px-2 account-settings">
         <h2 className="mt-2 mb-3 pl-4">Fix-fee Services</h2>
@@ -36,6 +40,7 @@ export class FixFees extends Component {
                     deliveryTime={srv.deliveryTime}
                     fullDescription={srv.longDescription}
                     lawyer={srv.lawyer && srv.lawyer}
+                    licencedCities={uniqueLicencedIn && uniqueLicencedIn}
                     />
                 </div>
               );
@@ -49,11 +54,12 @@ export class FixFees extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userInfo } = authUser;
-  const { services } = data;
+  const { services, licences } = data;
 
   return {
     userInfo,
-    services
+    services,
+    licences,
   };
 };
 

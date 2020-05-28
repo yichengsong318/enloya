@@ -50,6 +50,7 @@ export class ServiceSearchResults extends Component {
     const {readData} = this.props;
     readData('categories');
     readData('client-types');
+    readData('licences');
 
     this.search();
   }
@@ -109,8 +110,9 @@ export class ServiceSearchResults extends Component {
     const partFilter = 3;
     const isGrid = this.state.isGrid;
 
-    const { clientTypes, categories } = this.props;
-
+    const { clientTypes, categories, licences } = this.props;
+    const formatedLicences = licences &&licences.map(l => l.country);
+    const uniqueLicencedIn = formatedLicences&&formatedLicences.filter((v, i, a) => a.indexOf(v) === i)
     return (
       <div className="App">
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"/>
@@ -231,6 +233,7 @@ export class ServiceSearchResults extends Component {
                             lawyer={service.lawyer}
                             isGrid={isGrid}
                             isInCart={isInCart}
+                            licencedCities={uniqueLicencedIn && uniqueLicencedIn}
                             />
                         </div>
                       );
@@ -257,7 +260,7 @@ export class ServiceSearchResults extends Component {
 
 const mapStateToProps = ({ authUser, data, cart }) => {
   const { userInfo } = authUser;
-  const { services, categories, clientTypes } = data;
+  const { services, categories, clientTypes, licences } = data;
   const { cartServices } = cart;
 
   return {
@@ -265,7 +268,8 @@ const mapStateToProps = ({ authUser, data, cart }) => {
     services,
     categories,
     clientTypes,
-    cartServices
+    cartServices,
+    licences
   };
 };
 

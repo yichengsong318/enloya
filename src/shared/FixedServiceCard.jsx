@@ -3,8 +3,10 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
 
 export default function FixedServiceCard (props) {
+  // console.log('props.lawyer', props.lawyer);
     const nameSize = props.name.length;
     const titleSize = props.lawyer.title.length;
+    const licencedCities = props.licencedCities;
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${props.sid}`;
     const [state, setState] = useState({ copied: false });
     const handleCopyUrl = () => {
@@ -39,15 +41,15 @@ export default function FixedServiceCard (props) {
               <b>{props.lawyer.firstname} {props.lawyer.lastname}</b>
               <p className={`${titleSize >= 45 && 'text-elipsis-vertical'} subtitle font-italyc`}>{props.lawyer.title}</p>
               <p className="subtitle">Location: {props.lawyer.city}, {props.lawyer.country}</p>
-              <p className="subtitle">Licenced in: {props.lawyer.country}</p>
+              <p className="subtitle">Licenced in: {licencedCities}</p>
             </div>
             <div className="col-md-2 px-0 col-2">
               <img alt="" src={props.lawyer.profilePic} className="w-100"/>
             </div>
             <div className={props.isGrid ? "col-md-3 pl-1 text-right col-3" : "col-3 d-grid col-md-3 pl-1 text-right"}>
               <div className="priced">{
-                props.currency === '$' || props.currency === 'CHF' ? 
-                  props.currency + '' + props.price : 
+                props.currency === '$' || props.currency === 'CHF' ?
+                  props.currency + '' + props.price :
                   props.currency === '€' ? props.price + '€' : '$' + props.price}</div>
               <Link to={props.kind === 'lawyer_profile' ?
               "/fix-fee-services-show?sid=" + props.sid : "/account-settings/fix-fee-services-detail?sid=" + props.sid} className="btn btn-yellowry btn-block mt-2">Details</Link>

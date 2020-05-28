@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import General from './account-settings/General';
 import GeneralBasic from './account-settings/GeneralBasic';
 import Professional from './account-settings/Professional';
-import Billing from './account-settings/Billing';
+// import Billing from './account-settings/Billing';
 import Orders from './account-settings/Orders';
 import Team from './account-settings/Team';
 import Notifications from './account-settings/Notifications';
@@ -57,10 +57,9 @@ function AccountSettings(props) {
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>
                 </>
               }
-              {/* <NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing methods</NavLink> */}
               {/*<NavLink activeClassName="selected" className="sidelink" to={`${url}/teams`}>Teams</NavLink>*/}
               <NavLink activeClassName="selected" className="sidelink" to={`${url}/orders`}>Orders</NavLink>
-              <NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing</NavLink>
+              {/*<NavLink activeClassName="selected" className="sidelink" to={`${url}/billing`}>Billing</NavLink>*/}
               <NavLink activeClassName="selected" className="sidelink" to={`${url}/notifications`}>Notification settings</NavLink>
               {/*<NavLink activeClassName="selected" className="sidelink" to={`${url}/booking`}>Booking Settings</NavLink>*/}
               {/* <NavLink activeClassName="selected" className="sidelink" to={`${url}/booking-create`}>Booking Settings Create</NavLink> */}
@@ -73,7 +72,7 @@ function AccountSettings(props) {
                 <ScrollToTopRoute authRequired={true} path={`${path}/general-lawyer`} component={General}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/general-client`} component={GeneralBasic}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/professional-bg`} component={Professional}/>
-                <ScrollToTopRoute authRequired={true} path={`${path}/billing`} component={Billing}/>
+                {/*<ScrollToTopRoute authRequired={true} path={`${path}/billing`} component={Billing}/>*/}
                 <ScrollToTopRoute authRequired={true} path={`${path}/orders`} component={Orders}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/teams`} component={Team}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/notifications`} component={Notifications}/>

@@ -9,9 +9,14 @@ export class FixedServices extends Component {
   componentDidMount() {
     const {readData} = this.props;
     readData('services', {lawyer: this.props.lawyerId, isPublished: true});
+    readData('licences', 'licences');
   }
 
   render () {
+    const {licences} = this.props;
+    const formatedLicences = licences &&licences.map(l => l.country);
+    const uniqueLicencedIn = formatedLicences&&formatedLicences.filter((v, i, a) => a.indexOf(v) === i)
+
     return (
       <div className="px-2 pb-4 fixed-services">
         <div className="row mx-auto">
@@ -30,6 +35,7 @@ export class FixedServices extends Component {
                   deliveryTime={srv.deliveryTime}
                   fullDescription={srv.longDescription}
                   lawyer={srv.lawyer && srv.lawyer}
+                  licencedCities={uniqueLicencedIn && uniqueLicencedIn}
                   />
               </div>
             );
@@ -42,11 +48,12 @@ export class FixedServices extends Component {
 
 const mapStateToProps = ({ authUser, data }) => {
   const { userInfo } = authUser;
-  const { services } = data;
+  const { services, licences } = data;
 
   return {
     userInfo,
-    services
+    services,
+    licences
   };
 };
 
