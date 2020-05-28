@@ -213,7 +213,7 @@ export class SearchResults extends Component {
                 <div className="row">
                   {
                     this.state.lawyerResults.map(lawyer => {
-                      const licencedCities = lawyer.licences && lawyer.licences.map(l => l.where).join(', ');
+                      const licencedCities = lawyer.licences && lawyer.licences.map(l => l.country).join(', ');
 
                       return (
                         <div key={lawyer.id} className={ isGrid ? "col-sm-4 mb-3" : "col-sm-12 mb-3"} >

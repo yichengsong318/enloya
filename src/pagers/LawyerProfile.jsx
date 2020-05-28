@@ -100,7 +100,9 @@ export class LawyerProfile extends Component {
     const currentPosition = proexperiences && proexperiences.find(pe => pe.id === userInfo.currentPosition);
     const currentPositionLabel = currentPosition ? currentPosition.title + ' at ' + currentPosition.where : null;
 
-    const licencedCities = licences && licences.map(l => l.where).join(', ');
+    const formatedLicences = licences &&licences.map(l => l.country);
+    const uniqueLicencedIn = formatedLicences&&formatedLicences.filter((v, i, a) => a.indexOf(v) === i)
+
     const licencedYear = licences && this.getMin(licences, 'since');
 
     const lastMajor = academicDegrees && this.getMax(academicDegrees, 'year');
@@ -151,7 +153,7 @@ export class LawyerProfile extends Component {
                           <span className="ml-2 mt-1">4.0 (11,345 ratings)</span>
                         </div>
                       </div> */}
-                      <div className="col-sm-4 mt-2 line-height-1-1">Licensed in: {licencedCities}</div>
+                      <div className="col-sm-4 mt-2 line-height-1-1">Licensed in: {uniqueLicencedIn}</div>
                       <div className="col-sm-4 mt-2 line-height-1-1">Licensed since: {licencedYear && licencedYear.since}</div>
                     </div>
                     <div className="row">

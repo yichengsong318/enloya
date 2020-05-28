@@ -346,7 +346,8 @@ export class Professional extends Component {
 
   startLEditing = (item) => {
     this.startPrEditing('licences', item.id, {
-      city: item.city,
+      city: '',
+      // city: item.city,
       country: item.country,
       since: item.since,
       proof: item.proof,
@@ -557,10 +558,10 @@ export class Professional extends Component {
                 <div className="col-sm-12">
                   <h5>Licensed in?</h5>
                 </div>
-                <div className="col-sm-6">
+                {/*<div className="col-sm-6">
                   <FormCity label="City" type="text" id="lic-city"
                     value={this.state.licences.curItem.city} name="city" onChange={this.handleLChange} noHelp/>
-                </div>
+                </div>*/}
                 <div className="col-sm-6">
                   <FormSelect label="Country" id="lic-countries" selected={this.state.licences.curItem.country}
                     name="country" onChange={this.handleLChange}
