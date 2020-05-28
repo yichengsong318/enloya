@@ -1116,5 +1116,6 @@ button:focus,
   -ms-flex-align: center;
   -webkit-box-align: center;
   align-items: center;
-  background-color: #e9ecef;
+  background-color: #efecee;
+  color: #000000;
 }

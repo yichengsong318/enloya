@@ -541,12 +541,8 @@ export class Professional extends Component {
               return (
                 <div key={licence.id} className="d-flex justify-content-between">
                   <div>{licence.city} ({this.getCountry(licence.country)}), {licence.since} (Licence # {licence.number})</div>
-                  { !isValidated &&
-                  <div>
-                    <span className="btn btn-link mr-1" onClick={() => {this.startLEditing(licence)}}>Edit</span>
-                    <span className="btn btn-link" onClick={() => {this.deleteL(licence.id)}}>Delete</span>
-                  </div>
-                  }
+                  { !isValidated && <div><span className="btn btn-link mr-1" onClick={() => {this.startLEditing(licence)}}>Edit</span></div>}
+                  <div><span className="btn btn-link" onClick={() => {this.deleteL(licence.id)}}>Delete</span></div>
                 </div>
               );
             }
