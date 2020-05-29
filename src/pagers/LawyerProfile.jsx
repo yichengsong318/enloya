@@ -109,7 +109,7 @@ export class LawyerProfile extends Component {
 
     const userLocation = userInfo.city + ', ' + this.getCountry(userInfo.country);
 
-    const shareLink = `${window.origin}/lawyer-profile/${this.state.lawyerId}`;
+    const shareLink = `${window.origin}/lawyer-profile/${this.state.lawyerId}`; //Lawyer public profile link
 
     return (
       <div className="App">
@@ -153,7 +153,7 @@ export class LawyerProfile extends Component {
                           <span className="ml-2 mt-1">4.0 (11,345 ratings)</span>
                         </div>
                       </div> */}
-                      <div className="col-sm-4 mt-2 line-height-1-1">Licensed in: {uniqueLicencedIn}</div>
+                      <div className="col-sm-4 mt-2 line-height-1-1">Licensed in: {this.getCountry(uniqueLicencedIn && uniqueLicencedIn[0])}</div>
                       <div className="col-sm-4 mt-2 line-height-1-1">Licensed since: {licencedYear && licencedYear.since}</div>
                     </div>
                     <div className="row">

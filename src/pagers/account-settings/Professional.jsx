@@ -409,6 +409,7 @@ export class Professional extends Component {
   }
 
   getCountry = (code) => {
+    console.log("codecodecodecodecode", code);
     const country = countries.find(c => c.value === code);
     return country ? country.label : "";
   }
@@ -421,7 +422,6 @@ export class Professional extends Component {
     const types = userInfo.types || [];
 
     const isValidated = this.props.userInfo && this.props.userInfo.isValidated;
-
     return (
       <div className="py-4 px-2 account-settings">
         <h2 className="mt-2 mb-3">Professional Background</h2>
@@ -541,7 +541,7 @@ export class Professional extends Component {
           { this.state.licences.value.map(licence => {
               return (
                 <div key={licence.id} className="d-flex justify-content-between">
-                  <div>{licence.city} ({this.getCountry(licence.country)}), {licence.since} (Licence # {licence.number})</div>
+                  <div>{licence.country}{licence.city} ({this.getCountry(licence.country)}), {licence.since} (Licence # {licence.number})</div>
                   { !isValidated && <div><span className="btn btn-link mr-1" onClick={() => {this.startLEditing(licence)}}>Edit</span></div>}
                   <div><span className="btn btn-link" onClick={() => {this.deleteL(licence.id)}}>Delete</span></div>
                 </div>
