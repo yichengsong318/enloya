@@ -14,6 +14,7 @@ export class General extends Component {
     this.state = {
       preview: false,
       user: {
+        publicProfile: props.userInfo.publicProfile || '',
         companyName : props.userInfo.companyName || '',
         companyUrl : props.userInfo.companyUrl || '',
         languageInputs : props.userInfo.languages ? props.userInfo.languages.map(l => l.id) : [],
@@ -45,6 +46,7 @@ export class General extends Component {
           );
           this.setState({
             user: {
+              publicProfile : this.props.userInfo.publicProfile || '',
               companyName : this.props.userInfo.companyName || '',
               companyUrl : this.props.userInfo.companyUrl || '',
               languageInputs : this.props.userInfo.languages ? this.props.userInfo.languages.map(l => l.id) : [],
@@ -95,15 +97,24 @@ export class General extends Component {
             <FormUploadImage label="Upload Logo" id="logoUpload" value={userInfo.companyPicture}
               name="companyPictureFile" onChange={this.handleFormImageChange} noHelp/>
           </div>*/}
-          <div className="col-sm-5">
+          <div className="col-sm-6">
+            <FormInput label="Personalize the URL for your public Enloya profile" type="text" id="publicProfile"
+              value={this.state.user.publicProfile}
+              name="publicProfile" onChange={this.handleFormChange}
+              noHelp/>
             <FormInput label="Company Name" type="text" id="companyname"
               value={this.state.user.companyName}
               name="companyName" onChange={this.handleFormChange}
               noHelp/>
-            <FormInput label="Company Website" type="url" id="companywebsite"
-              value={this.state.user.companyUrl}
-              name="companyUrl" onChange={this.handleFormChange}
-              noHelp/>
+          </div>
+          <div className="col-sm-6">
+            <span className="mb-3">Note: Your custom URL must contain 3-100 letters or numbers. Please do not use spaces, symbols, or special characters.</span>
+            <div className="mt-3">
+              <FormInput label="Company Website" type="url" id="companywebsite"
+                value={this.state.user.companyUrl}
+                name="companyUrl" onChange={this.handleFormChange}
+                noHelp/>
+            </div>
           </div>
         </div>
         <div className="row mt-4">
