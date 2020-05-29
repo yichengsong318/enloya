@@ -267,6 +267,8 @@ export class Conversations extends Component {
     const langs = targetedUser && targetedUser.languages.map((lang, index) => { return (<span className="lang-tag mr-1">{lang.label}</span>) })
     const userType = targetedUser && targetedUser.type;
     const isLawyer = !(userType === 'business' || userType === 'individual');
+    const userLink = targetedUser && targetedUser.publicLink;
+    const lawyerLink = isLawyer&&userLink ? userLink : userId;
 
     return (
       <div className="App">
@@ -305,7 +307,7 @@ export class Conversations extends Component {
               {targetedUser ?(
                 <>
                   {isLawyer ? (
-                    <Link className="text-white" to={"/lawyer-profile/" + userId}>
+                    <Link className="text-white" to={"/lawyer-profile/" + lawyerLink}>
                       <h3>{`${firstName} ${lastName}`}</h3>
                       <h6 className="text-white">Location: {city}, {country}</h6>
                       <h6 className="text-white">Languages: {langs}</h6>
