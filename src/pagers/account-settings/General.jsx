@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FormText, FormInput, FormSelect, FormUploadImage, FormCity } from '../../shared/FormElement';
 import { NotificationManager } from "react-notifications";
 import { updateData, readData, loadMe } from "../../redux/actions";
@@ -13,6 +14,7 @@ export class General extends Component {
 
     this.state = {
       preview: false,
+      showAlert: false,
       user: {
         publicProfile: props.userInfo.publicProfile || '',
         companyName : props.userInfo.companyName || '',
@@ -63,6 +65,18 @@ export class General extends Component {
   }
 
   handleFormChange = (name, value) => {
+    const trimedValue = value.trim().replace(/[^a-zA-Z ]/g, "");
+
+    if (name  === "publicProfile" && trimedValue !== '') {
+      if (trimedValue.length < 3) {
+        this.setState({showAlert: true})
+      } else if (trimedValue.length > 3 && trimedValue.length < 100) {
+        this.setState({showAlert: false})
+      } else {
+        this.setState({showAlert: true})
+      }
+    } else {
+    }
     this.setState({user: {...this.state.user, [name]: value}});
   };
 
@@ -100,21 +114,19 @@ export class General extends Component {
           <div className="col-sm-6">
             <FormInput label="Personalize the URL for your public Enloya profile" type="text" id="publicProfile"
               value={this.state.user.publicProfile}
+              showAlert={this.state.showAlert}
               name="publicProfile" onChange={this.handleFormChange}
-              noHelp/>
+              message="Note: Your custom URL must contain 3-100 letters or numbers. Please do not use spaces, symbols, or special characters."/>
             <FormInput label="Company Name" type="text" id="companyname"
               value={this.state.user.companyName}
               name="companyName" onChange={this.handleFormChange}
               noHelp/>
           </div>
           <div className="col-sm-6">
-            <span className="mb-3">Note: Your custom URL must contain 3-100 letters or numbers. Please do not use spaces, symbols, or special characters.</span>
-            <div className="mt-3">
-              <FormInput label="Company Website" type="url" id="companywebsite"
-                value={this.state.user.companyUrl}
-                name="companyUrl" onChange={this.handleFormChange}
-                noHelp/>
-            </div>
+            <FormInput label="Company Website" type="url" id="companywebsite"
+              value={this.state.user.companyUrl}
+              name="companyUrl" onChange={this.handleFormChange}
+              noHelp/>
           </div>
         </div>
         <div className="row mt-4">
