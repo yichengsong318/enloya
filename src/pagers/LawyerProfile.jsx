@@ -35,6 +35,7 @@ export class LawyerProfile extends Component {
 
     this.state = {
       lawyerId: id || props.userInfo.id,
+      lawyerPublicLink: props.userInfo.publicLink ? props.userInfo.publicLink : '',
       userInfo: {},
       copied: false,
       titleCLasses: '',
@@ -109,7 +110,9 @@ export class LawyerProfile extends Component {
 
     const userLocation = userInfo.city + ', ' + this.getCountry(userInfo.country);
 
-    const shareLink = `${window.origin}/lawyer-profile/${this.state.lawyerId}`; //Lawyer public profile link
+    const availableLink = this.state.lawyerPublicLink ? this.state.lawyerPublicLink : this.state.lawyerId;
+
+    const shareLink = `${window.origin}/lawyer-profile/${availableLink}`; //Lawyer public profile link
 
     return (
       <div className="App">
