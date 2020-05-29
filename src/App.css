@@ -1118,4 +1118,6 @@ button:focus,
   align-items: center;
   background-color: #efecee;
   color: #000000;
+  display: inline-block;
+  margin-top: .5rem;
 }
