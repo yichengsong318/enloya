@@ -728,6 +728,29 @@ hr {
   color: #fff;
   border-radius: 100%;
   background-color: #32b9f3;
+  cursor: pointer;
+  z-index: 9999999999;
+}
+
+.warning-message {
+  border-radius: 5px;
+  margin-right: 3rem;
+  background-color: rgb(3, 19, 25);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: .5rem;
+  z-index: 99999;
+}
+
+.danger-zone {
+  background-color: #dc3545;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: .5rem;
+  border-radius: 5px;
+  max-width: 22.3rem;
 }
 
 @media (min-width: 1200px) {
