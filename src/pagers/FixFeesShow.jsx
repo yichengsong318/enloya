@@ -56,13 +56,7 @@ export class FixFeesShow extends Component {
 
     const isInCart = this.props.cartServices.find(cs => cs === serv.id);
 
-    // const contStyle = {
-    //   link: {
-    //     fontWeight: "bold",
-    //     color: "#fff",
-    //     textDecoration: "underline",
-    //   }
-    // }
+    const availableLink = serv.lawyer && serv.lawyer.publicLink ? serv.lawyer.publicLink : serv.lawyer && serv.lawyer.id;
 
     return (
       <div className="App">
@@ -90,14 +84,14 @@ export class FixFeesShow extends Component {
                     <div className="row mb-4">
                       <div className="col-sm-12">
                         <h4 className="text-16">
-                          <a href={`lawyer-profile/${serv.lawyer && serv.lawyer.id}`} className="text-white text-bold text-underlined">{serv.lawyer.firstname && serv.lawyer.firstname} {serv.lawyer.lastname && serv.lawyer.lastname}</a>
+                          <a href={`lawyer-profile/${availableLink}`}  className="text-white text-bold text-underlined">{serv.lawyer.firstname && serv.lawyer.firstname} {serv.lawyer.lastname && serv.lawyer.lastname}</a>
                         </h4>
                       </div>
                       <div className="col-sm-6">
                         <h4 className="text-16 text-white">{serv.category && serv.category.label}</h4>
                         <div className="price-fixed text-white">{
-                          serv.currency === '$' || serv.currency === 'CHF' ? 
-                            serv.currency + '' + serv.price : 
+                          serv.currency === '$' || serv.currency === 'CHF' ?
+                            serv.currency + '' + serv.price :
                             serv.currency === '€' ? serv.price + '€' : '$' + serv.price}</div>
                       </div>
                       <div className="col-sm-6">
