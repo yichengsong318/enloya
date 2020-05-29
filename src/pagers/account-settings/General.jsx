@@ -16,7 +16,7 @@ export class General extends Component {
       preview: false,
       showAlert: false,
       user: {
-        publicProfile: props.userInfo.publicProfile || '',
+        publicLink: props.userInfo.publicLink || '',
         companyName : props.userInfo.companyName || '',
         companyUrl : props.userInfo.companyUrl || '',
         languageInputs : props.userInfo.languages ? props.userInfo.languages.map(l => l.id) : [],
@@ -48,7 +48,7 @@ export class General extends Component {
           );
           this.setState({
             user: {
-              publicProfile : this.props.userInfo.publicProfile || '',
+              publicLink : this.props.userInfo.publicLink || '',
               companyName : this.props.userInfo.companyName || '',
               companyUrl : this.props.userInfo.companyUrl || '',
               languageInputs : this.props.userInfo.languages ? this.props.userInfo.languages.map(l => l.id) : [],
@@ -67,7 +67,7 @@ export class General extends Component {
   handleFormChange = (name, value) => {
     const trimedValue = value.trim().replace(/[^a-zA-Z ]/g, "");
 
-    if (name  === "publicProfile" && trimedValue !== '') {
+    if (name  === "publicLink" && trimedValue !== '') {
       if (trimedValue.length < 3) {
         this.setState({showAlert: true})
       } else if (trimedValue.length > 3 && trimedValue.length < 100) {
@@ -112,10 +112,10 @@ export class General extends Component {
               name="companyPictureFile" onChange={this.handleFormImageChange} noHelp/>
           </div>*/}
           <div className="col-sm-6">
-            <FormInput label="Personalize the URL for your public Enloya profile" type="text" id="publicProfile"
-              value={this.state.user.publicProfile}
+            <FormInput label="Personalize the URL for your public Enloya profile" type="text" id="publicLink"
+              value={this.state.user.publicLink}
               showAlert={this.state.showAlert}
-              name="publicProfile" onChange={this.handleFormChange}
+              name="publicLink" onChange={this.handleFormChange}
               message="Note: Your custom URL must contain 3-100 letters or numbers. Please do not use spaces, symbols, or special characters."/>
             <FormInput label="Company Name" type="text" id="companyname"
               value={this.state.user.companyName}
