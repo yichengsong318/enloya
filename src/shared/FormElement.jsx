@@ -99,6 +99,37 @@ export function FormInput(props) {
   );
 }
 
+export function FormUrl(props) {
+  const publicLink = React.createRef();
+  const handleMouseOver =()=>{
+    publicLink.current.classList.remove('d-none');
+  }
+
+  const handleMouseOut =()=>{
+    publicLink.current.classList.add('d-none');
+  }
+
+  return (
+    <div className={"form-group text-left" + (props.customClass ? ' ' + props.customClass : '')}>
+      {!props.noLabel && <label htmlFor={props.id}>{props.label}</label>}
+       {props.showAlert &&(<div className="danger-zone">must contain 3-100 letters or numbers. Please do not use spaces, symbols, or special characters.</div>)}
+      <div className="d-flex align-items-center">
+        <h6 className=" mt-1 mr-3">{props.startsWith}</h6>
+        <input type={props.type} onChange={e => props.onChange(props.name, e.target.value)} id={props.id}
+          maxLength={props.maxLength ? props.maxLength : 300}
+          className="form-control"
+          value={props.value} placeholder={props.placeholder} />
+        {!props.noHelp && <
+          FontAwesomeIcon icon={faQuestion} className="form-question-icon"
+            onMouseOver={() => handleMouseOver()}
+            onMouseOut={() => handleMouseOut()}
+          />}
+        {props.message && <span ref={publicLink} className="d-none position-absolute warning-message">{props.message}</span>}
+      </div>
+    </div>
+  );
+}
+
 export function FormCity(props) {
   return (
     <div className={"form-group text-left" + (props.customClass ? ' ' + props.customClass : '')}>

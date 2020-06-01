@@ -32,10 +32,13 @@ export class LawyerProfile extends Component {
     super(props);
 
     const id = props.match.params.lawyerId;
+    const publicLink = props.match.params.publicLink;
+
+    console.log(id, publicLink);
 
     this.state = {
-      lawyerId: id || props.userInfo.id,
-      lawyerPublicLink: props.userInfo.publicLink ? props.userInfo.publicLink : '',
+      lawyerId: id || (props.userInfo && props.userInfo.id),
+      lawyerPublicLink: publicLink || (props.userInfo && props.userInfo.publicLink) || '',
       userInfo: {},
       copied: false,
       titleCLasses: '',
@@ -43,14 +46,28 @@ export class LawyerProfile extends Component {
   }
 
   componentDidMount() {
+    const id = this.props.match.params.lawyerId  || (this.props.userInfo && this.props.userInfo.id);
+    const publicLink = this.props.match.params.publicLink;
 
-    get('lawyers/' + this.state.lawyerId, {}).then(res => {
-      const currentlawyer = res.data;
-      const titleSize = currentlawyer.title || '';
-      const classes = titleSize.length >= 45 && 'text-elipsis-vertical';
-      this.setState({userInfo: currentlawyer, titleCLasses: classes});
-    })
+    console.log(this.state.lawyerId, this.state.lawyerPublicLink)
+    if (id) {
+      get('lawyers/' + this.state.lawyerId, {}).then(res => {
+        this.loadRessources(res.data);
+      })
+    } else if (publicLink) {
+      get('lawyers/by-public-link', {publicLink: this.state.lawyerPublicLink}).then(res => {
+        console.log(res.data.id)
+        this.setState({lawyerId: res.data.id})
+        this.loadRessources(res.data);
+      })
+    }
+  }
 
+  loadRessources = (data) => {
+    const currentlawyer = data;
+    const titleSize = currentlawyer.title || '';
+    const classes = titleSize.length >= 45 && 'text-elipsis-vertical';
+    this.setState({userInfo: currentlawyer, titleCLasses: classes});
     this.readPr('proexperiences', 'proexperiences');
     this.readPr('licences', 'licences');
     this.readPr('memberships', 'memberships');
@@ -112,7 +129,7 @@ export class LawyerProfile extends Component {
 
     const availableLink = this.state.lawyerPublicLink ? this.state.lawyerPublicLink : this.state.lawyerId;
 
-    const shareLink = `${window.origin}/lawyer-profile/${availableLink}`; //Lawyer public profile link
+    const shareLink = `${window.origin}/l/${availableLink}`; //Lawyer public profile link
 
     return (
       <div className="App">
@@ -207,7 +224,8 @@ export class LawyerProfile extends Component {
                 <Switch>
                   <Redirect exact from={path} to={`${path}/fixed-services`}/>
                   <Route path={`${path}/fixed-services`}>
-                    <FixedServices kind="lawyer_profile" lawyerId={this.state.lawyerId} showCreate={false} />
+                    <FixedServices kind="lawyer_profile" publicLink={this.state.publicLink} 
+                      lawyerId={this.state.lawyerId} showCreate={false} />
                   </Route>
                   <Route path={`${path}/about`}>
                     <About userInfo={userInfo}

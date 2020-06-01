@@ -43,7 +43,7 @@ class Footer extends Component {
                                                         widget.menuItems.map(item =>{
                                                             return(
                                                                 <li key={item.id}>
-                                                                  <Link to={item.url !== 'blog' && item.url} className={`${item.url === 'howitworks' || item.url === 'whatwedo' || item.url === 'blog' || item.url === 'Help Center' ? 'd-none' : ''}`}>{item.text}</Link>
+                                                                  <Link to={item.url !== 'blog' ? item.url : '#'} className={`${item.url === 'howitworks' || item.url === 'whatwedo' || item.url === 'blog' || item.url === 'Help Center' ? 'd-none' : ''}`}>{item.text}</Link>
                                                                   {(item.url === 'whatwedo' && !this.props.kind) && <ScrolLink title="Home" to="whatwedo" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
                                                                   {(item.url === 'howitworks' && !this.props.kind) && <ScrolLink title="Home" to="howitworks" spy smooth duration={300} style={{ cursor: 'pointer'}} >{item.text}</ScrolLink>}
                                                                   {(item.url === 'whatwedo' && this.props.kind === 'otherPage') && (<a href="/?q=whatwedo" style={{ cursor: 'pointer'}} >{item.text}</a>)}

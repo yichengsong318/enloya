@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
-import { FormText, FormInput, FormSelect, FormUploadImage, FormCity } from '../../shared/FormElement';
+import { FormText, FormInput, FormSelect, FormUploadImage, FormCity, FormUrl } from '../../shared/FormElement';
 import { NotificationManager } from "react-notifications";
 import { updateData, readData, loadMe } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
@@ -65,9 +64,9 @@ export class General extends Component {
   }
 
   handleFormChange = (name, value) => {
-    const trimedValue = value.trim().replace(/[^a-zA-Z ]/g, "");
-
-    if (name  === "publicLink" && trimedValue !== '') {
+    
+    if (name  === "publicLink" && value !== '') {
+      const trimedValue = value.trim().replace(/[^a-zA-Z ]/g, "");
       if (trimedValue.length < 3) {
         this.setState({showAlert: true})
       } else if (trimedValue.length > 3 && trimedValue.length < 100) {
@@ -75,7 +74,6 @@ export class General extends Component {
       } else {
         this.setState({showAlert: true})
       }
-    } else {
     }
     this.setState({user: {...this.state.user, [name]: value}});
   };
@@ -111,12 +109,17 @@ export class General extends Component {
             <FormUploadImage label="Upload Logo" id="logoUpload" value={userInfo.companyPicture}
               name="companyPictureFile" onChange={this.handleFormImageChange} noHelp/>
           </div>*/}
-          <div className="col-sm-6">
-            <FormInput label="Personalize the URL for your public Enloya profile" type="text" id="publicLink"
+          <div className="col-sm-9">
+            <FormUrl label="Personalize the URL for your public Enloya profile" type="text" id="publicLink"
+              startsWith={window.origin + 'l/'}
               value={this.state.user.publicLink}
               showAlert={this.state.showAlert}
               name="publicLink" onChange={this.handleFormChange}
               message="Note: Your custom URL must contain 3-100 letters or numbers. Please do not use spaces, symbols, or special characters."/>
+          </div>
+          <div className="col-sm-12 mb-4">
+          </div>
+          <div className="col-sm-6">
             <FormInput label="Company Name" type="text" id="companyname"
               value={this.state.user.companyName}
               name="companyName" onChange={this.handleFormChange}

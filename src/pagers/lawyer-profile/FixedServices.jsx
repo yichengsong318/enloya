@@ -3,13 +3,31 @@ import { connect } from "react-redux";
 import { readData } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import FixedServiceCard from "../../shared/FixedServiceCard";
-
+import { get } from "../../helpers/RemoteApi";
 
 export class FixedServices extends Component {
-  componentDidMount() {
-    const {readData} = this.props;
-    readData('services', {lawyer: this.props.lawyerId, isPublished: true});
-    readData('licences', 'licences');
+  constructor(props) {
+    super(props);
+
+    this.shouldLoad = true;
+  }
+
+  shouldComponentUpdate() {
+    if (this.shouldLoad) {
+      const {readData} = this.props;
+      if (this.props.lawyerId) {
+        readData('services', {lawyer: this.props.lawyerId, isPublished: true});
+        readData('licences', {lawyer: this.props.lawyerId});
+        this.shouldLoad = false;
+      } else if (this.props.publicLink) {
+        get('lawyers/by-public-link', {publicLink: this.props.publicLink}).then(res => {
+          readData('services', {lawyer: res.data.id, isPublished: true});
+          readData('licences', {lawyer: res.data.id});
+          this.shouldLoad = false;
+        })
+      }
+    }
+    return true;
   }
 
   render () {

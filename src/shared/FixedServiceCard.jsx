@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function FixedServiceCard (props) {
   // console.log('props.lawyer', props.lawyer);
     const nameSize = props.name.length;
-    const titleSize = props.lawyer.title.length;
+    const titleSize = props.lawyer.title ? props.lawyer.title.length : 0;
     const licencedCities = props.licencedCities;
     const shareLink = `${window.origin}/fix-fee-services-show?sid=${props.sid}`;
     const [state, setState] = useState({ copied: false });

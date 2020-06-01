@@ -226,6 +226,11 @@ export default [
     authRequired: false 
   },
   { 
+    path: "/l/:publicLink", 
+    component: LawyerProfile, 
+    authRequired: false 
+  },
+  { 
     path: "/account-settings", 
     component: AccountSettings, 
     authRequired: true 
