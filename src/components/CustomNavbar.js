@@ -89,8 +89,8 @@ class CustomNavbar extends Component {
             <nav className={`navbar navbar-expand-lg menu_one ${mClass} ${isHome ? '' : 'bg-white'}`}>
               <div className={`container ${cClass}`}>
                 <Link className={`navbar-brand ${slogo}`} to="/">
-                  <img src={require("../img/enloya-logo.svg")} alt="" style={{ height: "75px"}}/>
-                  <img src={require("../img/enloya-logo.svg")} alt="logo" style={{ height: "75px"}}/>
+                  <img src={require("../img/enloya-logo.svg")} alt="" style={{ height: "65px"}}/>
+                  <img src={require("../img/enloya-logo.svg")} alt="logo" style={{ height: "65px"}}/>
                 </Link>
                 <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="menu_toggle">
@@ -125,9 +125,9 @@ class CustomNavbar extends Component {
                             (<ScrolLink title="Pages" className="nav-link" to="howitworks" spy smooth duration={300} >How it works</ScrolLink>)
                           }
                         </li>
-                        <li className="nav-item">
+                        {/*<li className="nav-item">
                           <NavLink title="Pricing" className="nav-link" to="/pricing">Pricing</NavLink>
-                        </li>
+                        </li>*/}
                       </ul>
                     )
                   }
