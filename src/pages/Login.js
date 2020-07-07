@@ -8,7 +8,7 @@ import SocialLogin from '../components/SocialLogin';
 
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions";
-import {apiConfig} from '../constants/defaultValues'; 
+import {apiConfig} from '../constants/defaultValues';
 
 export class Login extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export class Login extends Component {
     window.addEventListener("message", (event) => {
       if (event.origin !== apiConfig.apiDomain)
         return;
-    
+
       localStorage.setItem('user_token', event.data);
       localStorage.setItem('user_type', 'lawyer');
 
@@ -57,7 +57,6 @@ export class Login extends Component {
     }
   }
 
-
   handleFormChange = (name, value) => {
     this.setState({login: {...this.state.login, [name]: value}});
   };
@@ -68,8 +67,8 @@ export class Login extends Component {
         <CustomNavbar cClass="custom_container p0" hbtnClass="new_btn" q="team_url"/>
         <div className="subscribe_form_info s_form_info_two text-center mb-0">
           <h2 className="f_600 f_size_30 l_height30 t_color3 mb_50 mt_70 pt_70">Member login</h2>
-          <SocialLogin linkedinClick={() => {this.createPopup()}}/>
-          <h6 className="my-2">Or</h6>
+          {/* <SocialLogin linkedinClick={() => {this.createPopup()}}/>
+          <h6 className="my-2">Or</h6> */}
           {/* <hr className="mw-300"/> */}
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
             { this.props.errorMessage &&

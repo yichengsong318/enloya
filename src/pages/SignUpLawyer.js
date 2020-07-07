@@ -42,7 +42,7 @@ export class SignUpLawyer extends Component {
     window.addEventListener("message", (event) => {
       if (event.origin !== apiConfig.apiDomain)
         return;
-    
+
       localStorage.setItem('user_token', event.data);
       localStorage.setItem('user_type', 'lawyer');
 
@@ -98,7 +98,7 @@ export class SignUpLawyer extends Component {
     let errorMessage = this.props.errorMessage;
     if (this.props.errorMessage && this.props.errorMessage.length > 0) {
       if (this.props.errorMessage[0].property === 'password') {
-       errorMessage = "Password must be longer than or equal to 6 characters" 
+       errorMessage = "Password must be longer than or equal to 6 characters"
       }
     }
     console.log(this.props.errorMessage)
@@ -108,7 +108,7 @@ export class SignUpLawyer extends Component {
         <div className="subscribe_form_info s_form_info_two text-center mb-0">
           <h2 className="f_600 f_size_30 l_height30 t_color3 mb-0 mt_70 pt_70">Unlock the digital lawyer in you</h2><br/>
           <p className="text-black text-center mb-4">Get started - <strong>it's free</strong></p>
-          <SocialLogin linkedinClick={() => {this.createPopup()}}/>
+          {/*<SocialLogin linkedinClick={() => {this.createPopup()}}/>*/}
           <form action="#" className="subscribe-form" onSubmit={e => this.onFormSubmit(e)}>
             { errorMessage &&
               <div className="alert alert-danger">{errorMessage}</div>

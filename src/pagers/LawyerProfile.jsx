@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from "react-redux";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Switch, Route, NavLink, Redirect, withRouter, Link } from "react-router-dom";
-
+import { PopupWidget } from 'react-calendly';
 import CustomNavbar from '../components/CustomNavbar';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
@@ -131,6 +131,11 @@ export class LawyerProfile extends Component {
 
     const shareLink = `${window.origin}/l/${availableLink}`; //Lawyer public profile link
 
+
+    // this need to be replaced dynamically after the Backend fielled in his
+    // Celendly URL for the lawyer from his account settings
+    const appointmentUrl = "https://calendly.com/azizmashkour";
+
     return (
       <div className="App">
         <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto"
@@ -224,7 +229,7 @@ export class LawyerProfile extends Component {
                 <Switch>
                   <Redirect exact from={path} to={`${path}/fixed-services`}/>
                   <Route path={`${path}/fixed-services`}>
-                    <FixedServices kind="lawyer_profile" publicLink={this.state.publicLink} 
+                    <FixedServices kind="lawyer_profile" publicLink={this.state.publicLink}
                       lawyerId={this.state.lawyerId} showCreate={false} />
                   </Route>
                   <Route path={`${path}/about`}>
@@ -243,6 +248,19 @@ export class LawyerProfile extends Component {
             </div>
           </div>
         </div>
+        <PopupWidget
+          color="#00a2ff"
+          pageSettings={{
+            backgroundColor: 'ffffff',
+            hideEventTypeDetails: false,
+            hideLandingPageDetails: false,
+            primaryColor: '00a2ff',
+            textColor: '4d5055'
+          }}
+          text="Book appointment"
+          textColor="#ffffff"
+          url={appointmentUrl}
+        />
         <Footer FooterData={FooterData} kind="otherPage"/>
       </div>
     );

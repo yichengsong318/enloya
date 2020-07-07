@@ -1144,3 +1144,7 @@ button:focus,
   display: inline-block;
   margin-top: .5rem;
 }
+
+div#fg_bubble {
+  bottom: 70px!important;
+}
