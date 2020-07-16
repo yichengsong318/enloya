@@ -64,7 +64,7 @@ export class General extends Component {
   }
 
   handleFormChange = (name, value) => {
-    
+
     if (name  === "publicLink" && value !== '') {
       const trimedValue = value.trim().replace(/[^a-zA-Z ]/g, "");
       if (trimedValue.length < 3) {

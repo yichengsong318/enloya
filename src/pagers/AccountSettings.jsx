@@ -18,6 +18,7 @@ import BookingCreate from './account-settings/BookingCreate';
 import BookingCreateTwo from './account-settings/BookingCreateTwo';
 import CustomNavbar from '../components/CustomNavbar';
 import FeeArrangements from './account-settings/FeeArrangements';
+import Appointements from './account-settings/Appointements';
 
 import AlertArea from '../components/AlertArea';
 import Footer from '../components/Footer/Footer';
@@ -54,6 +55,7 @@ function AccountSettings(props) {
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/professional-bg`}>Professional background</NavLink>
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/fix-fee-services`}>Fix-fee Services</NavLink>
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/social-links`}>Social Links</NavLink>
+                  <NavLink activeClassName="selected" className="sidelink" to={`${url}/my-appointements`}>Appointements</NavLink>
                   <NavLink activeClassName="selected" className="sidelink" to={`${url}/fee-arrangements`}>Fee Arrangements</NavLink>
                 </>
               }
@@ -82,6 +84,7 @@ function AccountSettings(props) {
                 <ScrollToTopRoute authRequired={true} path={`${path}/fix-fee-services-detail`} component={FixFeesDetail}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/social-links`} component={SocialLinks}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/fee-arrangements`} component={FeeArrangements}/>
+                <ScrollToTopRoute authRequired={true} path={`${path}/my-appointements`} component={Appointements}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/booking`} component={Booking}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/booking-create`} component={BookingCreate}/>
                 <ScrollToTopRoute authRequired={true} path={`${path}/booking-create-two`} component={BookingCreateTwo}/>
