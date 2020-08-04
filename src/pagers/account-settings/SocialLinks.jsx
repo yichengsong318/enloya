@@ -14,7 +14,8 @@ export class SocialLinks extends Component {
         linkedin: this.props.userInfo.socialLinks.linkedin,
         twitter: this.props.userInfo.socialLinks.twitter,
         facebook: this.props.userInfo.socialLinks.facebook,
-        youtube: this.props.userInfo.socialLinks.youtube
+        youtube: this.props.userInfo.socialLinks.youtube,
+        website: this.props.userInfo.socialLinks.website
       }
     }
   }
@@ -40,7 +41,8 @@ export class SocialLinks extends Component {
               linkedin: this.props.userInfo.socialLinks.linkedin,
               twitter: this.props.userInfo.socialLinks.twitter,
               facebook: this.props.userInfo.socialLinks.facebook,
-              youtube: this.props.userInfo.socialLinks.youtube
+              youtube: this.props.userInfo.socialLinks.youtube,
+              website: this.props.userInfo.socialLinks.website,
             }
           });
         });
@@ -70,6 +72,9 @@ export class SocialLinks extends Component {
 
               <FormInput label="Youtube" type="text" id="youtube"
                 value={this.state.socialLinks.youtube} name="youtube" onChange={this.handleChange} noHelp/>
+
+              <FormInput label="Website" type="text" id="website"
+                value={this.state.socialLinks.website} name="website" onChange={this.handleChange} noHelp/>
             </div>
             <div className="col-sm-7 mt-4 text-right">
               <button onClick={this.onFormSubmit} type="button" className="btn btn-yellow px-5">Save</button>

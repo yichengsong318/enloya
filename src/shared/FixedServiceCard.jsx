@@ -35,7 +35,7 @@ export default function FixedServiceCard (props) {
         <div className="line-height-1-5 mt-1"><b>Estimated Delivery:</b> <span className="text-warning size-inherit">{props.deliveryTime && (props.deliveryTime.amount + " " + props.deliveryTime.unit)}</span></div>
       </div>
       <div className="body">
-          { state.copied ? (<span className="copied-success">Web URL Copied!</span>) : ''}
+        { state.copied ? (<span className="copied-success">Web URL Copied!</span>) : ''}
         <div className="row mt-3 mt-3-mobile d-flex align-items-end">
             <div className="col-md-7 col-7 col-lg-7">
               <b>{props.lawyer.firstname} {props.lawyer.lastname}</b>

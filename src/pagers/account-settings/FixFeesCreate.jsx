@@ -263,8 +263,8 @@ export class FixFeesCreate extends Component {
             </div>
             <div className="col-sm-12"></div>
             <div className="col-sm-8">
-              <FormInput label="Deliverable" type="text" id="deliverable"
-                value={this.state.service.deliverable} maxLength={40}
+              <FormInput label="Deliverable(35 Characters max)" type="text" id="deliverable"
+                value={this.state.service.deliverable} maxLength={35}
                 name="deliverable" onChange={this.handleFormChange}
                 noHelp />
             </div>

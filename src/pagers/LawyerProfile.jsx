@@ -13,6 +13,7 @@ import facebookIcon from '../assets/facebook_enloya.svg';
 import twitterIcon from '../assets/twitter_enloya.svg';
 import youtubeIcon from '../assets/youtube_enloya.svg';
 import linkedinIcon from '../assets/linkedin_enloya.svg';
+import websiteIcon from '../assets/website_enloya.svg';
 
 import countries from '../constants/countries';
 
@@ -142,7 +143,7 @@ export class LawyerProfile extends Component {
           isProfile q="team_url"/>
         <div className="bg-white mt_75 pt-2">
           <div className="pb-4 mx-5">
-            <div className="row mx-0 align-items-center pt-4">
+            <div className="row mx-0 align-items-center pt-3">
               <div className="col-sm-12 px-0 lawyer-card-large">
                 <div className="row">
                   <div className="col-md-2 col-sm-12 ml-auto mr-4">
@@ -168,8 +169,12 @@ export class LawyerProfile extends Component {
                       </div>
                     <div className="lawyer-name-profile">{userInfo.firstname} {userInfo.lastname}</div>
                     <div className="font-weight-bold">{currentPositionLabel}</div>
-                    <div className="mt-1">
+                    {/*<div className="mt-1">
                       {userInfo.shortDescription}
+                    </div>*/}
+                    <div className="col-md-12 p-0 col-sm-12">
+                      <FontAwesomeIcon icon={faGraduationCap} className="text-primary-o mr-2" />
+                      <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
                     </div>
                     <div className="row align-items-center">
                       {/* <div className="col-sm-4 mb-2">
@@ -185,29 +190,29 @@ export class LawyerProfile extends Component {
                       <div className="col-md-4 mb-2 col-sm-12">
                         <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary-o mr-2" />
                         <span>{userLocation}</span>
+                        <div className="d-flex">
+                          {socialLinks.linkedin && <div className="social-icon">
+                            <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a>
+                          </div>}
+                          {socialLinks.twitter && <div className="social-icon">
+                            <a href={socialLinks.twitter}><img className="img-fluid" src={twitterIcon} alt="twitter"/></a>
+                          </div>}
+                          {socialLinks.facebook && <div className="social-icon">
+                            <a href={socialLinks.facebook}><img className="img-fluid" src={facebookIcon} alt="facebook"/></a>
+                          </div>}
+                          {socialLinks.youtube && <div className="social-icon">
+                            <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a>
+                          </div>}
+                          {socialLinks.website && <div className="social-icon">
+                            <a href={socialLinks.website}><img className="img-fluid" src={websiteIcon} alt="website"/></a>
+                          </div>}
+                        </div>
                       </div>
-                      <div className="col-md-8 mb-2 col-sm-12">
-                        <FontAwesomeIcon icon={faGraduationCap} className="text-primary-o mr-2" />
-                        <span>{lastMajor && (lastMajor.degree + ', ' + lastMajor.year + ' at ' + lastMajor.university)}</span>
+                      <div className="col-md-8 mt-2 col-sm-12 line-height-1-6">
+                        <span className="font-weight-bold mr-2">Area(s) of expertise</span>
+                        <span>{specializations.slice(0, 5).map(s => s.label).join(', ')}</span>
                       </div>
-                      <div className="col-sm-4 mb-2 d-flex">
-                        {socialLinks.linkedin && <div className="social-icon">
-                          <a href={socialLinks.linkedin}><img className="img-fluid" src={linkedinIcon} alt="linkedin"/></a>
-                        </div>}
-                        {socialLinks.twitter && <div className="social-icon">
-                          <a href={socialLinks.twitter}><img className="img-fluid" src={twitterIcon} alt="twitter"/></a>
-                        </div>}
-                        {socialLinks.facebook && <div className="social-icon">
-                          <a href={socialLinks.facebook}><img className="img-fluid" src={facebookIcon} alt="facebook"/></a>
-                        </div>}
-                        {socialLinks.youtube && <div className="social-icon">
-                          <a href={socialLinks.youtube}><img className="img-fluid" src={youtubeIcon} alt="youtube"/></a>
-                        </div>}
-                      </div>
-                      <div className="col-sm-8 mb-2">
-                        <span className="font-weight-bold mr-3">Area(s) of expertise</span>
-                        <span>{specializations.map(s => s.label).join(', ')}</span>
-                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -249,7 +254,7 @@ export class LawyerProfile extends Component {
           </div>
         </div>
         <PopupWidget
-          color="#00a2ff"
+          color="#5288C7"
           pageSettings={{
             backgroundColor: 'ffffff',
             hideEventTypeDetails: false,

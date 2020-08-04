@@ -22,6 +22,7 @@ class CustomNavbar extends Component {
     this.state = {
       searchquery: params.q || '',
       searchcountry: params.c || '',
+      selectedOption: 'service',
     };
   }
 
@@ -77,8 +78,15 @@ class CustomNavbar extends Component {
   };
 
   launchSearch = () => {
-    this.props.history.push("/search?q=" +  this.state.searchquery + "&c=" + this.state.searchcountry);
+    const searURL = this.state.selectedOption === 'service' ? '/search?q=' : 'search-lawyer?q=';
+    this.props.history.push(searURL +  this.state.searchquery + "&c=" + this.state.searchcountry);
   };
+
+  handleOptionChange = (event) => {
+    this.setState({
+      selectedOption: event.target.value,
+  });
+  }
 
 
   render() {
@@ -137,10 +145,34 @@ class CustomNavbar extends Component {
                       <>
                         <ul className="navbar-nav mr-2 my-3 ml-auto">
                           <li className="nav-item dropdown">
+                            {/*Placeholder for lawyer search: Indicate legal field or name of lawyer*/}
                             <FormInput type="text" id="searchquery" customClass="mb-0 w-320"
-                              value={this.state.searchquery} placeholder="Which legal job do you want done?"
+                              value={this.state.searchquery}
+                              placeholder={this.state.selectedOption === 'service' ? 'Which legal job do you want done?' : 'Indicate legal field or name of lawyer'}
                               name="searchquery" onChange={this.handleSearchChange}
                               noHelp noLabel/>
+                              <div className="">
+                                <input
+                                  type="radio"
+                                  name="kind"
+                                  value="service"
+                                  aria-label="Checkbox for following text input"
+                                  className="mr-2"
+                                  onChange={this.handleOptionChange}
+                                  checked={this.state.selectedOption === 'service'}
+                                  />
+                                <span className="border-right mr-2 pr-2">Search legal solution</span>
+                                <input
+                                  type="radio"
+                                  name="kind"
+                                  value="lawyer"
+                                  aria-label="Checkbox for following text input"
+                                  className="mr-2"
+                                  onChange={this.handleOptionChange}
+                                  checked={this.state.selectedOption === 'lawyer'}
+                                  />
+                                <span>Search lawyer</span>
+                              </div>
                           </li>
                           <li className="nav-item ml-2">
                             <div className="search-block">
@@ -156,6 +188,7 @@ class CustomNavbar extends Component {
                                 >Search</button>
                             </div>
                           </li>
+
                         </ul>
                         <Dropdown type="button"
                           userImage={this.props.userInfo.profilePic}

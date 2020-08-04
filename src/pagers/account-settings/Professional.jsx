@@ -21,13 +21,18 @@ export class Professional extends Component {
       },
       shortDescription: {
         editing: false,
-        value : props.userInfo.shortDescription,
+        value : props.userInfo.shortDescription ? props.userInfo.shortDescription : '',
         placeholder: 'Edit to add a short description'
       },
       longDescription: {
         editing: false,
         value : props.userInfo.longDescription,
         placeholder: 'Edit to add a long description'
+      },
+      forWhomIWork: {
+        editing: false,
+        value : props.userInfo.forWhomIWork ? props.userInfo.forWhomIWork : '',
+        placeholder: 'Edit to add for whom you like to work'
       },
       currentPosition: {
         editing: false,
@@ -409,7 +414,6 @@ export class Professional extends Component {
   }
 
   getCountry = (code) => {
-    console.log("codecodecodecodecode", code);
     const country = countries.find(c => c.value === code);
     return country ? country.label : "";
   }
@@ -441,7 +445,7 @@ export class Professional extends Component {
             :
             <p>{userInfo.title || this.state.title.placeholder}</p>}
         </div>
-        <div>
+        {/*<div>
           <div className="d-flex justify-content-between">
             <h5>Short Description</h5>
             { this.state.shortDescription.editing ?
@@ -456,7 +460,7 @@ export class Professional extends Component {
               defaultValue={this.state.shortDescription.value} placeholder={this.state.shortDescription.placeholder}/>
             :
             <p>{userInfo.shortDescription || this.state.shortDescription.placeholder}</p>}
-        </div>
+        </div>*/}
         <div>
           <div className="d-flex justify-content-between">
             <h5>Long Description</h5>
@@ -514,6 +518,24 @@ export class Professional extends Component {
             :
             <p><strong>{specializations.map(s => s.label).join(', ') || this.state.specializationInputs.placeholder}</strong></p>}
         </div>
+
+        <div>
+          <div className="d-flex justify-content-between">
+            <h5>For whom I like to work</h5>
+            { this.state.forWhomIWork.editing ?
+              <span className="btn btn-yellow btn-sm"  onClick={() => {this.saveAttr('forWhomIWork')}}>Save</span>
+              :
+              <span className="btn btn-link" onClick={() => {this.startEditing('forWhomIWork', true)}}>Edit</span>
+            }
+          </div>
+          { this.state.forWhomIWork.editing ?
+            <textarea className="form-control my-3 h-100" rows={5}
+              onChange={(e) => {this.handleChange('forWhomIWork', e.target.value)}}
+              defaultValue={this.state.forWhomIWork.value} placeholder={this.state.forWhomIWork.placeholder}/>
+            :
+            <p>{userInfo.forWhomIWork || this.state.forWhomIWork.placeholder}</p>}
+        </div>
+
         <div>
           <div className="d-flex justify-content-between mb-2">
             <h5>Lawyer Type</h5>

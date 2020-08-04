@@ -9,7 +9,7 @@ import AlertArea from '../components/AlertArea';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 
-import { FormInput, FormCheck } from '../shared/FormElement';
+import { FormCheck } from '../shared/FormElement';
 
 import { faTh, faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -108,7 +108,7 @@ export class SearchResults extends Component {
           <div className="container">
             <AlertArea/>
           </div>
-          <div className="container-fluid bg-light-blue pt-5 pb-4">
+          {/*<div className="container-fluid bg-light-blue pt-5 pb-4">
             <div className="container">
               <div className="row">
                 <div className="col-sm-4">
@@ -141,7 +141,7 @@ export class SearchResults extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
         <div className="h-100 container">
           <div className="my-4 d-flex justify-content-between align-items-center">
@@ -216,14 +216,17 @@ export class SearchResults extends Component {
                       const licencedCities = lawyer.licences && lawyer.licences.map(l => l.country).join(', ');
 
                       return (
-                        <div key={lawyer.id} className={ isGrid ? "col-sm-4 mb-3" : "col-sm-12 mb-3"} >
+                        <div key={lawyer.id} className={ isGrid ? "col-sm-6 mb-3" : "col-sm-12 mb-3"} >
                           <LawyerCard type={isGrid ? "grid" : "list"}
                             lid={lawyer.id}
                             profilePic={lawyer.profilePic}
                             name={lawyer.firstname + ' ' + lawyer.lastname}
                             title={lawyer.title} expertises={lawyer.specializations.map(s => s.label).join(', ')}
                             location={`${lawyer.city}, ${lawyer.country}`} languages={lawyer.languages.map(s => s.label).join(', ')}
-                            status="Government ID Verified" registration={"Trademark registration in " + licencedCities} />
+                            status="Licensed in" registration={"The last university in " + licencedCities}
+                            hourRate={lawyer.hourlyRate}
+                            lawyerPublicLink={lawyer.lawyerPublicLink}
+                          />
                         </div>
                       );
                     }).slice(0, this.state.pagination)
