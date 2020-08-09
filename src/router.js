@@ -36,6 +36,7 @@ import Contracts from './pagers/Contracts';
 import LawyerSearchResults from './pagers/SearchResults';
 import ServiceSearchResults from './pagers/ServiceSearchResults';
 import LawyerProfile from './pagers/LawyerProfile';
+import LawyerFirm from './pagers/LawyerFirm';
 import AccountSettings from './pagers/AccountSettings';
 import ValidateAccount from './pagers/ValidateAccount';
 import Conversations from './pagers/chat/Conversations';
@@ -212,7 +213,7 @@ export default [
   },
   {
     path: "/search-lawyer",
-    component: LawyerSearchResults, 
+    component: LawyerSearchResults,
     authRequired: false
   },
   {
@@ -223,6 +224,11 @@ export default [
   {
     path: "/lawyer-profile/:lawyerId",
     component: LawyerProfile,
+    authRequired: false
+  },
+  {
+    path: "/lawyer-firm",
+    component: LawyerFirm,
     authRequired: false
   },
   {
